@@ -17,7 +17,7 @@ module.exports = {
   extends: ['next', 'next/core-web-vitals'],
   rules: {
     curly: 'error',
-    'prettier/prettier': ['error', { endOfLine: 'auto' }],
+    // 'prettier/prettier': ['error', { endOfLine: 'auto' }],
     'import/no-duplicates': ['error', { considerQueryString: true }],
     'react/prop-types': 'off',
     'react/no-unescaped-entities': 'off',
@@ -25,7 +25,7 @@ module.exports = {
     'react/react-in-jsx-scope': 'error',
     'no-use-before-define': ['error'],
     'no-unused-vars': 'off',
-    'unused-imports/no-unused-imports': 'error',
+    // 'unused-imports/no-unused-imports': 'error',
     '@next/next/no-html-link-for-pages': 'off',
     '@typescript-eslint/no-unused-vars': 'warn',
     '@typescript-eslint/ban-ts-comment': 'warn',
