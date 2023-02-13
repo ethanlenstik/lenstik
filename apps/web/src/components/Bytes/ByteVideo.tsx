@@ -45,7 +45,7 @@ const ByteVideo: FC<Props> = ({
   const observer = new IntersectionObserver((data) => {
     if (data[0].target.id && data[0].isIntersecting) {
       intersectionCallback(data[0].target.id)
-      const nextUrl = `${location.origin}/bytes/${video?.id}`
+      const nextUrl = `${location.origin}/${video?.id}`
       history.replaceState({ path: nextUrl }, '', nextUrl)
       playVideo()
     }

@@ -1,3 +1,3 @@
-import Home from '@components/Home'
+import Bytes from '@components/Bytes'
 
-export default Home
+export default Bytes

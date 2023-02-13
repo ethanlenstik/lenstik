@@ -40,8 +40,7 @@ const Sidebar = () => {
       <CreateChannel />
       <div
         className={clsx(
-          'transition-width dark:bg-theme fixed top-0 bottom-0 left-0 z-10 hidden items-start justify-between bg-white md:flex md:flex-col',
-          sidebarCollapsed ? 'w-[90px]' : 'w-[180px]'
+          'transition-width hidden items-start justify-between md:flex md:flex-col',
         )}
       >
         <div
@@ -65,7 +64,7 @@ const Sidebar = () => {
             </Link>
           </div>
           <div className="flex flex-col justify-center space-y-2">
-            <Tooltip
+            {/* <Tooltip
               content="Home"
               visible={sidebarCollapsed}
               placement="right"
@@ -85,7 +84,7 @@ const Sidebar = () => {
                 <HomeOutline className="h-5 w-5" />
                 {!sidebarCollapsed && <span className="text-sm">Home</span>}
               </Link>
-            </Tooltip>
+            </Tooltip> */}
             <Tooltip
               content="Subscriptions"
               visible={sidebarCollapsed}
@@ -109,7 +108,7 @@ const Sidebar = () => {
                 )}
               </Link>
             </Tooltip>
-            <Tooltip
+            {/* <Tooltip
               content="Bytes"
               visible={sidebarCollapsed}
               placement="right"
@@ -129,8 +128,8 @@ const Sidebar = () => {
                 <BytesOutline className="h-5 w-5" />
                 {!sidebarCollapsed && <span className="text-sm">Bytes</span>}
               </Link>
-            </Tooltip>
-            <Tooltip
+            </Tooltip> */}
+            {/* <Tooltip
               content="Explore"
               visible={sidebarCollapsed}
               placement="right"
@@ -150,56 +149,34 @@ const Sidebar = () => {
                 <ExploreOutline className="h-5 w-5" />
                 {!sidebarCollapsed && <span className="text-sm">Explore</span>}
               </Link>
-            </Tooltip>
+            </Tooltip> */}
             {getIsFeatureEnabled(
               FEATURE_FLAGS.LENSTUBE_ECHOS,
               selectedChannel?.id
             ) && (
-              <Tooltip
-                content="Echos"
-                placement="right"
-                visible={sidebarCollapsed}
-              >
-                <Link
-                  href="/echos"
-                  className={clsx(
-                    'group flex h-12 items-center rounded-full py-2 2xl:py-2.5',
-                    isActivePath('/echo')
-                      ? 'bg-indigo-50 dark:bg-gray-800'
-                      : 'hover:bg-gray-50 dark:hover:bg-gray-800',
-                    sidebarCollapsed
-                      ? 'w-12 justify-center'
-                      : 'w-full space-x-3 px-4'
-                  )}
+                <Tooltip
+                  content="Echos"
+                  placement="right"
+                  visible={sidebarCollapsed}
                 >
-                  <MusicOutline className="h-5 w-5" />
-                  {!sidebarCollapsed && <span className="text-sm">Echo</span>}
-                </Link>
-              </Tooltip>
-            )}
+                  <Link
+                    href="/echos"
+                    className={clsx(
+                      'group flex h-12 items-center rounded-full py-2 2xl:py-2.5',
+                      isActivePath('/echo')
+                        ? 'bg-indigo-50 dark:bg-gray-800'
+                        : 'hover:bg-gray-50 dark:hover:bg-gray-800',
+                      sidebarCollapsed
+                        ? 'w-12 justify-center'
+                        : 'w-full space-x-3 px-4'
+                    )}
+                  >
+                    <MusicOutline className="h-5 w-5" />
+                    {!sidebarCollapsed && <span className="text-sm">Echo</span>}
+                  </Link>
+                </Tooltip>
+              )}
           </div>
-        </div>
-        <div
-          className={clsx(
-            'mb-1 flex flex-col',
-            sidebarCollapsed ? 'mx-auto' : 'px-3'
-          )}
-        >
-          {!sidebarCollapsed && <Footer />}
-          <button
-            onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
-            type="button"
-            className={clsx(
-              'mt-2 flex h-12 items-center justify-center rounded-full p-3.5 opacity-90 hover:bg-gray-50 hover:opacity-100 focus:outline-none dark:hover:bg-gray-800',
-              sidebarCollapsed ? 'w-12' : 'w-full'
-            )}
-          >
-            {sidebarCollapsed ? (
-              <ChevronRightOutline className="h-3 w-3" />
-            ) : (
-              <ChevronLeftOutline className="h-3 w-3" />
-            )}
-          </button>
         </div>
       </div>
     </>

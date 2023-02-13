@@ -84,7 +84,7 @@ const Header: FC<Props> = ({ className }) => {
                 src={`${STATIC_ASSETS}/images/brand/lenstube.svg`}
                 draggable={false}
                 className="h-5 w-5"
-                alt="lenstube"
+                alt="lenstik"
               />
             </Link>
           </div>
@@ -98,16 +98,7 @@ const Header: FC<Props> = ({ className }) => {
             >
               <SearchOutline className="h-4 w-4" aria-hidden="true" />
             </button>
-            <Link
-              className="hidden rounded-lg opacity-80 hover:opacity-100 lg:block"
-              href={LENSTUBE_ROADMAP_URL}
-              onClick={() => Analytics.track(TRACK.SYSTEM.MORE_MENU.ROADMAP)}
-              target="_blank"
-            >
-              <button className="btn-hover p-2.5">
-                <RoadmapOutline className="h-4 w-4" />
-              </button>
-            </Link>
+
             {selectedChannelId ? (
               <>
                 <Link
@@ -141,7 +132,7 @@ const Header: FC<Props> = ({ className }) => {
           </div>
         </div>
 
-        {showFilter && <CategoryFilters />}
+        {/* {showFilter && <CategoryFilters />} */}
       </div>
 
       <Modal

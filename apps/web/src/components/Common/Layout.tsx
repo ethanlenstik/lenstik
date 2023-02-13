@@ -137,26 +137,24 @@ const Layout: FC<Props> = ({ children }) => {
         position="bottom-right"
         toastOptions={getToastOptions(resolvedTheme)}
       />
-      <div className={clsx('flex pb-10 md:pb-0', showFullScreen && '!pb-0')}>
+      {!NO_HEADER_PATHS.includes(pathname) && (
+        <Header className={clsx(showFullScreen && 'hidden md:flex')} />
+      )}
+      <div className={clsx('flex pb-10 md:pb-0 max-w-screen-lg m-auto', showFullScreen && '!pb-0')}>
         <Sidebar />
         <div
           className={clsx(
             'w-full',
             showFullScreen && 'px-0',
             sidebarCollapsed || pathname === '/watch/[id]'
-              ? 'md:pl-[90px]'
-              : 'md:pl-[180px]'
           )}
         >
-          {!NO_HEADER_PATHS.includes(pathname) && (
-            <Header className={clsx(showFullScreen && 'hidden md:flex')} />
-          )}
           <div
             className={clsx(
               'ultrawide:px-0',
               showFullScreen && '!p-0',
               pathname !== '/channel/[channel]' &&
-                'ultrawide:max-w-[110rem] mx-auto py-4 md:px-3 2xl:py-6'
+              'ultrawide:max-w-[110rem] mx-auto py-4 md:px-3 2xl:py-6'
             )}
           >
             {children}
