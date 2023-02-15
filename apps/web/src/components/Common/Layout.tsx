@@ -146,7 +146,7 @@ const Layout: FC<Props> = ({ children }) => {
           className={clsx(
             'w-full',
             showFullScreen && 'px-0',
-            sidebarCollapsed || pathname === '/watch/[id]'
+            sidebarCollapsed || pathname === '/[id]'
           )}
         >
           <div

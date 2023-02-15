@@ -39,7 +39,7 @@ const MentionedNotification: FC<Props> = ({ notification }) => {
       <div className="flex items-center justify-between">
         <span className="truncate text-gray-600 dark:text-gray-400">
           <Link
-            href={`/watch/${notification?.mentionPublication.id}`}
+            href={`/${notification?.mentionPublication.id}`}
             className="mr-1 text-indigo-500"
           >
             mentioned

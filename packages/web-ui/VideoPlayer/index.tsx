@@ -105,9 +105,8 @@ const VideoPlayer: FC<Props> = ({
         player_init_time: initTime,
         video_title: IS_BYTE
           ? `${LENSTUBE_WEBSITE_URL}/bytes/${publicationId ?? router.query?.id}`
-          : `${LENSTUBE_WEBSITE_URL}/watch/${
-              publicationId ?? router.query?.id
-            }`,
+          : `${LENSTUBE_WEBSITE_URL}/${publicationId ?? router.query?.id
+          }`,
         page_type: IS_BYTE ? 'bytespage' : 'watchpage',
         video_duration: ref?.duration
       }

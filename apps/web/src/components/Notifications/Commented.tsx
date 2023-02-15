@@ -34,10 +34,9 @@ const CommentedNotification: FC<Props> = ({ notification }) => {
         <span className="truncate text-gray-600 dark:text-gray-400">
           commented on your
           <Link
-            href={`/watch/${
-              notification?.comment?.commentOn &&
+            href={`/${notification?.comment?.commentOn &&
               notification?.comment?.commentOn?.id
-            }`}
+              }`}
             className="ml-1 text-indigo-500"
           >
             video

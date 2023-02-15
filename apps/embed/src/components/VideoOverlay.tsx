@@ -34,7 +34,7 @@ const VideoOverlay: FC<Props> = ({ video, clicked }) => {
           <div className="flex flex-col">
             <Link
               className="line-clamp-1 break-words leading-5"
-              href={`${LENSTUBE_WEBSITE_URL}/watch/${video?.id}`}
+              href={`${LENSTUBE_WEBSITE_URL}/${video?.id}`}
               onClick={() =>
                 Analytics.track(TRACK.EMBED_VIDEO.CLICK_EMBED_TITLE)
               }
@@ -64,7 +64,7 @@ const VideoOverlay: FC<Props> = ({ video, clicked }) => {
                 Analytics.track(TRACK.EMBED_VIDEO.WATCH_ON_LENSTUBE)
               }
               title="Watch on LensTube"
-              href={`${LENSTUBE_WEBSITE_URL}/watch/${video?.id}`}
+              href={`${LENSTUBE_WEBSITE_URL}/${video?.id}`}
               target="_blank"
             >
               <img

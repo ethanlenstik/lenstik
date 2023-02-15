@@ -59,7 +59,7 @@ const VideoCard: FC<Props> = ({ video }) => {
             show={showReport}
             setShowReport={setShowReport}
           />
-          <Link href={`/watch/${video.id}`}>
+          <Link href={`/${video.id}`}>
             <div className="aspect-w-16 aspect-h-9 relative overflow-hidden">
               <img
                 className={clsx(
@@ -93,7 +93,7 @@ const VideoCard: FC<Props> = ({ video }) => {
                 <div className="flex w-full min-w-0 items-start justify-between space-x-1.5 pb-1">
                   <Link
                     className="line-clamp-2 ultrawide:line-clamp-1 ultrawide:break-all break-words text-sm font-semibold"
-                    href={`/watch/${video.id}`}
+                    href={`/${video.id}`}
                     title={video.metadata?.name ?? ''}
                     data-testid="video-card-title"
                   >

@@ -44,7 +44,7 @@ const CommentedVideoCard: FC<Props> = ({ video }) => {
       onClick={() => Analytics.track(TRACK.CLICK_VIDEO)}
       className="group overflow-hidden rounded-xl"
     >
-      <Link href={`/watch/${commentedOn?.id}`}>
+      <Link href={`/${commentedOn?.id}`}>
         <div className="aspect-w-16 aspect-h-8 relative rounded-xl">
           <img
             src={thumbnailUrl}
@@ -91,7 +91,7 @@ const CommentedVideoCard: FC<Props> = ({ video }) => {
             <div className="flex w-full min-w-0 items-start justify-between space-x-1.5">
               <Link
                 className="line-clamp-1 break-words text-[15px] font-medium opacity-80"
-                href={`/watch/${commentedOn.id}`}
+                href={`/${commentedOn.id}`}
                 title={commentedOn.metadata?.name ?? ''}
               >
                 {commentedOn.metadata?.name}

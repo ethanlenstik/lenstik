@@ -23,7 +23,7 @@ const Videos: FC<Props> = ({ results, loading, clearSearch }) => {
           role="button"
         >
           <Link
-            href={`/watch/${result?.id}`}
+            href={`/${result?.id}`}
             key={result?.id}
             className="flex flex-col justify-center space-y-1 rounded-xl py-2"
           >

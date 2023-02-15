@@ -63,7 +63,7 @@ const CollectedNotification: FC<Props> = ({ notification }) => {
           {notification.collectedPublication.__typename === 'Comment' &&
             ' comment on'}
           <Link
-            href={`/watch/${notification?.collectedPublication.id}`}
+            href={`/${notification?.collectedPublication.id}`}
             className="ml-1 text-indigo-500"
           >
             {notification.collectedPublication.__typename === 'Mirror'

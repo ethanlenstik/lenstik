@@ -39,7 +39,7 @@ const ByteVideo: FC<Props> = ({
     videoRef.current.currentTime = 0
     videoRef.current.volume = 1
     videoRef.current.autoplay = true
-    videoRef.current?.play().catch(() => {})
+    videoRef.current?.play().catch(() => { })
   }
 
   const observer = new IntersectionObserver((data) => {
@@ -89,7 +89,7 @@ const ByteVideo: FC<Props> = ({
     >
       <div className="relative">
         <div
-          className="ultrawide:w-[407px] flex h-screen w-screen min-w-[250px] items-center overflow-hidden bg-black md:h-[calc(100vh-145px)] md:w-[350px] md:rounded-xl"
+          className="ultrawide:w-[407px] flex h-screen w-screen min-w-[250px] items-center overflow-hidden bg-black md:h-[calc(100vh-120px)] md:w-[350px] md:rounded-xl"
           style={{
             backgroundColor: backgroundColor ? backgroundColor : undefined
           }}
@@ -129,13 +129,13 @@ const ByteVideo: FC<Props> = ({
           <ByteActions video={video} />
           {video?.collectModule?.__typename !==
             'RevertCollectModuleSettings' && (
-            <div className="text-center text-white md:text-gray-500">
-              <CollectVideo video={video} />
-              <div className="text-xs">
-                {video.stats?.totalAmountOfCollects || 'Collect'}
+              <div className="text-center text-white md:text-gray-500">
+                <CollectVideo video={video} />
+                <div className="text-xs">
+                  {video.stats?.totalAmountOfCollects || 'Collect'}
+                </div>
               </div>
-            </div>
-          )}
+            )}
         </div>
       </div>
       <div className="hidden md:flex">

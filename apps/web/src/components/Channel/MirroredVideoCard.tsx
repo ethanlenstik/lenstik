@@ -41,7 +41,7 @@ const MirroredVideoCard: FC<Props> = ({ video }) => {
       onClick={() => Analytics.track(TRACK.CLICK_VIDEO)}
       className="group overflow-hidden rounded-xl"
     >
-      <Link href={`/watch/${mirrorOf.id}`}>
+      <Link href={`/${mirrorOf.id}`}>
         <div className="aspect-w-16 aspect-h-8 relative rounded-xl">
           <img
             src={thumbnailUrl}
@@ -88,7 +88,7 @@ const MirroredVideoCard: FC<Props> = ({ video }) => {
             <div className="flex w-full min-w-0 items-start justify-between space-x-1.5">
               <Link
                 className="line-clamp-1 break-words text-[15px] font-medium opacity-80"
-                href={`/watch/${mirrorOf.id}`}
+                href={`/${mirrorOf.id}`}
                 title={video.metadata?.name ?? ''}
               >
                 {video.metadata?.name}

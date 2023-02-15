@@ -51,7 +51,7 @@ const SuggestedVideoCard: FC<Props> = ({ video }) => {
       <div className="flex justify-between">
         <div className="flex-none overflow-hidden rounded-lg">
           <Link
-            href={`/watch/${video.id}`}
+            href={`/${video.id}`}
             className="cursor-pointer rounded-lg"
           >
             <div className="relative">
@@ -79,7 +79,7 @@ const SuggestedVideoCard: FC<Props> = ({ video }) => {
           <div className="flex flex-col items-start pb-1">
             <div className="grid w-full overflow-hidden break-words">
               <Link
-                href={`/watch/${video.id}`}
+                href={`/${video.id}`}
                 className="line-clamp-1 text-sm font-medium"
                 title={video.metadata?.name ?? ''}
               >

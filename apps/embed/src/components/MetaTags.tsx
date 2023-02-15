@@ -36,7 +36,7 @@ const MetaTags: FC<Props> = (props) => {
       />
       <link
         rel="canonical"
-        href={`${LENSTUBE_WEBSITE_URL}/watch${router.asPath}`}
+        href={`${LENSTUBE_WEBSITE_URL}${router.asPath}`}
       />
     </Head>
   )

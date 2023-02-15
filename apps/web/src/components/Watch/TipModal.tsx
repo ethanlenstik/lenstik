@@ -213,7 +213,7 @@ const TipModal: FC<Props> = ({ show, setShowTip, video }) => {
         content: getValues('message'),
         locale: getUserLocale(),
         mainContentFocus: PublicationMainFocus.TextOnly,
-        external_url: `${LENSTUBE_WEBSITE_URL}/watch/${video?.id}`,
+        external_url: `${LENSTUBE_WEBSITE_URL}/${video?.id}`,
         image: null,
         imageMimeType: null,
         name: `${selectedChannel?.handle}'s comment on video ${video.metadata.name}`,
@@ -255,7 +255,7 @@ const TipModal: FC<Props> = ({ show, setShowTip, video }) => {
         return signTypedData(request)
       }
       await createViaDispatcher(request)
-    } catch {}
+    } catch { }
   }
 
   const onSendTip = async () => {
@@ -340,11 +340,10 @@ const TipModal: FC<Props> = ({ show, setShowTip, video }) => {
             )}
           </span>
           <Button loading={loading}>
-            {`Tip ${
-              isNaN(Number(watchTipQuantity) * 1)
+            {`Tip ${isNaN(Number(watchTipQuantity) * 1)
                 ? 0
                 : Number(watchTipQuantity) * 1
-            } MATIC`}
+              } MATIC`}
           </Button>
         </div>
       </form>

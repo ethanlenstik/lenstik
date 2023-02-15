@@ -31,7 +31,7 @@ const VideoComment: FC<Props> = ({ comment }) => {
   return (
     <div className="my-2 rounded-xl border py-3 px-4 dark:border-gray-700">
       <Link
-        href={`/watch/${comment.id}`}
+        href={`/${comment.id}`}
         className="flex items-center space-x-2.5"
       >
         <AiOutlinePlayCircle className="h-5 w-5" />
@@ -84,21 +84,21 @@ const Comment: FC<Props> = ({ comment }) => {
               comment?.metadata.attributes as Attribute[],
               'tip'
             ) && (
-              <Tooltip placement="top" content="Tipper">
-                <span>
-                  <HashExplorerLink
-                    hash={
-                      getValueFromTraitType(
-                        comment?.metadata.attributes as Attribute[],
-                        'hash'
-                      ) || ''
-                    }
-                  >
-                    <AiFillHeart className="text-sm text-pink-500" />
-                  </HashExplorerLink>
-                </span>
-              </Tooltip>
-            )}
+                <Tooltip placement="top" content="Tipper">
+                  <span>
+                    <HashExplorerLink
+                      hash={
+                        getValueFromTraitType(
+                          comment?.metadata.attributes as Attribute[],
+                          'hash'
+                        ) || ''
+                      }
+                    >
+                      <AiFillHeart className="text-sm text-pink-500" />
+                    </HashExplorerLink>
+                  </span>
+                </Tooltip>
+              )}
             <span className="text-xs opacity-70">
               {getRelativeTime(comment.createdAt)}
             </span>

@@ -35,11 +35,10 @@ const ReactedNotification: FC<Props> = ({ notification }) => {
           {notification.reaction === 'UPVOTE' ? 'liked' : 'dislisked'} your
           {notification.publication.__typename === 'Comment' && ' comment on'}
           <Link
-            href={`/watch/${
-              notification.publication.__typename === 'Comment'
+            href={`/${notification.publication.__typename === 'Comment'
                 ? notification.publication?.mainPost?.id
                 : notification?.publication.id
-            }`}
+              }`}
             className="ml-1 text-indigo-500"
           >
             video

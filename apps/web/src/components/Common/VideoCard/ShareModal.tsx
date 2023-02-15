@@ -24,7 +24,7 @@ const ShareModal: FC<Props> = ({ show, setShowShare, video }) => {
   const [copy] = useCopyToClipboard()
 
   const onCopyVideoUrl = async () => {
-    await copy(`${LENSTUBE_WEBSITE_URL}/watch/${video.id}`)
+    await copy(`${LENSTUBE_WEBSITE_URL}/${video.id}`)
     toast.success('Link copied to clipboard')
     Analytics.track(TRACK.COPY.VIDEO_URL)
   }
@@ -121,7 +121,7 @@ const ShareModal: FC<Props> = ({ show, setShowShare, video }) => {
         </div>
         <div className="flex items-center justify-between rounded-lg border border-gray-200 p-2 dark:border-gray-800">
           <div className="select-all truncate text-sm">
-            {LENSTUBE_WEBSITE_URL}/watch/{video.id}
+            {LENSTUBE_WEBSITE_URL}/{video.id}
           </div>
           <button
             className="ml-2 hover:opacity-60 focus:outline-none"

@@ -61,7 +61,7 @@ const PinnedVideo: FC<Props> = ({ id }) => {
         <div className="space-y-3">
           <Link
             className="inline break-words text-lg font-medium"
-            href={`/watch/${pinnedPublication.id}`}
+            href={`/${pinnedPublication.id}`}
             title={pinnedPublication.metadata?.name ?? ''}
           >
             {pinnedPublication.metadata?.name}
@@ -83,7 +83,7 @@ const PinnedVideo: FC<Props> = ({ id }) => {
         </div>
         <Link
           className="text-xs font-semibold text-indigo-500"
-          href={`/watch/${pinnedPublication.id}`}
+          href={`/${pinnedPublication.id}`}
         >
           View more
         </Link>

@@ -217,7 +217,7 @@ const NewComment: FC<Props> = ({ video }) => {
         content: trimify(data.comment),
         locale: getUserLocale(),
         mainContentFocus: PublicationMainFocus.TextOnly,
-        external_url: `${LENSTUBE_WEBSITE_URL}/watch/${video?.id}`,
+        external_url: `${LENSTUBE_WEBSITE_URL}/${video?.id}`,
         image: textNftImageUrl,
         imageMimeType: 'image/svg+xml',
         name: `${selectedChannel?.handle}'s comment on video ${video.metadata.name}`,

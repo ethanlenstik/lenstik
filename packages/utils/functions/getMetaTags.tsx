@@ -31,7 +31,7 @@ const getMetaTags = ({
     description: description || LENSTUBE_APP_DESCRIPTION,
     image: image ?? `${STATIC_ASSETS}/images/seo/og.png`,
     url: isVideo
-      ? `${LENSTUBE_WEBSITE_URL}/watch/${pubId}`
+      ? `${LENSTUBE_WEBSITE_URL}/${pubId}`
       : `${LENSTUBE_WEBSITE_URL}/channel/${handle}`
   }
 
@@ -45,26 +45,21 @@ const getMetaTags = ({
               <meta property="og:description" content="${meta.description}" />
               <meta property="og:title" content="${meta.title}" />
               <meta property="og:image" content="${meta.image}" />
-              <meta property="og:image:width" content="${
-                isVideo ? 480 : 400
-              }" />
-              <meta property="og:image:height" content="${
-                isVideo ? 360 : 400
-              }" />
-              <meta property="twitter:image:width" content="${
-                isVideo ? 480 : 400
-              }" />
-              <meta property="twitter:image:height" content="${
-                isVideo ? 360 : 400
-              }" />
+              <meta property="og:image:width" content="${isVideo ? 480 : 400
+    }" />
+              <meta property="og:image:height" content="${isVideo ? 360 : 400
+    }" />
+              <meta property="twitter:image:width" content="${isVideo ? 480 : 400
+    }" />
+              <meta property="twitter:image:height" content="${isVideo ? 360 : 400
+    }" />
               <meta name="twitter:site" content="@${LENSTUBE_TWITTER_HANDLE}" />
               <meta name="twitter:title" content="${meta.title}" />
               <meta name="twitter:description" content="${meta.description}" />
               <meta property="twitter:image" content="${meta.image}" />
               <meta property="twitter:creator" content="${LENSTUBE_TWITTER_HANDLE}" />
-              <meta name="twitter:card" content="${
-                isVideo ? 'player' : 'summary'
-              }" />`
+              <meta name="twitter:card" content="${isVideo ? 'player' : 'summary'
+    }" />`
 
   if (isVideo) {
     const embedUrl = `${LENSTUBE_EMBED_URL}/${pubId}`

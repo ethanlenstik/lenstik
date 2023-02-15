@@ -34,7 +34,7 @@ const MirroredNotification: FC<Props> = ({ notification }) => {
         <span className="truncate text-gray-600 dark:text-gray-400">
           mirrored your{' '}
           <Link
-            href={`/watch/${notification?.publication.id}`}
+            href={`/${notification?.publication.id}`}
             className="ml-1 text-indigo-500"
           >
             video

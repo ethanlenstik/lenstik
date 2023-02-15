@@ -7,7 +7,7 @@ import { getSecondsFromTime } from 'utils/functions/formatTime'
 const TimeLink = ({ ...props }: any) => {
   const { query } = useRouter()
   return (
-    <Link href={`/watch/${query.id}?t=${getSecondsFromTime(props.display)}`}>
+    <Link href={`/${query.id}?t=${getSecondsFromTime(props.display)}`}>
       {props.display}
     </Link>
   )
