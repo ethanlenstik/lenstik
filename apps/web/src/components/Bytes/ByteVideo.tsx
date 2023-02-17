@@ -17,12 +17,16 @@ type Props = {
   video: Publication
   currentViewingId: string
   intersectionCallback: (id: string) => void
+  onDetail: () => void
+  isShow: boolean
 }
 
 const ByteVideo: FC<Props> = ({
   video,
   currentViewingId,
-  intersectionCallback
+  intersectionCallback,
+  onDetail,
+  isShow
 }) => {
   const videoRef = useRef<HTMLMediaElement>()
   const intersectionRef = useRef<HTMLDivElement>(null)
@@ -33,7 +37,8 @@ const ByteVideo: FC<Props> = ({
   const { color: backgroundColor } = useAverageColor(thumbnailUrl, true)
 
   const playVideo = () => {
-    if (!videoRef.current) {
+    console.log(!videoRef.current || !isShow)
+    if (!videoRef.current || isShow) {
       return
     }
     videoRef.current.currentTime = 0
@@ -47,6 +52,7 @@ const ByteVideo: FC<Props> = ({
       intersectionCallback(data[0].target.id)
       const nextUrl = `${location.origin}/${video?.id}`
       history.replaceState({ path: nextUrl }, '', nextUrl)
+      console.log("observer call play video")
       playVideo()
     }
   })
@@ -67,11 +73,8 @@ const ByteVideo: FC<Props> = ({
   }
 
   const onClickVideo = () => {
-    if (videoRef.current?.paused) {
-      playVideo()
-    } else {
-      pauseVideo()
-    }
+    onDetail()
+    pauseVideo()
   }
 
   const refCallback = (ref: HTMLMediaElement) => {
@@ -123,7 +126,7 @@ const ByteVideo: FC<Props> = ({
             />
           )}
         </div>
-        <TopOverlay onClickVideo={onClickVideo} />
+        <TopOverlay onClickVideo={() => onClickVideo()} />
         <BottomOverlay video={video} />
         <div className="absolute right-2 bottom-[15%] z-[1] md:hidden">
           <ByteActions video={video} />
