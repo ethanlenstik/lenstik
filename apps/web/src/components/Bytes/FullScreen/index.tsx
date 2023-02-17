@@ -11,8 +11,8 @@ import imageCdn from 'utils/functions/imageCdn'
 import sanitizeIpfsUrl from 'utils/functions/sanitizeIpfsUrl'
 import useAverageColor from 'utils/hooks/useAverageColor'
 import VideoPlayer from 'web-ui/VideoPlayer'
-import Comments from './Comments'
 import TopOverlay from '../TopOverlay'
+import Comments from './Comments'
 
 type Props = {
     video: Publication
@@ -150,8 +150,8 @@ const FullScreen: FC<Props> = ({ video,
                     <TopOverlay onClickVideo={onClickVideo} />
 
                 </div>
-                <div>
-                    <div className="bottom-7 right-4 hidden flex-col space-y-3 lg:absolute lg:flex">
+                <div className='flex'>
+                    <div className="flex-col space-y-3 pr-5 lg:flex m-auto">
                         <button
                             className="rounded-full bg-gray-300 p-3 focus:outline-none dark:bg-gray-700"
                             onClick={() => scroll(-30)}

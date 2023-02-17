@@ -37,7 +37,6 @@ const ByteVideo: FC<Props> = ({
   const { color: backgroundColor } = useAverageColor(thumbnailUrl, true)
 
   const playVideo = () => {
-    console.log(!videoRef.current || !isShow)
     if (!videoRef.current || isShow) {
       return
     }

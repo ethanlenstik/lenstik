@@ -32,7 +32,7 @@ module.exports = {
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     '@typescript-eslint/consistent-type-imports': 'error',
     '@next/next/no-img-element': 'off',
-    'simple-import-sort/imports': 'warn',
+    'simple-import-sort/imports': 'error',
     'simple-import-sort/exports': 'error',
     'jsx-a11y/role-supports-aria-props': 'off',
     'unicorn/no-lonely-if': 'error',
