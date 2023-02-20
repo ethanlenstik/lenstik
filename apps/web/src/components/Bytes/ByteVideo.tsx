@@ -1,7 +1,9 @@
 import CollectVideo from '@components/Watch/CollectVideo'
+import Link from 'next/link'
 import type { Publication } from 'lens'
 import type { FC } from 'react'
 import React, { useEffect, useRef } from 'react'
+import getProfilePicture from 'utils/functions/getProfilePicture'
 import { getPublicationMediaUrl } from 'utils/functions/getPublicationMediaUrl'
 import getThumbnailUrl from 'utils/functions/getThumbnailUrl'
 import imageCdn from 'utils/functions/imageCdn'
@@ -84,64 +86,81 @@ const ByteVideo: FC<Props> = ({
     playVideo()
   }
 
+  const channel = video.profile
   return (
-    <div
-      className="flex snap-center justify-center md:mt-6"
-      data-testid="byte-video"
-    >
-      <div className="relative">
-        <div
-          className="ultrawide:w-[407px] flex h-screen w-screen min-w-[250px] items-center overflow-hidden bg-black md:h-[calc(100vh-120px)] md:w-[350px] md:rounded-xl"
-          style={{
-            backgroundColor: backgroundColor ? backgroundColor : undefined
-          }}
-        >
-          <div
-            className="absolute top-[50%]"
-            ref={intersectionRef}
-            id={video.id}
-          />
-          {currentViewingId === video.id ? (
-            <VideoPlayer
-              refCallback={refCallback}
-              permanentUrl={getPublicationMediaUrl(video)}
-              posterUrl={thumbnailUrl}
-              ratio="9to16"
-              publicationId={video.id}
-              showControls={false}
-              options={{
-                autoPlay: false,
-                muted: false,
-                loop: true,
-                loadingSpinner: false
-              }}
-            />
-          ) : (
-            <img
-              className="w-full object-contain"
-              src={thumbnailUrl}
-              alt="thumbnail"
-              draggable={false}
-            />
-          )}
-        </div>
-        <TopOverlay onClickVideo={() => onClickVideo()} />
+    <div className='flex border-t border-gray-500 mt-7'>
+      <Link
+        href={`/channel/${channel?.handle}`}
+        className="flex flex-none cursor-pointer items-top space-x-2 mt-5 mx-3"
+      >
+        <img
+          src={getProfilePicture(channel, 'avatar')}
+          className="h-9 w-9 rounded-full"
+          draggable={false}
+          alt={channel?.handle}
+        />
+      </Link>
+      <div className='h-full w-full relative'>
         <BottomOverlay video={video} />
-        <div className="absolute right-2 bottom-[15%] z-[1] md:hidden">
-          <ByteActions video={video} />
-          {video?.collectModule?.__typename !==
-            'RevertCollectModuleSettings' && (
-              <div className="text-center text-white md:text-gray-500">
-                <CollectVideo video={video} />
-                <div className="text-xs">
-                  {video.stats?.totalAmountOfCollects || 'Collect'}
-                </div>
-              </div>
-            )}
+        <div
+          className="flex snap-center"
+          data-testid="byte-video"
+        >
+          <div className="relative bottom-0">
+
+            <div
+              className="ultrawide:w-[407px] flex h-screen w-screen min-w-[250px] items-center overflow-hidden bg-black md:h-[calc(100vh-420px)] md:w-[350px] md:rounded-xl"
+              style={{
+                backgroundColor: backgroundColor ? backgroundColor : undefined
+              }}
+            >
+              <div
+                className="absolute top-[50%]"
+                ref={intersectionRef}
+                id={video.id}
+              />
+              {currentViewingId === video.id ? (
+                <VideoPlayer
+                  refCallback={refCallback}
+                  permanentUrl={getPublicationMediaUrl(video)}
+                  posterUrl={thumbnailUrl}
+                  ratio="9to16"
+                  publicationId={video.id}
+                  showControls={false}
+                  options={{
+                    autoPlay: false,
+                    muted: false,
+                    loop: true,
+                    loadingSpinner: false
+                  }}
+                />
+              ) : (
+                <img
+                  className="w-full object-contain"
+                  src={thumbnailUrl}
+                  alt="thumbnail"
+                  draggable={false}
+                />
+              )}
+            </div>
+            <TopOverlay onClickVideo={() => onClickVideo()} />
+            <div className="absolute right-2 bottom-[15%] z-[1] md:hidden">
+              <ByteActions video={video} />
+              {video?.collectModule?.__typename !==
+                'RevertCollectModuleSettings' && (
+                  <div className="text-center text-white md:text-gray-500">
+                    <CollectVideo video={video} />
+                    <div className="text-xs">
+                      {video.stats?.totalAmountOfCollects || 'Collect'}
+                    </div>
+                  </div>
+                )}
+            </div>
+          </div>
+          <div className="hidden md:flex">
+            <ByteActions video={video} />
+          </div>
         </div>
-      </div>
-      <div className="hidden md:flex">
-        <ByteActions video={video} />
       </div>
     </div>
   )

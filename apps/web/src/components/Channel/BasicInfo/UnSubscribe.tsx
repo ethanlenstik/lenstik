@@ -113,8 +113,8 @@ const UnSubscribe: FC<Props> = ({ channel, onUnSubscribe }) => {
   }
 
   return (
-    <Button onClick={() => unsubscribe()} loading={loading}>
-      Unsubscribe
+    <Button onClick={() => unsubscribe()} loading={loading} variant='secondary'>
+      Unfollow
     </Button>
   )
 }

@@ -10,15 +10,19 @@ body {
 }
 
 .btn-primary {
-  @apply disabled:opacity-50 focus:outline-none rounded-full bg-indigo-500 text-white;
+  @apply disabled:opacity-50 focus:outline-none bg-indigo-500 text-white;
 }
 
 .btn-danger {
-  @apply disabled:opacity-50 focus:outline-none rounded-full bg-red-500 text-white;
+  @apply disabled:opacity-50 focus:outline-none bg-red-500 text-white;
 }
 
 .btn-hover {
-  @apply disabled:opacity-50 focus:outline-none rounded-full dark:hover:bg-indigo-900 hover:bg-indigo-100;
+  @apply disabled:opacity-50 focus:outline-none dark:hover:bg-indigo-900 hover:bg-indigo-100;
+}
+
+.btn-secondary {
+  @apply disabled:opacity-50 focus:outline-none dark:hover:bg-pink-500 outline hover:text-white outline-pink-600 text-pink-600;
 }
 
 .text-secondary {

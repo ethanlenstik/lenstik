@@ -4,7 +4,7 @@ import React, { forwardRef } from 'react'
 
 import { Loader } from './Loader'
 
-export type ButtonVariants = 'primary' | 'hover' | 'danger'
+export type ButtonVariants = 'primary' | 'hover' | 'danger' | 'secondary'
 
 interface Props
   extends DetailedHTMLProps<
@@ -38,7 +38,8 @@ export const Button = forwardRef<HTMLButtonElement, Props>(function Button(
         {
           'btn-primary': variant === 'primary',
           'btn-danger': variant === 'danger',
-          'btn-hover': variant === 'hover'
+          'btn-hover': variant === 'hover',
+          'btn-secondary': variant === 'secondary'
         },
         {
           'px-4 py-1.5 text-xs': size === 'sm',

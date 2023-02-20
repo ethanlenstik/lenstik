@@ -140,10 +140,11 @@ const Layout: FC<Props> = ({ children }) => {
       {!NO_HEADER_PATHS.includes(pathname) && (
         <Header className={clsx(showFullScreen && 'hidden md:flex')} />
       )}
-      <div className={clsx('flex pb-10 md:pb-0 max-w-screen-lg m-auto', showFullScreen && '!pb-0')}>
+      <div className={clsx('flex justify-center pb-10 md:pb-0 max-w-screen-lg m-auto', showFullScreen && '!pb-0')}>
         <Sidebar />
         <div
           className={clsx(
+            'basis-3/5',
             'w-full',
             showFullScreen && 'px-0',
             sidebarCollapsed || pathname === '/[id]'
