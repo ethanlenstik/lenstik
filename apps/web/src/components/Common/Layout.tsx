@@ -144,7 +144,7 @@ const Layout: FC<Props> = ({ children }) => {
         <Sidebar />
         <div
           className={clsx(
-            'basis-3/5',
+            'basis-2/3',
             'w-full',
             showFullScreen && 'px-0',
             sidebarCollapsed || pathname === '/[id]'

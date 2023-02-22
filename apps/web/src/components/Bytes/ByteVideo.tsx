@@ -14,6 +14,7 @@ import VideoPlayer from 'web-ui/VideoPlayer'
 import BottomOverlay from './BottomOverlay'
 import ByteActions from './ByteActions'
 import TopOverlay from './TopOverlay'
+import clsx from 'clsx'
 
 type Props = {
   video: Publication
@@ -88,7 +89,7 @@ const ByteVideo: FC<Props> = ({
 
   const channel = video.profile
   return (
-    <div className='flex border-t border-gray-500 mt-7'>
+    <div className={clsx('flex border-t border-gray-500 mt-7')}>
       <Link
         href={`/channel/${channel?.handle}`}
         className="flex flex-none cursor-pointer items-top space-x-2 mt-5 mx-3"
@@ -109,7 +110,7 @@ const ByteVideo: FC<Props> = ({
           <div className="relative bottom-0">
 
             <div
-              className="ultrawide:w-[407px] flex h-screen w-screen min-w-[250px] items-center overflow-hidden bg-black md:h-[calc(100vh-420px)] md:w-[350px] md:rounded-xl"
+              className={clsx("ultrawide:w-[407px] flex h-screen w-screen min-w-[250px] items-center overflow-hidden bg-black md:w-[350px] md:rounded-xl", isShow?"md:h-[95vh]":"md:h-[60vh] max-h-[700px] min-h-[500px]")}
               style={{
                 backgroundColor: backgroundColor ? backgroundColor : undefined
               }}

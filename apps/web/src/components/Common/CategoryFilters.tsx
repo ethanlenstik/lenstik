@@ -56,23 +56,13 @@ const CategoryFilters = () => {
 
   return (
     <div
-      className="ultrawide:max-w-[110rem] relative mx-auto flex pt-4"
+      className="ultrawide:max-w-[110rem] relative mx-auto pt-4"
       data-testid="category-filters"
     >
-      {scrollX !== 0 && (
-        <div className="ultrawide:pl-0 sticky right-0 bottom-0 bg-transparent px-2 ">
-          <button
-            type="button"
-            className="hidden rounded-full p-2 backdrop-blur-xl hover:bg-gray-500 hover:bg-opacity-20 focus:outline-none md:block"
-            onClick={() => slide(-scrollOffset)}
-          >
-            <ChevronLeftOutline className="h-4 w-4" />
-          </button>
-        </div>
-      )}
+      <h3 className='mb-5'>Discover</h3>
       <div
         ref={scrollRef}
-        className="no-scrollbar ultrawide:px-0 flex touch-pan-x items-center gap-2 overflow-x-auto scroll-smooth px-2 md:mx-auto"
+        className="touch-pan-x items-center overflow-x-auto scroll-smooth md:mx-auto"
       >
         <button
           type="button"
@@ -92,7 +82,7 @@ const CategoryFilters = () => {
             onClick={() => onFilter(category.tag)}
             key={category.tag}
             className={clsx(
-              'whitespace-nowrap rounded-full border border-gray-200 px-3.5 py-1 text-xs capitalize dark:border-gray-700',
+              'whitespace-nowrap rounded-full border border-gray-200 px-3.5 py-1 text-xs capitalize dark:border-gray-700 my-1 mx-2',
               activeTagFilter === category.tag
                 ? 'bg-black text-white'
                 : 'bg-gray-100 dark:bg-gray-800'
@@ -102,17 +92,6 @@ const CategoryFilters = () => {
           </button>
         ))}
       </div>
-      {!scrollEnd && (
-        <div className="ultrawide:pr-0 sticky right-0 bottom-0 bg-transparent px-2">
-          <button
-            type="button"
-            className="hidden rounded-full p-2 backdrop-blur-xl hover:bg-gray-500 hover:bg-opacity-20 focus:outline-none md:block"
-            onClick={() => slide(scrollOffset)}
-          >
-            <ChevronRightOutline className="h-4 w-4" />
-          </button>
-        </div>
-      )}
     </div>
   )
 }
