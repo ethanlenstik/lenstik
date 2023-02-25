@@ -1,10 +1,14 @@
 import ChevronDownOutline from '@components/Common/Icons/ChevronDownOutline'
 import ChevronUpOutline from '@components/Common/Icons/ChevronUpOutline'
+import FlagOutline from '@components/Common/Icons/FlagOutline'
 import FullScreenModal from '@components/UIElements/FullScreenModal'
+import usePersistStore from '@lib/store/persist'
 import type { Publication } from 'lens'
 import type { FC } from 'react'
 import React, { useEffect, useMemo, useRef } from 'react'
+import toast from 'react-hot-toast'
 import { MdOutlineClose } from 'react-icons/md'
+import { SIGN_IN_REQUIRED_MESSAGE } from 'utils'
 import { getPublicationMediaUrl } from 'utils/functions/getPublicationMediaUrl'
 import getThumbnailUrl from 'utils/functions/getThumbnailUrl'
 import imageCdn from 'utils/functions/imageCdn'
@@ -89,6 +93,14 @@ const FullScreen: FC<Props> = ({ video,
         playVideo()
     }
 
+
+    const selectedChannelId = usePersistStore((state) => state.selectedChannelId)
+    const onClickReport = () => {
+        if (!selectedChannelId) {
+            return toast.error(SIGN_IN_REQUIRED_MESSAGE)
+        }
+    }
+
     const player = useMemo(() => (<VideoPlayer
         refCallback={refCallback}
         permanentUrl={getPublicationMediaUrl(video)}
@@ -114,21 +126,21 @@ const FullScreen: FC<Props> = ({ video,
             autoClose
         >
             <div
-                className="flex snap-center justify-between gap-10 px-5"
+                className="flex snap-center justify-between px-5"
                 data-testid="byte-video"
             >
-                <div>
+                <div className='max-md:hidden'>
                     <button
                         type="button"
-                        className="rounded-md bg-gray-100 p-1 focus:outline-none dark:bg-gray-900 "
+                        className="rounded-md  p-1 focus:outline-none mt-5 "
                         onClick={() => callShow(false)}
                     >
                         <MdOutlineClose />
                     </button>
                 </div>
-                <div className="relative">
+                <div className="relative max-md:w-full">
                     <div
-                        className="flex h-screen  items-center bg-black md:h-[calc(100vh)] md:w-[450px] md:rounded-xl"
+                        className="flex h-screen  items-center bg-black md:h-[calc(100vh)] md:w-[56.3vh] md:rounded-xl"
                         style={{
                             backgroundColor: backgroundColor ? backgroundColor : undefined
                         }}
@@ -150,20 +162,34 @@ const FullScreen: FC<Props> = ({ video,
                     <TopOverlay onClickVideo={onClickVideo} />
 
                 </div>
-                <div className='flex'>
-                    <div className="flex-col space-y-3 pr-5 lg:flex m-auto">
+                <div className='flex w-[35vw] max-md:hidden'>
+                    <div className="relative">
                         <button
-                            className="rounded-full bg-gray-300 p-3 focus:outline-none dark:bg-gray-700"
-                            onClick={() => scroll(-30)}
+                            type="button"
+                            onClick={() => onClickReport()}
+                            className="hover:opacity-100 inline-flex items-center space-x-2 rounded-lg px-3 py-1.5 hover:bg-gray-100 dark:hover:bg-gray-800 absolute right-5 top-5"
                         >
-                            <ChevronUpOutline className="h-5 w-5" />
+                            <FlagOutline className="h-3.5 w-3.5" />
+                            <span className="whitespace-nowrap">Report</span>
                         </button>
-                        <button
-                            className="rounded-full bg-gray-300 p-3 focus:outline-none dark:bg-gray-700"
-                            onClick={() => scroll(30)}
-                        >
-                            <ChevronDownOutline className="h-5 w-5" />
-                        </button>
+                        <div className='flex flex-col justify-center h-full mr-5'>
+                            <div>
+                                <button
+                                    className="rounded-full bg-gray-300 p-3 focus:outline-none dark:bg-gray-700"
+                                    onClick={() => scroll(-30)}
+                                >
+                                    <ChevronUpOutline className="h-5 w-5" />
+                                </button>
+                            </div>
+                            <div>
+                                <button
+                                    className="rounded-full bg-gray-300 p-3 focus:outline-none dark:bg-gray-700"
+                                    onClick={() => scroll(30)}
+                                >
+                                    <ChevronDownOutline className="h-5 w-5" />
+                                </button>
+                            </div>
+                        </div>
                     </div>
                     <Comments video={video} />
                 </div>

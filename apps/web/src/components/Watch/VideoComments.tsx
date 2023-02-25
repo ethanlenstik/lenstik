@@ -1,5 +1,8 @@
 import Alert from '@components/Common/Alert'
 import CommentOutline from '@components/Common/Icons/CommentOutline'
+import CopyOutline from '@components/Common/Icons/CopyOutline'
+import MirrorOutline from '@components/Common/Icons/MirrorOutline'
+import MirrorVideo from '@components/Common/MirrorVideo'
 import CommentsShimmer from '@components/Shimmers/CommentsShimmer'
 import { Loader } from '@components/UIElements/Loader'
 import { NoDataFound } from '@components/UIElements/NoDataFound'
@@ -11,9 +14,12 @@ import dynamic from 'next/dynamic'
 import type { FC } from 'react'
 import React from 'react'
 import { useInView } from 'react-cool-inview'
-import { LENS_CUSTOM_FILTERS, SCROLL_ROOT_MARGIN } from 'utils'
+import toast from 'react-hot-toast'
+import { Analytics, LENSTUBE_WEBSITE_URL, LENS_CUSTOM_FILTERS, SCROLL_ROOT_MARGIN, TRACK } from 'utils'
+import useCopyToClipboard from 'utils/hooks/useCopyToClipboard'
 
 import NewComment from './NewComment'
+import PublicationReaction from './PublicationReaction'
 import QueuedComment from './QueuedComment'
 
 const Comment = dynamic(() => import('./Comment'))
@@ -80,36 +86,51 @@ const VideoComments: FC<Props> = ({ video, hideTitle = false }) => {
     return <CommentsShimmer />
   }
 
+  // const [copy] = useCopyToClipboard()
+
+  const onCopyVideoUrl = async () => {
+    // await copy(`${LENSTUBE_WEBSITE_URL}/${video.id}`)
+    // toast.success('Link copied to clipboard')
+    // Analytics.track(TRACK.COPY.VIDEO_URL)
+  }
   return (
     <>
       <div className="flex items-center justify-between">
-        {!hideTitle && (
-          <h1 className="my-4 flex items-center space-x-2 text-lg">
-            <CommentOutline className="h-4 w-4" />
-            <span className="font-semibold">Comments</span>
-          </h1>
-        )}
-        {!selectedChannelId && (
-          <span className="text-xs">(Sign in required to comment)</span>
-        )}
+        <div className="text-white md:text-inherit flex gap-3">
+          <PublicationReaction
+            publication={video}
+            iconSize="lg"
+            isVertical={false}
+            showLabel
+          />
+          <MirrorVideo video={video}>
+            <div className="flex items-center justify-center gap-1">
+              <MirrorOutline className="h-5 w-5" />
+              <div className="pt-1 text-xs">
+                {video.stats?.totalAmountOfMirrors || 'Mirror'}
+              </div>
+            </div>
+          </MirrorVideo>
+        </div>
       </div>
-      {video?.canComment.result ? (
-        <NewComment video={video} />
-      ) : selectedChannelId ? (
-        <Alert variant="warning">
-          <span className="text-sm">
-            {isFollowerOnlyReferenceModule
-              ? 'Only subscribers can comment on this publication'
-              : `Only subscribers within ${video.profile.handle}'s preferred network can comment`}
-          </span>
-        </Alert>
-      ) : null}
+      <div className="flex items-center justify-between rounded-lg border border-gray-200 p-2 dark:border-gray-800 my-3">
+        <div className="select-all truncate text-sm">
+          {LENSTUBE_WEBSITE_URL}/{video.id}
+        </div>
+        <button
+          className="ml-2 hover:opacity-60 focus:outline-none"
+          onClick={() => onCopyVideoUrl()}
+          type="button"
+        >
+          <CopyOutline className="h-4 w-4" />
+        </button>
+      </div>
       {data?.publications?.items.length === 0 && (
         <NoDataFound text="Be the first to comment." withImage isCenter />
       )}
       {!error && (queuedComments.length || comments.length) ? (
         <>
-          <div className="space-y-4 pt-5">
+          <div className="space-y-4 pt-5  overflow-y-auto overflow-x-hidden top-[200px] bottom-[80px] absolute w-full ">
             {queuedComments?.map(
               (queuedComment) =>
                 queuedComment?.pubId === video?.id && (
@@ -133,6 +154,24 @@ const VideoComments: FC<Props> = ({ video, hideTitle = false }) => {
           )}
         </>
       ) : null}
+
+      <div className='absolute bottom-5 w-[100%]'>
+
+        {!selectedChannelId && (
+          <span className="text-xs">(Sign in required to comment)</span>
+        )}
+        {video?.canComment.result ? (
+          <NewComment video={video} />
+        ) : selectedChannelId ? (
+          <Alert variant="warning">
+            <span className="text-sm">
+              {isFollowerOnlyReferenceModule
+                ? 'Only subscribers can comment on this publication'
+                : `Only subscribers within ${video.profile.handle}'s preferred network can comment`}
+            </span>
+          </Alert>
+        ) : null}
+      </div>
     </>
   )
 }

@@ -12,6 +12,7 @@ import {
 import type { FC } from 'react'
 import React, { useState } from 'react'
 import toast from 'react-hot-toast'
+import { AiOutlineHeart } from 'react-icons/ai'
 import { Analytics, SIGN_IN_REQUIRED_MESSAGE, TRACK } from 'utils'
 import { formatNumber } from 'utils/functions/formatNumber'
 
@@ -138,13 +139,13 @@ const PublicationReaction: FC<Props> = ({
             }
           )}
         >
-          <LikeOutline
+          <AiOutlineHeart
             className={clsx({
               'h-3.5 w-3.5': iconSize === 'sm',
               'h-6 w-6': iconSize === 'lg',
               'h-4 w-4': iconSize === 'base',
               'text-indigo-500': reaction.isLiked
-            })}
+            },)}
           />
           {showLabel && (
             <span
@@ -157,40 +158,6 @@ const PublicationReaction: FC<Props> = ({
               {reaction.likeCount > 0
                 ? formatNumber(reaction.likeCount)
                 : 'Like'}
-            </span>
-          )}
-        </span>
-      </button>
-      <button
-        className="focus:outline-none disabled:opacity-50"
-        onClick={() => dislikeVideo()}
-      >
-        <span
-          className={clsx(
-            'flex items-center focus:outline-none',
-            isVertical ? 'flex-col space-y-2' : 'space-x-1.5',
-            {
-              'text-indigo-500': reaction.isDisliked
-            }
-          )}
-        >
-          <DislikeOutline
-            className={clsx({
-              'h-3.5 w-3.5': iconSize === 'sm',
-              'h-6 w-6': iconSize === 'lg',
-              'h-4 w-4': iconSize === 'base',
-              'text-indigo-500': reaction.isDisliked
-            })}
-          />
-          {showLabel && (
-            <span
-              className={clsx({
-                'text-xs': textSize === 'sm',
-                'text-base': textSize === 'base',
-                'text-indigo-500': reaction.isDisliked
-              })}
-            >
-              Dislike
             </span>
           )}
         </span>

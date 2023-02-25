@@ -92,7 +92,7 @@ const ByteVideo: FC<Props> = ({
     <div className={clsx('flex border-t border-gray-500 mt-7')}>
       <Link
         href={`/channel/${channel?.handle}`}
-        className="flex flex-none cursor-pointer items-top space-x-2 mt-5 mx-3"
+        className="flex flex-none cursor-pointer items-top space-x-2 mt-5 mx-3  max-md:hidden"
       >
         <img
           src={getProfilePicture(channel, 'avatar')}
@@ -110,7 +110,7 @@ const ByteVideo: FC<Props> = ({
           <div className="relative bottom-0">
 
             <div
-              className={clsx("ultrawide:w-[407px] flex h-screen w-screen min-w-[250px] items-center overflow-hidden bg-black md:w-[350px] md:rounded-xl", isShow?"md:h-[95vh]":"md:h-[60vh] max-h-[700px] min-h-[500px]")}
+              className={clsx("ultrawide:w-[407px] flex h-screen w-screen min-w-[250px] items-center overflow-hidden bg-black md:w-[350px] md:rounded-xl", isShow ? "md:h-[95vh]" : "md:h-[60vh] max-h-[700px] min-h-[500px]")}
               style={{
                 backgroundColor: backgroundColor ? backgroundColor : undefined
               }}

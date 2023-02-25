@@ -56,17 +56,17 @@ const Sidebar = () => {
           )}
           data-testid="sidebar-items"
         >
-          <div className={clsx('py-3  border-b border-b-gray-700 mb-3')}>
+          <div className={clsx('py-3  border-b border-b-gray-400 mb-3')}>
             <Link
               href="/"
-              className="flex items-center pt-1 focus:outline-none my-2 p-2 hover:bg-gray-700"
+              className="flex items-center pt-1 focus:outline-none my-2 p-2 dark:hover:bg-gray-600 hover:bg-gray-200"
             >
               <SlHome className='text-2xl' />
               <span className='text-xl font-bold ml-5'>For You</span>
             </Link>
             <Link
               href="/feed"
-              className='flex items-center pt-1 focus:outline-none my-2 p-2  hover:bg-gray-700'
+              className='flex items-center pt-1 focus:outline-none my-2 p-2 dark:hover:bg-gray-600  hover:bg-gray-200'
             >
               <SlUserFollowing className='text-2xl' />
               <span className='text-xl font-bold ml-5' >Subscriptions</span>
@@ -75,7 +75,7 @@ const Sidebar = () => {
           <div className="flex flex-col justify-center space-y-2">
 
             {!isConnected &&
-              <div className='border-b border-b-gray-700 pb-5 mb-3 grid'>
+              <div className='border-b border-b-gray-400 pb-5 mb-3 grid'>
                 <p className='mb-2'>Log in to follow creators, like videos, and comments.</p>
                 <Login />
               </div>}

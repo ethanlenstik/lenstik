@@ -28,19 +28,8 @@ const FullScreenModal: FC<Props> = ({
         className="relative z-20"
         onClose={() => (onClose && !autoClose ? onClose?.() : null)}
       >
-        <Transition.Child
-          as={Fragment}
-          enter="ease-out duration-300"
-          enterFrom="opacity-0"
-          enterTo="opacity-100"
-          leave="ease-in duration-200"
-          leaveFrom="opacity-100"
-          leaveTo="opacity-0"
-        >
-          <div className="fixed inset-0 bg-gray-900 bg-opacity-50 dark:bg-opacity-80" />
-        </Transition.Child>
-
-        <div className="fixed inset-0 overflow-y-auto">
+   
+        <div className="fixed inset-0 ">
           <div className="flex h-full min-h-full items-center justify-center text-center">
             <Transition.Child
               as={Fragment}

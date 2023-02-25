@@ -53,9 +53,7 @@ export const Button = forwardRef<HTMLButtonElement, Props>(function Button(
       {...rest}
     >
       <span
-        className={clsx('flex items-center justify-center space-x-2', {
-          'text-white': variant !== 'hover'
-        })}
+        className={clsx('flex items-center justify-center space-x-2')}
       >
         {icon}
         {loading && <Loader size="sm" />}

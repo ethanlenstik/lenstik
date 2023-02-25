@@ -8,6 +8,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import type { FC } from 'react'
 import React, { useState } from 'react'
+import { BsPlusLg } from 'react-icons/bs'
 import {
   Analytics,
   LENS_CUSTOM_FILTERS,
@@ -121,9 +122,9 @@ const Header: FC<Props> = ({ className }) => {
                 >
                   <Button
                     className="hidden md:block"
-                    icon={<NewVideoOutline className="h-4 w-4" />}
+                    icon={<BsPlusLg  />}
                   >
-                    <span>New video</span>
+                    <span>Upload</span>
                   </Button>
                 </Link>
               </>

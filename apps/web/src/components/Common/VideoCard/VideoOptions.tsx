@@ -19,6 +19,7 @@ import {
 import type { FC } from 'react'
 import React from 'react'
 import toast from 'react-hot-toast'
+import { RiShareForwardLine } from 'react-icons/ri'
 import type { CustomErrorWithData } from 'utils'
 import {
   Analytics,
@@ -278,7 +279,7 @@ const VideoOptions: FC<Props> = ({
             onClick={() => setShowShare(true)}
             className="inline-flex items-center space-x-2 rounded-lg px-3 py-1.5 hover:bg-gray-100 dark:hover:bg-gray-800"
           >
-            <ShareOutline className="h-3.5 w-3.5" />
+            <RiShareForwardLine className="h-3.5 w-3.5" />
             <span className="whitespace-nowrap">Share</span>
           </button>
           <button

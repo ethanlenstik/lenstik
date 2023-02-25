@@ -10,7 +10,7 @@ body {
 }
 
 .btn-primary {
-  @apply disabled:opacity-50 focus:outline-none bg-indigo-500 text-white;
+  @apply disabled:opacity-50 focus:outline-none font-bold border border-gray-700;
 }
 
 .btn-danger {
@@ -18,7 +18,7 @@ body {
 }
 
 .btn-hover {
-  @apply disabled:opacity-50 focus:outline-none dark:hover:bg-indigo-900 hover:bg-indigo-100;
+  @apply disabled:opacity-50 focus:outline-none dark:hover:bg-gray-900 hover:bg-gray-900;
 }
 
 .btn-secondary {

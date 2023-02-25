@@ -9,8 +9,8 @@ export const IS_MAINNET = LENS_ENV === 'mainnet'
 
 export const STATIC_ASSETS = 'https://static.lenstube.xyz'
 export const LENSTUBE_WEBSITE_URL = IS_MAINNET
-  ? 'https://lenstube.xyz'
-  : 'https://testnet.lenstube.xyz'
+  ? 'https://lenstick.xyz'
+  : 'https://testnet.lenstick.xyz'
 export const LENSTUBE_EMBED_URL = IS_MAINNET
   ? 'https://embed.lenstube.xyz'
   : 'https://test-embed.lenstube.xyz'

@@ -17,7 +17,7 @@ const BottomOverlay: FC<Props> = ({ video }) => {
   return (
     <div className="z-[1] px-3 pt-5 pb-3 md:rounded-b-xl">
       <div className="flex items-center justify-between">
-        <h1 className="line-clamp-2 text-white">{video.metadata.name}</h1>
+        <h1 className="line-clamp-2">{video.metadata.name}</h1>
         <div className="flex items-center space-x-2">
           <SubscribeActions
             channel={video.profile}
