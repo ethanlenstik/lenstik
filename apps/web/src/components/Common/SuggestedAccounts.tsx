@@ -1,15 +1,8 @@
-import MutualSubscribers from "@components/Channel/Mutual/MutualSubscribers"
-import Modal from "@components/UIElements/Modal"
-import Tooltip from "@components/UIElements/Tooltip"
-import useAppStore from "@lib/store"
-import clsx from "clsx"
-import { Link } from "interweave-autolink"
-import { Profile, RecommendedProfilesQuery } from "lens"
-import { FC, useState } from "react"
-import getProfilePicture from 'utils/functions/getProfilePicture'
+
+import type { RecommendedProfilesQuery } from 'lens'
+import type { FC } from 'react'
+import React, {  useState } from "react"
 import AccountItem from "./AccountItem"
-import IsVerified from "./IsVerified"
-import SubscribeActions from "./SubscribeActions"
 
 type PropsAccs = {
     channels?: RecommendedProfilesQuery
@@ -22,7 +15,7 @@ const SuggestedAccount: FC<PropsAccs> = ({channels}) => {
         <h3 className='mb-5'>Suggested accounts</h3>
         <div>
             {
-                displayProFiles?.map(channel => <AccountItem channel={channel}/>)
+                displayProFiles?.map((channel) => <AccountItem key={channel.id} channel={channel}/>)
             }
         </div>
         <div>

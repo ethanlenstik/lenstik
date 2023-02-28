@@ -9,7 +9,8 @@ import {
   PublicationSortCriteria,
   PublicationTypes,
   useExploreLazyQuery,
-  usePublicationDetailsLazyQuery
+  usePublicationDetailsLazyQuery,
+  PublicationMainFocus
 } from 'lens'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
@@ -26,14 +27,6 @@ import {
 import ByteVideo from './ByteVideo'
 import FullScreen from './FullScreen'
 
-const request = {
-  sortCriteria: PublicationSortCriteria.CuratedProfiles,
-  limit: 50,
-  noRandomize: false,
-  sources: [LENSTUBE_BYTES_APP_ID],
-  publicationTypes: [PublicationTypes.Post],
-  customFilters: LENS_CUSTOM_FILTERS
-}
 
 const Bytes = () => {
   const router = useRouter()
@@ -41,6 +34,21 @@ const Bytes = () => {
   const selectedChannel = useAppStore((state) => state.selectedChannel)
   const [currentViewingId, setCurrentViewingId] = useState('')
 
+  const activeTagFilter = useAppStore((state) => state.activeTagFilter)
+
+const request = {
+  sortCriteria: PublicationSortCriteria.CuratedProfiles,
+  limit: 50, 
+   noRandomize: false,
+  sources: [LENSTUBE_BYTES_APP_ID],
+  publicationTypes: [PublicationTypes.Post],
+  customFilters: LENS_CUSTOM_FILTERS,
+  metadata: {
+    tags:
+      activeTagFilter !== 'all' ? { oneOf: [activeTagFilter] } : undefined,
+    mainContentFocus: [PublicationMainFocus.Video]
+  }
+}
 
   const [show, setShow] = useState(false)
 
@@ -69,7 +77,14 @@ const Bytes = () => {
   const bytes = data?.explorePublications?.items as Publication[]
   const pageInfo = data?.explorePublications?.pageInfo
   const singleBytePublication = singleByte?.publication as Publication
-  const currentVideo = useMemo(() => bytes?.find(video => video.id === currentViewingId), [currentViewingId])
+  const currentVideo = useMemo(() => {
+    const video = bytes?.find(video => video.id === currentViewingId)
+    if(video == null && bytes?.length > 0){
+      setCurrentViewingId(bytes[0].id)
+      return bytes[0]
+    }
+    return video
+  }, [currentViewingId, activeTagFilter])
 
   const fetchSingleByte = async () => {
     const publicationId = router.query.id

@@ -17,7 +17,6 @@ import VideoOutline from '../../Common/Icons/VideoOutline'
 import About from './About'
 import ChannelBytes from './ChannelBytes'
 import ChannelStats from './ChannelStats'
-import ChannelVideos from './ChannelVideos'
 import CollectedNFTs from './CollectedNFTs'
 import CommentedVideos from './CommentedVideos'
 import MirroredVideos from './MirroredVideos'
@@ -33,19 +32,17 @@ const Tabs: FC<Props> = ({ channel }) => {
   const getDefaultTab = () => {
     switch (router.query.tab) {
       case 'bytes':
-        return 1
+        return 0
       case 'commented':
-        return 2
+        return 1
       case 'mirrored':
-        return 3
+        return 2
       case 'nfts':
-        return 4
-      case 'channels':
-        return 5
+        return 3
       case 'stats':
-        return 6
+        return 4
       case 'about':
-        return 7
+        return 5
       default:
         return 0
     }
@@ -64,23 +61,6 @@ const Tabs: FC<Props> = ({ channel }) => {
       defaultIndex={getDefaultTab()}
     >
       <Tab.List className="no-scrollbar flex space-x-2 overflow-x-auto">
-        <Tab
-          onClick={() => {
-            handleTabChange('all')
-            Analytics.track(TRACK.CHANNEL.CLICK_CHANNEL_VIDEOS)
-          }}
-          className={({ selected }) =>
-            clsx(
-              'flex items-center space-x-2 whitespace-nowrap rounded-full px-4 py-2 text-xs font-medium uppercase transition duration-300 ease-in-out focus:outline-none',
-              selected
-                ? 'bg-gray-200 dark:bg-gray-700'
-                : 'hover:bg-gray-200 hover:dark:bg-gray-800'
-            )
-          }
-        >
-          <VideoOutline className="h-4 w-4" />
-          <span>Videos</span>
-        </Tab>
         <Tab
           onClick={() => {
             handleTabChange('bytes')
@@ -151,23 +131,6 @@ const Tabs: FC<Props> = ({ channel }) => {
         </Tab>
         <Tab
           onClick={() => {
-            handleTabChange('channels')
-            Analytics.track(TRACK.CHANNEL.CLICK_OTHER_CHANNELS)
-          }}
-          className={({ selected }) =>
-            clsx(
-              'flex items-center space-x-2 whitespace-nowrap rounded-full px-4 py-2 text-xs font-medium uppercase transition duration-300 ease-in-out focus:outline-none',
-              selected
-                ? 'bg-gray-200 dark:bg-gray-700'
-                : 'hover:bg-gray-200 hover:dark:bg-gray-800'
-            )
-          }
-        >
-          <ChannelOutline className="h-4 w-4" />
-          <span>Channels</span>
-        </Tab>
-        <Tab
-          onClick={() => {
             handleTabChange('stats')
             Analytics.track(TRACK.CHANNEL.CLICK_CHANNEL_STATS)
           }}
@@ -203,9 +166,6 @@ const Tabs: FC<Props> = ({ channel }) => {
       </Tab.List>
       <Tab.Panels className="py-4 md:py-5">
         <Tab.Panel className="focus:outline-none">
-          <ChannelVideos channel={channel} />
-        </Tab.Panel>
-        <Tab.Panel className="focus:outline-none">
           <ChannelBytes channel={channel} />
         </Tab.Panel>
         <Tab.Panel className="focus:outline-none">
@@ -219,9 +179,6 @@ const Tabs: FC<Props> = ({ channel }) => {
         </Tab.Panel>
         <Tab.Panel className="focus:outline-none">
           <OtherChannels channel={channel} />
-        </Tab.Panel>
-        <Tab.Panel className="focus:outline-none">
-          <ChannelStats channel={channel} />
         </Tab.Panel>
         <Tab.Panel className="focus:outline-none">
           <About channel={channel} />

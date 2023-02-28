@@ -45,15 +45,15 @@ const Sidebar = () => {
   const { data: profiles } = useRecommendedProfilesQuery({ variables: {} })
 
 
-    const { query } = useRouter()
-    const handle = query.channel ?? ''
     const { data, loading, error } = useProfileQuery({
       variables: {
-        request: { handle },
+        request: { handle: selectedChannel?.handle },
         who: selectedChannel?.id ?? null
       },
-      skip: !handle
+      skip: !selectedChannel?.handle
     })
+
+    console.log("bbbb", selectedChannel)
 
 
 
@@ -96,7 +96,7 @@ const Sidebar = () => {
 
             {!isConnected &&
               <div className='border-b border-b-gray-400 pb-5 mb-3 grid'>
-                <p className='mb-2'>Log in to follow creators, like videos, and comments.</p>
+                <p className='mb-2 text-gray-500'>Log in to follow creators, like videos, and comments.</p>
                 <Login />
               </div>}
             {getIsFeatureEnabled(

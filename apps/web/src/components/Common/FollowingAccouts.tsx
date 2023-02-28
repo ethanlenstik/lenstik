@@ -1,13 +1,7 @@
-import MutualSubscribers from "@components/Channel/Mutual/MutualSubscribers"
-import Modal from "@components/UIElements/Modal"
-import Tooltip from "@components/UIElements/Tooltip"
-import useAppStore from "@lib/store"
-import { data } from "@tensorflow/tfjs"
-import clsx from "clsx"
-import { Link } from "interweave-autolink"
-import { Profile, ProfileQuery, RecommendedProfilesQuery, useSubscribersQuery } from "lens"
-import { FC, useState } from "react"
-import getProfilePicture from 'utils/functions/getProfilePicture'
+import type { ProfileQuery } from "lens"
+import type { FC } from "react"
+import React, {  useState } from "react"
+import { useSubscribersQuery } from "lens"
 import AccountItem from "./AccountItem"
 
 type PropsAccs = {
@@ -24,14 +18,12 @@ const FollowingAccounts: FC<PropsAccs> = ({profile}) => {
     })
 
     const displayProFiles = isAllSuggest?  followers?.followers.items: followers?.followers.items.slice(0,2)
-  
-    console.log("xxxxx", displayProFiles)
 
     return <div className="border-b border-b-gray-300">
         <h3 className='mb-5'>Following Accounts</h3>
-        <div>
+        <div className="py-[10px]">
             {
-                displayProFiles?.map(channel => <AccountItem channel={channel.wallet.defaultProfile}/>)
+                displayProFiles?displayProFiles?.map(channel => <AccountItem key={channel.wallet.address} channel={channel.wallet.defaultProfile}/>): <span className="text-sm text-gray-500">Log in to follow creators, like videos, and view comments.</span>
             }
         </div>
         <div>
