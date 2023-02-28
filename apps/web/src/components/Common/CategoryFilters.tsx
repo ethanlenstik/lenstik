@@ -56,13 +56,12 @@ const CategoryFilters = () => {
 
   return (
     <div
-      className="ultrawide:max-w-[110rem] relative mx-auto pt-4"
+      className="ultrawide:max-w-[110rem] mx-auto pt-4"
       data-testid="category-filters"
     >
       <h3 className='mb-5'>Discover</h3>
       <div
-        ref={scrollRef}
-        className="touch-pan-x items-center overflow-x-auto scroll-smooth md:mx-auto"
+        className=" items-center"
       >
         <button
           type="button"

@@ -6,7 +6,7 @@ import clsx from 'clsx'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { STATIC_ASSETS } from 'utils'
 import { FEATURE_FLAGS } from 'utils/data/feature-flags'
 import getIsFeatureEnabled from 'utils/functions/getIsFeatureEnabled'
@@ -25,6 +25,11 @@ import { AiOutlineHome } from 'react-icons/ai';
 import CategoryFilters from './CategoryFilters'
 import Login from './Auth/Login'
 import { useAccount } from 'wagmi';
+import { useProfileQuery, useRecommendedProfilesQuery, useSubscribersQuery } from 'lens';
+import SuggestedAccount from './SuggestedAccounts';
+import FollowingAccounts from './FollowingAccouts';
+import { request } from '@playwright/test';
+import { channel } from 'diagnostics_channel';
 
 const CreateChannel = dynamic(() => import('./CreateChannel'))
 
@@ -37,6 +42,21 @@ const Sidebar = () => {
     (state) => state.setSidebarCollapsed
   )
 
+  const { data: profiles } = useRecommendedProfilesQuery({ variables: {} })
+
+
+    const { query } = useRouter()
+    const handle = query.channel ?? ''
+    const { data, loading, error } = useProfileQuery({
+      variables: {
+        request: { handle },
+        who: selectedChannel?.id ?? null
+      },
+      skip: !handle
+    })
+
+
+
   const isActivePath = (path: string) => router.pathname === path
 
 
@@ -46,12 +66,12 @@ const Sidebar = () => {
       <CreateChannel />
       <div
         className={clsx(
-          'transition-width hidden items-start justify-between md:flex md:flex-col basis-1/3',
+          'transition-width hidden items-start justify-between md:flex md:flex-col w-[30vw]',
         )}
       >
         <div
           className={clsx(
-            'flex flex-col space-y-2',
+            'flex flex-col space-y-2 overflow-y-auto overflow-x-hidden fixed top-[50px] bottom-0 p-[20px]',
             sidebarCollapsed ? 'self-center' : 'w-full px-[18px]'
           )}
           data-testid="sidebar-items"
@@ -105,6 +125,8 @@ const Sidebar = () => {
                   </Link>
                 </Tooltip>
               )}
+            <SuggestedAccount channels={profiles} />
+            <FollowingAccounts profile={data} />
             <CategoryFilters />
           </div>
         </div>
