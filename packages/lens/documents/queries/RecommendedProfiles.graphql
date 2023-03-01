@@ -3,6 +3,8 @@ recommendedProfiles {
         id
       name
       bio
+
+      isFollowedByMe
       attributes {
         displayType
         traitType
@@ -58,6 +60,7 @@ recommendedProfiles {
         totalCollects
       }
       followModule {
+        __typename
         ... on FeeFollowModuleSettings {
           type
           amount {

@@ -28,7 +28,7 @@ const FullScreenModal: FC<Props> = ({
         className="relative z-20"
         onClose={() => (onClose && !autoClose ? onClose?.() : null)}
       >
-   
+
         <div className="fixed inset-0 ">
           <div className="flex h-full min-h-full items-center justify-center text-center">
             <Transition.Child

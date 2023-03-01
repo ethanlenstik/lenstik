@@ -5,7 +5,7 @@ import CommentOutline from '@components/Common/Icons/CommentOutline'
 import GraphOutline from '@components/Common/Icons/GraphOutline'
 import InfoOutline from '@components/Common/Icons/InfoOutline'
 import MirrorOutline from '@components/Common/Icons/MirrorOutline'
-import { Tab } from '@headlessui/react'
+import { Tab } from "@headlessui/react"
 import clsx from 'clsx'
 import type { Profile } from 'lens'
 import { useRouter } from 'next/router'

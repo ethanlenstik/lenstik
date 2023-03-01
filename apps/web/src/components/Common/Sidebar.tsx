@@ -53,9 +53,6 @@ const Sidebar = () => {
       skip: !selectedChannel?.handle
     })
 
-    console.log("bbbb", selectedChannel)
-
-
 
   const isActivePath = (path: string) => router.pathname === path
 

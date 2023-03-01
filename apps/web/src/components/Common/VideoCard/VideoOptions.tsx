@@ -161,7 +161,7 @@ const VideoOptions: FC<Props> = ({
           if (data?.broadcast?.__typename === 'RelayError') {
             writeMetaData?.({ recklesslySetUnpreparedArgs: [args] })
           }
-        } catch {}
+        } catch { }
       },
       onError
     })
@@ -222,7 +222,7 @@ const VideoOptions: FC<Props> = ({
         return signTypedData(request)
       }
       createViaDispatcher(request)
-    } catch {}
+    } catch { }
   }
 
   return (

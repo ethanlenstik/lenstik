@@ -15,7 +15,7 @@ const SuggestedAccount: FC<PropsAccs> = ({channels}) => {
         <h3 className='mb-5'>Suggested accounts</h3>
         <div>
             {
-                displayProFiles?.map((channel) => <AccountItem key={channel.id} channel={channel}/>)
+                displayProFiles?.map((channel) => <AccountItem key={channel.id} channel={channel} isSuggested={true} />)
             }
         </div>
         <div>

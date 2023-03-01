@@ -39,8 +39,7 @@ const Category = () => {
                 <Listbox.Option
                   key={categoryIdx}
                   className={({ active }) =>
-                    `relative cursor-default select-none py-2 pl-10 pr-4 ${
-                      active ? 'bg-gray-100 dark:bg-gray-800' : ''
+                    `relative cursor-default select-none py-2 pl-10 pr-4 ${active ? 'bg-gray-100 dark:bg-gray-800' : ''
                     }`
                   }
                   value={category}
@@ -48,9 +47,8 @@ const Category = () => {
                   {({ selected }) => (
                     <>
                       <span
-                        className={`block truncate ${
-                          selected ? 'font-medium' : 'font-normal'
-                        }`}
+                        className={`block truncate ${selected ? 'font-medium' : 'font-normal'
+                          }`}
                       >
                         {category.name}
                       </span>

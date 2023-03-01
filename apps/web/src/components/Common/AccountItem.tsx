@@ -1,33 +1,30 @@
 import type { FC } from "react"
-import React from "react"
+import React, { useState } from "react"
 import Tooltip from "@components/UIElements/Tooltip"
 import useAppStore from "@lib/store"
 import Link from "next/link"
 import getProfilePicture from "utils/functions/getProfilePicture"
 import IsVerified from "./IsVerified"
+import clsx from "clsx"
+import PopoverTik from "@components/UIElements/Popover"
 
 type Props = {
     channel: any
+    isSuggested?: boolean
 }
 
-const AccountItem: FC<Props> = ({ channel }) => {
+const AccountItem: FC<Props> = ({ channel, isSuggested }) => {
+    const [hover, setHover] = useState<String>('onMouseLeave')
 
-    const selectedChannel = useAppStore((state) => state.selectedChannel)
 
-    return <div className="container mx-auto flex max-w-[85rem] space-x-3 md:items-center md:space-x-5 ">
-        <div className="flex-none">
-            <Link
-                href={`/channel/${channel?.handle}`}
-            >
-                <img
-                    className="ultrawide:h-32 ultrawide:w-16 h-8 w-8 rounded-full bg-white object-cover dark:bg-gray-900"
-                    src={getProfilePicture(channel, 'avatar_lg')}
-                    draggable={false}
-                    alt={channel?.handle}
-                />
-            </Link>
-        </div>
-        <div className="flex flex-1 flex-wrap justify-between space-y-3 py-2">
+    return <div className={clsx("relativ p-2", "hover:bg-gray-200")}>
+        {isSuggested && <div className="flex-none">
+            <PopoverTik hover={hover} channel={channel} />
+        </div>}
+        <div className={clsx("flex flex-1 flex-wrap justify-between space-y-3",)}
+            onMouseEnter={() => setHover("onMouseEnter")}
+            onMouseLeave={() => setHover("onMouseLeave")}
+        >
             <Link
                 href={`/channel/${channel?.handle}`}
             >
@@ -56,3 +53,7 @@ const AccountItem: FC<Props> = ({ channel }) => {
 }
 
 export default AccountItem
+
+function useHover(): [any, any] {
+    throw new Error("Function not implemented.")
+}

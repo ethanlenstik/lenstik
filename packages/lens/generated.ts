@@ -10025,6 +10025,7 @@ export type RecommendedProfilesQuery = {
     id: any
     name?: string | null
     bio?: string | null
+    isFollowedByMe: boolean
     followNftAddress?: any | null
     metadata?: any | null
     isDefault: boolean
@@ -10080,7 +10081,7 @@ export type RecommendedProfilesQuery = {
     }
     followModule?:
       | {
-          __typename?: 'FeeFollowModuleSettings'
+          __typename: 'FeeFollowModuleSettings'
           type: FollowModules
           recipient: any
           amount: {
@@ -10095,9 +10096,9 @@ export type RecommendedProfilesQuery = {
             }
           }
         }
-      | { __typename?: 'ProfileFollowModuleSettings'; type: FollowModules }
-      | { __typename?: 'RevertFollowModuleSettings'; type: FollowModules }
-      | { __typename?: 'UnknownFollowModuleSettings' }
+      | { __typename: 'ProfileFollowModuleSettings'; type: FollowModules }
+      | { __typename: 'RevertFollowModuleSettings'; type: FollowModules }
+      | { __typename: 'UnknownFollowModuleSettings' }
       | null
   }>
 }
@@ -14542,6 +14543,7 @@ export const RecommendedProfilesDocument = gql`
       id
       name
       bio
+      isFollowedByMe
       attributes {
         displayType
         traitType
@@ -14597,6 +14599,7 @@ export const RecommendedProfilesDocument = gql`
         totalCollects
       }
       followModule {
+        __typename
         ... on FeeFollowModuleSettings {
           type
           amount {

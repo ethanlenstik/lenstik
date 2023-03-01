@@ -83,7 +83,7 @@ const UserMenu = () => {
       })
       const allChannels = data?.profiles?.items as Profile[]
       setChannels(allChannels)
-    } catch {}
+    } catch { }
   }
 
   return (
