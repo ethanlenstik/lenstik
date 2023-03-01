@@ -89,3 +89,12 @@ input[type='number'] {
 .pb-safe {
   padding-bottom: env(safe-area-inset-bottom);
 }
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgba(181, 177, 177, 0.589); 
+  border-radius: 10px;
+}

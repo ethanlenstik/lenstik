@@ -45,13 +45,13 @@ const Sidebar = () => {
   const { data: profiles } = useRecommendedProfilesQuery({ variables: {} })
 
 
-    const { data, loading, error } = useProfileQuery({
-      variables: {
-        request: { handle: selectedChannel?.handle },
-        who: selectedChannel?.id ?? null
-      },
-      skip: !selectedChannel?.handle
-    })
+  const { data, loading, error } = useProfileQuery({
+    variables: {
+      request: { handle: selectedChannel?.handle },
+      who: selectedChannel?.id ?? null
+    },
+    skip: !selectedChannel?.handle
+  })
 
 
   const isActivePath = (path: string) => router.pathname === path
@@ -69,8 +69,9 @@ const Sidebar = () => {
         <div
           className={clsx(
             'flex flex-col space-y-2 overflow-y-auto overflow-x-hidden fixed top-[50px] bottom-0 p-[20px]',
-            sidebarCollapsed ? 'self-center' : 'w-full px-[18px]'
+            'self-center'
           )}
+          style={{ width: 'inherit', scrollbarWidth: 'thin' }}
           data-testid="sidebar-items"
         >
           <div className={clsx('py-3  border-b border-b-gray-400 mb-3')}>

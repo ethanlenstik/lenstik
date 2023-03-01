@@ -60,7 +60,7 @@ const PopoverTik: FC<Props> = ({ hover, channel }) => {
                 ({ open }) => (
                     <div >
                         <Popover.Button ref={ref} className="hidden"></Popover.Button>
-                        <Popover.Panel className="absolute top-0 z-10 bg-white p-5 mb-5 shadow-md" onMouseLeave={() => setMouseInHover(false)} onMouseEnter={() => setMouseInHover(true)}>
+                        <Popover.Panel className="absolute top-0 z-10 bg-white  dark:bg-gray-900 p-5 mb-5 shadow-md" onMouseLeave={() => setMouseInHover(false)} onMouseEnter={() => setMouseInHover(true)}>
                             <div className="container mx-auto flex max-w-[500px] justify-between">
                                 <div >
                                     <img
