@@ -28,23 +28,32 @@ const AccountItem: FC<Props> = ({ channel, isSuggested }) => {
             <Link
                 href={`/channel/${channel?.handle}`}
             >
-                <div className="mr-3 flex flex-col items-start">
-                    {channel.name && (
-                        <h1 className="flex items-center space-x-1.5 font-medium md:text-lg">
-                            {channel.name}
-                        </h1>
-                    )}
-                    <h2
-                        className="flex items-center space-x-1.5 md:text-sm"
-                        data-testid="channel-name"
-                    >
-                        <span>@{channel?.handle}</span>
-                        <Tooltip content="Verified" placement="right">
-                            <span>
-                                <IsVerified id={channel?.id} size="md" />
-                            </span>
-                        </Tooltip>
-                    </h2>
+
+                <div className="flex gap-5 items-start">
+                    <img
+                        className="ultrawide:h-16 ultrawide:w-16 h-8 w-8 rounded-full bg-white object-cover dark:bg-gray-900"
+                        src={getProfilePicture(channel, 'avatar_lg')}
+                        draggable={false}
+                        alt={channel?.handle}
+                    />
+                    <div>
+                        {channel.name && (
+                            <h1 className="flex items-center space-x-1.5 font-medium md:text-lg">
+                                {channel.name}
+                            </h1>
+                        )}
+                        <h2
+                            className="flex items-center space-x-1.5 md:text-sm"
+                            data-testid="channel-name"
+                        >
+                            <span>@{channel?.handle}</span>
+                            <Tooltip content="Verified" placement="right">
+                                <span>
+                                    <IsVerified id={channel?.id} size="md" />
+                                </span>
+                            </Tooltip>
+                        </h2>
+                    </div>
 
                 </div>
             </Link>
