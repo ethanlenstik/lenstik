@@ -68,10 +68,10 @@ const Sidebar = () => {
       >
         <div
           className={clsx(
-            'flex flex-col space-y-2 overflow-y-auto overflow-x-hidden fixed top-[50px] bottom-0 p-[20px]',
+            'flex flex-col space-y-2 overflow-y-auto overflow-x-hidden fixed top-[50px] bottom-0 p-[20px] max-w-[350px]',
             'self-center'
           )}
-          style={{ width: 'inherit', scrollbarWidth: 'thin' }}
+          style={{ scrollbarWidth: 'thin' }}
           data-testid="sidebar-items"
         >
           <div className={clsx('py-3  border-b border-b-gray-400 mb-3')}>

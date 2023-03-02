@@ -17,7 +17,7 @@ const AccountItem: FC<Props> = ({ channel, isSuggested }) => {
     const [hover, setHover] = useState<String>('onMouseLeave')
 
 
-    return <div className={clsx("relativ p-2", "hover:bg-gray-200")}>
+    return <div className={clsx("relativ p-2", "hover:bg-gray-200 dark:hover:bg-gray-800")}>
         {isSuggested && <div className="flex-none">
             <PopoverTik hover={hover} channel={channel} />
         </div>}

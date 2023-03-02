@@ -140,11 +140,11 @@ const Layout: FC<Props> = ({ children }) => {
       {!NO_HEADER_PATHS.includes(pathname) && (
         <Header className={clsx(showFullScreen && 'hidden md:flex')} />
       )}
-      <div className={clsx('flex justify-center md:pb-0 max-w-7xl m-auto', showFullScreen && '!pb-0')}>
+      <div className={clsx('flex justify-center md:pb-0 max-w-6xl m-auto', showFullScreen && '!pb-0')}>
         <Sidebar />
         <div
           className={clsx(
-            'grow',
+            'w-[70vw]',
             showFullScreen && 'px-0',
             sidebarCollapsed || pathname === '/[id]'
           )}
@@ -154,7 +154,7 @@ const Layout: FC<Props> = ({ children }) => {
               'ultrawide:px-0',
               showFullScreen && '!p-0',
               pathname !== '/channel/[channel]' &&
-              'ultrawide:max-w-[110rem] mx-auto py-4 md:px-3 2xl:py-6'
+              'ultrawide:max-w-[50rem] mx-auto py-4 md:px-3 2xl:py-6'
             )}
           >
             {children}
