@@ -80,11 +80,11 @@ const Header: FC<Props> = ({ className }) => {
       <div className="w-full max-w-6xl m-auto">
         <div className="ultrawide:px-6 flex w-full items-center justify-between px-2">
           <div className="md:w-[330px]">
-            <Link href="/" className="block md:invisible">
+            <Link href="/" className="block">
               <img
-                src={`${STATIC_ASSETS}/images/brand/lenstube.svg`}
+                src={`/images/logo.png`}
                 draggable={false}
-                className="h-5 w-5"
+                className="h-10 w-10"
                 alt="lenstik"
               />
             </Link>

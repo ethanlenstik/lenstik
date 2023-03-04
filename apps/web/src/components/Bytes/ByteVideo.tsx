@@ -15,6 +15,7 @@ import BottomOverlay from './BottomOverlay'
 import ByteActions from './ByteActions'
 import TopOverlay from './TopOverlay'
 import clsx from 'clsx'
+import { Progress, TimeDisplay } from '@livepeer/react'
 
 type Props = {
   video: Publication
@@ -127,7 +128,7 @@ const ByteVideo: FC<Props> = ({
                   posterUrl={thumbnailUrl}
                   ratio="9to16"
                   publicationId={video.id}
-                  showControls={false}
+                  showControls={true}
                   options={{
                     autoPlay: false,
                     muted: false,

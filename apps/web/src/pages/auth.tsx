@@ -20,7 +20,7 @@ const AuthRequiredPage = () => {
       <MetaTags title="Login" />
       <div className="mt-10 flex h-full flex-col items-center justify-start md:mt-20">
         <img
-          src={`${STATIC_ASSETS}/images/brand/lenstube.svg`}
+          src={`/images/logo.png`}
           alt={LENSTUBE_APP_NAME}
           draggable={false}
           height={50}

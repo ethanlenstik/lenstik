@@ -10,7 +10,7 @@ const FullPageLoader = () => {
       <MetaTags title="Loading..." />
       <div className="animate-bounce">
         <img
-          src={imageCdn(`${STATIC_ASSETS}/images/brand/circle-blue-72x72.png`)}
+          src={`/images/logo.png`}
           draggable={false}
           className="h-12 w-12"
           alt="lenstube"

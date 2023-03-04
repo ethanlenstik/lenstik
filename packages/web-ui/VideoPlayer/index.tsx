@@ -1,4 +1,4 @@
-import type { AspectRatio } from '@livepeer/react'
+import type { AspectRatio, ControlsOptions } from '@livepeer/react'
 import { Player } from '@livepeer/react'
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
@@ -65,7 +65,7 @@ const PlayerInstance: FC<PlayerProps> = ({
       }}
     >
       {/* eslint-disable-next-line react/jsx-no-useless-fragment */}
-      {!showControls ? <></> : null}
+      {/* {!showControls ? <></> : null} */}
     </Player>
   )
 }

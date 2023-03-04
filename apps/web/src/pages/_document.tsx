@@ -12,24 +12,24 @@ class LenstubeDocument extends Document {
           <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
           <link
             rel="shortcut icon"
-            href={`${STATIC_ASSETS}/images/favicons/favicon.ico`}
+            href={`${STATIC_ASSETS}/favicon.ico`}
           />
           <link
             rel="apple-touch-icon"
             sizes="180x180"
-            href={`${STATIC_ASSETS}/images/favicons/apple-touch-icon.png`}
+            href={`${STATIC_ASSETS}/apple-touch-icon.png`}
           />
           <link
             rel="icon"
             type="image/png"
             sizes="32x32"
-            href={`${STATIC_ASSETS}/images/favicons/favicon-32x32.png`}
+            href={`${STATIC_ASSETS}/favicon-32x32.png`}
           />
           <link
             rel="icon"
             type="image/png"
             sizes="16x16"
-            href={`${STATIC_ASSETS}/images/favicons/favicon-16x16.png`}
+            href={`${STATIC_ASSETS}/favicon-16x16.png`}
           />
           <meta name="msapplication-TileColor" content="#da532c" />
           <meta name="theme-color" content="#000000" />
