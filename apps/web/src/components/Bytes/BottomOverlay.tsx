@@ -1,5 +1,6 @@
 import IsVerified from '@components/Common/IsVerified'
 import SubscribeActions from '@components/Common/SubscribeActions'
+import Tooltip from '@components/UIElements/Tooltip'
 import type { Publication } from 'lens'
 import Link from 'next/link'
 import type { FC } from 'react'
@@ -17,7 +18,18 @@ const BottomOverlay: FC<Props> = ({ video }) => {
   return (
     <div className="z-[1] px-3 pt-5 pb-3 md:rounded-b-xl">
       <div className="flex items-center justify-between">
-        <h1 className="line-clamp-2">{video.metadata.name}</h1>
+        <div>
+          <a href={`/channel/${channel?.handle}`}><span className="font-bold text-lg">{video.profile.name}</span> <span className='text-sm font-thin inline-flex'>@{video.profile.handle} &nbsp; <Tooltip content="Verified" placement="right">
+                                <span>
+                                    <IsVerified id={channel?.id} size="md" />
+                                </span>
+                            </Tooltip></span></a>
+          <h1 className="line-clamp-2">{video.metadata.name} <>
+            {
+              video.metadata.tags?.map(tag => <span className='font-bold'>#{tag}</span>)
+            }
+          </></h1>
+        </div>
         <div className="flex items-center space-x-2">
           <SubscribeActions
             channel={video.profile}

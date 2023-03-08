@@ -55,8 +55,6 @@ const ByteVideo: FC<Props> = ({
       intersectionCallback(data[0].target.id)
       const nextUrl = `${location.origin}/${video?.id}`
       history.replaceState({ path: nextUrl }, '', nextUrl)
-      console.log("observer call play video")
-      playVideo()
     }
   })
 
@@ -109,9 +107,8 @@ const ByteVideo: FC<Props> = ({
           data-testid="byte-video"
         >
           <div className="relative bottom-0">
-
             <div
-              className={clsx("ultrawide:w-[407px] flex h-screen w-screen min-w-[250px] items-center overflow-hidden bg-black md:w-[350px] md:rounded-xl", isShow ? "md:h-[95vh]" : "md:h-[60vh] max-h-[700px] min-h-[500px]")}
+              className={clsx("ultrawide:w-[407px] flex h-screen w-screen min-w-[250px] items-center overflow-hidden bg-black md:w-[350px] md:rounded-xl", isShow ? "md:h-[95vh]" : "md:h-[65vh] max-h-[700px] min-h-[500px]")}
               style={{
                 backgroundColor: backgroundColor ? backgroundColor : undefined
               }}
@@ -133,7 +130,7 @@ const ByteVideo: FC<Props> = ({
                     autoPlay: false,
                     muted: false,
                     loop: true,
-                    loadingSpinner: false
+                    loadingSpinner: true
                   }}
                 />
               ) : (

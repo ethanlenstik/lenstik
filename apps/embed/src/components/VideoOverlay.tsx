@@ -24,12 +24,14 @@ const VideoOverlay: FC<Props> = ({ video, clicked }) => {
               Analytics.track(TRACK.EMBED_VIDEO.CLICK_EMBED_CHANNEL)
             }
           >
+            <a>
             <img
               src={getProfilePicture(video?.profile)}
               className="h-9 w-9 rounded-full"
               draggable={false}
               alt={video?.profile?.handle}
             />
+            </a>
           </Link>
           <div className="flex flex-col">
             <Link

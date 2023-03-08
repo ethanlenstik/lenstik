@@ -10,6 +10,7 @@ import PublicationReaction from '@components/Watch/PublicationReaction'
 import type { Publication } from 'lens'
 import type { FC } from 'react'
 import React, { useState } from 'react'
+import { RiShareForwardLine } from 'react-icons/ri'
 
 import CommentModal from './CommentModal'
 
@@ -24,12 +25,12 @@ const ByteActions: FC<Props> = ({ video }) => {
   return (
     <div className="w-12 flex-col items-center justify-between md:flex md:w-14">
       <div className="flex justify-center space-y-4 p-2 md:flex-col">
-        <VideoOptions
+        {/* <VideoOptions
           video={video}
           setShowShare={setShowShare}
           setShowReport={setShowReport}
           showOnHover={false}
-        />
+        /> */}
       </div>
       <div className="items-center space-y-1.5 pt-2.5 md:flex md:flex-col">
         <div className="text-white md:text-inherit">
@@ -71,6 +72,14 @@ const ByteActions: FC<Props> = ({ video }) => {
             </div>
           </div>
         )}
+        <div>
+        <button
+            type="button"
+            onClick={() => setShowShare(true)}
+          >
+            <RiShareForwardLine className="h-6 w-6" />
+          </button>
+        </div>
       </div>
       <ShareModal video={video} show={showShare} setShowShare={setShowShare} />
       <ReportModal

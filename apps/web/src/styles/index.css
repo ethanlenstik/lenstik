@@ -98,3 +98,6 @@ input[type='number'] {
   background: rgba(181, 177, 177, 0.589); 
   border-radius: 10px;
 }
+.c-cSwjHS.c-lbNOYO ~.c-cSwjHS.c-lbNOYO{
+  display: none;
+}

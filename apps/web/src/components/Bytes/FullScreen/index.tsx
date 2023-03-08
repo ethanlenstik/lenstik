@@ -107,12 +107,12 @@ const FullScreen: FC<Props> = ({ video,
         posterUrl={thumbnailUrl}
         ratio="9to16"
         publicationId={video.id}
-        showControls={false}
+        showControls={true}
         options={{
             autoPlay: false,
             muted: false,
             loop: true,
-            loadingSpinner: false
+            loadingSpinner: true
         }}
     />), [video])
 

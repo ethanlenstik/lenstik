@@ -155,14 +155,14 @@ const request = {
         <meta name="theme-color" content="#000000" />
       </Head>
       <MetaTags title="Bytes" />
-      {currentVideo && <FullScreen
+      {currentVideo ? <FullScreen
         video={currentVideo}
         currentViewingId={currentViewingId}
         intersectionCallback={(id) => setCurrentViewingId(id)}
         callShow={setShow}
         isShow={show}
         scroll={scroll}
-      />}
+      />: null}
       <div
         ref={bytesContainer}
         className="no-scrollbar h-screen snap-y snap-mandatory overflow-y-scroll scroll-smooth md:h-[calc(100vh-70px)]"
