@@ -24,11 +24,11 @@ const BottomOverlay: FC<Props> = ({ video }) => {
                                     <IsVerified id={channel?.id} size="md" />
                                 </span>
                             </Tooltip></span></a>
-          <h1 className="line-clamp-2">{video.metadata.name} <>
+          <h1 className="line-clamp-2">{video.metadata.name} <span>
             {
-              video.metadata.tags?.map(tag => <span className='font-bold'>#{tag}</span>)
+              video.metadata.tags?.map(tag => <span key={tag} className='font-bold'>#{tag}</span>)
             }
-          </></h1>
+          </span></h1>
         </div>
         <div className="flex items-center space-x-2">
           <SubscribeActions
