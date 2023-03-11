@@ -31,7 +31,6 @@ const Comments: FC<Props> = ({ video }) => {
                     </Link>
                 </div>
                 <div className='grow'>
-
                     <BottomOverlay video={video} />
                 </div>
             </div>
@@ -41,3 +40,4 @@ const Comments: FC<Props> = ({ video }) => {
 }
 
 export default Comments
+

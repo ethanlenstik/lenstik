@@ -30,56 +30,60 @@ import FullScreen from './FullScreen'
 
 const Bytes = () => {
   const router = useRouter()
+  const { detail } = router.query
   const bytesContainer = useRef<HTMLDivElement>(null)
   const selectedChannel = useAppStore((state) => state.selectedChannel)
   const [currentViewingId, setCurrentViewingId] = useState('')
 
   const activeTagFilter = useAppStore((state) => state.activeTagFilter)
 
-const request = {
-  sortCriteria: PublicationSortCriteria.CuratedProfiles,
-  limit: 50, 
-   noRandomize: false,
-  sources: [LENSTUBE_BYTES_APP_ID],
-  publicationTypes: [PublicationTypes.Post],
-  customFilters: LENS_CUSTOM_FILTERS,
-  metadata: {
-    tags:
-      activeTagFilter !== 'all' ? { oneOf: [activeTagFilter] } : undefined,
-    mainContentFocus: [PublicationMainFocus.Video]
+  const request = {
+    sortCriteria: PublicationSortCriteria.CuratedProfiles,
+    limit: 50,
+    noRandomize: false,
+    sources: [LENSTUBE_BYTES_APP_ID],
+    publicationTypes: [PublicationTypes.Post],
+    customFilters: LENS_CUSTOM_FILTERS,
+    metadata: {
+      tags:
+        activeTagFilter !== 'all' ? { oneOf: [activeTagFilter] } : undefined,
+      mainContentFocus: [PublicationMainFocus.Video]
+    }
   }
-}
 
   const [show, setShow] = useState(false)
 
   const [fetchPublication, { data: singleByte, loading: singleByteLoading }] =
     usePublicationDetailsLazyQuery()
 
-  const [fetchAllBytes, { data, loading, error, fetchMore }] =
-    useExploreLazyQuery({
-      variables: {
-        request,
-        reactionRequest: selectedChannel
-          ? { profileId: selectedChannel?.id }
-          : null,
-        channelId: selectedChannel?.id ?? null
-      },
-      onCompleted: ({ explorePublications }) => {
-        const items = explorePublications?.items as Publication[]
-        const publicationId = router.query.id
-        if (!publicationId) {
-          const nextUrl = `${location.origin}/${items[0]?.id}`
-          history.pushState({ path: nextUrl }, '', nextUrl)
-        }
-      }
-    })
+const [fetchAllBytes, { data, loading, error, fetchMore }] =
+useExploreLazyQuery({
+  // prevent the query from firing again after the first fetch
+  nextFetchPolicy: 'standby',
+  variables: {
+    request,
+    reactionRequest: selectedChannel
+      ? { profileId: selectedChannel?.id }
+      : null,
+    channelId: selectedChannel?.id ?? null
+  },
+  onCompleted: ({ explorePublications }) => {
+    const items = explorePublications?.items as Publication[]
+    const publicationId = router.query.id
+    if (!publicationId) {
+      const nextUrl = `${location.origin}/bytes/${items[0]?.id}`
+      history.pushState({ path: nextUrl }, '', nextUrl)
+    }
+  }
+})
+
 
   const bytes = data?.explorePublications?.items as Publication[]
   const pageInfo = data?.explorePublications?.pageInfo
   const singleBytePublication = singleByte?.publication as Publication
   const currentVideo = useMemo(() => {
     const video = bytes?.find(video => video.id === currentViewingId)
-    if(video == null && bytes?.length > 0){
+    if (video == null && bytes?.length > 0) {
       setCurrentViewingId(bytes[0].id)
       return bytes[0]
     }
@@ -114,7 +118,6 @@ const request = {
   useEffect(() => {
     if (router.isReady) {
       fetchSingleByte()
-      Analytics.track('Pageview', { path: TRACK.PAGE_VIEW.BYTES })
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [router.isReady])
@@ -148,6 +151,15 @@ const request = {
       </div>
     )
   }
+  
+  const detailNext = (val: 1 | -1) => {
+      const index = bytes.findIndex(byte => byte.id === currentViewingId) + val
+      index > 0 && index < bytes.length && setCurrentViewingId(bytes[index].id)
+  }
+
+  const closeDialog = () => {
+    setShow(false)
+  }
 
   return (
     <div className="overflow-y-hidden">
@@ -159,10 +171,10 @@ const request = {
         video={currentVideo}
         currentViewingId={currentViewingId}
         intersectionCallback={(id) => setCurrentViewingId(id)}
-        callShow={setShow}
+        close={closeDialog}
         isShow={show}
-        scroll={scroll}
-      />: null}
+        nextVideo={detailNext}
+      /> : null}
       <div
         ref={bytesContainer}
         className="no-scrollbar h-screen snap-y snap-mandatory overflow-y-scroll scroll-smooth md:h-[calc(100vh-70px)]"
@@ -177,14 +189,14 @@ const request = {
           />
         )}
         {bytes?.map((video: Publication) => (
-            <ByteVideo
-              video={video}
-              currentViewingId={currentViewingId}
-              intersectionCallback={(id) => setCurrentViewingId(id)}
-              key={`${video?.id}_${video.createdAt}`}
-              onDetail={openDetail}
-              isShow={show}
-            />
+          <ByteVideo
+            video={video}
+            currentViewingId={currentViewingId}
+            intersectionCallback={(id) => setCurrentViewingId(id)}
+            key={`${video?.id}_${video.createdAt}1`}
+            onDetail={openDetail}
+            isShow={show}
+          />
         ))}
         {pageInfo?.next && (
           <span ref={observe} className="flex justify-center p-10">

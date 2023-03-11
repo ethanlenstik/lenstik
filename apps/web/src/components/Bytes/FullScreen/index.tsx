@@ -3,6 +3,7 @@ import ChevronUpOutline from '@components/Common/Icons/ChevronUpOutline'
 import FlagOutline from '@components/Common/Icons/FlagOutline'
 import FullScreenModal from '@components/UIElements/FullScreenModal'
 import usePersistStore from '@lib/store/persist'
+import clsx from 'clsx'
 import type { Publication } from 'lens'
 import type { FC } from 'react'
 import React, { useEffect, useMemo, useRef } from 'react'
@@ -22,16 +23,16 @@ type Props = {
     video: Publication
     currentViewingId: string
     intersectionCallback: (id: string) => void
-    callShow: (isShow: boolean) => void
+    close: () => void
     isShow: boolean
-    scroll: (val: 30 | -30) => void
+    nextVideo: (val: 1 | -1) => void
 }
 const FullScreen: FC<Props> = ({ video,
     currentViewingId,
     intersectionCallback,
-    callShow,
+    close,
     isShow,
-    scroll
+    nextVideo
 
 }) => {
     const videoRef = useRef<HTMLMediaElement>()
@@ -68,6 +69,10 @@ const FullScreen: FC<Props> = ({ video,
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
+
+    useEffect(() => {
+        console.log(currentViewingId)
+    }, [currentViewingId])
 
     const pauseVideo = () => {
         if (!videoRef.current) {
@@ -126,71 +131,77 @@ const FullScreen: FC<Props> = ({ video,
             autoClose
         >
             <div
-                className="flex snap-center justify-between px-5"
+                className="flex snap-center justify-between px-5 "
                 data-testid="byte-video"
             >
-                <div className='max-md:hidden'>
-                    <button
-                        type="button"
-                        className="rounded-md  p-1 focus:outline-none mt-5 "
-                        onClick={() => callShow(false)}
-                    >
-                        <MdOutlineClose />
-                    </button>
-                </div>
-                <div className="relative max-md:w-full">
-                    <div
-                        className="flex h-screen  items-center bg-black md:h-[calc(100vh)] md:w-[56.3vh] md:rounded-xl"
-                        style={{
-                            backgroundColor: backgroundColor ? backgroundColor : undefined
-                        }}
-                    >
-                        <div
-                            className="absolute"
-                            ref={intersectionRef}
-                            id={video.id}
-                        />
-                        {currentViewingId === video.id ? player : (
-                            <img
-                                className="w-full object-contain"
-                                src={thumbnailUrl}
-                                alt="thumbnail"
-                                draggable={false}
-                            />
-                        )}
-                    </div>
-                    <TopOverlay onClickVideo={onClickVideo} />
-
-                </div>
-                <div className='flex w-[35vw] max-md:hidden'>
-                    <div className="relative">
-                        <button
-                            type="button"
-                            onClick={() => onClickReport()}
-                            className="hover:opacity-100 inline-flex items-center space-x-2 rounded-lg px-3 py-1.5 hover:bg-gray-100 dark:hover:bg-gray-800 absolute right-5 top-5"
-                        >
-                            <FlagOutline className="h-3.5 w-3.5" />
-                            <span className="whitespace-nowrap">Report</span>
-                        </button>
-                        <div className='flex flex-col justify-center h-full mr-5'>
-                            <div>
-                                <button
-                                    className="rounded-full bg-gray-300 p-3 focus:outline-none dark:bg-gray-700"
-                                    onClick={() => scroll(-30)}
-                                >
-                                    <ChevronUpOutline className="h-5 w-5" />
-                                </button>
+                <div className='grow relative'>
+                    <div className='absolute z-0 bottom-0 left-0 top-0 right-0 bg-cover' style={{ backgroundImage: `url(${thumbnailUrl})` }}></div>
+                    <div className='flex backdrop-blur-md backdrop-brightness-[0.2]' >
+                        <div className='max-md:hidden z-10'>
+                            <button
+                                type="button"
+                                className="rounded-md  p-1 focus:outline-none mt-5 "
+                                onClick={() => close()}
+                            >
+                                <MdOutlineClose />
+                            </button>
+                        </div>
+                        <div className={clsx("relative max-md:w-full grow flex")} >
+                            <div
+                                className="flex h-screen  items-center bg-black md:h-[calc(100vh)] md:w-[56.3vh] md:rounded-xl m-auto"
+                                style={{
+                                    backgroundColor: backgroundColor ? backgroundColor : undefined
+                                }}
+                            >
+                                <div
+                                    className="absolute"
+                                    ref={intersectionRef}
+                                    id={video.id}
+                                />
+                                {currentViewingId === video.id ? player : (
+                                    <img
+                                        className="w-full object-contain"
+                                        src={thumbnailUrl}
+                                        alt="thumbnail"
+                                        draggable={false}
+                                    />
+                                )}
                             </div>
-                            <div>
-                                <button
-                                    className="rounded-full bg-gray-300 p-3 focus:outline-none dark:bg-gray-700"
-                                    onClick={() => scroll(30)}
-                                >
-                                    <ChevronDownOutline className="h-5 w-5" />
-                                </button>
+                            <TopOverlay onClickVideo={onClickVideo} />
+
+                        </div>
+                        <div className="relative">
+                            <button
+                                type="button"
+                                onClick={() => onClickReport()}
+                                className="hover:opacity-100 inline-flex items-center space-x-2 rounded-lg px-3 py-1.5 hover:bg-gray-100 dark:hover:bg-gray-800 absolute right-5 top-5"
+                            >
+                                <FlagOutline className="h-3.5 w-3.5" />
+                                <span className="whitespace-nowrap">Report</span>
+                            </button>
+                            <div className='flex flex-col justify-center h-full mr-5'>
+                                <div>
+                                    <button
+                                        className="rounded-full bg-gray-300 p-3 focus:outline-none dark:bg-gray-700"
+                                        onClick={() => nextVideo(-1)}
+                                    >
+                                        <ChevronUpOutline className="h-5 w-5" />
+                                    </button>
+                                </div>
+                                <div>
+                                    <button
+                                        className="rounded-full bg-gray-300 p-3 focus:outline-none dark:bg-gray-700"
+                                        onClick={() => nextVideo(1)}
+                                    >
+                                        <ChevronDownOutline className="h-5 w-5" />
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
+                </div>
+                <div className='flex w-[35vw] max-md:hidden px-[20px]'>
+
                     <Comments video={video} />
                 </div>
             </div>
