@@ -23,7 +23,7 @@ const MobileBottomNav = () => {
         >
           <HomeOutline
             className={clsx('h-4 w-4 opacity-80', {
-              'text-indigo-500 opacity-100': isActivePath('/')
+              'text-green-500 opacity-100': isActivePath('/')
             })}
           />
           <span className="text-[9px]">Home</span>
@@ -34,7 +34,7 @@ const MobileBottomNav = () => {
         >
           <BytesOutline
             className={clsx('h-4 w-4 opacity-80', {
-              'text-indigo-500 opacity-100': isActivePath('/bytes')
+              'text-green-500 opacity-100': isActivePath('/bytes')
             })}
           />
           <span className="text-[9px]">Bytes</span>
@@ -51,7 +51,7 @@ const MobileBottomNav = () => {
         >
           <ExploreOutline
             className={clsx('h-4 w-4 opacity-80', {
-              'text-indigo-500 opacity-100': isActivePath('/explore')
+              'text-green-500 opacity-100': isActivePath('/explore')
             })}
           />
           <span className="text-[9px]">Explore</span>
@@ -62,7 +62,7 @@ const MobileBottomNav = () => {
         >
           <FeedOutline
             className={clsx('h-4 w-4 opacity-80', {
-              'text-indigo-500 opacity-100': isActivePath('/feed')
+              'text-green-500 opacity-100': isActivePath('/feed')
             })}
           />
           <span className="text-[9px]">Feed</span>

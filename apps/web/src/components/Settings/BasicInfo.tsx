@@ -319,7 +319,7 @@ const BasicInfo = ({ channel }: Props) => {
               onClick={() => Analytics.track(TRACK.GET_VERIFIED)}
               target="_blank"
               rel="noreferer noreferrer"
-              className="bg-gradient-to-br from-purple-500 to-indigo-600 bg-clip-text text-sm text-transparent"
+              className="bg-gradient-to-br from-purple-500 to-green-600 bg-clip-text text-sm text-transparent"
             >
               ( Get Verified )
             </Link>

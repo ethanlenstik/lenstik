@@ -184,7 +184,7 @@ const ChooseThumbnail: FC<Props> = ({ label, afterUpload, file }) => {
               className={clsx(
                 'relative w-full flex-none rounded-lg focus:outline-none',
                 {
-                  'ring ring-indigo-500': selectedThumbnailIndex === idx,
+                  'ring ring-green-500': selectedThumbnailIndex === idx,
                   'ring !ring-red-500': thumbnail.isNSFWThumbnail
                 }
               )}
@@ -208,8 +208,8 @@ const ChooseThumbnail: FC<Props> = ({ label, afterUpload, file }) => {
         })}
       </div>
       {!uploadedVideo.thumbnail.length &&
-      !uploadedVideo.uploadingThumbnail &&
-      thumbnails.length ? (
+        !uploadedVideo.uploadingThumbnail &&
+        thumbnails.length ? (
         <p className="mt-2 text-xs font-medium text-red-500">
           Please choose a thumbnail
         </p>

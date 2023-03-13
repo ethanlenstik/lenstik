@@ -30,7 +30,7 @@ const Deployment = () => {
             target="_blank"
             rel="noreferer noreferrer"
           >
-            <span className="text-xs text-indigo-500">
+            <span className="text-xs text-green-500">
               {GIT_DEPLOYED_COMMIT_SHA?.substring(0, 6)}
             </span>
           </Link>

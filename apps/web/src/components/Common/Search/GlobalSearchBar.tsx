@@ -103,8 +103,8 @@ const GlobalSearchBar: FC<Props> = ({ onSearchResults }) => {
                     clsx(
                       'w-full border-b-2 px-4 py-2 text-sm focus:outline-none',
                       selected
-                        ? 'border-indigo-500 opacity-100'
-                        : 'border-transparent opacity-50 hover:bg-indigo-500/[0.12]'
+                        ? 'border-green-500 opacity-100'
+                        : 'border-transparent opacity-50 hover:bg-green-500/[0.12]'
                     )
                   }
                   onClick={() => {
@@ -118,8 +118,8 @@ const GlobalSearchBar: FC<Props> = ({ onSearchResults }) => {
                     clsx(
                       'w-full border-b-2 px-4 py-2 text-sm focus:outline-none',
                       selected
-                        ? 'border-indigo-500 opacity-100'
-                        : 'border-transparent opacity-50 hover:bg-indigo-500/[0.12]'
+                        ? 'border-green-500 opacity-100'
+                        : 'border-transparent opacity-50 hover:bg-green-500/[0.12]'
                     )
                   }
                   onClick={() => {

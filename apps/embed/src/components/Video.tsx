@@ -49,7 +49,7 @@ const Video: FC<Props> = ({ video }) => {
 
   useEffect(() => {
     if (playerRef && clicked) {
-      playerRef?.play().catch(() => {})
+      playerRef?.play().catch(() => { })
     }
   }, [playerRef, clicked])
 
@@ -98,7 +98,7 @@ const Video: FC<Props> = ({ video }) => {
             onClick={onClickOverlay}
             role="button"
           >
-            <button className="rounded-full bg-indigo-500 p-3 xl:p-5">
+            <button className="rounded-full bg-green-500 p-3 xl:p-5">
               <img
                 className="h-5 w-5"
                 src={imageCdn(

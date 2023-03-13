@@ -82,7 +82,7 @@ const PinnedVideo: FC<Props> = ({ id }) => {
           </p>
         </div>
         <Link
-          className="text-xs font-semibold text-indigo-500"
+          className="text-xs font-semibold text-green-500"
           href={`/${pinnedPublication.id}`}
         >
           View more

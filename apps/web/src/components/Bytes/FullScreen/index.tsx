@@ -183,7 +183,7 @@ const FullScreen: FC<Props> = ({ video,
                                 <div>
                                     <button
                                         className="rounded-full bg-gray-300 p-3 focus:outline-none dark:bg-gray-700"
-                                        onClick={() => nextVideo(-1)}
+                                        onClick={() => nextVideo(1)}
                                     >
                                         <ChevronUpOutline className="h-5 w-5" />
                                     </button>
@@ -191,7 +191,7 @@ const FullScreen: FC<Props> = ({ video,
                                 <div>
                                     <button
                                         className="rounded-full bg-gray-300 p-3 focus:outline-none dark:bg-gray-700"
-                                        onClick={() => nextVideo(1)}
+                                        onClick={() => nextVideo(-1)}
                                     >
                                         <ChevronDownOutline className="h-5 w-5" />
                                     </button>

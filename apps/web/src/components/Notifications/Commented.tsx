@@ -37,7 +37,7 @@ const CommentedNotification: FC<Props> = ({ notification }) => {
             href={`/${notification?.comment?.commentOn &&
               notification?.comment?.commentOn?.id
               }`}
-            className="ml-1 text-indigo-500"
+            className="ml-1 text-green-500"
           >
             video
           </Link>

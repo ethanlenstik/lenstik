@@ -6,9 +6,8 @@ import type { LenstubeCollectModule } from 'utils'
 import { IS_MAINNET } from 'utils'
 
 const getUniswapURL = (amount: number, outputCurrency: string): string => {
-  return `https://app.uniswap.org/#/swap?exactField=output&exactAmount=${amount}&outputCurrency=${outputCurrency}&chain=${
-    IS_MAINNET ? 'polygon' : 'polygon_mumbai'
-  }`
+  return `https://app.uniswap.org/#/swap?exactField=output&exactAmount=${amount}&outputCurrency=${outputCurrency}&chain=${IS_MAINNET ? 'polygon' : 'polygon_mumbai'
+    }`
 }
 
 type Props = {
@@ -30,7 +29,7 @@ const BalanceAlert: FC<Props> = ({ collectModule }) => {
             )}
             rel="noreferer noreferrer"
             target="_blank"
-            className="text-indigo-500"
+            className="text-green-500"
           >
             Swap
           </Link>

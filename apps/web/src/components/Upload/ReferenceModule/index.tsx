@@ -79,9 +79,9 @@ const ReferenceModule = () => {
                 })
               }
               className={clsx(
-                'flex w-full items-center justify-between rounded-xl border border-gray-200 px-4 py-2 text-sm hover:!border-indigo-500 focus:outline-none dark:border-gray-800',
+                'flex w-full items-center justify-between rounded-xl border border-gray-200 px-4 py-2 text-sm hover:!border-green-500 focus:outline-none dark:border-gray-800',
                 {
-                  '!border-indigo-500':
+                  '!border-green-500':
                     !uploadedVideo.referenceModule
                       ?.followerOnlyReferenceModule &&
                     !uploadedVideo?.referenceModule
@@ -105,9 +105,9 @@ const ReferenceModule = () => {
                 })
               }
               className={clsx(
-                'flex w-full items-center justify-between rounded-xl border border-gray-200 px-4 py-2 text-left text-sm hover:!border-indigo-500 focus:outline-none dark:border-gray-800',
+                'flex w-full items-center justify-between rounded-xl border border-gray-200 px-4 py-2 text-left text-sm hover:!border-green-500 focus:outline-none dark:border-gray-800',
                 {
-                  '!border-indigo-500':
+                  '!border-green-500':
                     uploadedVideo.referenceModule
                       ?.followerOnlyReferenceModule &&
                     !uploadedVideo.referenceModule
@@ -139,9 +139,9 @@ const ReferenceModule = () => {
               })
             }
             className={clsx(
-              'flex w-full items-center justify-between rounded-xl border border-gray-200 px-4 py-2 text-left text-sm hover:!border-indigo-500 focus:outline-none dark:border-gray-800',
+              'flex w-full items-center justify-between rounded-xl border border-gray-200 px-4 py-2 text-left text-sm hover:!border-green-500 focus:outline-none dark:border-gray-800',
               {
-                '!border-indigo-500':
+                '!border-green-500':
                   uploadedVideo.referenceModule
                     ?.degreesOfSeparationReferenceModule !== null
               }
@@ -169,8 +169,8 @@ const ReferenceModule = () => {
             </span>
             {uploadedVideo.referenceModule
               ?.degreesOfSeparationReferenceModule !== null && (
-              <CheckOutline className="h-3 w-3 flex-none" />
-            )}
+                <CheckOutline className="h-3 w-3 flex-none" />
+              )}
           </button>
           <div className="flex justify-end">
             <Button type="button" onClick={() => setShowModal(false)}>

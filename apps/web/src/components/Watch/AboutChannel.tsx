@@ -71,8 +71,8 @@ const AboutChannel: FC<Props> = ({ video }) => {
             </div>
             {video?.collectModule?.__typename !==
               'RevertCollectModuleSettings' && (
-              <CollectVideo variant="hover" video={video} />
-            )}
+                <CollectVideo variant="hover" video={video} />
+              )}
             <SubscribeActions channel={channel} subscribeType={subscribeType} />
           </div>
         </div>
@@ -86,7 +86,7 @@ const AboutChannel: FC<Props> = ({ video }) => {
             <button
               type="button"
               onClick={() => setClamped(!clamped)}
-              className="flex items-center text-sm text-indigo-800 opacity-80 outline-none hover:opacity-100 dark:text-indigo-200"
+              className="flex items-center text-sm text-green-800 opacity-80 outline-none hover:opacity-100 dark:text-green-200"
             >
               {clamped ? (
                 <>

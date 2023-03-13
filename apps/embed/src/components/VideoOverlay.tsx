@@ -25,12 +25,12 @@ const VideoOverlay: FC<Props> = ({ video, clicked }) => {
             }
           >
             <a>
-            <img
-              src={getProfilePicture(video?.profile)}
-              className="h-9 w-9 rounded-full"
-              draggable={false}
-              alt={video?.profile?.handle}
-            />
+              <img
+                src={getProfilePicture(video?.profile)}
+                className="h-9 w-9 rounded-full"
+                draggable={false}
+                alt={video?.profile?.handle}
+              />
             </a>
           </Link>
           <div className="flex flex-col">
@@ -70,7 +70,7 @@ const VideoOverlay: FC<Props> = ({ video, clicked }) => {
               target="_blank"
             >
               <img
-                src={`${STATIC_ASSETS}/images/brand/bg-indigo.png`}
+                src={`${STATIC_ASSETS}/images/brand/bg-green.png`}
                 draggable={false}
                 className="ml-0.5 h-8 w-8 rounded-full"
                 alt="lenstube"

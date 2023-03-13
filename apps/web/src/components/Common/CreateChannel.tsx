@@ -38,7 +38,7 @@ export const ClaimHandle = () => (
       <Link
         href="https://claim.lens.xyz/"
         target="_blank"
-        className="text-indigo-500"
+        className="text-green-500"
         rel="noreferrer"
       >
         lens claiming site

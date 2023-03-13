@@ -54,7 +54,7 @@ const Topics = () => {
       updateCache(topics)
       Analytics.track(TRACK.PROFILE_INTERESTS.REMOVE)
       removeProfileInterests({ variables })
-    } catch {}
+    } catch { }
   }
 
   return (
@@ -70,7 +70,7 @@ const Topics = () => {
                 className={clsx(
                   'flex items-center justify-between rounded-full border border-gray-300 px-3 py-0.5 text-sm capitalize focus:outline-none disabled:cursor-not-allowed disabled:opacity-50 dark:border-gray-700',
                   {
-                    '!border-indigo-500 text-indigo-500':
+                    '!border-green-500 text-green-500':
                       selectedTopics.includes(category.id)
                   }
                 )}
@@ -92,7 +92,7 @@ const Topics = () => {
                   className={clsx(
                     'flex items-center justify-between rounded-full border border-gray-300 px-3 py-0.5 text-sm capitalize focus:outline-none disabled:cursor-not-allowed disabled:opacity-50 dark:border-gray-700',
                     {
-                      '!border-indigo-500 text-indigo-500':
+                      '!border-green-500 text-green-500':
                         selectedTopics.includes(subCategory.id)
                     }
                   )}

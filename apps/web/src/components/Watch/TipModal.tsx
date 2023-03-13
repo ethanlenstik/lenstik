@@ -321,7 +321,7 @@ const TipModal: FC<Props> = ({ show, setShowTip, video }) => {
             {...register('message')}
             placeholder="Say something nice"
             autoComplete="off"
-            className="w-full rounded-xl border border-gray-200 bg-white p-2 text-sm outline-none focus:ring-1 focus:ring-indigo-500 disabled:bg-gray-500 disabled:bg-opacity-20 disabled:opacity-60 dark:border-gray-800 dark:bg-gray-900"
+            className="w-full rounded-xl border border-gray-200 bg-white p-2 text-sm outline-none focus:ring-1 focus:ring-green-500 disabled:bg-gray-500 disabled:bg-opacity-20 disabled:opacity-60 dark:border-gray-800 dark:bg-gray-900"
             rows={3}
           />
           <div className="mx-1 mt-1 text-[11px] opacity-50">
@@ -341,8 +341,8 @@ const TipModal: FC<Props> = ({ show, setShowTip, video }) => {
           </span>
           <Button loading={loading}>
             {`Tip ${isNaN(Number(watchTipQuantity) * 1)
-                ? 0
-                : Number(watchTipQuantity) * 1
+              ? 0
+              : Number(watchTipQuantity) * 1
               } MATIC`}
           </Button>
         </div>

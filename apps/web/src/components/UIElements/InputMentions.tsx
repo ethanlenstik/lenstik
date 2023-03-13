@@ -100,7 +100,7 @@ const InputMentions: FC<Props> = ({
             ) => (
               <div
                 className={clsx('flex space-x-1.5 truncate px-1.5 py-1.5', {
-                  'dark:bg-theme rounded bg-indigo-50': focused
+                  'dark:bg-theme rounded bg-green-50': focused
                 })}
               >
                 <img

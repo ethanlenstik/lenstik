@@ -111,7 +111,7 @@ const Sidebar = () => {
                     className={clsx(
                       'group flex h-12 items-center rounded-full py-2 2xl:py-2.5',
                       isActivePath('/echo')
-                        ? 'bg-indigo-50 dark:bg-gray-800'
+                        ? 'bg-green-50 dark:bg-gray-800'
                         : 'hover:bg-gray-50 dark:hover:bg-gray-800',
                       sidebarCollapsed
                         ? 'w-12 justify-center'

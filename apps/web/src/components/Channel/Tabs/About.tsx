@@ -98,7 +98,7 @@ const About: FC<Props> = ({ channel }) => {
                   .replace('http://', '')}`}
                 target="_blank"
                 rel="noreferer noreferrer"
-                className="hover:text-indigo-500"
+                className="hover:text-green-500"
               >
                 {getValueFromKeyInAttributes(channel?.attributes, 'website')
                   ?.replace('https://', '')
@@ -116,7 +116,7 @@ const About: FC<Props> = ({ channel }) => {
                 )}`}
                 target="_blank"
                 rel="noreferer noreferrer"
-                className="hover:text-indigo-500"
+                className="hover:text-green-500"
               >
                 {getValueFromKeyInAttributes(
                   channel?.attributes,
@@ -138,7 +138,7 @@ const About: FC<Props> = ({ channel }) => {
               href={`${LENSTER_WEBSITE_URL}/u/${channel?.handle}`}
               target="_blank"
               rel="noreferer noreferrer"
-              className="hover:text-indigo-500"
+              className="hover:text-green-500"
             >
               Lenster
             </Link>

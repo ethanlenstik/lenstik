@@ -135,7 +135,7 @@ const PublicationReaction: FC<Props> = ({
             'flex items-center focus:outline-none',
             isVertical ? 'flex-col space-y-2' : 'space-x-1.5',
             {
-              'font-semibold text-indigo-500': reaction.isLiked
+              'font-semibold text-green-500': reaction.isLiked
             }
           )}
         >
@@ -144,7 +144,7 @@ const PublicationReaction: FC<Props> = ({
               'h-3.5 w-3.5': iconSize === 'sm',
               'h-6 w-6': iconSize === 'lg',
               'h-4 w-4': iconSize === 'base',
-              'text-indigo-500': reaction.isLiked
+              'text-green-500': reaction.isLiked
             },)}
           />
           {showLabel && (
@@ -152,7 +152,7 @@ const PublicationReaction: FC<Props> = ({
               className={clsx({
                 'text-xs': textSize === 'sm',
                 'text-base': textSize === 'base',
-                'text-indigo-500': reaction.isLiked
+                'text-green-500': reaction.isLiked
               })}
             >
               {reaction.likeCount > 0

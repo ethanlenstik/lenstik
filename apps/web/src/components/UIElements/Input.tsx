@@ -42,7 +42,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
           id={id}
           className={clsx(
             {
-              'focus:ring-1 focus:ring-indigo-500': !validationError?.length,
+              'focus:ring-1 focus:ring-green-500': !validationError?.length,
               '!border-red-500': validationError?.length,
               'rounded-r-xl': prefix,
               'rounded-xl': !prefix && !suffix,

@@ -137,7 +137,7 @@ const Details: FC<Props> = ({ onUpload, onCancel }) => {
                       )
                       Analytics.track(TRACK.CLICKED_BYTES_TAG_AT_UPLOAD)
                     }}
-                    className="mx-1 text-indigo-600 outline-none dark:text-indigo-400"
+                    className="mx-1 text-green-600 outline-none dark:text-green-400"
                   >
                     #bytes
                   </button>

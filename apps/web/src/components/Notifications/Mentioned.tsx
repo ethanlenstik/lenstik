@@ -40,7 +40,7 @@ const MentionedNotification: FC<Props> = ({ notification }) => {
         <span className="truncate text-gray-600 dark:text-gray-400">
           <Link
             href={`/${notification?.mentionPublication.id}`}
-            className="mr-1 text-indigo-500"
+            className="mr-1 text-green-500"
           >
             mentioned
           </Link>

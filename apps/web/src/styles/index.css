@@ -6,7 +6,7 @@
 
 body {
   font-family: 'Matter', sans-serif;
-  @apply antialiased dark:text-white bg-gradient-to-bl from-indigo-100 via-gray-100 bg-fixed dark:from-gray-800 dark:to-gray-900 to-gray-50 text-black min-h-screen;
+  @apply antialiased dark:text-white bg-white bg-fixed dark:bg-neutral-900 text-black min-h-screen;
 }
 
 .btn-primary {
@@ -30,7 +30,7 @@ body {
 }
 
 .bg-secondary {
-  @apply dark:bg-[#050506] bg-white;
+  @apply dark:bg-[#121212] bg-white;
 }
 
 .no-scrollbar::-webkit-scrollbar {
@@ -61,7 +61,7 @@ input[type='number'] {
 
 /* interweave linkify */
 .interweave-content a {
-  @apply text-indigo-500;
+  @apply text-green-500;
 }
 
 .tippy-box[data-theme~='material'] > .tippy-arrow::before {
@@ -79,7 +79,7 @@ input[type='number'] {
 }
 .input-mentions-textarea textarea,
 .input-mentions-single textarea {
-  @apply bg-white text-sm resize-y px-2.5 py-2 rounded-xl focus:ring-1 focus:ring-indigo-500 dark:bg-gray-900 border border-gray-300 dark:border-gray-700 outline-none disabled:opacity-60 disabled:bg-gray-500 disabled:bg-opacity-20 w-full;
+  @apply bg-white text-sm resize-y px-2.5 py-2 rounded-xl focus:ring-1 focus:ring-green-500 dark:bg-gray-900 border border-gray-300 dark:border-gray-700 outline-none disabled:opacity-60 disabled:bg-gray-500 disabled:bg-opacity-20 w-full;
 }
 .input-mentions-textarea__suggestions,
 .input-mentions-single__suggestions {

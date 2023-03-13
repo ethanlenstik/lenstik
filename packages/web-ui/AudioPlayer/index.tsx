@@ -182,7 +182,7 @@ const AudioPlayer: FC<Props> = ({ selectedTrack }) => {
               step={10}
               value={volume * 100}
               onChange={onChangeVolume}
-              className="h-1 w-[100px] cursor-pointer appearance-none overflow-hidden rounded-lg bg-indigo-100 dark:bg-indigo-900"
+              className="h-1 w-[100px] cursor-pointer appearance-none overflow-hidden rounded-lg bg-green-100 dark:bg-green-900"
             />
           </div>
         </div>

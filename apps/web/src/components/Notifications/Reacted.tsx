@@ -36,10 +36,10 @@ const ReactedNotification: FC<Props> = ({ notification }) => {
           {notification.publication.__typename === 'Comment' && ' comment on'}
           <Link
             href={`/${notification.publication.__typename === 'Comment'
-                ? notification.publication?.mainPost?.id
-                : notification?.publication.id
+              ? notification.publication?.mainPost?.id
+              : notification?.publication.id
               }`}
-            className="ml-1 text-indigo-500"
+            className="ml-1 text-green-500"
           >
             video
           </Link>

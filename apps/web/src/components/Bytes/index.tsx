@@ -153,8 +153,9 @@ useExploreLazyQuery({
   }
   
   const detailNext = (val: 1 | -1) => {
+    console.log(bytes.findIndex(byte => byte.id === currentViewingId), val, bytes)
       const index = bytes.findIndex(byte => byte.id === currentViewingId) + val
-      index > 0 && index < bytes.length && setCurrentViewingId(bytes[index].id)
+      index > 0 && index < bytes.length ? setCurrentViewingId(bytes[index].id) : ''
   }
 
   const closeDialog = () => {
