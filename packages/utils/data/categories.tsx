@@ -1,59 +1,57 @@
+import {FcMusic} from 'react-icons/fc'
+import { GiHealthNormal, GiComputing } from 'react-icons/gi'
+import { MdOutlineFastfood, MdSportsBasketball, MdCardTravel } from 'react-icons/md'
+import { BiHappyAlt, BiBitcoin, BiNews, BiPodcast } from 'react-icons/bi'
+
+
 export const CREATOR_VIDEO_CATEGORIES = [
-  {
-    name: 'People & Blogs',
-    tag: 'people'
-  },
-  { name: 'Music', tag: 'music' },
+ 
+  { name: 'Music', tag: 'music', 
+  icon: <FcMusic /> },
   {
     name: 'Podcast',
-    tag: 'podcast'
+    tag: 'podcast',
+    icon: <BiPodcast />
   },
   {
     name: 'Health & Fitness',
-    tag: 'health'
-  },
-  {
-    name: 'Lens Ecosystem',
-    tag: 'lens'
+    tag: 'health',
+    icon: <GiHealthNormal />
   },
   {
     name: 'Food & Cooking',
-    tag: 'food'
+    tag: 'food',
+    icon: <MdOutlineFastfood />
   },
   {
     name: 'Entertainment',
-    tag: 'entertainment'
+    tag: 'entertainment',
+    icon: <BiHappyAlt />
   },
   {
     name: 'Crypto currency',
-    tag: 'crypto'
-  },
-  {
-    name: 'Family & Parenting',
-    tag: 'family'
-  },
-  {
-    name: 'Blockchain',
-    tag: 'blockchain'
+    tag: 'crypto',
+    icon: <BiBitcoin />
   },
   {
     name: 'News & Politics',
-    tag: 'news'
+    tag: 'news',
+    icon: <BiNews />
   },
-  {
-    name: 'Nonprofits & Activism',
-    tag: 'nonprofits'
-  },
+  
   {
     name: 'Science & Technology',
-    tag: 'technology'
+    tag: 'technology',
+    icon: <GiComputing className='p-2' />
   },
   {
     name: 'Sports',
-    tag: 'sports'
+    tag: 'sports',
+    icon: <MdSportsBasketball />
   },
   {
     name: 'Travel & Events',
-    tag: 'travel'
+    tag: 'travel',
+    icon: <MdCardTravel />
   },
 ]

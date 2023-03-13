@@ -35,32 +35,43 @@ const GlobalSearchBar: FC<Props> = ({ onSearchResults }) => {
   const resultsRef = useRef(null)
   useOutsideClick(resultsRef, () => setKeyword(''))
 
-  const [searchChannels, { data, loading }] = useLazyQuery(
-    activeSearch === 'PROFILE'
-      ? SearchProfilesDocument
-      : SearchPublicationsDocument
+  const [searchChannels, { data, loading }] = useLazyQuery(SearchProfilesDocument
+    // activeSearch === 'PROFILE'
+    //   ? SearchProfilesDocument
+    //   : SearchPublicationsDocument
   )
+
+  const [searchChannePublications, { data: dataPublications, loading: loadingPulication }] = useLazyQuery(SearchPublicationsDocument)
 
   const onDebounce = () => {
     if (keyword.trim().length) {
       searchChannels({
         variables: {
           request: {
-            type: activeSearch,
+            type: 'PROFILE',
             query: keyword,
-            limit: 30,
+            limit: 10,
             sources: [LENSTUBE_APP_ID, LENSTUBE_BYTES_APP_ID],
             customFilters: LENS_CUSTOM_FILTERS
           }
         }
       })
-      Analytics.track(
-        activeSearch === 'PROFILE' ? TRACK.SEARCH_CHANNELS : TRACK.SEARCH_VIDEOS
-      )
+      searchChannePublications({
+        variables: {
+          request: {
+            type: 'PUBLICATION',
+            query: keyword,
+            limit: 10,
+            sources: [LENSTUBE_APP_ID, LENSTUBE_BYTES_APP_ID],
+            customFilters: LENS_CUSTOM_FILTERS
+          }
+        }
+      })
     }
   }
 
   const channels = data?.search?.items
+  const video = dataPublications?.search?.items
 
   useEffect(() => {
     onDebounce()
@@ -73,17 +84,17 @@ const GlobalSearchBar: FC<Props> = ({ onSearchResults }) => {
   }
 
   return (
-    <div className="md:w-96" data-testid="global-search">
+    <div className="md:w-96  ml-12" data-testid="global-search">
       <div ref={resultsRef}>
         <div className="relative">
           <div className="relative w-full cursor-default overflow-hidden rounded-full border border-gray-200 dark:border-gray-700 sm:text-sm">
             <input
-              className="w-full bg-transparent py-2 pl-4 pr-10 text-sm focus:outline-none"
+              className="w-full bg-transparent py-4 pl-4 pr-10 text-sm border rounded-full"
               onChange={(event) => setKeyword(event.target.value)}
-              placeholder="Search by channel / hashtag"
+              placeholder="Search videos and accounts"
               value={keyword}
             />
-            <div className="absolute inset-y-0 right-0 flex items-center pr-3">
+            <div className="absolute inset-y-0 right-0 flex items-center pr-3 border-l border-l-gray-300 pl-3 my-3">
               <SearchOutline
                 className="h-4 w-4 text-gray-400"
                 aria-hidden="true"
@@ -92,67 +103,38 @@ const GlobalSearchBar: FC<Props> = ({ onSearchResults }) => {
           </div>
           <div
             className={clsx(
-              'dark:bg-theme z-10 mt-1 w-full overflow-hidden rounded-xl bg-white text-base ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm md:absolute',
+              'dark:bg-theme z-10 mt-1 w-full overflow-hidden rounded-xl bg-white text-base ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm md:absolute  ml-12',
               { hidden: debouncedValue.length === 0 }
             )}
           >
-            <Tab.Group>
-              <Tab.List className="flex justify-center">
-                <Tab
-                  className={({ selected }) =>
-                    clsx(
-                      'w-full border-b-2 px-4 py-2 text-sm focus:outline-none',
-                      selected
-                        ? 'border-green-500 opacity-100'
-                        : 'border-transparent opacity-50 hover:bg-green-500/[0.12]'
-                    )
-                  }
-                  onClick={() => {
-                    setActiveSearch(SearchRequestTypes.Profile)
-                  }}
-                >
-                  Channels
-                </Tab>
-                <Tab
-                  className={({ selected }) =>
-                    clsx(
-                      'w-full border-b-2 px-4 py-2 text-sm focus:outline-none',
-                      selected
-                        ? 'border-green-500 opacity-100'
-                        : 'border-transparent opacity-50 hover:bg-green-500/[0.12]'
-                    )
-                  }
-                  onClick={() => {
-                    setActiveSearch(SearchRequestTypes.Publication)
-                  }}
-                >
-                  Videos
-                </Tab>
-              </Tab.List>
-              <Tab.Panels>
-                <Tab.Panel
-                  className="no-scrollbar max-h-[80vh] overflow-y-auto focus:outline-none"
-                  data-testid="search-channels-panel"
-                >
-                  {data?.search?.__typename === 'ProfileSearchResult' && (
-                    <Channels
-                      results={channels as Profile[]}
-                      loading={loading}
-                      clearSearch={clearSearch}
-                    />
-                  )}
-                </Tab.Panel>
-                <Tab.Panel className="no-scrollbar max-h-[80vh] overflow-y-auto focus:outline-none">
-                  {data?.search?.__typename === 'PublicationSearchResult' && (
-                    <Videos
-                      results={channels as Publication[]}
-                      loading={loading}
-                      clearSearch={clearSearch}
-                    />
-                  )}
-                </Tab.Panel>
-              </Tab.Panels>
-            </Tab.Group>
+
+            <div
+              className="no-scrollbar max-h-[80vh] overflow-y-auto focus:outline-none "
+              data-testid="search-channels-panel"
+            >
+              <div>
+                {dataPublications?.search?.__typename === 'PublicationSearchResult' && (
+                  <Videos
+                    results={video as Publication[]}
+                    loading={loadingPulication}
+                    clearSearch={clearSearch}
+                  />
+                )}
+              </div>
+              <h3 className='ml-[10px] font-medium text-slate-500'>Accounts</h3>
+              <div>
+                {data?.search?.__typename === 'ProfileSearchResult' && (
+                  <Channels
+                    results={channels as Profile[]}
+                    loading={loading}
+                    clearSearch={clearSearch}
+                  />
+                )}
+
+              </div>
+
+            </div>
+
 
             {loading && (
               <div className="flex justify-center p-5">

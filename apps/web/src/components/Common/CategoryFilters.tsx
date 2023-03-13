@@ -81,13 +81,14 @@ const CategoryFilters = () => {
             onClick={() => onFilter(category.tag)}
             key={category.tag}
             className={clsx(
-              'whitespace-nowrap rounded-full border border-gray-200 px-3.5 py-1 text-sm capitalize dark:border-gray-700 my-1 mx-2',
+              'whitespace-nowrap rounded-full border border-gray-200 px-3.5 py-1 text-sm capitalize dark:border-gray-700 my-1 mx-2 inline-flex',
               activeTagFilter === category.tag
                 ? 'bg-black text-white'
                 : 'bg-gray-100 dark:bg-gray-800'
             )}
           >
-            # {category.name}
+            <span className='m-auto'>{category.icon}</span>
+            <span className='ml-2'>{category.name}</span>
           </button>
         ))}
       </div>

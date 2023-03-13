@@ -8,7 +8,8 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import type { FC } from 'react'
 import React, { useState } from 'react'
-import { BsPlusLg } from 'react-icons/bs'
+import { BsPlusLg, BsInbox, } from 'react-icons/bs'
+import { FiSend } from 'react-icons/fi'
 import {
   Analytics,
   LENS_CUSTOM_FILTERS,
@@ -22,8 +23,6 @@ import {
 import Login from './Auth/Login'
 import CategoryFilters from './CategoryFilters'
 import BellOutline from './Icons/BellOutline'
-import NewVideoOutline from './Icons/NewVideoOutline'
-import RoadmapOutline from './Icons/RoadmapOutline'
 import SearchOutline from './Icons/SearchOutline'
 import GlobalSearchBar from './Search/GlobalSearchBar'
 
@@ -103,14 +102,24 @@ const Header: FC<Props> = ({ className }) => {
             {selectedChannelId ? (
               <>
                 <Link
-                  onClick={() =>
-                    Analytics.track(TRACK.NOTIFICATIONS.CLICK_NOTIFICATIONS)
-                  }
+
+                  href="/message"
+                  className="relative"
+                >
+                  <button className="p-2.5">
+                    <FiSend className="h-6 w-6" />
+                    {hasNewNotification && (
+                      <span className="absolute top-0.5 right-0.5 flex h-2 w-2 rounded-full bg-red-500" />
+                    )}
+                  </button>
+                </Link>
+                <Link
+
                   href="/notifications"
                   className="relative"
                 >
-                  <button className="btn-hover p-2.5">
-                    <BellOutline className="h-4 w-4" />
+                  <button className="p-2.5">
+                    <BsInbox className="h-6 w-6" />
                     {hasNewNotification && (
                       <span className="absolute top-0.5 right-0.5 flex h-2 w-2 rounded-full bg-red-500" />
                     )}
@@ -122,7 +131,7 @@ const Header: FC<Props> = ({ className }) => {
                 >
                   <Button
                     className="hidden md:block"
-                    icon={<BsPlusLg  />}
+                    icon={<BsPlusLg />}
                   >
                     <span>Upload</span>
                   </Button>
