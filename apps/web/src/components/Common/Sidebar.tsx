@@ -6,7 +6,7 @@ import clsx from 'clsx'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { STATIC_ASSETS } from 'utils'
 import { FEATURE_FLAGS } from 'utils/data/feature-flags'
 import getIsFeatureEnabled from 'utils/functions/getIsFeatureEnabled'
@@ -37,6 +37,7 @@ const Sidebar = () => {
   const router = useRouter()
   const sidebarCollapsed = usePersistStore((state) => state.sidebarCollapsed)
   const selectedChannel = useAppStore((state) => state.selectedChannel)
+  const [showScrollbar, setShowScrollbar] = useState(false)
   const { connector, isConnected } = useAccount()
   const setSidebarCollapsed = usePersistStore(
     (state) => state.setSidebarCollapsed
@@ -69,10 +70,12 @@ const Sidebar = () => {
         <div
           className={clsx(
             'flex flex-col space-y-2 overflow-y-auto overflow-x-hidden fixed top-[50px] bottom-0 p-[20px] max-w-[350px]',
-            'self-center'
+            'self-center', !showScrollbar && 'no-scrollbar'
           )}
           style={{ scrollbarWidth: 'thin' }}
           data-testid="sidebar-items"
+          onMouseEnter={()=> setShowScrollbar(true)}
+          onMouseLeave={()=> setShowScrollbar(false)}
         >
           <div className={clsx('py-3  border-b border-b-gray-400 mb-3')}>
             <Link
