@@ -126,6 +126,7 @@ const Sidebar = () => {
             <SuggestedAccount channels={profiles} />
             <FollowingAccounts profile={data} />
             <CategoryFilters />
+            <Footer />
           </div>
         </div>
       </div>

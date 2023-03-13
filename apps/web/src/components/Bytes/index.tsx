@@ -36,7 +36,7 @@ const Bytes = () => {
   const [currentViewingId, setCurrentViewingId] = useState('')
 
   const activeTagFilter = useAppStore((state) => state.activeTagFilter)
-
+console.log("active tag filter", activeTagFilter)
   const request = {
     sortCriteria: PublicationSortCriteria.CuratedProfiles,
     limit: 50,

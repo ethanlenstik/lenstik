@@ -1,5 +1,5 @@
 import {FcMusic} from 'react-icons/fc'
-import { GiHealthNormal, GiComputing } from 'react-icons/gi'
+import { GiHealthNormal, GiMaterialsScience } from 'react-icons/gi'
 import { MdOutlineFastfood, MdSportsBasketball, MdCardTravel } from 'react-icons/md'
 import { BiHappyAlt, BiBitcoin, BiNews, BiPodcast } from 'react-icons/bi'
 
@@ -14,12 +14,12 @@ export const CREATOR_VIDEO_CATEGORIES = [
     icon: <BiPodcast />
   },
   {
-    name: 'Health & Fitness',
+    name: 'Health',
     tag: 'health',
     icon: <GiHealthNormal />
   },
   {
-    name: 'Food & Cooking',
+    name: 'Food',
     tag: 'food',
     icon: <MdOutlineFastfood />
   },
@@ -29,20 +29,20 @@ export const CREATOR_VIDEO_CATEGORIES = [
     icon: <BiHappyAlt />
   },
   {
-    name: 'Crypto currency',
+    name: 'Crypto',
     tag: 'crypto',
     icon: <BiBitcoin />
   },
   {
-    name: 'News & Politics',
+    name: 'News',
     tag: 'news',
     icon: <BiNews />
   },
   
   {
-    name: 'Science & Technology',
+    name: 'Technology',
     tag: 'technology',
-    icon: <GiComputing className='p-2' />
+    icon: <GiMaterialsScience />
   },
   {
     name: 'Sports',
@@ -50,7 +50,7 @@ export const CREATOR_VIDEO_CATEGORIES = [
     icon: <MdSportsBasketball />
   },
   {
-    name: 'Travel & Events',
+    name: 'Travel',
     tag: 'travel',
     icon: <MdCardTravel />
   },

@@ -89,7 +89,7 @@ const GlobalSearchBar: FC<Props> = ({ onSearchResults }) => {
         <div className="relative">
           <div className="relative w-full cursor-default overflow-hidden rounded-full border border-gray-200 dark:border-gray-700 sm:text-sm">
             <input
-              className="w-full bg-transparent py-4 pl-4 pr-10 text-sm border rounded-full"
+              className="w-full bg-transparent py-3 pl-4 pr-10 text-sm border rounded-full"
               onChange={(event) => setKeyword(event.target.value)}
               placeholder="Search videos and accounts"
               value={keyword}

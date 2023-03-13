@@ -19,7 +19,6 @@ const CategoryFilters = () => {
 
   const onFilter = (tag: string) => {
     setActiveTagFilter(tag)
-    Analytics.track(TRACK.FILTER_CATEGORIES)
   }
 
   const sectionOffsetWidth = scrollRef.current?.offsetWidth ?? 1000
@@ -67,7 +66,7 @@ const CategoryFilters = () => {
           type="button"
           onClick={() => onFilter('all')}
           className={clsx(
-            'rounded-full border border-gray-200 px-3.5 py-1 text-xs capitalize dark:border-gray-700',
+            'rounded-full border border-gray-200 px-3.5 py-1 my-1 text-sm capitalize dark:border-gray-700 mr-3',
             activeTagFilter === 'all'
               ? 'bg-black text-white'
               : 'bg-gray-100 dark:bg-gray-800'
@@ -81,7 +80,7 @@ const CategoryFilters = () => {
             onClick={() => onFilter(category.tag)}
             key={category.tag}
             className={clsx(
-              'whitespace-nowrap rounded-full border border-gray-200 px-3.5 py-1 text-sm capitalize dark:border-gray-700 my-1 mx-2 inline-flex',
+              'whitespace-nowrap rounded-full border border-gray-200 px-3.5 py-1 text-sm capitalize dark:border-gray-700 my-1 mr-3 inline-flex',
               activeTagFilter === category.tag
                 ? 'bg-black text-white'
                 : 'bg-gray-100 dark:bg-gray-800'

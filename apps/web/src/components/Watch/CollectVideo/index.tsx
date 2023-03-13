@@ -183,8 +183,8 @@ const CollectVideo: FC<Props> = ({ video, variant }) => {
           loading
             ? 'Collecting'
             : alreadyCollected
-            ? 'Already Collected'
-            : collectTooltipText
+              ? 'Already Collected'
+              : collectTooltipText
         }
         placement="top"
       >
@@ -197,7 +197,9 @@ const CollectVideo: FC<Props> = ({ video, variant }) => {
             {loading ? (
               <Loader size="md" />
             ) : (
-              <CollectOutline className="h-5 w-5" />
+              <div className='rounded-full bg-gray-200 dark:bg-gray-600 p-2'>
+                <CollectOutline className="h-5 w-5" />
+              </div>
             )}
           </button>
         </div>

@@ -12,13 +12,12 @@ import type { FC } from 'react'
 import React, { useState } from 'react'
 import { RiShareForwardLine } from 'react-icons/ri'
 
-import CommentModal from './CommentModal'
-
 type Props = {
   video: Publication
+  showDetail: () => void
 }
 
-const ByteActions: FC<Props> = ({ video }) => {
+const ByteActions: FC<Props> = ({ video, showDetail }) => {
   const [showShare, setShowShare] = useState(false)
   const [showReport, setShowReport] = useState(false)
 
@@ -34,6 +33,7 @@ const ByteActions: FC<Props> = ({ video }) => {
       </div>
       <div className="items-center space-y-1.5 pt-2.5 md:flex md:flex-col">
         <div className="text-white md:text-inherit">
+
           <PublicationReaction
             publication={video}
             iconSize="lg"
@@ -42,22 +42,18 @@ const ByteActions: FC<Props> = ({ video }) => {
           />
         </div>
         <div className="w-full text-center text-white md:text-inherit">
-          <CommentModal
-            trigger={
-              <Tooltip content="What do you think?" placement="top">
-                <div className="flex flex-col items-center pt-2">
-                  <CommentOutline className="h-5 w-5" />
-                  <div className="pt-1 text-xs">Wdyt</div>
-                </div>
-              </Tooltip>
-            }
-            video={video}
-          />
+          <button type='button' onClick={showDetail}>
+          <div className=' rounded-full  bg-gray-200 dark:bg-gray-600 p-2'>
+            <CommentOutline className="h-5 w-5" />
+          </div>
+          </button>
         </div>
         <div className="w-full text-center text-white md:text-inherit">
           <MirrorVideo video={video}>
             <div className="flex flex-col items-center pt-2">
-              <MirrorOutline className="h-5 w-5" />
+              <div className=' rounded-full  bg-gray-200 dark:bg-gray-600 p-2'>
+                <MirrorOutline className="h-5 w-5" />
+              </div>
               <div className="pt-1 text-xs">
                 {video.stats?.totalAmountOfMirrors || 'Mirror'}
               </div>
@@ -73,11 +69,13 @@ const ByteActions: FC<Props> = ({ video }) => {
           </div>
         )}
         <div>
-        <button
+          <button
             type="button"
             onClick={() => setShowShare(true)}
           >
-            <RiShareForwardLine className="h-6 w-6" />
+            <div className=' rounded-full  bg-gray-200 dark:bg-gray-600 p-2'>
+              <RiShareForwardLine className="h-6 w-6" />
+            </div>
           </button>
         </div>
       </div>
