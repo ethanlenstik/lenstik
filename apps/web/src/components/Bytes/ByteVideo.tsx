@@ -91,7 +91,7 @@ const ByteVideo: FC<Props> = ({
 
   const channel = video.profile
   return (
-    <div className={clsx( index===-1 && 'flex border-t border-gray-500 mt-7')}>
+    <div className={clsx( index!=-1 && 'flex border-t border-gray-500 mt-7')}>
       <Link
         href={`/channel/${channel?.handle}`}
         className="flex flex-none cursor-pointer items-top space-x-2 mt-5 mx-3  max-md:hidden"
