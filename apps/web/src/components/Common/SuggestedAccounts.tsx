@@ -11,7 +11,7 @@ type PropsAccs = {
 const SuggestedAccount: FC<PropsAccs> = ({channels}) => {
     const [ isAllSuggest , setAllSuggest ] = useState(false);
     const displayProFiles = isAllSuggest?  channels?.recommendedProfiles: channels?.recommendedProfiles.slice(0,4)
-    return <div className="border-b border-b-gray-300">
+    return <div className="border-b border-b-slate-800">
         <h3 className='mb-5 text-gray-500 font-bold'>Suggested accounts</h3>
         <div>
             {

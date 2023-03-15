@@ -19,7 +19,7 @@ const FollowingAccounts: FC<PropsAccs> = ({profile}) => {
 
     const displayProFiles = isAllSuggest?  followers?.followers.items: followers?.followers.items.slice(0,2)
 
-    return <div className="border-b border-b-gray-300">
+    return <div className="border-b border-b-slate-800">
         <h3 className='mb-5 text-gray-500 font-bold'>Following Accounts</h3>
         <div className="py-[10px]">
             {

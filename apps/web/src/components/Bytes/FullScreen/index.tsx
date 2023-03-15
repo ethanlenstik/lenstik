@@ -5,7 +5,7 @@ import FullScreenModal from '@components/UIElements/FullScreenModal'
 import usePersistStore from '@lib/store/persist'
 import clsx from 'clsx'
 import type { Publication } from 'lens'
-import type { FC } from 'react'
+import { FC, useState } from 'react'
 import React, { useEffect, useMemo, useRef } from 'react'
 import toast from 'react-hot-toast'
 import { MdOutlineClose } from 'react-icons/md'
@@ -37,6 +37,7 @@ const FullScreen: FC<Props> = ({ video,
 }) => {
     const videoRef = useRef<HTMLMediaElement>()
     const intersectionRef = useRef<HTMLDivElement>(null)
+    const [playing, setPlaying ] = useState(false)
 
     const thumbnailUrl = imageCdn(
         sanitizeIpfsUrl(getThumbnailUrl(video)),
@@ -52,6 +53,7 @@ const FullScreen: FC<Props> = ({ video,
         videoRef.current.volume = 1
         videoRef.current.autoplay = true
         videoRef.current?.play().catch(() => { })
+        setPlaying(true)
     }
 
     const observer = new IntersectionObserver((data) => {
@@ -70,16 +72,13 @@ const FullScreen: FC<Props> = ({ video,
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
-    useEffect(() => {
-        console.log(currentViewingId)
-    }, [currentViewingId])
-
     const pauseVideo = () => {
         if (!videoRef.current) {
             return
         }
         videoRef.current?.pause()
         videoRef.current.autoplay = false
+        setPlaying(false)
     }
 
     const onClickVideo = () => {
@@ -167,7 +166,7 @@ const FullScreen: FC<Props> = ({ video,
                                     />
                                 )}
                             </div>
-                            <TopOverlay onClickVideo={onClickVideo} />
+                            <TopOverlay onClickVideo={onClickVideo} isPlaying={playing}/>
 
                         </div>
                         <div className="relative">

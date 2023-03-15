@@ -77,7 +77,7 @@ const Sidebar = () => {
           onMouseEnter={()=> setShowScrollbar(true)}
           onMouseLeave={()=> setShowScrollbar(false)}
         >
-          <div className={clsx('py-3  border-b border-b-gray-400 mb-3')}>
+          <div className={clsx('py-3  border-b border-b-slate-800 mb-3')}>
             <Link
               href="/"
               className="flex items-center pt-1 focus:outline-none my-2 p-2 dark:hover:bg-gray-600 hover:bg-gray-200"
@@ -96,7 +96,7 @@ const Sidebar = () => {
           <div className="flex flex-col justify-center space-y-2">
 
             {!isConnected &&
-              <div className='border-b border-b-gray-400 pb-5 mb-3 grid'>
+              <div className='border-b border-b-slate-800 pb-5 mb-3 grid'>
                 <p className='mb-2 text-gray-500'>Log in to follow creators, like videos, and comments.</p>
                 <Login />
               </div>}
@@ -127,7 +127,7 @@ const Sidebar = () => {
                 </Tooltip>
               )}
             <SuggestedAccount channels={profiles} />
-            <FollowingAccounts profile={data} />
+            { isConnected && <FollowingAccounts profile={data} />}
             <CategoryFilters />
             <Footer />
           </div>

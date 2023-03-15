@@ -62,7 +62,7 @@ export const POLYGON_CHAIN_ID = IS_MAINNET ? 137 : 80001
 
 // ipfs
 export const IPFS_FREE_UPLOAD_LIMIT = IS_MAINNET ? 1000 : 100
-export const IPFS_GATEWAY = 'https://ipfs.lenstube.xyz/ipfs'
+export const IPFS_GATEWAY = 'https://ipfs.scalaproject.io/ipfs'
 export const EVER_ENDPOINT = 'https://endpoint.4everland.co'
 export const EVER_REGION = 'us-west-2'
 export const EVER_ACCESS_KEY = process.env.EVER_ACCESS_KEY as string
@@ -71,7 +71,7 @@ export const EVER_BUCKET_NAME = IS_MAINNET ? 'lenstube' : 'testnet'
 
 // livepeer
 export const LIVEPEER_STUDIO_API_KEY = 'b13fd43e-d0d6-4abc-a5df-93592a0c5124'
-export const LIVEPEER_API_TOKEN = process.env.LIVEPEER_API_TOKEN as string
+export const LIVEPEER_API_TOKEN = ''//process.env.LIVEPEER_API_TOKEN as string
 
 // bundlr
 export const BUNDLR_NODE_URL = IS_MAINNET
@@ -83,7 +83,7 @@ export const BUNDLR_METADATA_UPLOAD_URL = IS_MAINNET
 export const BUNDLR_CURRENCY = 'matic'
 export const BUNDLR_WEBSITE_URL = 'https://bundlr.network'
 export const ARWEAVE_WEBSITE_URL = 'https://arweave.net'
-export const BUNDLR_PRIVATE_KEY = process.env.BUNDLR_PRIVATE_KEY as string
+//export const BUNDLR_PRIVATE_KEY = process.env.BUNDLR_PRIVATE_KEY as string
 export const BUNDLR_CONNECT_MESSAGE = 'Sign to initialize & estimate upload...'
 
 // error messages

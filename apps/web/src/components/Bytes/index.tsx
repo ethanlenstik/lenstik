@@ -187,6 +187,7 @@ useExploreLazyQuery({
             intersectionCallback={(id) => setCurrentViewingId(id)}
             onDetail={openDetail}
             isShow={show}
+            index={-1}
           />
         )}
         {bytes?.map((video: Publication) => (

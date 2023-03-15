@@ -23,6 +23,7 @@ type Props = {
   intersectionCallback: (id: string) => void
   onDetail: () => void
   isShow: boolean
+  index?: number
 }
 
 const ByteVideo: FC<Props> = ({
@@ -30,7 +31,8 @@ const ByteVideo: FC<Props> = ({
   currentViewingId,
   intersectionCallback,
   onDetail,
-  isShow
+  isShow,
+  index
 }) => {
   const videoRef = useRef<HTMLMediaElement>()
   const intersectionRef = useRef<HTMLDivElement>(null)
@@ -73,7 +75,8 @@ const ByteVideo: FC<Props> = ({
     videoRef.current.autoplay = false
   }
 
-  const onClickVideo = () => {
+  const onClickVideo = (event: any) => {
+    event.preventDefault();
     onDetail()
     pauseVideo()
   }
@@ -88,7 +91,7 @@ const ByteVideo: FC<Props> = ({
 
   const channel = video.profile
   return (
-    <div className={clsx('flex border-t border-gray-500 mt-7')}>
+    <div className={clsx( index===-1 && 'flex border-t border-gray-500 mt-7')}>
       <Link
         href={`/channel/${channel?.handle}`}
         className="flex flex-none cursor-pointer items-top space-x-2 mt-5 mx-3  max-md:hidden"
@@ -142,7 +145,7 @@ const ByteVideo: FC<Props> = ({
                 />
               )}
             </div>
-            <TopOverlay onClickVideo={() => onClickVideo()} />
+            <TopOverlay onClickVideo={onClickVideo} isPlaying={true}/>
             <div className="absolute right-2 bottom-[15%] z-[1] md:hidden">
               <ByteActions video={video} showDetail={onDetail} />
               {video?.collectModule?.__typename !==
