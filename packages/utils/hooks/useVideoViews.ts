@@ -1,8 +1,7 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 
-import { LENSTUBE_API_URL } from '../constants'
-import logger from '../logger'
+import { LIVEPEER_VIEWS_URL } from '../constants'
 
 const useVideoViews = (sourceUrl: string) => {
   const [loading, setLoading] = useState(false)
@@ -11,15 +10,14 @@ const useVideoViews = (sourceUrl: string) => {
   const fetchVideoViews = async () => {
     setLoading(true)
     try {
-      const { data } = await axios.post(`${LENSTUBE_API_URL}/video/views`, {
+      const { data } = await axios.post(LIVEPEER_VIEWS_URL, {
         sourceUrl
       })
       if (data && data.success) {
         setViews(data.views)
       }
-    } catch (error) {
-      logger.error('[Error useVideoViews.ts]', error)
-    } finally {
+      setLoading(false)
+    } catch {
       setLoading(false)
     }
   }

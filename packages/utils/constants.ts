@@ -7,17 +7,15 @@ export const LENSTUBE_APP_DESCRIPTION =
 export const LENS_ENV = process.env.NEXT_PUBLIC_ENVIRONMENT ?? 'mainnet'
 export const IS_MAINNET = LENS_ENV === 'mainnet'
 
-export const STATIC_ASSETS = 'http://localhost:4783'
+export const STATIC_ASSETS = 'https://static.lenstube.xyz'
 export const LENSTUBE_WEBSITE_URL = IS_MAINNET
-  ? 'https://lenstick.xyz'
-  : 'https://testnet.lenstick.xyz'
-export const LENSTUBE_EMBED_URL = IS_MAINNET
-  ? 'https://embed.lenstube.xyz'
-  : 'https://test-embed.lenstube.xyz'
+  ? 'https://lenstube.xyz'
+  : 'https://testnet.lenstube.xyz'
 export const FALLBACK_COVER_URL = `${STATIC_ASSETS}/images/fallbackThumbnail.png`
 export const OG_IMAGE = `${STATIC_ASSETS}/images/seo/og.png`
 export const IMAGE_CDN_URL = IS_MAINNET ? 'https://img.lenstube.xyz' : ''
 export const SCROLL_ROOT_MARGIN = '40% 0px'
+
 
 // lens
 export const MAINNET_API_URL = 'https://api.lens.dev'
@@ -33,6 +31,9 @@ export const STAGING_API_URL = IS_MAINNET
 // API urls
 export const LENSTUBE_MAINNET_API_URL = 'https://api.lenstube.xyz'
 export const LENSTUBE_TESTNET_API_URL = 'https://api-testnet.lenstube.xyz'
+export const LENSTUBE_EMBED_URL = IS_MAINNET
+  ? 'https://embed.lenstube.xyz'
+  : 'https://embed-testnet.lenstube.xyz'
 export const LENSTUBE_DEV_API_URL = 'http://localhost:4002'
 export const LENSTUBE_API_URL = IS_MAINNET
   ? LENSTUBE_MAINNET_API_URL
@@ -62,7 +63,7 @@ export const POLYGON_CHAIN_ID = IS_MAINNET ? 137 : 80001
 
 // ipfs
 export const IPFS_FREE_UPLOAD_LIMIT = IS_MAINNET ? 1000 : 100
-export const IPFS_GATEWAY_URL = 'https://gateway.ipfscdn.io/ipfs'
+export const IPFS_GATEWAY = 'https://gateway.ipfscdn.io/ipfs'
 export const EVER_ENDPOINT = 'https://endpoint.4everland.co'
 export const EVER_REGION = 'us-west-2'
 export const EVER_ACCESS_KEY = process.env.EVER_ACCESS_KEY as string
@@ -73,13 +74,22 @@ export const EVER_BUCKET_NAME = IS_MAINNET ? 'lenstube' : 'testnet'
 export const LIVEPEER_STUDIO_API_KEY = 'b13fd43e-d0d6-4abc-a5df-93592a0c5124'
 export const LIVEPEER_API_TOKEN = ''//process.env.LIVEPEER_API_TOKEN as string
 
+
+// workers
+export const LIVEPEER_VIEWS_URL = 'https://views.lenstube.xyz'
+export const BUNDLR_METADATA_UPLOAD_URL = 'https://metadata.lenstube.xyz'
+export const LENSTUBE_TAIL_INGEST_URL = 'https://tail.lenstube.xyz'
+export const STS_TOKEN_URL = 'https://sts.lenstube.xyz'
+export const HEALTH_URL = 'https://health.lenstube.xyz'
+
+
 // bundlr
 export const BUNDLR_NODE_URL = IS_MAINNET
   ? 'https://node1.bundlr.network'
   : 'https://devnet.bundlr.network'
-export const BUNDLR_METADATA_UPLOAD_URL = IS_MAINNET
-  ? 'https://node2.bundlr.network'
-  : 'https://devnet.bundlr.network'
+// export const BUNDLR_METADATA_UPLOAD_URL = IS_MAINNET
+//   ? 'https://node2.bundlr.network'
+//   : 'https://devnet.bundlr.network'
 export const BUNDLR_CURRENCY = 'matic'
 export const BUNDLR_WEBSITE_URL = 'https://bundlr.network'
 export const ARWEAVE_WEBSITE_URL = 'https://arweave.net'
