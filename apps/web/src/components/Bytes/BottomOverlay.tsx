@@ -16,15 +16,15 @@ const BottomOverlay: FC<Props> = ({ video }) => {
   const subscribeType = video.profile?.followModule?.__typename
   const channel = video.profile
   return (
-    <div className="z-[1] px-3 pt-5 pb-3 md:rounded-b-xl">
+    <div className="z-[1] pt-5 pb-3 md:rounded-b-xl mr-3">
       <div className="flex items-center justify-between">
         <div>
-          <a href={`/channel/${channel?.handle}`}><span className="font-bold text-lg">{video.profile.name}</span> <span className='text-sm font-thin inline-flex'>@{video.profile.handle} &nbsp; <Tooltip content="Verified" placement="right">
+          <a href={`/channel/${channel?.handle}`}><span className="font-bold text-base">{video.profile.name}</span> <span className='text-sm font-thin inline-flex'>@{video.profile.handle} &nbsp; <Tooltip content="Verified" placement="right">
                                 <span>
                                     <IsVerified id={channel?.id} size="md" />
                                 </span>
                             </Tooltip></span></a>
-          <h1 className="line-clamp-2">{video.metadata.name} <span>
+          <h1 className="line-clamp-2 text-base">{video.metadata.name} <span>
             {
               video.metadata.tags?.map(tag => <span key={tag} className='font-bold'>#{tag}</span>)
             }

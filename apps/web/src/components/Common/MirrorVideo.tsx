@@ -170,10 +170,10 @@ const MirrorVideo: FC<Props> = ({ video, children, onMirrorSuccess }) => {
 
   return (
     <Tooltip placement="top" content={loading ? 'Mirroring' : tooltipContent}>
-      <div className="inline-flex">
+      <div className="inline-flex ">
         <button
           type="button"
-          className="disabled:opacity-50"
+          className="disabled:opacity-50 "
           disabled={loading}
           onClick={() => mirrorVideo()}
         >

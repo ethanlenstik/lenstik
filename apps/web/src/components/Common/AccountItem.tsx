@@ -31,7 +31,7 @@ const AccountItem: FC<Props> = ({ channel, isSuggested }) => {
 
                 <div className="flex gap-5 items-start">
                     <img
-                        className="ultrawide:h-16 ultrawide:w-16 h-8 w-8 rounded-full bg-white object-cover dark:bg-gray-900"
+                        className="ultrawide:h-12 ultrawide:w-12 h-8 w-8 rounded-full bg-white object-cover dark:bg-gray-900"
                         src={getProfilePicture(channel, 'avatar_lg')}
                         draggable={false}
                         alt={channel?.handle}

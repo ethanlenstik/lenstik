@@ -1,6 +1,6 @@
 import clsx from 'clsx'
 import Link from 'next/link'
-import { FC, useEffect } from 'react'
+import type { FC } from 'react'
 import React from 'react'
 import { FaPlay } from 'react-icons/fa'
 

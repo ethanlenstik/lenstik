@@ -72,13 +72,13 @@ const Header: FC<Props> = ({ className }) => {
   return (
     <div
       className={clsx(
-        'dark:bg-theme sticky top-0 left-0 right-0 z-10 flex w-full items-center bg-white py-2.5',
+        'dark:bg-theme fixed top-0 left-0 right-0 z-10 flex w-full items-center bg-white py-2.5',
         className
       )}
     >
       <div className="w-full max-w-6xl m-auto">
         <div className="ultrawide:px-6 flex w-full items-center justify-between px-2">
-          <div className="md:w-[330px]">
+          <div className="md:w-[435px]">
             <Link href="/" className="block">
               <img
                 src={`/images/logo.png`}

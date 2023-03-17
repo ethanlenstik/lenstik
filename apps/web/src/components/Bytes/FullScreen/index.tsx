@@ -5,8 +5,8 @@ import FullScreenModal from '@components/UIElements/FullScreenModal'
 import usePersistStore from '@lib/store/persist'
 import clsx from 'clsx'
 import type { Publication } from 'lens'
-import { FC, useState } from 'react'
-import React, { useEffect, useMemo, useRef } from 'react'
+import type { FC } from 'react'
+import React, { useEffect, useMemo, useRef, useState } from 'react'
 import toast from 'react-hot-toast'
 import { MdOutlineClose } from 'react-icons/md'
 import { SIGN_IN_REQUIRED_MESSAGE } from 'utils'
@@ -130,19 +130,19 @@ const FullScreen: FC<Props> = ({ video,
             autoClose
         >
             <div
-                className="flex snap-center justify-between px-5 "
+                className="flex snap-center justify-between pr-5 "
                 data-testid="byte-video"
             >
                 <div className='grow relative'>
                     <div className='absolute z-0 bottom-0 left-0 top-0 right-0 bg-cover' style={{ backgroundImage: `url(${thumbnailUrl})` }}></div>
                     <div className='flex backdrop-blur-md backdrop-brightness-[0.2]' >
-                        <div className='max-md:hidden z-10'>
+                        <div className='max-md:hidden z-10 '>
                             <button
                                 type="button"
-                                className="rounded-md  p-1 focus:outline-none mt-5 "
+                                className="p-1 focus:outline-none m-5 rounded-full border border-slate-500"
                                 onClick={() => close()}
                             >
-                                <MdOutlineClose />
+                                <MdOutlineClose className='text-white'/>
                             </button>
                         </div>
                         <div className={clsx("relative max-md:w-full grow flex")} >

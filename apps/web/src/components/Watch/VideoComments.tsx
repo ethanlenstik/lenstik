@@ -11,16 +11,17 @@ import usePersistStore from '@lib/store/persist'
 import type { Publication } from 'lens'
 import { PublicationMainFocus, useProfileCommentsQuery } from 'lens'
 import dynamic from 'next/dynamic'
-import type { FC } from 'react'
-import React from 'react'
+import type { FC  } from 'react'
+import React, {useState} from 'react'
 import { useInView } from 'react-cool-inview'
-import toast from 'react-hot-toast'
+import { RiShareForwardLine } from 'react-icons/ri'
 import { Analytics, LENSTUBE_WEBSITE_URL, LENS_CUSTOM_FILTERS, SCROLL_ROOT_MARGIN, TRACK } from 'utils'
-import useCopyToClipboard from 'utils/hooks/useCopyToClipboard'
 
 import NewComment from './NewComment'
 import PublicationReaction from './PublicationReaction'
 import QueuedComment from './QueuedComment'
+import ShareModal from '@components/Common/VideoCard/ShareModal'
+import CollectVideo from './CollectVideo'
 
 const Comment = dynamic(() => import('./Comment'))
 
@@ -33,6 +34,7 @@ const VideoComments: FC<Props> = ({ video, hideTitle = false }) => {
   const selectedChannelId = usePersistStore((state) => state.selectedChannelId)
   const queuedComments = usePersistStore((state) => state.queuedComments)
   const selectedChannel = useAppStore((state) => state.selectedChannel)
+  const [showShare, setShowShare] = useState(false)
 
   const isFollowerOnlyReferenceModule =
     video?.referenceModule?.__typename === 'FollowOnlyReferenceModuleSettings'
@@ -103,16 +105,39 @@ const VideoComments: FC<Props> = ({ video, hideTitle = false }) => {
             isVertical={false}
             showLabel
           />
-          <MirrorVideo video={video}>
-            <div className="flex items-center justify-center gap-1">
-              <MirrorOutline className="h-5 w-5" />
+          <MirrorVideo video={video} >
+            <div className="flex items-center justify-center gap-1 ">
+              <div className='rounded-full bg-gray-200 dark:bg-gray-600 p-2'>
+                <MirrorOutline className="h-6 w-6 " />
+              </div>
               <div className="pt-1 text-xs">
                 {video.stats?.totalAmountOfMirrors || 'Mirror'}
               </div>
             </div>
           </MirrorVideo>
         </div>
+
+        <div className='flex'>
+          <button
+            type="button"
+            onClick={() => setShowShare(true)}
+          >
+            <div className=' rounded-full  bg-gray-200 dark:bg-gray-600 p-2'>
+              <RiShareForwardLine className="h-6 w-6" />
+            </div>
+          </button>
+          {video?.collectModule?.__typename !== 'RevertCollectModuleSettings' && (
+            <div className="text-center flex center">
+              <CollectVideo video={video} />
+              <div className="text-center text-xs leading-3">
+                {video.stats?.totalAmountOfCollects}
+              </div>
+            </div>
+          )}
+        </div>
+
       </div>
+      <ShareModal video={video} show={showShare} setShowShare={setShowShare} />
       <div className="flex items-center justify-between rounded-lg border border-gray-200 p-2 dark:border-gray-800 my-3">
         <div className="select-all truncate text-sm">
           {LENSTUBE_WEBSITE_URL}/{video.id}
@@ -130,7 +155,7 @@ const VideoComments: FC<Props> = ({ video, hideTitle = false }) => {
       )}
       {!error && (queuedComments.length || comments.length) ? (
         <>
-          <div className="space-y-4 pt-5  overflow-y-auto overflow-x-hidden top-[200px] bottom-[80px] absolute w-full ">
+          <div className="space-y-4 pt-5  overflow-y-auto overflow-x-hidden top-[300px] bottom-[80px] absolute w-full ">
             {queuedComments?.map(
               (queuedComment) =>
                 queuedComment?.pubId === video?.id && (

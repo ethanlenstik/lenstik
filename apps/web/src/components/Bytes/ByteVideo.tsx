@@ -91,14 +91,14 @@ const ByteVideo: FC<Props> = ({
 
   const channel = video.profile
   return (
-    <div className={clsx( index!=-1 && 'flex border-t border-gray-500 mt-7')}>
+    <div className={clsx(index != -1 && ' border-t dark:border-slate-600 ', 'flex mt-7')}>
       <Link
         href={`/channel/${channel?.handle}`}
         className="flex flex-none cursor-pointer items-top space-x-2 mt-5 mx-3  max-md:hidden"
       >
         <img
           src={getProfilePicture(channel, 'avatar')}
-          className="h-9 w-9 rounded-full"
+          className="h-9 w-9 rounded-full mr-3"
           draggable={false}
           alt={channel?.handle}
         />
@@ -145,7 +145,7 @@ const ByteVideo: FC<Props> = ({
                 />
               )}
             </div>
-            <TopOverlay onClickVideo={onClickVideo} isPlaying={true}/>
+            <TopOverlay onClickVideo={onClickVideo} isPlaying={true} />
             <div className="absolute right-2 bottom-[15%] z-[1] md:hidden">
               <ByteActions video={video} showDetail={onDetail} />
               {video?.collectModule?.__typename !==
