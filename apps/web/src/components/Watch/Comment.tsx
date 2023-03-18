@@ -5,6 +5,7 @@ import IsVerified from '@components/Common/IsVerified'
 import HashExplorerLink from '@components/Common/Links/HashExplorerLink'
 import ReportModal from '@components/Common/VideoCard/ReportModal'
 import Tooltip from '@components/UIElements/Tooltip'
+import { div } from '@tensorflow/tfjs'
 import clsx from 'clsx'
 import type { Attribute, Publication } from 'lens'
 import { PublicationMainFocus } from 'lens'
@@ -45,6 +46,7 @@ const Comment: FC<Props> = ({ comment }) => {
   const [clamped, setClamped] = useState(false)
   const [showMore, setShowMore] = useState(false)
   const [showReport, setShowReport] = useState(false)
+  const [showOptions, setShowOptions] = useState(false)
 
   useEffect(() => {
     if (comment?.metadata?.content.trim().length > 500) {
@@ -58,7 +60,7 @@ const Comment: FC<Props> = ({ comment }) => {
   }
 
   return (
-    <div className="flex items-start justify-between">
+    <div className="flex items-start justify-between mx-10" onMouseEnter={()=> setShowOptions(true)} onMouseLeave={()=> setShowOptions(false)}>
       <div className="flex items-start justify-between">
         <Link
           href={`/channel/${comment.profile?.handle}`}
@@ -75,7 +77,7 @@ const Comment: FC<Props> = ({ comment }) => {
           <span className="mb-1 flex items-center space-x-1">
             <Link
               href={`/channel/${comment.profile?.handle}`}
-              className="flex items-center space-x-1 text-sm font-medium"
+              className="flex items-center space-x-1 text-base font-bold"
             >
               <span>{comment?.profile?.handle}</span>
               <IsVerified id={comment?.profile.id} />
@@ -105,7 +107,7 @@ const Comment: FC<Props> = ({ comment }) => {
           </span>
           <div
             className={clsx(
-              'text-sm opacity-80',
+              'text-base opacity-80',
               clamped ? 'line-clamp-2' : ''
             )}
           >
@@ -138,11 +140,6 @@ const Comment: FC<Props> = ({ comment }) => {
               </button>
             </div>
           )}
-          {!comment.hidden && (
-            <div className="mt-2">
-              <PublicationReaction publication={comment} />
-            </div>
-          )}
         </div>
       </div>
       <div>
@@ -151,7 +148,12 @@ const Comment: FC<Props> = ({ comment }) => {
           show={showReport}
           setShowReport={setShowReport}
         />
-        <CommentOptions comment={comment} setShowReport={setShowReport} />
+        {showOptions?<CommentOptions comment={comment} setShowReport={setShowReport} /> : <div className='h-[22px]'></div>}
+        {!comment.hidden && (
+          <div className="mt-2">
+            <PublicationReaction publication={comment} isVertical={true} />
+          </div>
+        )}
       </div>
     </div>
   )

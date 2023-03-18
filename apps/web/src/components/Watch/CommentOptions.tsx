@@ -8,6 +8,7 @@ import type { Dispatch, FC } from 'react'
 import React from 'react'
 import toast from 'react-hot-toast'
 import { AiOutlineDelete } from 'react-icons/ai'
+import { BsThreeDots } from 'react-icons/bs'
 import { Analytics, TRACK } from 'utils'
 
 type Props = {
@@ -46,8 +47,8 @@ const CommentOptions: FC<Props> = ({ comment, setShowReport }) => {
   return (
     <DropMenu
       trigger={
-        <div className="p-1">
-          <ThreeDotsOutline className="h-3.5 w-3.5" />
+        <div className="p-1 m-auto">
+          <BsThreeDots className="h-3.5 w-3.5" />
         </div>
       }
     >

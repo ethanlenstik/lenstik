@@ -130,7 +130,7 @@ const FullScreen: FC<Props> = ({ video,
             autoClose
         >
             <div
-                className="flex snap-center justify-between pr-5 "
+                className="flex snap-center justify-between"
                 data-testid="byte-video"
             >
                 <div className='grow relative'>
@@ -139,10 +139,10 @@ const FullScreen: FC<Props> = ({ video,
                         <div className='max-md:hidden z-10 '>
                             <button
                                 type="button"
-                                className="p-1 focus:outline-none m-5 rounded-full border border-slate-500"
+                                className="p-2 focus:outline-none m-5 rounded-full  bg-slate-600"
                                 onClick={() => close()}
                             >
-                                <MdOutlineClose className='text-white'/>
+                                <MdOutlineClose className='text-white w-6 h-6'/>
                             </button>
                         </div>
                         <div className={clsx("relative max-md:w-full grow flex")} >
@@ -178,7 +178,7 @@ const FullScreen: FC<Props> = ({ video,
                                 <FlagOutline className="h-3.5 w-3.5" />
                                 <span className="whitespace-nowrap">Report</span>
                             </button>
-                            <div className='flex flex-col justify-center h-full mr-5'>
+                            <div className='flex flex-col gap-2 justify-center h-full mr-5'>
                                 <div>
                                     <button
                                         className="rounded-full bg-gray-300 p-3 focus:outline-none dark:bg-gray-700"
@@ -199,7 +199,7 @@ const FullScreen: FC<Props> = ({ video,
                         </div>
                     </div>
                 </div>
-                <div className='flex w-[35vw] max-md:hidden px-[20px]'>
+                <div className='flex w-[30vw] max-md:hidden'>
 
                     <Comments video={video} />
                 </div>

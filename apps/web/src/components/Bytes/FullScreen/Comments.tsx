@@ -14,26 +14,9 @@ type Props = {
 
 const Comments: FC<Props> = ({ video }) => {
 
-    const channel = video.profile
     return (
         <div className="pt-10 w-full relative">
-            <div className='flex justify-between'>
-                <div className='flex items-center'>
-                    <Link
-                        href={`/channel/${channel?.handle}`}
-                    >
-                        <img
-                            src={getProfilePicture(channel, 'avatar')}
-                            className="h-9 w-9 rounded-full"
-                            draggable={false}
-                            alt={channel?.handle}
-                        />
-                    </Link>
-                </div>
-                <div className='grow'>
-                    <BottomOverlay video={video} />
-                </div>
-            </div>
+
             <VideoComments video={video} hideTitle />
         </div>
     )

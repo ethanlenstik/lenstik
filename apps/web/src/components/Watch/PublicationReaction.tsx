@@ -133,10 +133,9 @@ const PublicationReaction: FC<Props> = ({
         <span
           className={clsx(
             'flex items-center focus:outline-none',
-            isVertical ? 'flex-col space-y-2' : 'space-x-1.5',
             {
               'font-semibold text-green-500': reaction.isLiked
-            }
+            }, isVertical ? 'flex-col' : 'gap-1'
           )}
         >
 
@@ -158,9 +157,7 @@ const PublicationReaction: FC<Props> = ({
                 'text-green-500': reaction.isLiked
               })}
             >
-              {reaction.likeCount > 0
-                ? formatNumber(reaction.likeCount)
-                : 'Like'}
+              {formatNumber(reaction.likeCount)}
             </span>
           )}
         </span>

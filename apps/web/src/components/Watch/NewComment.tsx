@@ -264,7 +264,7 @@ const NewComment: FC<Props> = ({ video }) => {
   }
 
   return (
-    <div className="my-1">
+    <div className="my-1 mx-10">
       <form
         onSubmit={handleSubmit(submitComment)}
         className="mb-2 flex w-full flex-wrap items-start justify-end gap-2"
