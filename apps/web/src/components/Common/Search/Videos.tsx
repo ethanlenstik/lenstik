@@ -25,7 +25,7 @@ const Videos: FC<Props> = ({ results, loading, clearSearch }) => {
           <Link
             href={`/${result?.id}`}
             key={result?.id}
-            className="flex flex-col justify-center space-y-1 rounded-xl py-2"
+            className="flex flex-col justify-center space-y-1 rounded-sm py-2"
           >
             <span className="flex items-center justify-between">
               <div className="inline-flex w-3/4 items-center space-x-2">

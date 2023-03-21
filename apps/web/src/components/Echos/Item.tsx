@@ -21,7 +21,7 @@ const Item: FC<Props> = ({ publication }) => {
   }
 
   return (
-    <div className="flex h-full w-full flex-col rounded-xl bg-white p-2 dark:bg-gray-900 md:w-[220px]">
+    <div className="flex h-full w-full flex-col rounded-sm bg-white p-2 dark:bg-gray-900 md:w-[220px]">
       <div className="group relative flex justify-center">
         <img
           src={imageCdn(getThumbnailUrl(publication), 'square')}

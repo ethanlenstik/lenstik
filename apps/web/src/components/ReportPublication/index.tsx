@@ -89,7 +89,7 @@ const ReportPublication: FC<Props> = ({ publication, onSuccess }) => {
                 onChange={(e) => handleChange(e)}
                 value={reason}
                 name="report"
-                className="w-full rounded-xl border border-gray-200 bg-white p-2.5 text-sm outline-none disabled:bg-gray-500 disabled:bg-opacity-20 disabled:opacity-60 dark:border-gray-800 dark:bg-gray-900"
+                className="w-full rounded-sm border border-gray-200 bg-white p-2.5 text-sm outline-none disabled:bg-gray-500 disabled:bg-opacity-20 disabled:opacity-60 dark:border-gray-800 dark:bg-gray-900"
                 id="report"
               >
                 <optgroup label="SPAM">

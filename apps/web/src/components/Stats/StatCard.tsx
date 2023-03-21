@@ -9,7 +9,7 @@ type Props = {
 
 const StatCard: FC<Props> = ({ icon, count, text }) => {
   return (
-    <div className="dark:bg-theme space-y-3 rounded-xl bg-white bg-opacity-80 p-6 backdrop-blur-lg">
+    <div className="dark:bg-theme space-y-3 rounded-sm bg-white bg-opacity-80 p-6 backdrop-blur-lg">
       <span className="inline-flex rounded-lg bg-gray-100 p-2 dark:bg-black">
         {icon}
       </span>

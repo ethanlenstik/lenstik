@@ -240,7 +240,7 @@ const VideoOptions: FC<Props> = ({
         </div>
       }
     >
-      <div className="bg-secondary mt-0.5 w-36 overflow-hidden rounded-xl border border-gray-200 p-1 shadow dark:border-gray-800">
+      <div className="bg-secondary mt-0.5 w-36 overflow-hidden rounded-sm border border-gray-200 p-1 shadow dark:border-gray-800">
         <div className="flex flex-col rounded-lg text-sm transition duration-150 ease-in-out">
           {isVideoOwner && (
             <>

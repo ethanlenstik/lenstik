@@ -28,7 +28,7 @@ export const TextArea = forwardRef<HTMLTextAreaElement, Props>(
               validationError?.length
                 ? '!border-red-500'
                 : 'focus:ring-1 focus:ring-green-500',
-              'w-full rounded-xl border border-gray-300 bg-white px-2.5 py-2 text-sm outline-none disabled:bg-gray-500 disabled:bg-opacity-20 disabled:opacity-60 dark:border-gray-700 dark:bg-gray-900',
+              'w-full rounded-sm border border-gray-300 bg-white px-2.5 py-2 text-sm outline-none disabled:bg-gray-500 disabled:bg-opacity-20 disabled:opacity-60 dark:border-gray-700 dark:bg-gray-900',
               className
             )}
             ref={ref}

@@ -10,13 +10,16 @@ import React from 'react'
 import { useForm } from 'react-hook-form'
 import { AiFillCloseCircle } from 'react-icons/ai'
 import { MdOutlineSlowMotionVideo } from 'react-icons/md'
-import { Analytics, TRACK } from 'utils'
 import { z } from 'zod'
 
 import Category from './Category'
 import CollectModule from './CollectModule'
 import ReferenceModule from './ReferenceModule'
 import Video from './Video'
+import DropZone from './DropZone'
+import PreviewVideo from './PreviewVideo'
+import ChooseThumbnail from './ChooseThumbnail'
+import toast from 'react-hot-toast'
 
 const ContentAlert = ({ message }: { message: ReactNode }) => (
   <div className="mt-6">
@@ -51,6 +54,7 @@ type Props = {
 
 const Details: FC<Props> = ({ onUpload, onCancel }) => {
   const uploadedVideo = useAppStore((state) => state.uploadedVideo)
+  const setUploadedVideo = useAppStore((state) => state.setUploadedVideo)
 
   const {
     handleSubmit,
@@ -71,145 +75,119 @@ const Details: FC<Props> = ({ onUpload, onCancel }) => {
   const onSubmitForm = (data: VideoFormData) => {
     onUpload(data)
   }
+  const onThumbnailUpload = (ipfsUrl: string, thumbnailType: string) => {
+    setUploadedVideo({ thumbnail: ipfsUrl, thumbnailType })
+  }
 
   return (
-    <form onSubmit={handleSubmit(onSubmitForm)}>
-      <div className="grid h-full gap-5 md:grid-cols-2">
-        <div className="flex flex-col justify-between">
-          <div>
-            <div className="relative">
-              <InputMentions
-                label="Title"
-                placeholder="Title that describes your video"
-                autoComplete="off"
-                validationError={errors.title?.message}
-                value={watch('title')}
-                onContentChange={(value) => {
-                  setValue('title', value)
-                  clearErrors('title')
-                }}
-                mentionsSelector="input-mentions-single"
-              />
-              <div className="absolute top-0 right-1 mt-1 flex items-center justify-end">
-                <span
-                  className={clsx('text-[10px] opacity-50', {
-                    'text-red-500 !opacity-100': watch('title')?.length > 100
-                  })}
-                >
-                  {watch('title')?.length}/100
-                </span>
-              </div>
-            </div>
-            <div className="relative mt-4">
-              <InputMentions
-                label="Description"
-                placeholder="Describe more about your video, can be @channels, #hashtags or chapters (00:20 - Intro)"
-                autoComplete="off"
-                validationError={errors.description?.message}
-                value={watch('description')}
-                onContentChange={(value) => {
-                  setValue('description', value)
-                  clearErrors('description')
-                }}
-                rows={5}
-                mentionsSelector="input-mentions-textarea"
-              />
-              <div className="absolute top-0 right-1 mt-1 flex items-center justify-end">
-                <span
-                  className={clsx('text-[10px] opacity-50', {
-                    'text-red-500 !opacity-100':
-                      watch('description')?.length > 5000
-                  })}
-                >
-                  {watch('description')?.length}/5000
-                </span>
-              </div>
-              <div className="mt-2 flex items-center space-x-1.5 rounded-full bg-gradient-to-br from-orange-200 to-orange-100 px-3 py-1 text-sm font-medium text-black text-opacity-80">
-                <MdOutlineSlowMotionVideo className="flex-none text-base" />
-                <span>
-                  Using
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setValue(
-                        'description',
-                        `${getValues('description')} #bytes`
-                      )
-                      Analytics.track(TRACK.CLICKED_BYTES_TAG_AT_UPLOAD)
-                    }}
-                    className="mx-1 text-green-600 outline-none dark:text-green-400"
+    <div className='flex gap-10 pb-20 mt-20 max-md:flex-wrap'>
+      <div className={clsx(
+        'grid place-items-center rounded-md border border-dashed border-gray-500 p-2 text-center focus:outline-none m-auto', "md:w-[40vw]"
+      )}>
+        {uploadedVideo.file ? <PreviewVideo /> : <DropZone />}
+      </div>
+      <form onSubmit={handleSubmit(onSubmitForm)} className="grow">
+        <div className="mb-10 gap-5 md:grid-cols-2">
+          <div className="flex flex-col justify-between">
+            <div>
+              <div className="relative">
+                <InputMentions
+                  label="Caption"
+                  autoComplete="off"
+                  validationError={errors.title?.message}
+                  value={watch('title')}
+                  onContentChange={(value) => {
+                    setValue('title', value)
+                    clearErrors('title')
+                  }}
+                  mentionsSelector="input-mentions-single"
+                />
+                <div className="absolute top-0 right-1 mt-1 flex items-center justify-end">
+                  <span
+                    className={clsx('text-[10px] opacity-50', {
+                      'text-red-500 !opacity-100': watch('title')?.length > 100
+                    })}
                   >
-                    #bytes
-                  </button>
-                  in description will upload this as a short form video.
-                </span>
-              </div>
-            </div>
-            <div className="mt-4">
-              <CollectModule />
-            </div>
-            <div className="mt-4">
-              <Category />
-            </div>
-            <div className="mt-4">
-              <ReferenceModule />
-            </div>
-            <div className="mt-4">
-              <RadioInput
-                checked={watch('isSensitiveContent')}
-                onChange={(checked) => {
-                  setValue('isSensitiveContent', checked)
-                }}
-                question={
-                  <span>
-                    Does this video contain sensitive information that targets
-                    an adult audience?
+                    {watch('title')?.length}/100
                   </span>
-                }
+                </div>
+              </div>
+              <ChooseThumbnail
+                label="Thumbnail"
+                file={uploadedVideo.file}
+                afterUpload={(ipfsUrl: string, thumbnailType: string) => {
+                  if (!ipfsUrl?.length) {
+                    return toast.error('Failed to upload thumbnail')
+                  }
+                  onThumbnailUpload(ipfsUrl, thumbnailType)
+                }}
               />
+
+              <div className="mt-4">
+                <CollectModule />
+              </div>
+              <div className="mt-4">
+                <Category />
+              </div>
+              <div className="mt-4">
+                <ReferenceModule />
+              </div>
+              <div className="mt-4">
+                <RadioInput
+                  checked={watch('isSensitiveContent')}
+                  onChange={(checked) => {
+                    setValue('isSensitiveContent', checked)
+                  }}
+                  question={
+                    <span>
+                      Does this video contain sensitive information that targets
+                      an adult audience?
+                    </span>
+                  }
+                />
+              </div>
             </div>
           </div>
         </div>
-        <div className="flex flex-col items-start justify-between">
-          <Video />
-        </div>
-      </div>
-      {uploadedVideo.isNSFWThumbnail ? (
-        <ContentAlert
-          message={
-            <span>
-              Sorry! <b className="px-0.5">Selected thumbnail</b> image has
-              tripped some content warnings. It contains NSFW content, choose
-              different image to post.
-            </span>
-          }
-        />
-      ) : uploadedVideo.isNSFW ? (
-        <ContentAlert
-          message={
-            <span>
-              Sorry! Something about this video has tripped some content
-              warnings. It contains NSFW content in some frames, and so the
-              video is not allowed to post on Lenstube!
-            </span>
-          }
-        />
-      ) : (
-        <div className="mt-4 flex items-center justify-end space-x-2">
-          <Button type="button" variant="hover" onClick={() => onCancel()}>
-            Reset
-          </Button>
-          <Button
-            loading={uploadedVideo.loading || uploadedVideo.uploadingThumbnail}
-            type="submit"
-          >
-            {uploadedVideo.uploadingThumbnail
-              ? 'Uploading thumbnail'
-              : uploadedVideo.buttonText}
-          </Button>
-        </div>
-      )}
-    </form>
+
+        {uploadedVideo.isNSFWThumbnail ? (
+          <ContentAlert
+            message={
+              <span>
+                Sorry! <b className="px-0.5">Selected thumbnail</b> image has
+                tripped some content warnings. It contains NSFW content, choose
+                different image to post.
+              </span>
+            }
+          />
+        ) : uploadedVideo.isNSFW ? (
+          <ContentAlert
+            message={
+              <span>
+                Sorry! Something about this video has tripped some content
+                warnings. It contains NSFW content in some frames, and so the
+                video is not allowed to post on Lenstube!
+              </span>
+            }
+          />
+        ) : (
+          <div className="mt-4 flex items-center justify-end space-x-2">
+            <Button type="button" variant="hover" onClick={() => onCancel()}>
+              Reset
+            </Button>
+            <Button
+              loading={uploadedVideo.loading || uploadedVideo.uploadingThumbnail}
+              type="submit"
+            >
+              {uploadedVideo.uploadingThumbnail
+                ? 'Uploading thumbnail'
+                : uploadedVideo.buttonText}
+            </Button>
+          </div>
+        )}
+      </form>
+    </div>
+
   )
 }
 

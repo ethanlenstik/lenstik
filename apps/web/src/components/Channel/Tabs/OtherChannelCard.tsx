@@ -10,7 +10,7 @@ const OtherChannelCard = ({ channel }: { channel: Profile }) => {
   const subscribeType = channel?.followModule?.__typename
 
   return (
-    <div className="flex w-44 flex-col items-center justify-center rounded-xl border border-gray-200 py-3 dark:border-gray-800">
+    <div className="flex w-44 flex-col items-center justify-center rounded-sm border border-gray-200 py-3 dark:border-gray-800">
       <Link href={`/channel/${channel.handle}`}>
         <img
           className="h-24 w-24 rounded-full object-cover"

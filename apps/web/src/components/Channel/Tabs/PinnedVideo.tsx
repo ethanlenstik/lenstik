@@ -46,7 +46,7 @@ const PinnedVideo: FC<Props> = ({ id }) => {
 
   return (
     <div className="mb-6 mt-2 grid grid-cols-3 overflow-hidden border-b border-gray-300 pb-6 dark:border-gray-700 md:space-x-5">
-      <div className="overflow-hidden md:rounded-xl">
+      <div className="overflow-hidden md:rounded-sm">
         <VideoPlayer
           permanentUrl={getPublicationMediaUrl(pinnedPublication)}
           posterUrl={imageCdn(

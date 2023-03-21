@@ -27,6 +27,7 @@ interface Props {
 }
 
 const NO_HEADER_PATHS = ['/auth']
+const NO_SIBAR_PATHS=['/upload']
 
 if (MIXPANEL_TOKEN) {
   mixpanel.init(MIXPANEL_TOKEN, {
@@ -125,10 +126,9 @@ const Layout: FC<Props> = ({ children }) => {
     return <FullPageLoader />
   }
 
-  const handleWheel = () => console.log("ahhahahahaha")
 
   return (
-    <div onWheel={handleWheel}>
+    <div >
       <Head>
         <meta
           name="theme-color"
@@ -143,7 +143,7 @@ const Layout: FC<Props> = ({ children }) => {
         <Header className={clsx(showFullScreen && 'hidden md:flex')} />
       )}
       <div className={clsx('flex justify-center md:pb-0 max-w-6xl m-auto gap-[100px]', showFullScreen && '!pb-0')} >
-        <Sidebar />
+        {!NO_SIBAR_PATHS.includes(pathname) && (<Sidebar />)}
         <div
           className={clsx(
             'w-[70vw]',
@@ -156,7 +156,7 @@ const Layout: FC<Props> = ({ children }) => {
               'ultrawide:px-0',
               showFullScreen && '!p-0',
               pathname !== '/channel/[channel]' &&
-              'ultrawide:max-w-[50rem] mx-auto py-4 md:px-3 2xl:py-6'
+              'ultrawide:max-w-[50rem] mx-auto pt-20 md:px-3 2xl:py-6'
             )}
           >
             {children}

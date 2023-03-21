@@ -63,7 +63,7 @@ const VideoCard: FC<Props> = ({ video }) => {
             <div className="aspect-w-16 aspect-h-9 relative overflow-hidden">
               <img
                 className={clsx(
-                  'h-full w-full bg-gray-100 object-center dark:bg-gray-900 md:rounded-xl lg:h-full lg:w-full',
+                  'h-full w-full bg-gray-100 object-center dark:bg-gray-900 md:rounded-sm lg:h-full lg:w-full',
                   isBytesVideo ? 'object-contain' : 'object-cover'
                 )}
                 src={thumbnailUrl}

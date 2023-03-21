@@ -14,7 +14,7 @@ const DispatcherAlert = () => {
 
   return (
     <div className="mb-4 w-full">
-      <div className="relative flex flex-col overflow-hidden rounded-xl p-6 lg:p-8">
+      <div className="relative flex flex-col overflow-hidden rounded-sm p-6 lg:p-8">
         <div className="absolute inset-0 h-full w-full bg-gray-100 bg-gradient-to-b dark:from-gray-800 dark:to-gray-900" />
         <div className="relative z-[1] flex flex-col items-start space-y-4 text-left">
           <div className="flex items-center rounded-full bg-gradient-to-br from-orange-200 to-orange-300 px-3 py-1 text-xs font-medium text-black">

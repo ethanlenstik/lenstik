@@ -45,7 +45,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
               'focus:ring-1 focus:ring-green-500': !validationError?.length,
               '!border-red-500': validationError?.length,
               'rounded-r-xl': prefix,
-              'rounded-xl': !prefix && !suffix,
+              'rounded-sm': !prefix && !suffix,
               'rounded-l-xl': suffix
             },
             'w-full border border-gray-300 bg-white px-2.5 py-2 text-sm outline-none disabled:bg-gray-500 disabled:bg-opacity-20 disabled:opacity-60 dark:border-gray-700 dark:bg-gray-900',

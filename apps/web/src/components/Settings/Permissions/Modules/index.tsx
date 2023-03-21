@@ -115,7 +115,7 @@ const ModulePermissions = () => {
           <div className="flex justify-end pt-3 pb-4 md:pt-0">
             <select
               autoComplete="off"
-              className="rounded-xl border border-gray-300 bg-white p-2.5 text-sm outline-none disabled:bg-gray-500 disabled:bg-opacity-20 disabled:opacity-60 dark:border-gray-700 dark:bg-gray-900"
+              className="rounded-sm border border-gray-300 bg-white p-2.5 text-sm outline-none disabled:bg-gray-500 disabled:bg-opacity-20 disabled:opacity-60 dark:border-gray-700 dark:bg-gray-900"
               value={currency}
               onChange={(e) => setCurrency(e.target.value)}
             >

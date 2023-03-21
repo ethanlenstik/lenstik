@@ -100,7 +100,7 @@ const BytesSection = () => {
             <Link href={`/bytes/${byte.id}`}>
               <div className="aspect-[9/16] h-[280px]">
                 <img
-                  className="rounded-xl"
+                  className="rounded-sm"
                   src={imageCdn(getThumbnailUrl(byte), 'thumbnail_v')}
                   alt="thumbnail"
                   draggable={false}

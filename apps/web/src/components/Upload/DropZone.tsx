@@ -5,6 +5,7 @@ import clsx from 'clsx'
 import fileReaderStream from 'filereader-stream'
 import React, { useEffect } from 'react'
 import toast from 'react-hot-toast'
+import { MdCloudUpload } from 'react-icons/md'
 import { ALLOWED_VIDEO_TYPES, Analytics, TRACK } from 'utils'
 import useDragAndDrop from 'utils/hooks/useDragAndDrop'
 import logger from 'utils/logger'
@@ -19,10 +20,6 @@ const DropZone = () => {
     fileDropError,
     setFileDropError
   } = useDragAndDrop()
-
-  useEffect(() => {
-    Analytics.track('Pageview', { path: TRACK.PAGE_VIEW.UPLOAD.DROPZONE })
-  }, [])
 
   const uploadVideo = (file: File) => {
     try {
@@ -64,13 +61,8 @@ const DropZone = () => {
 
   return (
     <div>
-      <MetaTags title="Select Video" />
-      <div className="relative my-20 flex flex-1 flex-col items-center justify-center">
+      <div className="relative flex flex-1 flex-col items-center justify-center">
         <label
-          className={clsx(
-            'grid w-full place-items-center rounded-3xl border border-dashed border-gray-500 p-10 text-center focus:outline-none md:w-2/3 md:p-20',
-            { '!border-green-500': dragOver }
-          )}
           htmlFor="dropVideo"
           onDragOver={onDragOver}
           onDragLeave={onDragLeave}
@@ -84,20 +76,21 @@ const DropZone = () => {
             accept={ALLOWED_VIDEO_TYPES.join(',')}
           />
           <span className="mb-6 flex justify-center opacity-80">
-            <UploadOutline className="h-14 w-14" />
+            <MdCloudUpload className="h-14 w-14" />
           </span>
           <span className="space-y-10 md:space-y-14">
-            <div className="text-2xl font-semibold md:text-4xl">
-              <span>
-                Drag and drop <br /> video to upload
-              </span>
+            <div className="">
+              <span className='text-2xl font-semibold md:text-4xl'>
+                Select video to upload
+              </span> <br />
+              <span>or drag and drop a file</span>
             </div>
-            <div>
+            <div className='h-20'>
               <label
                 htmlFor="chooseVideo"
-                className="btn-primary cursor-pointer px-8 py-4 text-lg"
+                className="btn-secondary cursor-pointer px-8 py-4 text-lg"
               >
-                or choose video
+                Select File
                 <input
                   id="chooseVideo"
                   onChange={onChooseFile}

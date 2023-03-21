@@ -90,10 +90,6 @@ const UploadSteps = () => {
     setUploadedVideo(UPLOADED_VIDEO_FORM_DEFAULTS)
   }
 
-  useEffect(() => {
-    Analytics.track('Pageview', { path: TRACK.PAGE_VIEW.UPLOAD.STEPS })
-  }, [])
-
   const onError = (error: CustomErrorWithData) => {
     toast.error(error?.data?.message ?? error?.message ?? ERROR_MESSAGE)
     setUploadedVideo({
@@ -194,7 +190,7 @@ const UploadSteps = () => {
         if (data?.broadcast?.__typename === 'RelayError') {
           return writePostContract?.({ recklesslySetUnpreparedArgs: [args] })
         }
-      } catch {}
+      } catch { }
     },
     onError
   })
@@ -269,7 +265,7 @@ const UploadSteps = () => {
         name: trimify(uploadedVideo.title),
         attributes,
         media,
-        appId: isByteVideo ? LENSTUBE_BYTES_APP_ID : LENSTUBE_APP_ID
+        appId: LENSTUBE_BYTES_APP_ID // isByteVideo ? LENSTUBE_BYTES_APP_ID : LENSTUBE_APP_ID
       }
       if (uploadedVideo.isSensitiveContent) {
         metadata.contentWarning = PublicationContentWarning.Sensitive
@@ -426,9 +422,12 @@ const UploadSteps = () => {
   }
 
   return (
-    <div className="mx-auto my-10 max-w-5xl gap-5">
+    <div className="mx-auto my-10 max-w-5xl gap-5 m-10 px-10">
       <MetaTags title="Video Details" />
       <div className="mt-10">
+        <span className='text-2xl font-bold'>Upload video</span> <br />
+        <span className='text-gray-400'>
+          Post a video to your account</span>
         <Details onCancel={resetToDefaults} onUpload={onUpload} />
       </div>
     </div>

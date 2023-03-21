@@ -20,7 +20,7 @@ const Category = () => {
         onChange={(category) => setUploadedVideo({ videoCategory: category })}
       >
         <div className="relative mt-1">
-          <Listbox.Button className="relative w-full rounded-xl border border-gray-300 py-2.5 pl-4 pr-10 text-left focus:outline-none dark:border-gray-700 sm:text-sm">
+          <Listbox.Button className="relative w-full rounded-sm border border-gray-300 py-2.5 pl-4 pr-10 text-left focus:outline-none dark:border-gray-700 sm:text-sm">
             <span className="block truncate">
               {uploadedVideo.videoCategory.name}
             </span>
@@ -34,7 +34,7 @@ const Category = () => {
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <Listbox.Options className="absolute z-[1] mt-1 max-h-52 w-full overflow-auto rounded-xl bg-white py-1 text-base shadow ring-1 ring-black ring-opacity-5 focus:outline-none dark:bg-gray-900 sm:text-sm">
+            <Listbox.Options className="absolute z-[1] mt-1 max-h-52 w-full overflow-auto rounded-sm bg-white py-1 text-base shadow ring-1 ring-black ring-opacity-5 focus:outline-none dark:bg-gray-900 sm:text-sm">
               {CREATOR_VIDEO_CATEGORIES.map((category, categoryIdx) => (
                 <Listbox.Option
                   key={categoryIdx}

@@ -28,7 +28,7 @@ const Channels: FC<Props> = ({ results, loading, clearSearch }) => {
           <Link
             href={`/channel/${channel?.handle}`}
             key={channel?.handle}
-            className="flex flex-col justify-center space-y-1 rounded-xl py-2"
+            className="flex flex-col justify-center space-y-1 rounded-sm py-2"
           >
             <span className="flex items-center justify-between">
               <div className="inline-flex w-3/4 items-center space-x-2">

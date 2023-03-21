@@ -167,14 +167,14 @@ const Membership = ({ channel }: Props) => {
           followModule: freeFollowModule
             ? { freeFollowModule: true }
             : {
-                feeFollowModule: {
-                  amount: {
-                    currency: getValues('token'),
-                    value: getValues('amount')
-                  },
-                  recipient: getValues('recipient')
-                }
+              feeFollowModule: {
+                amount: {
+                  currency: getValues('token'),
+                  value: getValues('amount')
+                },
+                recipient: getValues('recipient')
               }
+            }
         }
       }
     })
@@ -185,7 +185,7 @@ const Membership = ({ channel }: Props) => {
   }
 
   return (
-    <div className="dark:bg-theme rounded-xl bg-white p-4">
+    <div className="dark:bg-theme rounded-sm bg-white p-4">
       <div className="mb-5">
         <h1 className="mb-1 text-xl font-semibold">Grow with Lens</h1>
         <p className="text opacity-80">
@@ -201,7 +201,7 @@ const Membership = ({ channel }: Props) => {
       )}
 
       {activeFollowModule?.amount && (
-        <div className="mb-6 w-full rounded-xl border bg-gradient-to-r from-[#41AAD4]/20 to-[#41EAD4]/20 p-6 transition-all dark:border-gray-800">
+        <div className="mb-6 w-full rounded-sm border bg-gradient-to-r from-[#41AAD4]/20 to-[#41EAD4]/20 p-6 transition-all dark:border-gray-800">
           <div className="grid gap-y-4 md:grid-cols-3">
             <div>
               <span className="text-xs font-medium uppercase opacity-50">
@@ -245,7 +245,7 @@ const Membership = ({ channel }: Props) => {
               </div>
               <select
                 autoComplete="off"
-                className="w-full rounded-xl border border-gray-300 bg-white p-2.5 text-sm outline-none disabled:bg-gray-500 disabled:bg-opacity-20 disabled:opacity-60 dark:border-gray-700 dark:bg-gray-900"
+                className="w-full rounded-sm border border-gray-300 bg-white p-2.5 text-sm outline-none disabled:bg-gray-500 disabled:bg-opacity-20 disabled:opacity-60 dark:border-gray-700 dark:bg-gray-900"
                 value={watch('token')}
                 onChange={(e) => setValue('token', e.target.value)}
               >

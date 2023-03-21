@@ -2,7 +2,7 @@ import React, { useMemo } from 'react'
 
 export const CardShimmer = () => {
   return (
-    <div className="flex h-full w-full flex-col rounded-xl bg-white p-2 dark:bg-gray-900 md:w-[220px]">
+    <div className="flex h-full w-full flex-col rounded-sm bg-white p-2 dark:bg-gray-900 md:w-[220px]">
       <div className="flex animate-pulse flex-col">
         <div className="w-full rounded-lg bg-gray-300 dark:bg-gray-700 md:h-[220px]" />
         <div className="mt-2 space-y-2">

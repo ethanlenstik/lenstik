@@ -30,7 +30,7 @@ interface Props {
 
 const VideoComment: FC<Props> = ({ comment }) => {
   return (
-    <div className="my-2 rounded-xl border py-3 px-4 dark:border-gray-700">
+    <div className="my-2 rounded-sm border py-3 px-4 dark:border-gray-700">
       <Link
         href={`/${comment.id}`}
         className="flex items-center space-x-2.5"
@@ -60,7 +60,7 @@ const Comment: FC<Props> = ({ comment }) => {
   }
 
   return (
-    <div className="flex items-start justify-between mx-10" onMouseEnter={()=> setShowOptions(true)} onMouseLeave={()=> setShowOptions(false)}>
+    <div className="flex items-start justify-between mx-10" onMouseEnter={() => setShowOptions(true)} onMouseLeave={() => setShowOptions(false)}>
       <div className="flex items-start justify-between">
         <Link
           href={`/channel/${comment.profile?.handle}`}
@@ -148,7 +148,7 @@ const Comment: FC<Props> = ({ comment }) => {
           show={showReport}
           setShowReport={setShowReport}
         />
-        {showOptions?<CommentOptions comment={comment} setShowReport={setShowReport} /> : <div className='h-[22px]'></div>}
+        {showOptions ? <CommentOptions comment={comment} setShowReport={setShowReport} /> : <div className='h-[22px]'></div>}
         {!comment.hidden && (
           <div className="mt-2">
             <PublicationReaction publication={comment} isVertical={true} />

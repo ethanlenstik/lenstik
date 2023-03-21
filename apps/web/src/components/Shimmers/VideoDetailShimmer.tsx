@@ -48,7 +48,7 @@ export const VideoDetailShimmer = () => {
             <span className="flex flex-1 items-center justify-end space-x-2">
               <div className="h-10 w-10 rounded-full bg-gray-300 dark:bg-gray-700" />
               <div className="h-10 w-10 rounded-full bg-gray-300 dark:bg-gray-700" />
-              <div className="h-10 w-1/2 rounded-xl bg-gray-300 dark:bg-gray-700 md:w-1/3" />
+              <div className="h-10 w-1/2 rounded-sm bg-gray-300 dark:bg-gray-700 md:w-1/3" />
             </span>
           </div>
           <div className="mt-4 ml-12 space-y-3">

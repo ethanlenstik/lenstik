@@ -38,16 +38,13 @@ const CollectModule = () => {
       return 'No one can collect this publication'
     }
     if (uploadedVideo.collectModule.isFreeCollect) {
-      return `${
-        followerOnlyCollect ? 'Only Subscribers' : 'Anyone'
-      } can collect for free ${isTimedFeeCollect ? 'within 24hrs' : ''}`
+      return `${followerOnlyCollect ? 'Only Subscribers' : 'Anyone'
+        } can collect for free ${isTimedFeeCollect ? 'within 24hrs' : ''}`
     }
     if (!uploadedVideo.collectModule.isFreeCollect) {
-      return `${
-        followerOnlyCollect ? 'Only Subscribers' : 'Anyone'
-      } can collect ${
-        isLimitedFeeCollect ? `maximum of ${collectLimit}` : ''
-      } for given fees ${isTimedFeeCollect ? 'within 24hrs' : ''}`
+      return `${followerOnlyCollect ? 'Only Subscribers' : 'Anyone'
+        } can collect ${isLimitedFeeCollect ? `maximum of ${collectLimit}` : ''
+        } for given fees ${isTimedFeeCollect ? 'within 24hrs' : ''}`
     }
   }
 
@@ -61,7 +58,7 @@ const CollectModule = () => {
       <button
         type="button"
         onClick={() => setShowModal(true)}
-        className="flex w-full items-center justify-between rounded-xl border border-gray-300 px-4 py-2.5 text-left text-sm focus:outline-none dark:border-gray-700"
+        className="flex w-full items-center justify-between rounded-sm border border-gray-300 px-4 py-2.5 text-left text-sm focus:outline-none dark:border-gray-700"
       >
         <span>{getSelectedCollectType()}</span>
         <CheckOutline className="h-3 w-3" />
@@ -97,8 +94,8 @@ const CollectModule = () => {
               />
             )}
           {!uploadedVideo.collectModule.isFreeCollect &&
-          !uploadedVideo.collectModule.isRevertCollect &&
-          enabledCurrencies ? (
+            !uploadedVideo.collectModule.isRevertCollect &&
+            enabledCurrencies ? (
             <FeeCollectForm
               setCollectType={setCollectType}
               uploadedVideo={uploadedVideo}

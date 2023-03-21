@@ -17,9 +17,6 @@ const Channel = () => {
   const handle = query.channel ?? ''
   const selectedChannel = useAppStore((state) => state.selectedChannel)
 
-  useEffect(() => {
-    Analytics.track('Pageview', { path: TRACK.PAGE_VIEW.CHANNEL })
-  }, [])
 
   const { data, loading, error } = useProfileQuery({
     variables: {

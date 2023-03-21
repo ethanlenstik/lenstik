@@ -25,6 +25,8 @@ import CollectVideo from './CollectVideo'
 import BottomOverlay from '@components/Bytes/BottomOverlay'
 import { Link } from 'interweave-autolink'
 import getProfilePicture from 'utils/functions/getProfilePicture'
+import useCopyToClipboard from 'utils/hooks/useCopyToClipboard'
+import toast from 'react-hot-toast'
 
 const Comment = dynamic(() => import('./Comment'))
 
@@ -37,6 +39,7 @@ const VideoComments: FC<Props> = ({ video, hideTitle = false }) => {
   const selectedChannelId = usePersistStore((state) => state.selectedChannelId)
   const queuedComments = usePersistStore((state) => state.queuedComments)
   const selectedChannel = useAppStore((state) => state.selectedChannel)
+  const [copy] = useCopyToClipboard()
   const [showShare, setShowShare] = useState(false)
   const channel = video.profile
 
@@ -95,8 +98,8 @@ const VideoComments: FC<Props> = ({ video, hideTitle = false }) => {
   // const [copy] = useCopyToClipboard()
 
   const onCopyVideoUrl = async () => {
-    // await copy(`${LENSTUBE_WEBSITE_URL}/${video.id}`)
-    // toast.success('Link copied to clipboard')
+    await copy(document.URL)
+    toast.success('Link copied to clipboard')
     // Analytics.track(TRACK.COPY.VIDEO_URL)
   }
   return (
@@ -213,13 +216,15 @@ const VideoComments: FC<Props> = ({ video, hideTitle = false }) => {
         {video?.canComment.result ? (
           <NewComment video={video} />
         ) : selectedChannelId ? (
-          <Alert variant="warning">
-            <span className="text-sm">
-              {isFollowerOnlyReferenceModule
-                ? 'Only subscribers can comment on this publication'
-                : `Only subscribers within ${video.profile.handle}'s preferred network can comment`}
-            </span>
-          </Alert>
+          <div className='mx-10'>
+            <Alert variant="warning">
+              <span className="text-sm">
+                {isFollowerOnlyReferenceModule
+                  ? 'Only subscribers can comment on this publication'
+                  : `Only subscribers within ${video.profile.handle}'s preferred network can comment`}
+              </span>
+            </Alert>
+          </div>
         ) : null}
       </div>
     </>

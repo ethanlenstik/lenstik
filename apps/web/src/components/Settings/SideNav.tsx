@@ -27,7 +27,7 @@ const SideNav: FC<Props> = ({ channel }) => {
   const isActivePath = (path: string) => router.pathname === path
 
   return (
-    <div className="dark:bg-theme rounded-xl bg-white p-2">
+    <div className="dark:bg-theme rounded-sm bg-white p-2">
       <div className="flex flex-col items-center space-y-2 py-4">
         <ChannelPicture channel={channel} />
       </div>
@@ -35,7 +35,7 @@ const SideNav: FC<Props> = ({ channel }) => {
         <Link
           href={SETTINGS}
           className={clsx(
-            'flex items-center space-x-2 rounded-xl p-3 hover:bg-gray-100 hover:dark:bg-gray-800',
+            'flex items-center space-x-2 rounded-sm p-3 hover:bg-gray-100 hover:dark:bg-gray-800',
             { 'bg-gray-100 dark:bg-gray-800': isActivePath(SETTINGS) }
           )}
         >
@@ -44,7 +44,7 @@ const SideNav: FC<Props> = ({ channel }) => {
         <Link
           href={SETTINGS_MEMBERSHIP}
           className={clsx(
-            'flex items-center space-x-2 rounded-xl p-3 hover:bg-gray-100 hover:dark:bg-gray-800',
+            'flex items-center space-x-2 rounded-sm p-3 hover:bg-gray-100 hover:dark:bg-gray-800',
             {
               'bg-gray-100 dark:bg-gray-800': isActivePath(SETTINGS_MEMBERSHIP)
             }
@@ -55,7 +55,7 @@ const SideNav: FC<Props> = ({ channel }) => {
         <Link
           href={SETTINGS_PERMISSIONS}
           className={clsx(
-            'flex items-center space-x-2 rounded-xl p-3 hover:bg-gray-100 hover:dark:bg-gray-800',
+            'flex items-center space-x-2 rounded-sm p-3 hover:bg-gray-100 hover:dark:bg-gray-800',
             {
               'bg-gray-100 dark:bg-gray-800': isActivePath(SETTINGS_PERMISSIONS)
             }
@@ -66,7 +66,7 @@ const SideNav: FC<Props> = ({ channel }) => {
         <Link
           href={SETTINGS_INTERESTS}
           className={clsx(
-            'flex items-center space-x-2 rounded-xl p-3 hover:bg-gray-100 hover:dark:bg-gray-800',
+            'flex items-center space-x-2 rounded-sm p-3 hover:bg-gray-100 hover:dark:bg-gray-800',
             {
               'bg-gray-100 dark:bg-gray-800': isActivePath(SETTINGS_INTERESTS)
             }
@@ -77,7 +77,7 @@ const SideNav: FC<Props> = ({ channel }) => {
         <Link
           href={SETTINGS_DANGER_ZONE}
           className={clsx(
-            'flex items-center space-x-2 rounded-xl p-3 text-red-500 hover:bg-red-100 hover:dark:bg-red-900/60',
+            'flex items-center space-x-2 rounded-sm p-3 text-red-500 hover:bg-red-100 hover:dark:bg-red-900/60',
             {
               'bg-red-100 dark:bg-red-900/60':
                 isActivePath(SETTINGS_DANGER_ZONE)

@@ -92,36 +92,6 @@ const ChooseThumbnail: FC<Props> = ({ label, afterUpload, file }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [file])
 
-  const checkNsfw = async (source: string) => {
-    const img = document.createElement('img')
-    img.src = source
-    img.height = 200
-    img.width = 400
-    let predictions: nsfwjs.predictionType[] = []
-    try {
-      const model = await nsfwjs.load()
-      predictions = await model?.classify(img, 3)
-    } catch (error) {
-      logger.error('[Error Check NSFW]', error)
-    }
-    return getIsNSFW(predictions)
-  }
-
-  const handleUpload = async (e: ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files?.length) {
-      setSelectedThumbnailIndex(-1)
-      const result = await uploadThumbnailToIpfs(e.target.files[0])
-      const preview = window.URL?.createObjectURL(e.target.files[0])
-      const isNSFWThumbnail = await checkNsfw(preview)
-      setUploadedVideo({ isNSFWThumbnail })
-      setThumbnails([
-        { url: preview, ipfsUrl: result.url, isNSFWThumbnail },
-        ...thumbnails
-      ])
-      setSelectedThumbnailIndex(0)
-    }
-  }
-
   const onSelectThumbnail = async (index: number) => {
     setSelectedThumbnailIndex(index)
     if (thumbnails[index].ipfsUrl === '') {
@@ -147,27 +117,13 @@ const ChooseThumbnail: FC<Props> = ({ label, afterUpload, file }) => {
   return (
     <div className="w-full">
       {label && (
-        <div className="mb-1 flex items-center space-x-1.5">
-          <div className="text-[11px] font-semibold uppercase opacity-70">
+        <div className="my-5 flex items-center space-x-1.5">
+          <div className="text-[11px] font-semibold uppercase">
             {label}
           </div>
         </div>
       )}
-      <div className="grid grid-cols-2 place-items-start gap-3 py-0.5 md:grid-cols-3 lg:grid-cols-4">
-        <label
-          htmlFor="chooseThumbnail"
-          className="max-w-32 flex h-16 w-full flex-none cursor-pointer flex-col items-center justify-center rounded-xl border border-gray-300 opacity-80 focus:outline-none dark:border-gray-700"
-        >
-          <input
-            id="chooseThumbnail"
-            type="file"
-            accept=".png, .jpg, .jpeg"
-            className="hidden w-full"
-            onChange={handleUpload}
-          />
-          <BiImageAdd className="mb-1 flex-none text-lg" />
-          <span className="text-[10px]">Upload thumbnail</span>
-        </label>
+      <div className="flex place-items-start py-0.5 w-full ">
         {!thumbnails.length && uploadedVideo.file?.size && (
           <ThumbnailsShimmer />
         )}
@@ -182,7 +138,6 @@ const ChooseThumbnail: FC<Props> = ({ label, afterUpload, file }) => {
               }
               onClick={() => onSelectThumbnail(idx)}
               className={clsx(
-                'relative w-full flex-none rounded-lg focus:outline-none',
                 {
                   'ring ring-green-500': selectedThumbnailIndex === idx,
                   'ring !ring-red-500': thumbnail.isNSFWThumbnail
@@ -190,7 +145,7 @@ const ChooseThumbnail: FC<Props> = ({ label, afterUpload, file }) => {
               )}
             >
               <img
-                className="h-16 w-full rounded-lg object-cover md:w-32"
+                className={clsx("object-cover h-32 w-18", selectedThumbnailIndex != idx && "opacity-50" )}
                 src={sanitizeIpfsUrl(thumbnail.url)}
                 alt="thumbnail"
                 draggable={false}

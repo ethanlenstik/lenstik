@@ -42,14 +42,14 @@ const CommentedVideoCard: FC<Props> = ({ video }) => {
   return (
     <div
       onClick={() => Analytics.track(TRACK.CLICK_VIDEO)}
-      className="group overflow-hidden rounded-xl"
+      className="group overflow-hidden rounded-sm"
     >
       <Link href={`/${commentedOn?.id}`}>
-        <div className="aspect-w-16 aspect-h-8 relative rounded-xl">
+        <div className="aspect-w-16 aspect-h-8 relative rounded-sm">
           <img
             src={thumbnailUrl}
             className={clsx(
-              'h-full w-full bg-gray-100 object-center dark:bg-gray-900 md:rounded-xl lg:h-full lg:w-full',
+              'h-full w-full bg-gray-100 object-center dark:bg-gray-900 md:rounded-sm lg:h-full lg:w-full',
               isBytesVideo ? 'object-contain' : 'object-cover'
             )}
             style={{

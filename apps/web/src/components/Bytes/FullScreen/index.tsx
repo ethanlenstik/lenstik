@@ -37,7 +37,7 @@ const FullScreen: FC<Props> = ({ video,
 }) => {
     const videoRef = useRef<HTMLMediaElement>()
     const intersectionRef = useRef<HTMLDivElement>(null)
-    const [playing, setPlaying ] = useState(false)
+    const [playing, setPlaying] = useState(false)
 
     const thumbnailUrl = imageCdn(
         sanitizeIpfsUrl(getThumbnailUrl(video)),
@@ -76,12 +76,14 @@ const FullScreen: FC<Props> = ({ video,
         if (!videoRef.current) {
             return
         }
+        videoRef.current.volume = 0
         videoRef.current?.pause()
         videoRef.current.autoplay = false
         setPlaying(false)
     }
 
     const onClickVideo = () => {
+        console.log("paused", videoRef.current)
         if (videoRef.current?.paused) {
             playVideo()
         } else {
@@ -142,12 +144,12 @@ const FullScreen: FC<Props> = ({ video,
                                 className="p-2 focus:outline-none m-5 rounded-full  bg-slate-600"
                                 onClick={() => close()}
                             >
-                                <MdOutlineClose className='text-white w-6 h-6'/>
+                                <MdOutlineClose className='text-white w-6 h-6' />
                             </button>
                         </div>
                         <div className={clsx("relative max-md:w-full grow flex")} >
                             <div
-                                className="flex h-screen  items-center bg-black md:h-[calc(100vh)] md:w-[56.3vh] md:rounded-xl m-auto"
+                                className="flex h-screen  items-center bg-black md:h-[calc(100vh)] md:w-[56.3vh] md:rounded-sm m-auto"
                                 style={{
                                     backgroundColor: backgroundColor ? backgroundColor : undefined
                                 }}
@@ -166,7 +168,7 @@ const FullScreen: FC<Props> = ({ video,
                                     />
                                 )}
                             </div>
-                            <TopOverlay onClickVideo={onClickVideo} isPlaying={playing}/>
+                            <TopOverlay onClickVideo={onClickVideo} isPlaying={playing} />
 
                         </div>
                         <div className="relative">

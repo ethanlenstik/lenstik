@@ -12,12 +12,12 @@ type Props = {
 
 const NFTCard: FC<Props> = ({ nft }) => {
   return (
-    <div className="group rounded-xl">
+    <div className="group rounded-sm">
       <div className="aspect-h-9 aspect-w-16">
         {nft?.originalContent?.animatedUrl ? (
           <iframe
             sandbox="allow-scripts"
-            className="h-full w-full md:rounded-xl"
+            className="h-full w-full md:rounded-sm"
             src={nft?.originalContent?.animatedUrl}
             title={nft.name}
           />
@@ -35,9 +35,8 @@ const NFTCard: FC<Props> = ({ nft }) => {
         )}
       </div>
       <Link
-        href={`${OPENSEA_MARKETPLACE_URL}/assets/${
-          IS_MAINNET ? 'matic/' : 'mumbai/'
-        }${nft.contractAddress}/${nft.tokenId}`.toLowerCase()}
+        href={`${OPENSEA_MARKETPLACE_URL}/assets/${IS_MAINNET ? 'matic/' : 'mumbai/'
+          }${nft.contractAddress}/${nft.tokenId}`.toLowerCase()}
         target="_blank"
         rel="noreferer noreferrer"
       >

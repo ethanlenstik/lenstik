@@ -119,7 +119,7 @@ const QueuedVideo: FC<Props> = ({ queuedVideo }) => {
           src={thumbnailUrl}
           draggable={false}
           className={clsx(
-            'h-full w-full bg-gray-100 object-center dark:bg-gray-900 md:rounded-xl lg:h-full lg:w-full',
+            'h-full w-full bg-gray-100 object-center dark:bg-gray-900 md:rounded-sm lg:h-full lg:w-full',
             uploadedVideo.isByteVideo ? 'object-contain' : 'object-cover'
           )}
           alt="thumbnail"

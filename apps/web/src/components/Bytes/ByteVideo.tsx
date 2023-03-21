@@ -15,7 +15,6 @@ import BottomOverlay from './BottomOverlay'
 import ByteActions from './ByteActions'
 import TopOverlay from './TopOverlay'
 import clsx from 'clsx'
-import { Progress, TimeDisplay } from '@livepeer/react'
 
 type Props = {
   video: Publication
@@ -131,7 +130,7 @@ const ByteVideo: FC<Props> = ({
                   showControls={true}
                   options={{
                     autoPlay: false,
-                    muted: false,
+                    muted: true,
                     loop: true,
                     loadingSpinner: true
                   }}

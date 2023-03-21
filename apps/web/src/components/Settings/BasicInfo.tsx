@@ -265,7 +265,7 @@ const BasicInfo = ({ channel }: Props) => {
   return (
     <form
       onSubmit={handleSubmit(onSaveBasicInfo)}
-      className="dark:bg-theme rounded-xl bg-white p-4"
+      className="dark:bg-theme rounded-sm bg-white p-4"
     >
       <div className="relative w-full flex-none">
         {uploading && (
