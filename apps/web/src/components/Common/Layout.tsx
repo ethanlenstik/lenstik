@@ -27,7 +27,7 @@ interface Props {
 }
 
 const NO_HEADER_PATHS = ['/auth']
-const NO_SIBAR_PATHS = ['/upload']
+const NO_SIBAR_PATHS=['/upload']
 
 if (MIXPANEL_TOKEN) {
   mixpanel.init(MIXPANEL_TOKEN, {

@@ -64,7 +64,7 @@ const HomeFeed = () => {
   }
 
   return (
-    <div>
+    <div className='mt-12'>
       {loading && <TimelineShimmer />}
       {!error && !loading && (
         <>

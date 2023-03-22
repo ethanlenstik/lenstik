@@ -69,7 +69,7 @@ const Sidebar = () => {
       >
         <div
           className={clsx(
-            'flex flex-col space-y-2 overflow-y-auto overflow-x-hidden fixed top-[50px] bottom-0 p-[20px] max-w-[350px]',
+            'flex flex-col space-y-2 overflow-y-auto overflow-x-hidden fixed top-[50px] bottom-0 px-[20px] py-[20px] max-w-[350px]',
             'self-center', !showScrollbar && 'no-scrollbar'
           )}
           style={{ scrollbarWidth: 'thin' }}
@@ -80,14 +80,14 @@ const Sidebar = () => {
           <div className={clsx('py-3  border-b dark:border-b-slate-800 mb-3')}>
             <Link
               href="/"
-              className="flex items-center pt-1 focus:outline-none my-2 p-2 dark:hover:bg-gray-600 hover:bg-gray-200"
+              className={clsx("flex items-center pt-1 focus:outline-none my-2 p-2 dark:hover:bg-gray-600 hover:bg-gray-200", isActivePath('/')&& 'text-red-500')}
             >
               <SlHome className='text-2xl' />
               <span className='text-xl font-bold ml-5'>For You</span>
             </Link>
             <Link
               href="/feed"
-              className='flex items-center pt-1 focus:outline-none my-2 p-2 dark:hover:bg-gray-600  hover:bg-gray-200'
+              className={clsx('flex items-center pt-1 focus:outline-none my-2 p-2 dark:hover:bg-gray-600  hover:bg-gray-200', isActivePath('/feed')&& 'text-red-500')}
             >
               <SlUserFollowing className='text-2xl' />
               <span className='text-xl font-bold ml-5' >Subscriptions</span>
