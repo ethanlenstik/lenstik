@@ -187,10 +187,10 @@ useExploreLazyQuery({
             intersectionCallback={(id) => setCurrentViewingId(id)}
             onDetail={openDetail}
             isShow={show}
-            index={-1}
+            index={0}
           />
         )}
-        {bytes?.map((video: Publication) => (
+        {bytes?.map((video: Publication, index) => (
           <ByteVideo
             video={video}
             currentViewingId={currentViewingId}
@@ -198,6 +198,7 @@ useExploreLazyQuery({
             key={`${video?.id}_${video.createdAt}1`}
             onDetail={openDetail}
             isShow={show}
+            index={index}
           />
         ))}
         {pageInfo?.next && (

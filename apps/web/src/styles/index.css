@@ -95,7 +95,7 @@ input[type='number'] {
 }
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: rgba(181, 177, 177, 0.589); 
+  background: rgba(181, 177, 177, 0.114); 
   border-radius: 10px;
 }
 .c-cSwjHS.c-lbNOYO ~.c-cSwjHS.c-lbNOYO{

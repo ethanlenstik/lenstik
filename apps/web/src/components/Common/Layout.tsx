@@ -27,7 +27,7 @@ interface Props {
 }
 
 const NO_HEADER_PATHS = ['/auth']
-const NO_SIBAR_PATHS=['/upload']
+const NO_SIBAR_PATHS = ['/upload']
 
 if (MIXPANEL_TOKEN) {
   mixpanel.init(MIXPANEL_TOKEN, {
@@ -156,7 +156,7 @@ const Layout: FC<Props> = ({ children }) => {
               'ultrawide:px-0',
               showFullScreen && '!p-0',
               pathname !== '/channel/[channel]' &&
-              'ultrawide:max-w-[50rem] mx-auto pt-20 md:px-3 2xl:py-6'
+              'ultrawide:max-w-[50rem] mx-auto pt-12 md:px-3 2xl:py-6'
             )}
           >
             {children}
