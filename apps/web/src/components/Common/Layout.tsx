@@ -128,7 +128,7 @@ const Layout: FC<Props> = ({ children }) => {
 
 
   return (
-    <div >
+    <>
       <Head>
         <meta
           name="theme-color"
@@ -163,7 +163,7 @@ const Layout: FC<Props> = ({ children }) => {
           </div>
         </div>
       </div>
-    </div>
+    </>
   )
 }
 

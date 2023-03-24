@@ -47,6 +47,7 @@ export const Button = forwardRef<HTMLButtonElement, Props>(function Button(
           'px-6 py-3 text-base': size === 'lg',
           'px-8 py-4 text-lg': size === 'xl'
         },
+        'rounded-sm',
         className
       )}
       disabled={loading}

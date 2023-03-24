@@ -14,7 +14,7 @@ import {
 } from 'lens'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import React, { useEffect, useMemo, useRef, useState } from 'react'
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { useInView } from 'react-cool-inview'
 import {
   Analytics,
@@ -36,10 +36,9 @@ const Bytes = () => {
   const [currentViewingId, setCurrentViewingId] = useState('')
 
   const activeTagFilter = useAppStore((state) => state.activeTagFilter)
-console.log("active tag filter", activeTagFilter)
   const request = {
     sortCriteria: PublicationSortCriteria.CuratedProfiles,
-    limit: 50,
+    limit: 20,
     noRandomize: false,
     sources: [LENSTUBE_BYTES_APP_ID],
     publicationTypes: [PublicationTypes.Post],
@@ -56,26 +55,26 @@ console.log("active tag filter", activeTagFilter)
   const [fetchPublication, { data: singleByte, loading: singleByteLoading }] =
     usePublicationDetailsLazyQuery()
 
-const [fetchAllBytes, { data, loading, error, fetchMore }] =
-useExploreLazyQuery({
-  // prevent the query from firing again after the first fetch
-  nextFetchPolicy: 'standby',
-  variables: {
-    request,
-    reactionRequest: selectedChannel
-      ? { profileId: selectedChannel?.id }
-      : null,
-    channelId: selectedChannel?.id ?? null
-  },
-  onCompleted: ({ explorePublications }) => {
-    const items = explorePublications?.items as Publication[]
-    const publicationId = router.query.id
-    if (!publicationId) {
-      const nextUrl = `${location.origin}/bytes/${items[0]?.id}`
-      history.pushState({ path: nextUrl }, '', nextUrl)
-    }
-  }
-})
+  const [fetchAllBytes, { data, loading, error, fetchMore }] =
+    useExploreLazyQuery({
+      // prevent the query from firing again after the first fetch
+      nextFetchPolicy: 'standby',
+      variables: {
+        request,
+        reactionRequest: selectedChannel
+          ? { profileId: selectedChannel?.id }
+          : null,
+        channelId: selectedChannel?.id ?? null
+      },
+      onCompleted: ({ explorePublications }) => {
+        const items = explorePublications?.items as Publication[]
+        const publicationId = router.query.id
+        if (!publicationId) {
+          const nextUrl = `${location.origin}/${items[0]?.id}`
+          history.pushState({ path: nextUrl }, '', nextUrl)
+        }
+      }
+    })
 
 
   const bytes = data?.explorePublications?.items as Publication[]
@@ -107,9 +106,9 @@ useExploreLazyQuery({
     })
   }
 
-  const scroll = (val: 30 | -30) => {
-    bytesContainer.current?.scrollBy({ top: val })
-  }
+  const currentViewCb = useCallback((id: string) => setCurrentViewingId(id)
+    , [bytes])
+
 
   const openDetail = () => {
     setShow(!show)
@@ -151,11 +150,10 @@ useExploreLazyQuery({
       </div>
     )
   }
-  
+
   const detailNext = (val: 1 | -1) => {
-    console.log(bytes.findIndex(byte => byte.id === currentViewingId), val, bytes)
-      const index = bytes.findIndex(byte => byte.id === currentViewingId) + val
-      index > 0 && index < bytes.length ? setCurrentViewingId(bytes[index].id) : ''
+    const index = bytes.findIndex(byte => byte.id === currentViewingId) + val
+    index > 0 && index < bytes.length ? setCurrentViewingId(bytes[index].id) : ''
   }
 
   const closeDialog = () => {
@@ -163,7 +161,7 @@ useExploreLazyQuery({
   }
 
   return (
-    <div className="overflow-y-hidden">
+    <div>
       <Head>
         <meta name="theme-color" content="#000000" />
       </Head>
@@ -171,20 +169,20 @@ useExploreLazyQuery({
       {currentVideo ? <FullScreen
         video={currentVideo}
         currentViewingId={currentViewingId}
-        intersectionCallback={(id) => setCurrentViewingId(id)}
+        intersectionCallback={currentViewCb}
         close={closeDialog}
         isShow={show}
         nextVideo={detailNext}
       /> : null}
       <div
         ref={bytesContainer}
-        className="no-scrollbar h-screen snap-y snap-mandatory overflow-y-scroll scroll-smooth md:h-[calc(100vh-70px)]"
+        className="h-screen md:h-[calc(100vh-70px)]"
       >
         {singleByte && (
           <ByteVideo
             video={singleBytePublication}
             currentViewingId={currentViewingId}
-            intersectionCallback={(id) => setCurrentViewingId(id)}
+            intersectionCallback={currentViewCb}
             onDetail={openDetail}
             isShow={show}
             index={0}
@@ -194,11 +192,11 @@ useExploreLazyQuery({
           <ByteVideo
             video={video}
             currentViewingId={currentViewingId}
-            intersectionCallback={(id) => setCurrentViewingId(id)}
+            intersectionCallback={currentViewCb}
             key={`${video?.id}_${video.createdAt}1`}
             onDetail={openDetail}
             isShow={show}
-            index={index}
+            index={singleByte ? index + 1 : index}
           />
         ))}
         {pageInfo?.next && (
@@ -206,7 +204,7 @@ useExploreLazyQuery({
             <Loader />
           </span>
         )}
-        <div className="bottom-7 right-4 hidden flex-col space-y-3 lg:absolute lg:flex">
+        {/* <div className="bottom-7 right-4 hidden flex-col space-y-3 lg:absolute lg:flex">
           <button
             className="rounded-full bg-gray-300 p-3 focus:outline-none dark:bg-gray-700"
             onClick={() => scroll(-30)}
@@ -219,7 +217,7 @@ useExploreLazyQuery({
           >
             <ChevronDownOutline className="h-5 w-5" />
           </button>
-        </div>
+        </div> */}
       </div>
     </div>
   )

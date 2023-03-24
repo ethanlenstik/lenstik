@@ -39,7 +39,6 @@ const ByteVideo: FC<Props> = ({
     sanitizeIpfsUrl(getThumbnailUrl(video)),
     'thumbnail_v'
   )
-  const { color: backgroundColor } = useAverageColor(thumbnailUrl, true)
 
   const playVideo = () => {
     if (!videoRef.current || isShow) {
@@ -54,8 +53,10 @@ const ByteVideo: FC<Props> = ({
   const observer = new IntersectionObserver((data) => {
     if (data[0].target.id && data[0].isIntersecting) {
       intersectionCallback(data[0].target.id)
-      const nextUrl = `${location.origin}/${video?.id}`
-      history.replaceState({ path: nextUrl }, '', nextUrl)
+      // if (isShow) {
+      //   const nextUrl = `${location.origin}/${video?.id}`
+      //   history.replaceState({ path: nextUrl }, '', nextUrl)
+      // }
     }
   })
 
@@ -90,14 +91,14 @@ const ByteVideo: FC<Props> = ({
 
   const channel = video.profile
   return (
-    <div className={clsx(index != 0 && ' border-t dark:border-slate-600 ', 'flex mt-7')}>
+    <div className={clsx(index != 0 && ' border-t dark:border-slate-600 ', 'flex mt-8')}>
       <Link
         href={`/channel/${channel?.handle}`}
-        className="flex flex-none cursor-pointer items-top space-x-2 mt-5 mx-3  max-md:hidden"
+        className="flex flex-none cursor-pointer items-top space-x-2 mt-5  max-md:hidden"
       >
         <img
           src={getProfilePicture(channel, 'avatar')}
-          className="h-9 w-9 rounded-full mr-3"
+          className="h-12 w-12 rounded-full mr-3"
           draggable={false}
           alt={channel?.handle}
         />
@@ -110,9 +111,9 @@ const ByteVideo: FC<Props> = ({
         >
           <div className="relative bottom-0">
             <div
-              className={clsx("ultrawide:w-[407px] flex h-screen w-screen min-w-[250px] items-center overflow-hidden bg-black md:w-[350px] md:rounded-xl", isShow ? "md:h-[95vh]" : "md:h-[65vh] max-h-[700px] min-h-[500px]")}
+              className={clsx("ultrawide:w-[407px] flex h-screen w-screen min-w-[260px] items-center overflow-hidden bg-black md:w-[22vw] md:rounded-xl", isShow ? "md:h-[95vh]" : "md:h-[60vh] max-h-[700px] min-h-[500px]")}
               style={{
-                backgroundColor: backgroundColor ? backgroundColor : undefined
+                backgroundColor: 'transparent'
               }}
             >
               <div
@@ -122,6 +123,7 @@ const ByteVideo: FC<Props> = ({
               />
               {currentViewingId === video.id ? (
                 <VideoPlayer
+                  borderRadd={10}
                   refCallback={refCallback}
                   permanentUrl={getPublicationMediaUrl(video)}
                   posterUrl={thumbnailUrl}
@@ -137,7 +139,7 @@ const ByteVideo: FC<Props> = ({
                 />
               ) : (
                 <img
-                  className="w-full object-contain"
+                  className="w-full object-contain rounded-[10px]"
                   src={thumbnailUrl}
                   alt="thumbnail"
                   draggable={false}

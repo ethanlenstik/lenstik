@@ -21,6 +21,7 @@ interface PlayerProps {
   posterUrl?: string
   ratio?: AspectRatio
   showControls?: boolean
+  borderRadd?: number
   options?: {
     autoPlay?: boolean
     muted?: boolean
@@ -34,6 +35,7 @@ interface Props extends PlayerProps {
   currentTime?: number
   publicationId?: string
   isSensitiveContent?: boolean
+  borderRadd?: number
 }
 
 const PlayerInstance: FC<PlayerProps> = ({
@@ -42,7 +44,8 @@ const PlayerInstance: FC<PlayerProps> = ({
   posterUrl,
   playerRef,
   options,
-  showControls
+  showControls,
+  borderRadd
 }) => {
   return (
     <Player
@@ -63,6 +66,9 @@ const PlayerInstance: FC<PlayerProps> = ({
         fallback: true,
         ipfsGateway: IPFS_GATEWAY
       }}
+      theme={{
+        radii: { containerBorderRadius: !borderRadd? '0px':`${borderRadd}px`},
+      }}
     >
       {/* eslint-disable-next-line react/jsx-no-useless-fragment */}
       {!showControls ? <></> : null}
@@ -79,7 +85,8 @@ const VideoPlayer: FC<Props> = ({
   refCallback,
   publicationId,
   options,
-  showControls = true
+  showControls = true,
+  borderRadd
 }) => {
   const router = useRouter()
   const [sensitiveWarning, setSensitiveWarning] = useState(isSensitiveContent)
@@ -141,6 +148,7 @@ const VideoPlayer: FC<Props> = ({
             playerRef={mediaElementRef}
             options={options}
             showControls={showControls}
+            borderRadd={borderRadd}
           />
         </div>
       )}

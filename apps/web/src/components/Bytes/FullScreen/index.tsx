@@ -136,7 +136,7 @@ const FullScreen: FC<Props> = ({ video,
                 data-testid="byte-video"
             >
                 <div className='grow relative'>
-                    <div className='absolute z-0 bottom-0 left-0 top-0 right-0 bg-cover' style={{ backgroundImage: `url(${thumbnailUrl})` }}></div>
+                    <div className='absolute z-0 bottom-0 left-0 top-0 right-0 bg-cover bg-center' style={{ backgroundImage: `url(${thumbnailUrl})` }}></div>
                     <div className='flex backdrop-blur-md backdrop-brightness-[0.2]' >
                         <div className='max-md:hidden z-10 '>
                             <button
