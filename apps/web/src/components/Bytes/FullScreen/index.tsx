@@ -26,13 +26,15 @@ type Props = {
     close: () => void
     isShow: boolean
     nextVideo: (val: 1 | -1) => void
+    index?: number
 }
 const FullScreen: FC<Props> = ({ video,
     currentViewingId,
     intersectionCallback,
     close,
     isShow,
-    nextVideo
+    nextVideo,
+    index = 0
 
 }) => {
     const videoRef = useRef<HTMLMediaElement>()
@@ -181,22 +183,24 @@ const FullScreen: FC<Props> = ({ video,
                                 <span className="whitespace-nowrap">Report</span>
                             </button>
                             <div className='flex flex-col gap-2 justify-center h-full mr-5'>
-                                <div>
-                                    <button
-                                        className="rounded-full bg-gray-300 p-3 focus:outline-none dark:bg-gray-700"
-                                        onClick={() => nextVideo(1)}
+
+                                <div className="h-[44px]" >
+                                    {index > 0 && (<button
+                                        className="rounded-full bg-gray-300/20 p-3 focus:outline-none dark:bg-gray-700  hover:bg-gray-800 dark:hover:bg-gray-800"
+                                        onClick={() => nextVideo(-1)}
                                     >
                                         <ChevronUpOutline className="h-5 w-5" />
-                                    </button>
+                                    </button>)}
                                 </div>
-                                <div>
+                                <div className="h-25 w-25" >
                                     <button
-                                        className="rounded-full bg-gray-300 p-3 focus:outline-none dark:bg-gray-700"
-                                        onClick={() => nextVideo(-1)}
+                                        className="rounded-full bg-gray-300/20 p-3 focus:outline-none dark:bg-gray-700 hover:bg-gray-800 dark:hover:bg-gray-800"
+                                        onClick={() => nextVideo(1)}
                                     >
                                         <ChevronDownOutline className="h-5 w-5" />
                                     </button>
                                 </div>
+
                             </div>
                         </div>
                     </div>

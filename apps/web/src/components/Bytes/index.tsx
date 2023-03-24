@@ -153,7 +153,7 @@ const Bytes = () => {
 
   const detailNext = (val: 1 | -1) => {
     const index = bytes.findIndex(byte => byte.id === currentViewingId) + val
-    index > 0 && index < bytes.length ? setCurrentViewingId(bytes[index].id) : ''
+    index >= 0 && index < bytes.length ? setCurrentViewingId(bytes[index].id) : currentViewingId
   }
 
   const closeDialog = () => {
@@ -173,12 +173,13 @@ const Bytes = () => {
         close={closeDialog}
         isShow={show}
         nextVideo={detailNext}
+        index={bytes.findIndex((video) => video.id === currentViewingId)}
       /> : null}
       <div
         ref={bytesContainer}
         className="h-screen md:h-[calc(100vh-70px)]"
       >
-        {singleByte && (
+        {/* {singleByte && (
           <ByteVideo
             video={singleBytePublication}
             currentViewingId={currentViewingId}
@@ -187,7 +188,7 @@ const Bytes = () => {
             isShow={show}
             index={0}
           />
-        )}
+        )} */}
         {bytes?.map((video: Publication, index) => (
           <ByteVideo
             video={video}
@@ -196,7 +197,7 @@ const Bytes = () => {
             key={`${video?.id}_${video.createdAt}1`}
             onDetail={openDetail}
             isShow={show}
-            index={singleByte ? index + 1 : index}
+            index={index}
           />
         ))}
         {pageInfo?.next && (
