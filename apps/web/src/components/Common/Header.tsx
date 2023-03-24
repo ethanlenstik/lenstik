@@ -76,8 +76,8 @@ const Header: FC<Props> = ({ className }) => {
         className
       )}
     >
-      <div className="w-full max-w-6xl m-auto">
-        <div className="ultrawide:px-6 flex w-full items-center justify-between px-2">
+      <div className="w-full max-w-6xl m-auto ">
+        <div className="flex w-full items-center justify-between">
           <div className="md:w-[435px]">
             <Link href="/" className="block">
               <img

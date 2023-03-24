@@ -111,7 +111,7 @@ const ByteVideo: FC<Props> = ({
         >
           <div className="relative bottom-0">
             <div
-              className={clsx("ultrawide:w-[407px] flex h-screen w-screen min-w-[260px] items-center overflow-hidden bg-black md:w-[22vw] md:rounded-xl", isShow ? "md:h-[95vh]" : "md:h-[60vh] max-h-[700px] min-h-[500px]")}
+              className={clsx("ultrawide:w-[407px] flex h-screen w-screen min-w-[260px] max-w-[336px] items-center overflow-hidden bg-black md:w-[22vw] md:rounded-xl", isShow ? "md:h-[95vh]" : "md:h-[65vh] max-h-[700px] min-h-[500px]")}
               style={{
                 backgroundColor: 'transparent'
               }}
