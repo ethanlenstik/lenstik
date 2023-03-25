@@ -70,10 +70,10 @@ const Bytes = () => {
       onCompleted: ({ explorePublications }) => {
         const items = explorePublications?.items as Publication[]
         const publicationId = router.query.id
-        if (!publicationId) {
-          const nextUrl = `${location.origin}/${items[0]?.id}`
-          history.pushState({ path: nextUrl }, '', nextUrl)
-        }
+        // if (!publicationId) {
+        //   const nextUrl = `${location.origin}/${items[0]?.id}`
+        //   history.pushState({ path: nextUrl }, '', nextUrl)
+        // }
       }
     })
 

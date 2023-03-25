@@ -33,6 +33,7 @@ import PlusOutline from './Icons/PlusOutline'
 import SunOutline from './Icons/SunOutline'
 import SwitchChannelOutline from './Icons/SwitchChannelOutline'
 import { FiLogOut } from 'react-icons/fi'
+import { CgProfile } from 'react-icons/cg'
 
 const UserMenu = () => {
   const { theme, setTheme } = useTheme()
@@ -138,7 +139,7 @@ const UserMenu = () => {
             </>
           ) : (
             <>
-              <div className="flex flex-col space-y-1 rounded-lg text-sm transition duration-150 ease-in-out">
+              {/* <div className="flex flex-col space-y-1 rounded-lg text-sm transition duration-150 ease-in-out">
                 <div className="inline-flex items-center space-x-2 rounded-lg p-3">
                   <Link href={`/channel/${selectedChannel?.handle}`}>
                     <img
@@ -160,7 +161,7 @@ const UserMenu = () => {
                     </Link>
                   </div>
                 </div>
-              </div>
+              </div> */}
               <div className="text-sm">
                 {isAdmin && (
                   <Menu.Item
@@ -179,12 +180,12 @@ const UserMenu = () => {
                       href={`/channel/${selectedChannel?.handle}`}
                       className="inline-flex w-full items-center space-x-2 px-3 py-2 hover:bg-gray-100 dark:hover:bg-gray-800"
                     >
-                      <ChannelOutline className="h-4 w-4" />
+                      <CgProfile className="h-4 w-4" />
                       <span className="truncate whitespace-nowrap">
-                        Your Channel
+                        View Profile
                       </span>
                     </Menu.Item>
-                    <button
+                    {/* <button
                       type="button"
                       className="inline-flex w-full items-center space-x-2 px-3 py-2 hover:bg-gray-100 dark:hover:bg-gray-800"
                       onClick={() => {
@@ -196,7 +197,7 @@ const UserMenu = () => {
                       <span className="truncate whitespace-nowrap">
                         Switch channel
                       </span>
-                    </button>
+                    </button> */}
                   </>
                 )}
                 {!IS_MAINNET && (
@@ -217,7 +218,7 @@ const UserMenu = () => {
                 >
                   <CogOutline className="h-4 w-4" />
                   <span className="truncate whitespace-nowrap">
-                    Channel Settings
+                    Settings
                   </span>
                 </Link>
                 <button
