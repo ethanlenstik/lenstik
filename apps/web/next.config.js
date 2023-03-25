@@ -11,11 +11,11 @@ const moduleExports = {
     return [
       {
         source: '/sitemap.xml',
-        destination: 'https://static.lenstube.xyz/sitemaps/sitemap.xml'
+        destination: 'https://static.lenstik.xyz/sitemaps/sitemap.xml'
       },
       {
         source: '/sitemaps/:match*',
-        destination: 'https://static.lenstube.xyz/sitemaps/:match*'
+        destination: 'https://static.lenstik.xyz/sitemaps/:match*'
       },
       {
         source: '/collect/:match*',
@@ -27,12 +27,12 @@ const moduleExports = {
     return [
       {
         source: '/discord',
-        destination: 'https://discord.com/servers/lenstube-980882088783913010',
+        destination: 'https://discord.com/servers/lenstik-980882088783913010',
         permanent: true
       },
       {
         source: '/donate',
-        destination: 'https://gitcoin.co/grants/6972/lenstube',
+        destination: 'https://gitcoin.co/grants/6972/lenstik',
         permanent: true
       },
       {

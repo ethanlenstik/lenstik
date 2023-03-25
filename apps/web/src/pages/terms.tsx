@@ -17,7 +17,7 @@ const terms = () => {
       <div className="relative px-2">
         <div className="prose-sm md:prose prose-slate dark:prose-invert prose-a:font-semibold prose-a:text-green-500 hover:prose-a:text-green-600 mx-auto max-w-4xl">
           <p>
-            The website “lenstube.xyz” (the “Site”) offers information, tools
+            The website “lenstik.xyz” (the “Site”) offers information, tools
             and services to you to allow you to interact with the Lens Protocol
             - a composable and decentralised social graph protocol.
           </p>
@@ -210,7 +210,7 @@ const terms = () => {
           <h2>11. Contact Information</h2>
           <p>
             Questions about the Terms should be sent to us at{' '}
-            <Link href="mailto:support@lenstube.xyz">support@lenstube.xyz</Link>
+            <Link href="mailto:support@lenstik.xyz">support@lenstik.xyz</Link>
             .
           </p>
         </div>

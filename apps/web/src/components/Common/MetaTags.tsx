@@ -37,10 +37,10 @@ const MetaTags: FC<Props> = (props) => {
         name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=5, viewport-fit=cover"
       />
-      <link rel="canonical" href={`https://lenstube.xyz${router.asPath}`} />
+      <link rel="canonical" href={`https://lenstik.xyz${router.asPath}`} />
       <meta
         property="og:url"
-        content={`https://lenstube.xyz${router.asPath}`}
+        content={`https://lenstik.xyz${router.asPath}`}
       />
       <meta property="og:type" content={meta.type} />
       <meta property="og:site_name" content="Lenstube" />
@@ -79,10 +79,10 @@ const MetaTags: FC<Props> = (props) => {
           />
         </>
       )}
-      <link rel="preconnect" href="https://img.lenstube.xyz" />
-      <link rel="dns-prefetch" href="https://img.lenstube.xyz" />
-      <link rel="preconnect" href="https://static.lenstube.xyz" />
-      <link rel="dns-prefetch" href="https://static.lenstube.xyz" />
+      <link rel="preconnect" href="https://img.lenstik.xyz" />
+      <link rel="dns-prefetch" href="https://img.lenstik.xyz" />
+      <link rel="preconnect" href="https://static.lenstik.xyz" />
+      <link rel="dns-prefetch" href="https://static.lenstik.xyz" />
     </Head>
   )
 }

@@ -13258,7 +13258,7 @@ export const GlobalProtocolStatsDocument = gql`
         value
       }
     }
-    bytesStats: globalProtocolStats(request: { sources: "lenstube-bytes" }) {
+    bytesStats: globalProtocolStats(request: { sources: "lenstik-bytes" }) {
       totalPosts
     }
   }

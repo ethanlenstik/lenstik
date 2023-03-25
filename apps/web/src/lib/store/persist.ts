@@ -43,7 +43,7 @@ export const usePersistStore = create(
       setSelectedChannelId: (id) => set({ selectedChannelId: id }),
       signIn: ({ accessToken, refreshToken }) =>
         set({ accessToken, refreshToken }),
-      signOut: () => localStorage.removeItem('lenstube.store'),
+      signOut: () => localStorage.removeItem('lenstik.store'),
       hydrateAuthTokens: () => {
         return {
           accessToken: get().accessToken,
@@ -52,7 +52,7 @@ export const usePersistStore = create(
       }
     }),
     {
-      name: 'lenstube.store'
+      name: 'lenstik.store'
     }
   )
 )

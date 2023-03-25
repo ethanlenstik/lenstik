@@ -31,19 +31,19 @@ const AccountItem: FC<Props> = ({ channel, isSuggested }) => {
 
                 <div className="flex gap-5 items-start">
                     <img
-                        className="ultrawide:h-12 ultrawide:w-12 h-8 w-8 rounded-full bg-white object-cover dark:bg-gray-900"
+                        className="h-8 w-8 rounded-full bg-white object-cover dark:bg-gray-900"
                         src={getProfilePicture(channel, 'avatar_lg')}
                         draggable={false}
                         alt={channel?.handle}
                     />
                     <div>
                         {channel.name && (
-                            <h1 className="flex items-center space-x-1.5 font-medium md:text-lg">
+                            <h1 className="flex items-center space-x-1.5 font-bold md:text-base">
                                 {channel.name}
                             </h1>
                         )}
                         <h2
-                            className="flex items-center space-x-1.5 md:text-sm"
+                            className="flex items-center space-x-1.5 md:text-xs"
                             data-testid="channel-name"
                         >
                             <span>@{channel?.handle}</span>
@@ -62,7 +62,3 @@ const AccountItem: FC<Props> = ({ channel, isSuggested }) => {
 }
 
 export default AccountItem
-
-function useHover(): [any, any] {
-    throw new Error("Function not implemented.")
-}

@@ -1,5 +1,5 @@
 export const FEATURE_FLAGS = {
-  LENSTUBE_ECHOS: 'lenstube-echos'
+  LENSTUBE_ECHOS: 'lenstik-echos'
 }
 
 export const featureFlags = [

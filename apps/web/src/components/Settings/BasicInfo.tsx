@@ -74,7 +74,7 @@ const formSchema = z.object({
   website: z.union([
     z
       .string()
-      .url({ message: 'Enter valid website URL (eg. https://lenstube.xyz)' }),
+      .url({ message: 'Enter valid website URL (eg. https://lenstik.xyz)' }),
     z.string().max(0)
   ])
 })

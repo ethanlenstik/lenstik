@@ -25,7 +25,7 @@ export const everland = async (
     })
     const fileKey = uuidv4()
     const params = {
-      Bucket: 'lenstube',
+      Bucket: 'lenstik',
       Key: fileKey,
       Body: file,
       ContentType: file.type

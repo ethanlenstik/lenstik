@@ -13,7 +13,7 @@ const FullPageLoader = () => {
           src={`/images/logo.png`}
           draggable={false}
           className="h-12 w-12"
-          alt="lenstube"
+          alt="lenstik"
         />
       </div>
     </div>

@@ -28,7 +28,7 @@ const terms = () => {
             This Privacy Policy (the “Privacy Policy”) provides a comprehensive
             description of how Lenstube (“we,” “our,” or “us”) collects, uses,
             and shares information about you in connection with the website at
-            “lenstube.xyz”, as well as your rights and choices regarding such
+            “lenstik.xyz”, as well as your rights and choices regarding such
             information.
           </p>
           <p>
@@ -153,7 +153,7 @@ const terms = () => {
             If you have any questions or comments about this Privacy Policy, our
             data practices, or our compliance with applicable law, please
             contact us at{' '}
-            <Link href="mailto:support@lenstube.xyz">support@lenstube.xyz</Link>
+            <Link href="mailto:support@lenstik.xyz">support@lenstik.xyz</Link>
             .
           </p>
         </div>
