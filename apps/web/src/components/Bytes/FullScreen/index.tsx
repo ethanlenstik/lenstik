@@ -8,6 +8,7 @@ import type { Publication } from 'lens'
 import type { FC } from 'react'
 import React, { useEffect, useMemo, useRef, useState } from 'react'
 import toast from 'react-hot-toast'
+import { BsFlag } from 'react-icons/bs'
 import { MdOutlineClose } from 'react-icons/md'
 import { SIGN_IN_REQUIRED_MESSAGE } from 'utils'
 import { getPublicationMediaUrl } from 'utils/functions/getPublicationMediaUrl'
@@ -177,10 +178,10 @@ const FullScreen: FC<Props> = ({ video,
                             <button
                                 type="button"
                                 onClick={() => onClickReport()}
-                                className="hover:opacity-100 inline-flex items-center space-x-2 rounded-lg px-3 py-1.5 hover:bg-gray-100 dark:hover:bg-gray-800 absolute right-5 top-5"
+                                className=" inline-flex  bg-gray-300/2 items-center space-x-2 rounded-full px-3 py-1.5 dark:bg-gray-700  hover:bg-gray-800 dark:hover:bg-gray-800 absolute right-5 top-5"
                             >
-                                <FlagOutline className="h-3.5 w-3.5" />
-                                <span className="whitespace-nowrap">Report</span>
+                                <BsFlag className="h-3.5 w-3.5" fill='white' />
+                                <span className="whitespace-nowrap text-white">Report</span>
                             </button>
                             <div className='flex flex-col gap-2 justify-center h-full mr-5'>
 
