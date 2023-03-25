@@ -30,6 +30,7 @@ import SuggestedAccount from './SuggestedAccounts';
 import FollowingAccounts from './FollowingAccouts';
 import { request } from '@playwright/test';
 import { channel } from 'diagnostics_channel';
+import { FaUserFriends } from 'react-icons/fa';
 
 const CreateChannel = dynamic(() => import('./CreateChannel'))
 
@@ -89,8 +90,8 @@ const Sidebar = () => {
               href="/feed"
               className={clsx('flex items-center pt-1 focus:outline-none my-2 p-2 dark:hover:bg-gray-600  hover:bg-gray-200', isActivePath('/feed')&& 'text-red-500')}
             >
-              <SlUserFollowing className='text-2xl' />
-              <span className='text-xl font-bold ml-5' >Subscriptions</span>
+              <FaUserFriends className='text-2xl' />
+              <span className='text-xl font-bold ml-5' >Following</span>
             </Link>
           </div>
           <div className="flex flex-col justify-center space-y-2">

@@ -4,7 +4,7 @@ import MetaTags from '@components/Common/MetaTags'
 import { Loader } from '@components/UIElements/Loader'
 import { NoDataFound } from '@components/UIElements/NoDataFound'
 import useAppStore from '@lib/store'
-import type { Publication } from 'lens'
+import { FeedEventItemType, FeedItem, Publication, useFeedQuery } from 'lens'
 import {
   PublicationSortCriteria,
   PublicationTypes,
@@ -36,7 +36,8 @@ const Bytes = () => {
   const [currentViewingId, setCurrentViewingId] = useState('')
 
   const activeTagFilter = useAppStore((state) => state.activeTagFilter)
-  const request = {
+  const request =
+  {
     sortCriteria: PublicationSortCriteria.CuratedProfiles,
     limit: 20,
     noRandomize: false,

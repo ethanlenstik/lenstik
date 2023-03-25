@@ -6,7 +6,7 @@ import React from 'react'
 const Feed: NextPage = () => {
   return (
     <>
-      <MetaTags title="Subscriptions" />
+      <MetaTags title="following" />
       <HomeFeed />
     </>
   )
