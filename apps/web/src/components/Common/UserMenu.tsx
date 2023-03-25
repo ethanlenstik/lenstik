@@ -32,6 +32,7 @@ import MoonOutline from './Icons/MoonOutline'
 import PlusOutline from './Icons/PlusOutline'
 import SunOutline from './Icons/SunOutline'
 import SwitchChannelOutline from './Icons/SwitchChannelOutline'
+import { FiLogOut } from 'react-icons/fi'
 
 const UserMenu = () => {
   const { theme, setTheme } = useTheme()
@@ -98,7 +99,7 @@ const UserMenu = () => {
       }
     >
       <div className="mt-2 w-56 overflow-hidden rounded-sm border bg-gray-100 shadow dark:border-gray-800 dark:bg-black">
-        <div className="dark:bg-theme m-1.5 overflow-hidden rounded-sm bg-white">
+        <div className=" m-1.5 overflow-hidden rounded-sm ">
           {showAccountSwitcher ? (
             <>
               <button
@@ -249,33 +250,13 @@ const UserMenu = () => {
                     Analytics.track(TRACK.AUTH.CLICK_SIGN_OUT)
                   }}
                 >
-                  <HandWaveOutline className="h-4 w-4" />
+                  <FiLogOut className="h-4 w-4" />
                   <span className="truncate whitespace-nowrap">Sign out</span>
                 </button>
               </div>
             </>
           )}
         </div>
-        {IS_MAINNET && (
-          <Link
-            className="m-0.5 flex items-center space-x-2 px-5 pb-3 pt-2"
-            href={LENSTUBE_STATUS_PAGE}
-            target="_blank"
-            onClick={() => Analytics.track(TRACK.SYSTEM.MORE_MENU.STATUS)}
-          >
-            <span
-              className={clsx(
-                'h-2 w-2 rounded-full',
-                statusData?.ok ? 'bg-green-500' : 'bg-red-500'
-              )}
-            />
-            <span className="text-xs">
-              {statusData?.ok
-                ? 'All services are online'
-                : 'Some services are offline'}
-            </span>
-          </Link>
-        )}
       </div>
     </DropMenu>
   )

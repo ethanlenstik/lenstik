@@ -55,7 +55,7 @@ const Settings = () => {
   }
 
   return (
-    <div className="container mx-auto max-w-7xl">
+    <div className="container mx-auto max-w-full">
       <MetaTags title="Channel Settings" />
       {!loading && !error && channel ? (
         <div className="grid gap-4 md:grid-cols-4">

@@ -170,7 +170,7 @@ const FullScreen: FC<Props> = ({ video,
                                     />
                                 )}
                             </div>
-                            <TopOverlay onClickVideo={onClickVideo} isPlaying={playing} />
+                            <TopOverlay onClickVideo={onClickVideo} isPlaying={playing} full={true} />
 
                         </div>
                         <div className="relative">

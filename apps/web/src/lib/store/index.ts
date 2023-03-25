@@ -71,6 +71,8 @@ interface AppState {
   selectedChannel: Profile | null
   videoWatchTime: number
   activeTagFilter: string
+  isMute: boolean
+  setMute: (isOn: boolean) => void
   setActiveTagFilter: (activeTagFilter: string) => void
   setVideoWatchTime: (videoWatchTime: number) => void
   setSelectedChannel: (channel: Profile | null) => void
@@ -95,6 +97,8 @@ export const useAppStore = create<AppState>((set) => ({
   videoWatchTime: 0,
   activeTagFilter: 'all',
   uploadedVideo: UPLOADED_VIDEO_FORM_DEFAULTS,
+  isMute: true,
+  setMute: (isMute: boolean) => set({ isMute }),
   setActiveTagFilter: (activeTagFilter) => set({ activeTagFilter }),
   setVideoWatchTime: (videoWatchTime) => set({ videoWatchTime }),
   setSelectedChannel: (channel) => set({ selectedChannel: channel }),

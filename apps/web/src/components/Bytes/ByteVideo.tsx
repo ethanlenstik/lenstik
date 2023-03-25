@@ -15,6 +15,7 @@ import BottomOverlay from './BottomOverlay'
 import ByteActions from './ByteActions'
 import TopOverlay from './TopOverlay'
 import clsx from 'clsx'
+import useAppStore from '@lib/store'
 
 type Props = {
   video: Publication
@@ -35,6 +36,8 @@ const ByteVideo: FC<Props> = ({
 }) => {
   const videoRef = useRef<HTMLMediaElement>()
   const intersectionRef = useRef<HTMLDivElement>(null)
+  const mute = useAppStore((state) => state.isMute)
+  const setMute = useAppStore((state)=> state.setMute)
   const thumbnailUrl = imageCdn(
     sanitizeIpfsUrl(getThumbnailUrl(video)),
     'thumbnail_v'
@@ -129,10 +132,10 @@ const ByteVideo: FC<Props> = ({
                   posterUrl={thumbnailUrl}
                   ratio="9to16"
                   publicationId={video.id}
-                  showControls={true}
+                  showControls={false}
                   options={{
                     autoPlay: false,
-                    muted: true,
+                    muted: mute,
                     loop: true,
                     loadingSpinner: true
                   }}
@@ -146,7 +149,7 @@ const ByteVideo: FC<Props> = ({
                 />
               )}
             </div>
-            <TopOverlay onClickVideo={onClickVideo} isPlaying={true} />
+            <TopOverlay onClickVideo={onClickVideo} onClickVolume={()=> setMute(!mute)} isPlaying={true} mute={mute} />
             <div className="absolute right-2 bottom-[15%] z-[1] md:hidden">
               <ByteActions video={video} showDetail={onDetail} />
               {video?.collectModule?.__typename !==
