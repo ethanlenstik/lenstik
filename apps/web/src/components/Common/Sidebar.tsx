@@ -31,6 +31,7 @@ import FollowingAccounts from './FollowingAccouts';
 import { request } from '@playwright/test';
 import { channel } from 'diagnostics_channel';
 import { FaUserFriends } from 'react-icons/fa';
+import { RiLiveLine } from 'react-icons/ri';
 
 const CreateChannel = dynamic(() => import('./CreateChannel'))
 
@@ -70,7 +71,7 @@ const Sidebar = () => {
       >
         <div
           className={clsx(
-            'flex flex-col space-y-2 overflow-y-auto overflow-x-hidden fixed top-[50px] bottom-0 px-[20px] py-[20px] max-w-[350px]',
+            'flex flex-col overflow-y-auto overflow-x-hidden fixed top-[50px] bottom-0 pl-[20px] py-[20px] max-w-[350px]',
             'self-center', !showScrollbar && 'no-scrollbar'
           )}
           style={{ scrollbarWidth: 'thin' }}
@@ -78,26 +79,33 @@ const Sidebar = () => {
           onMouseEnter={()=> setShowScrollbar(true)}
           onMouseLeave={()=> setShowScrollbar(false)}
         >
-          <div className={clsx('py-3  border-b dark:border-b-slate-800 mb-3')}>
+          <div className={clsx('py-1  border-b dark:border-b-slate-800 mb-3')}>
             <Link
               href="/"
-              className={clsx("flex items-center pt-1 focus:outline-none my-2 p-2 dark:hover:bg-gray-600 hover:bg-gray-200", isActivePath('/')&& 'text-red-500')}
+              className={clsx("flex items-center pt-2 focus:outline-none my-2 p-2 dark:hover:bg-gray-600 hover:bg-gray-200", isActivePath('/')&& 'text-red-500')}
             >
-              <SlHome className='text-2xl' />
-              <span className='text-xl font-bold ml-5'>For You</span>
+              <SlHome className='text-xl' />
+              <span className='text-lg font-bold ml-4'>For You</span>
             </Link>
             <Link
               href="/feed"
               className={clsx('flex items-center pt-1 focus:outline-none my-2 p-2 dark:hover:bg-gray-600  hover:bg-gray-200', isActivePath('/feed')&& 'text-red-500')}
             >
               <FaUserFriends className='text-2xl' />
-              <span className='text-xl font-bold ml-5' >Following</span>
+              <span className='text-lg font-bold ml-3' >Following</span>
+            </Link>
+            <Link
+              href="/live"
+              className={clsx('flex items-center pt-1 focus:outline-none my-2 p-2 dark:hover:bg-gray-600  hover:bg-gray-200', isActivePath('/feed')&& 'text-red-500')}
+            >
+              <RiLiveLine className='text-2xl' />
+              <span className='text-lg font-bold ml-3' >Live</span>
             </Link>
           </div>
-          <div className="flex flex-col justify-center space-y-2">
+          <div className="flex flex-col justify-center">
 
             {!isConnected &&
-              <div className='border-b dark:border-b-slate-800 pb-5 mb-3 grid'>
+              <div className='border-b dark:border-b-slate-800 pb-6 mb-3 grid'>
                 <p className='mb-2 text-gray-500'>Log in to follow creators, like videos, and comments.</p>
                 <Login />
               </div>}

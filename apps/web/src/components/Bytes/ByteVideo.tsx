@@ -97,11 +97,11 @@ const ByteVideo: FC<Props> = ({
     <div className={clsx(index != 0 && ' border-t dark:border-slate-600 ', 'flex mt-8')}>
       <Link
         href={`/channel/${channel?.handle}`}
-        className="flex flex-none cursor-pointer items-top space-x-2 mt-5  max-md:hidden"
+        className="flex flex-none cursor-pointer items-top space-x-2 mt-4  max-md:hidden"
       >
         <img
           src={getProfilePicture(channel, 'avatar')}
-          className="h-12 w-12 rounded-full mr-3"
+          className="h-14 w-14 rounded-full mr-3"
           draggable={false}
           alt={channel?.handle}
         />

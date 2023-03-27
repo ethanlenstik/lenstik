@@ -84,19 +84,19 @@ const GlobalSearchBar: FC<Props> = ({ onSearchResults }) => {
   }
 
   return (
-    <div className="md:w-96  ml-12" data-testid="global-search">
+    <div className="md:w-[360px]" data-testid="global-search">
       <div ref={resultsRef}>
         <div className="relative">
           <div className="relative w-full cursor-default overflow-hidden rounded-full border border-gray-200 dark:border-gray-700 sm:text-sm">
             <input
-              className="w-full bg-transparent py-3 pl-4 pr-10 text-sm border rounded-full"
+              className="w-full bg-transparent py-2.5 pl-4 pr-10 text-sm border rounded-full"
               onChange={(event) => setKeyword(event.target.value)}
               placeholder="Search videos and accounts"
               value={keyword}
             />
-            <div className="absolute inset-y-0 right-0 flex items-center pr-3 border-l border-l-gray-300 pl-3 my-3">
+            <div className="absolute inset-y-0 right-0 flex items-center pr-4 border-l border-l-gray-300 pl-3 my-auto h-[28px]">
               <SearchOutline
-                className="h-4 w-4 text-gray-400"
+                className="h-4 w-4 text-gray-400 ml-1"
                 aria-hidden="true"
               />
             </div>

@@ -72,13 +72,13 @@ const Header: FC<Props> = ({ className }) => {
   return (
     <div
       className={clsx(
-        'dark:bg-theme fixed top-0 left-0 right-0 z-10 flex w-full items-center bg-white py-2.5',
+        'fixed top-0 left-0 right-0 z-10 flex w-full items-center  py-2 border-b dark:border-b-slate-800 bg-white dark:bg-theme',
         className
       )}
     >
-      <div className="w-full max-w-6xl m-auto ">
+      <div className="w-full max-w-6xl m-auto px-4">
         <div className="flex w-full items-center justify-between">
-          <div className="md:w-[435px]">
+          <div className="md:w-[410px]">
             <Link href="/" className="block">
               <img
                 src={`/images/logo.png`}
@@ -99,42 +99,46 @@ const Header: FC<Props> = ({ className }) => {
               <SearchOutline className="h-4 w-4" aria-hidden="true" />
             </button>
 
-            {selectedChannelId ? (
+            {(selectedChannelId && selectedChannel )? (
               <>
-                <Link
-
-                  href="/message"
-                  className="relative"
-                >
-                  <button className="p-2.5">
-                    <FiSend className="h-6 w-6" />
-                    {hasNewNotification && (
-                      <span className="absolute top-0.5 right-0.5 flex h-2 w-2 rounded-full bg-red-500" />
-                    )}
-                  </button>
-                </Link>
-                <Link
-
-                  href="/notifications"
-                  className="relative"
-                >
-                  <button className="p-2.5">
-                    <BsInbox className="h-6 w-6" />
-                    {hasNewNotification && (
-                      <span className="absolute top-0.5 right-0.5 flex h-2 w-2 rounded-full bg-red-500" />
-                    )}
-                  </button>
-                </Link>
                 <a>
                   <Link
                     href="/upload"
                   >
                     <Button
                       className="hidden md:block"
-                      icon={<BsPlusLg />}
+                      icon={<BsPlusLg className='' />}
                     >
                       <span>Upload</span>
                     </Button>
+                  </Link>
+                </a>
+                <a>
+                  <Link
+
+                    href="/message"
+                    className="relative"
+                  >
+                    <button className="p-2.5">
+                      <FiSend className="h-6 w-6" />
+                      {hasNewNotification && (
+                        <span className="absolute top-0.5 right-0.5 flex h-2 w-2 rounded-full bg-red-500" />
+                      )}
+                    </button>
+                  </Link>
+                </a>
+                <a>
+                  <Link
+
+                    href="/notifications"
+                    className="relative"
+                  >
+                    <button className="p-2.5">
+                      <BsInbox className="h-6 w-6" />
+                      {hasNewNotification && (
+                        <span className="absolute top-0.5 right-0.5 flex h-2 w-2 rounded-full bg-red-500"></span>
+                      )}
+                    </button>
                   </Link>
                 </a>
               </>

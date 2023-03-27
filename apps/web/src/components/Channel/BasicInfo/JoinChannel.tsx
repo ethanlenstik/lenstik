@@ -171,7 +171,7 @@ const JoinChannel: FC<Props> = ({ channel, onJoin }) => {
   return (
     <Tooltip content={joinTooltipText} placement="top">
       <span>
-        <Button onClick={() => joinChannel()} loading={loading} variant='secondary' size='sm'>
+        <Button onClick={() => joinChannel()} loading={loading} variant='secondary' size='sm'  className='font-bold '>
           Join Channel
         </Button>
       </span>

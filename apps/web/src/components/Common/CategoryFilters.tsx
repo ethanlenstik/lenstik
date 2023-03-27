@@ -55,10 +55,10 @@ const CategoryFilters = () => {
 
   return (
     <div
-      className="ultrawide:max-w-[110rem] mx-auto pt-4"
+      className="ultrawide:max-w-[110rem] mx-1 pt-4"
       data-testid="category-filters"
     >
-      <h3 className='mb-5 text-gray-500 font-bold'>Discover</h3>
+      <h3 className='mb-2 text-gray-500 font-bold text-sm'>Discover</h3>
       <div
         className=" items-center"
       >

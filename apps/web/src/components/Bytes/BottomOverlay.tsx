@@ -30,7 +30,7 @@ const BottomOverlay: FC<Props> = ({ video }) => {
             }
           </span></h1>
         </div>
-        <div className="flex items-center space-x-2">
+        <div className="flex mb-5 mt-1">
           <SubscribeActions
             channel={video.profile}
             subscribeType={subscribeType}

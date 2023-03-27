@@ -17,17 +17,17 @@ const FollowingAccounts: FC<PropsAccs> = ({profile}) => {
       skip: !channel?.id
     })
 
-    const displayProFiles = isAllSuggest?  followers?.followers.items: followers?.followers.items.slice(0,2)
+    const displayProFiles = isAllSuggest?  followers?.followers.items: followers?.followers.items.slice(0,4)
 
-    return <div className="border-b dark:border-b-slate-800">
-        <h3 className='mb-5 text-gray-500 font-bold'>Following Accounts</h3>
+    return <div className="border-b dark:border-b-slate-800 border-b-slate-100">
+        <h3 className='text-gray-500 font-semibold text-sm ml-1 mt-4'>Following Accounts</h3>
         <div className="py-[10px]">
             {
                 displayProFiles?displayProFiles?.map(channel => <AccountItem key={channel.wallet.address} channel={channel.wallet.defaultProfile}/>): <span className="text-sm text-gray-500">Log in to follow creators, like videos, and view comments.</span>
             }
         </div>
-        <div>
-            {isAllSuggest?<button onClick={()=> setAllSuggest(false)} className="text-pink-600">See Less</button>: <button className="text-pink-600" onClick={()=> setAllSuggest(true)}>See More</button>}
+        <div className='ml-1 mb-3'>
+            {isAllSuggest?<button onClick={()=> setAllSuggest(false)} className="text-pink-600 text-sm">See Less</button>: <button className="text-pink-600 text-sm" onClick={()=> setAllSuggest(true)}>See More</button>}
         </div>
     </div>
 }

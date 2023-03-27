@@ -45,7 +45,8 @@ class LenstubeDocument extends Document {
             />
           )}
         </Head>
-        <body>
+        {/* className="bg-[url('/compare.png')] bg-cover bg-center" */}
+        <body >
           <Main />
           <NextScript />
         </body>

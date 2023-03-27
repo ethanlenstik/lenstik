@@ -10,16 +10,16 @@ type PropsAccs = {
 
 const SuggestedAccount: FC<PropsAccs> = ({channels}) => {
     const [ isAllSuggest , setAllSuggest ] = useState(false);
-    const displayProFiles = isAllSuggest?  channels?.recommendedProfiles: channels?.recommendedProfiles.slice(0,4)
-    return <div className="border-b dark:border-b-slate-800">
-        <h3 className='mb-5 text-gray-500 font-bold'>Suggested accounts</h3>
+    const displayProFiles = isAllSuggest?  channels?.recommendedProfiles: channels?.recommendedProfiles.slice(0,5)
+    return <div className="border-b dark:border-b-slate-800 border-b-slate-100">
+        <h3 className='text-gray-500 font-medium text-sm mb-3 ml-1'>Suggested accounts</h3>
         <div>
             {
                 displayProFiles?.map((channel) => <AccountItem key={channel.id} channel={channel} isSuggested={true} />)
             }
         </div>
-        <div>
-            {isAllSuggest?<button onClick={()=> setAllSuggest(false)} className="text-pink-600">See Less</button>: <button className="text-pink-600" onClick={()=> setAllSuggest(true)}>See All</button>}
+        <div className='ml-1 mb-4'>
+            {isAllSuggest?<button onClick={()=> setAllSuggest(false)} className="text-pink-600 text-sm">See Less</button>: <button className="text-pink-600 text-sm" onClick={()=> setAllSuggest(true)}>See All</button>}
         </div>
     </div>
 }

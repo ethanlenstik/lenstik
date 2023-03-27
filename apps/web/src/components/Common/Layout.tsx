@@ -27,7 +27,7 @@ interface Props {
 }
 
 const NO_HEADER_PATHS = ['/auth']
-const NO_SIBAR_PATHS=['/upload', '/settings']
+const NO_SIBAR_PATHS = ['/upload', '/settings']
 
 if (MIXPANEL_TOKEN) {
   mixpanel.init(MIXPANEL_TOKEN, {
@@ -142,7 +142,7 @@ const Layout: FC<Props> = ({ children }) => {
       {!NO_HEADER_PATHS.includes(pathname) && (
         <Header className={clsx(showFullScreen && 'hidden md:flex')} />
       )}
-      <div className={clsx('flex justify-center md:pb-0 max-w-6xl m-auto gap-[100px]', showFullScreen && '!pb-0')} >
+      <div className={clsx('flex justify-center md:pb-0 max-w-6xl m-auto gap-[100px] px-4', showFullScreen && '!pb-0')} >
         {!NO_SIBAR_PATHS.includes(pathname) && (<Sidebar />)}
         <div
           className={clsx(
@@ -156,7 +156,7 @@ const Layout: FC<Props> = ({ children }) => {
               'ultrawide:px-0',
               showFullScreen && '!p-0',
               pathname !== '/channel/[channel]' &&
-              'mx-auto pt-12 md:px-3 ultrawide:pt-13'
+              'ml-3 pt-14'
             )}
           >
             {children}

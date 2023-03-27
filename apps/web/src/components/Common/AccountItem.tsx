@@ -17,7 +17,7 @@ const AccountItem: FC<Props> = ({ channel, isSuggested }) => {
     const [hover, setHover] = useState<String>('onMouseLeave')
 
 
-    return <div className={clsx("relativ p-2", "hover:bg-gray-200 dark:hover:bg-gray-800")}>
+    return <div className={clsx("relative px-1 py-[6.5px]", "hover:bg-gray-200 dark:hover:bg-gray-800")}>
         {isSuggested && <div className="flex-none">
             <PopoverTik hover={hover} channel={channel} />
         </div>}
@@ -29,7 +29,7 @@ const AccountItem: FC<Props> = ({ channel, isSuggested }) => {
                 href={`/channel/${channel?.handle}`}
             >
 
-                <div className="flex gap-5 items-start">
+                <div className="flex gap-3 items-start">
                     <img
                         className="h-8 w-8 rounded-full bg-white object-cover dark:bg-gray-900"
                         src={getProfilePicture(channel, 'avatar_lg')}
@@ -38,7 +38,7 @@ const AccountItem: FC<Props> = ({ channel, isSuggested }) => {
                     />
                     <div>
                         {channel.name && (
-                            <h1 className="flex items-center space-x-1.5 font-bold md:text-base">
+                            <h1 className="flex items-center space-x-1.5 font-bold md:text-sm">
                                 {channel.name}
                             </h1>
                         )}

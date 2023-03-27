@@ -22,7 +22,7 @@ const ByteActions: FC<Props> = ({ video, showDetail }) => {
   const [showReport, setShowReport] = useState(false)
 
   return (
-    <div className="w-12 flex-col items-center justify-between md:flex md:w-14">
+    <div className="w-14 flex-col items-center justify-between md:flex md:w-14 ml-4 mb-8">
       <div className="flex justify-center space-y-4 p-2 md:flex-col">
         {/* <VideoOptions
           video={video}

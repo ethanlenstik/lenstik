@@ -151,7 +151,7 @@ const Subscribe: FC<Props> = ({ channel, onSubscribe }) => {
   }
 
   return (
-    <Button onClick={() => subscribe()} loading={loading} variant='secondary' size='sm'>
+    <Button onClick={() => subscribe()} loading={loading} variant='secondary' size='sm' className='font-bold '>
       Follow
     </Button>
   )

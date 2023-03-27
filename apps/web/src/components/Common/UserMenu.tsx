@@ -92,7 +92,7 @@ const UserMenu = () => {
     <DropMenu
       trigger={
         <img
-          className="dark:bg-theme h-8 w-8 rounded-full bg-white object-cover md:h-9 md:w-9"
+          className="dark:bg-theme h-6 w-6 rounded-full bg-white object-cover md:h-8 md:w-8 mr-2"
           src={getProfilePicture(selectedChannel)}
           alt={selectedChannel.handle}
           draggable={false}
