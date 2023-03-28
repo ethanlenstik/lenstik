@@ -27,9 +27,10 @@ import { useContractWrite, useSigner, useSignTypedData } from 'wagmi'
 type Props = {
   channel: Profile
   onJoin: () => void
+  size?: "sm" |"md" | "lg" | "xl" 
 }
 
-const JoinChannel: FC<Props> = ({ channel, onJoin }) => {
+const JoinChannel: FC<Props> = ({ channel, onJoin, size }) => {
   const [loading, setLoading] = useState(false)
   const [isAllowed, setIsAllowed] = useState(false)
   const selectedChannelId = usePersistStore((state) => state.selectedChannelId)
@@ -171,7 +172,7 @@ const JoinChannel: FC<Props> = ({ channel, onJoin }) => {
   return (
     <Tooltip content={joinTooltipText} placement="top">
       <span>
-        <Button onClick={() => joinChannel()} loading={loading} variant='secondary' size='sm'  className='font-bold '>
+        <Button onClick={() => joinChannel()} loading={loading} variant='secondary' size={size}  className='font-bold '>
           Join Channel
         </Button>
       </span>

@@ -20,9 +20,10 @@ import { useSigner, useSignTypedData } from 'wagmi'
 type Props = {
   channel: Profile
   onUnSubscribe: () => void
+  size?: "sm" |"md" | "lg" | "xl" 
 }
 
-const UnSubscribe: FC<Props> = ({ channel, onUnSubscribe }) => {
+const UnSubscribe: FC<Props> = ({ channel, onUnSubscribe, size }) => {
   const [loading, setLoading] = useState(false)
   const selectedChannelId = usePersistStore((state) => state.selectedChannelId)
 
@@ -113,7 +114,7 @@ const UnSubscribe: FC<Props> = ({ channel, onUnSubscribe }) => {
   }
 
   return (
-    <Button onClick={() => unsubscribe()} loading={loading} variant='secondary' size='sm'  className='font-bold '>
+    <Button onClick={() => unsubscribe()} loading={loading} variant='secondary' size={size}  className='font-bold '>
       Unfollow
     </Button>
   )

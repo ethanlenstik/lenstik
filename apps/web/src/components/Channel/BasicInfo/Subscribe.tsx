@@ -26,9 +26,10 @@ import { useContractWrite, useSigner, useSignTypedData } from 'wagmi'
 type Props = {
   channel: Profile
   onSubscribe: () => void
+  size?: "sm" |"md" | "lg" | "xl" 
 }
 
-const Subscribe: FC<Props> = ({ channel, onSubscribe }) => {
+const Subscribe: FC<Props> = ({ channel, onSubscribe, size }) => {
   const [loading, setLoading] = useState(false)
   const selectedChannelId = usePersistStore((state) => state.selectedChannelId)
   const selectedChannel = useAppStore((state) => state.selectedChannel)
@@ -151,7 +152,7 @@ const Subscribe: FC<Props> = ({ channel, onSubscribe }) => {
   }
 
   return (
-    <Button onClick={() => subscribe()} loading={loading} variant='secondary' size='sm' className='font-bold '>
+    <Button onClick={() => subscribe()} loading={loading} variant='secondary' size={size} className='font-bold '>
       Follow
     </Button>
   )

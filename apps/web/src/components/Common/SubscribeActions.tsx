@@ -8,9 +8,10 @@ import React, { useEffect, useState } from 'react'
 type Props = {
   channel: Profile
   subscribeType: string | undefined
+  size?: "sm" |"md" | "lg" | "xl" 
 }
 
-const SubscribeActions: FC<Props> = ({ channel, subscribeType }) => {
+const SubscribeActions: FC<Props> = ({ channel, subscribeType, size = "sm" }) => {
   const isSubscriber = channel?.isFollowedByMe
   const [subscriber, setSubscriber] = useState(isSubscriber)
 
@@ -19,11 +20,11 @@ const SubscribeActions: FC<Props> = ({ channel, subscribeType }) => {
   }, [isSubscriber])
 
   return subscriber ? (
-    <UnSubscribe channel={channel} onUnSubscribe={() => setSubscriber(false)} />
+    <UnSubscribe channel={channel} onUnSubscribe={() => setSubscriber(false)} size={size} />
   ) : subscribeType === 'FeeFollowModuleSettings' ? (
-    <JoinChannel channel={channel} onJoin={() => setSubscriber(true)} />
+    <JoinChannel channel={channel} onJoin={() => setSubscriber(true)}  size={size} />
   ) : (
-    <Subscribe channel={channel} onSubscribe={() => setSubscriber(true)} />
+    <Subscribe channel={channel} onSubscribe={() => setSubscriber(true)}  size={size} />
   )
 }
 

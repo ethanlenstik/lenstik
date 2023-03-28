@@ -111,7 +111,8 @@ const Bytes = () => {
     , [bytes])
 
 
-  const openDetail = () => {
+  const openDetail = (id: string) => {
+    setCurrentViewingId(id)
     setShow(!show)
   }
 

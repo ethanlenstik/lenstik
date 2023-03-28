@@ -10,9 +10,10 @@ import getProfilePicture from 'utils/functions/getProfilePicture'
 
 type Props = {
   video: Publication
+  btnSize?: "sm" |"md" | "lg" | "xl" 
 }
 
-const BottomOverlay: FC<Props> = ({ video }) => {
+const BottomOverlay: FC<Props> = ({ video, btnSize }) => {
   const subscribeType = video.profile?.followModule?.__typename
   const channel = video.profile
   return (
@@ -30,10 +31,11 @@ const BottomOverlay: FC<Props> = ({ video }) => {
             }
           </span></h1>
         </div>
-        <div className="flex mb-5 mt-1">
+        <div className="flex mt-1 mb-auto">
           <SubscribeActions
             channel={video.profile}
             subscribeType={subscribeType}
+            size={btnSize}
           />
         </div>
       </div>

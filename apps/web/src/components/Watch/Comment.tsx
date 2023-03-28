@@ -60,7 +60,7 @@ const Comment: FC<Props> = ({ comment }) => {
   }
 
   return (
-    <div className="flex items-start justify-between mx-10" onMouseEnter={() => setShowOptions(true)} onMouseLeave={() => setShowOptions(false)}>
+    <div className="flex items-start justify-between mx-8 mb-5" onMouseEnter={() => setShowOptions(true)} onMouseLeave={() => setShowOptions(false)}>
       <div className="flex items-start justify-between">
         <Link
           href={`/channel/${comment.profile?.handle}`}
@@ -68,7 +68,7 @@ const Comment: FC<Props> = ({ comment }) => {
         >
           <img
             src={getProfilePicture(comment.profile, 'avatar')}
-            className="h-7 w-7 rounded-full"
+            className="h-10 w-10 rounded-full"
             draggable={false}
             alt={comment.profile?.handle}
           />
@@ -101,9 +101,7 @@ const Comment: FC<Props> = ({ comment }) => {
                   </span>
                 </Tooltip>
               )}
-            <span className="text-xs opacity-70">
-              {getRelativeTime(comment.createdAt)}
-            </span>
+       
           </span>
           <div
             className={clsx(
@@ -140,6 +138,9 @@ const Comment: FC<Props> = ({ comment }) => {
               </button>
             </div>
           )}
+               <span className="text-xs opacity-50">
+              {getRelativeTime(comment.createdAt)}
+            </span>
         </div>
       </div>
       <div>
@@ -150,7 +151,7 @@ const Comment: FC<Props> = ({ comment }) => {
         />
         {showOptions ? <CommentOptions comment={comment} setShowReport={setShowReport} /> : <div className='h-[22px]'></div>}
         {!comment.hidden && (
-          <div className="mt-2">
+          <div className="">
             <PublicationReaction publication={comment} isVertical={true} />
           </div>
         )}

@@ -273,7 +273,7 @@ const NewComment: FC<Props> = ({ video }) => {
           <div className="flex-none">
             <img
               src={getProfilePicture(selectedChannel, 'avatar')}
-              className="h-9 w-9 rounded-full"
+              className="h-10 w-10 rounded-full"
               draggable={false}
               alt={selectedChannel?.handle}
             />

@@ -15,7 +15,7 @@ type Props = {
 const Comments: FC<Props> = ({ video }) => {
 
     return (
-        <div className="pt-10 w-full relative">
+        <div className="pt-11 w-full relative">
 
             <VideoComments video={video} hideTitle />
         </div>

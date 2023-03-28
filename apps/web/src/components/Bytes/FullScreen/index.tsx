@@ -150,7 +150,7 @@ const FullScreen: FC<Props> = ({ video,
                                 <MdOutlineClose className='text-white w-6 h-6' />
                             </button>
                         </div>
-                        <div className={clsx("relative max-md:w-full grow flex")} >
+                        <div className={clsx("relative max-md:w-full grow flex mr-5")} >
                             <div
                                 className="flex h-screen  items-center bg-black md:h-[calc(100vh)] md:w-[56.3vh] md:rounded-sm m-auto"
                                 style={{
@@ -178,12 +178,12 @@ const FullScreen: FC<Props> = ({ video,
                             <button
                                 type="button"
                                 onClick={() => onClickReport()}
-                                className=" inline-flex  bg-gray-300/2 items-center space-x-2 rounded-full px-3 py-1.5 dark:bg-gray-700  hover:bg-gray-800 dark:hover:bg-gray-800 absolute right-5 top-5"
+                                className=" inline-flex  bg-gray-300/2 items-center space-x-2 rounded-full px-2 py-1.5 dark:bg-gray-700  hover:bg-gray-800 dark:hover:bg-gray-800 absolute right-5 top-6"
                             >
                                 <BsFlag className="h-3.5 w-3.5" fill='white' />
                                 <span className="whitespace-nowrap text-white">Report</span>
                             </button>
-                            <div className='flex flex-col gap-2 justify-center h-full mr-5'>
+                            <div className='flex flex-col gap-2 justify-center h-full mr-4 pb-10'>
 
                                 <div className="h-[44px]" >
                                     {index > 0 && (<button
@@ -206,11 +206,13 @@ const FullScreen: FC<Props> = ({ video,
                         </div>
                     </div>
                 </div>
-                <div className='flex w-[30vw] max-md:hidden'>
+                <div className='flex w-[30vw] max-md:hidden max-w-[544px]'>
 
                     <Comments video={video} />
                 </div>
             </div>
+
+            {/* <div className="bg-[url('/compare.png')] bg-cover bg-center absolute z-100 top-0 bottom-0 right-0 left-0"></div> */}
         </FullScreenModal>
     </>
     )

@@ -43,9 +43,9 @@ export const Button = forwardRef<HTMLButtonElement, Props>(function Button(
         },
         {
           'px-6 py-1.5 text-xs': size === 'sm',
-          'px-6 py-1.5 text-sm md:py-2': size === 'md',
-          'px-6 py-3 text-base': size === 'lg',
-          'px-8 py-4 text-lg': size === 'xl'
+          'px-7 py-1.5 text-sm': size === 'md',
+          'px-8 py-3 text-base': size === 'lg',
+          'px-9 py-4 text-lg': size === 'xl'
         },
         'rounded-sm',
         className

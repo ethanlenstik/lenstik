@@ -104,27 +104,27 @@ const VideoComments: FC<Props> = ({ video, hideTitle = false }) => {
   }
   return (
     <>
-      <div className='mx-10 h-[250px] relative'>
+      <div className='mx-7 h-[290px] relative'>
         <div className='flex justify-between'>
-          <div className='flex items-center mr-3'>
+          <div className='flex items-center m-2'>
             <Link
               href={`/channel/${channel?.handle}`}
             >
               <img
                 src={getProfilePicture(channel, 'avatar')}
-                className="h-9 w-9 rounded-full"
+                className="h-10 w-10 rounded-full"
                 draggable={false}
                 alt={channel?.handle}
               />
             </Link>
           </div>
           <div className='grow'>
-            <BottomOverlay video={video} />
+            <BottomOverlay video={video} btnSize="md" />
           </div>
         </div>
-        <div className='absolute bottom-0 w-full'>
+        <div className='absolute bottom-0 w-full ml-1'>
           <div className="flex items-center justify-between">
-            <div className="text-white md:text-inherit flex gap-4">
+            <div className="text-white md:text-inherit flex gap-6">
               <PublicationReaction
                 publication={video}
                 iconSize="base"
@@ -183,7 +183,7 @@ const VideoComments: FC<Props> = ({ video, hideTitle = false }) => {
       )}
       {!error && (queuedComments.length || comments.length) ? (
         <>
-          <div className="border-t-[1px] dark:border-slate-600 space-y-4 pt-5  overflow-y-auto overflow-x-hidden top-[300px] bottom-[80px] absolute w-full ">
+          <div className="border-t-[1px] dark:border-slate-600 space-y-4 pt-5  overflow-y-auto overflow-x-hidden top-[340px] bottom-[80px] absolute w-full ">
             {queuedComments?.map(
               (queuedComment) =>
                 queuedComment?.pubId === video?.id && (
