@@ -1,7 +1,7 @@
 import CollectVideo from '@components/Watch/CollectVideo'
 import Link from 'next/link'
 import type { Publication } from 'lens'
-import type { FC } from 'react'
+import { FC, useState } from 'react'
 import React, { useEffect, useRef } from 'react'
 import getProfilePicture from 'utils/functions/getProfilePicture'
 import { getPublicationMediaUrl } from 'utils/functions/getPublicationMediaUrl'
@@ -36,6 +36,7 @@ const ByteVideo: FC<Props> = ({
 }) => {
   const videoRef = useRef<HTMLMediaElement>()
   const intersectionRef = useRef<HTMLDivElement>(null)
+  const [playing, setPlaying] = useState(false)
   const mute = useAppStore((state) => state.isMute)
   const setMute = useAppStore((state)=> state.setMute)
   const thumbnailUrl = imageCdn(
@@ -51,6 +52,7 @@ const ByteVideo: FC<Props> = ({
     videoRef.current.volume = 1
     videoRef.current.autoplay = true
     videoRef.current?.play().catch(() => { })
+    setPlaying(true)
   }
 
   const observer = new IntersectionObserver((data) => {
@@ -76,6 +78,7 @@ const ByteVideo: FC<Props> = ({
     }
     videoRef.current?.pause()
     videoRef.current.autoplay = false
+    setPlaying(false)
   }
 
   const onClickVideo = (event: any) => {
@@ -114,7 +117,7 @@ const ByteVideo: FC<Props> = ({
         >
           <div className="relative bottom-0">
             <div
-              className={clsx("ultrawide:w-[407px] flex h-screen w-screen min-w-[260px] max-w-[336px] items-center overflow-hidden bg-black md:w-[22vw] md:rounded-xl", isShow ? "md:h-[95vh]" : "md:h-[55vh] max-h-[700px] min-h-[500px]")}
+              className={clsx("ultrawide:w-[407px] flex h-screen w-screen min-w-[260px] max-w-[336px] items-center overflow-hidden bg-black md:w-[22vw] md:rounded-xl", isShow ? "md:h-[95vh]" : "md:h-[65vh] max-h-[600px] min-h-[500px]")}
               style={{
                 backgroundColor: 'transparent'
               }}
@@ -149,10 +152,10 @@ const ByteVideo: FC<Props> = ({
                 />
               )}
             </div>
-            <TopOverlay onClickVideo={onClickVideo} onClickVolume={()=> setMute(!mute)} isPlaying={true} mute={mute} />
+            <TopOverlay onClickVideo={onClickVideo} onClickVolume={()=> setMute(!mute)} isPlaying={playing} onPlay={()=> playing? pauseVideo(): playVideo()} mute={mute} />
             <div className="absolute right-2 bottom-[15%] z-[1] md:hidden">
               <ByteActions video={video} showDetail={()=> onDetail(video.id)} />
-              {video?.collectModule?.__typename !==
+              {/* {video?.collectModule?.__typename !==
                 'RevertCollectModuleSettings' && (
                   <div className="text-center text-white md:text-gray-500">
                     <CollectVideo video={video} />
@@ -160,7 +163,7 @@ const ByteVideo: FC<Props> = ({
                       {video.stats?.totalAmountOfCollects || 'Collect'}
                     </div>
                   </div>
-                )}
+                )} */}
             </div>
           </div>
           <div className="hidden md:flex">

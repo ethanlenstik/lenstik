@@ -1,38 +1,56 @@
+import { div } from '@tensorflow/tfjs'
 import clsx from 'clsx'
 import Link from 'next/link'
-import type { FC } from 'react'
+import { FC, useState } from 'react'
 import React from 'react'
-import { FaPlay } from 'react-icons/fa'
+import { GiPauseButton, GiPlayButton } from 'react-icons/gi'
 import { MdVolumeOff, MdVolumeUp } from 'react-icons/md'
 
 type Props = {
   onClickVideo: (event: any) => void
+  onPlay?: ()=> void
   isPlaying?: boolean
   onClickVolume?: () => void
   mute?: boolean
   full?: boolean
 }
 
-const TopOverlay: FC<Props> = ({ onClickVideo, isPlaying, onClickVolume, mute, full }) => {
-  const handleClick = (e: any) => {
+const TopOverlay: FC<Props> = ({ onClickVideo, onPlay, isPlaying, onClickVolume, mute, full }) => {
+
+  const [ mouseEnter, setMouseEnter] = useState(false)
+
+  const handleClickMute = (e: any) => {
     e.stopPropagation();
-    console.log("clicked")
     onClickVolume && onClickVolume();
   }
+  const handleClickPlay = (e: any) => {
+    e.stopPropagation();
+    onPlay && onPlay();
+  }
+
+
   return (
     <div
       role="button"
       onClick={onClickVideo}
-      className="absolute top-0 bottom-[50px] left-0 right-0 z-[1] w-full cursor-default outline-none"
+      className="absolute top-0 bottom-[50px] md:max-xl:bottom-[100px] left-0 right-0 z-[1] w-full cursor-default outline-none"
+      onMouseEnter={()=> setMouseEnter(true)}
+      onMouseLeave={()=> setMouseEnter(false)}
     >
       <div className="flex items-center justify-between h-full">
         {!isPlaying && <div className='m-auto p-3 bg-[#b4b4b47d] rounded-md hover:cursor-pointer'>
-          <FaPlay className="text-2xl text-white" />
+          <GiPlayButton className="text-2xl text-white" />
         </div>}
-        {!full && <button className='absolute bottom-0 right-5 z-[2]' onClick={handleClick}>
-          {mute ? <MdVolumeOff className='w-6 h-6' fill='white' />
-            : <MdVolumeUp className='w-6 h-6' fill='white' />}
-        </button>}
+        {!full && <div className='absolute bottom-0 z-[2] flex justify-between w-full'>
+        {mouseEnter ? <button className='ml-5' onClick={handleClickPlay}>
+            {isPlaying ? <GiPauseButton className='w-6 h-6' fill='white' />
+              : <GiPlayButton className='w-6 h-6' fill='white' />}
+          </button>: <div></div>}
+          <button className='mr-5' onClick={handleClickMute}>
+            {mute ? <MdVolumeOff className='w-6 h-6' fill='white' />
+              : <MdVolumeUp className='w-6 h-6' fill='white' />}
+          </button>
+        </div>}
       </div>
     </div>
   )

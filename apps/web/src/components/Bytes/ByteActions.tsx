@@ -22,7 +22,7 @@ const ByteActions: FC<Props> = ({ video, showDetail }) => {
   const [showReport, setShowReport] = useState(false)
 
   return (
-    <div className="w-14 flex-col items-center justify-between md:flex md:w-14 ml-4 mb-8">
+    <div className="w-14 flex-col items-center justify-between md:flex md:w-14 ml-4 mb-8 md:max-xl:mb-16">
       <div className="flex justify-center space-y-4 p-2 md:flex-col">
         {/* <VideoOptions
           video={video}
@@ -60,21 +60,21 @@ const ByteActions: FC<Props> = ({ video, showDetail }) => {
             </div>
           </MirrorVideo>
         </div>
-        {video?.collectModule?.__typename !== 'RevertCollectModuleSettings' && (
+        {/* {video?.collectModule?.__typename !== 'RevertCollectModuleSettings' && (
           <div className="hidden w-full pb-3 text-center md:block">
             <CollectVideo video={video} />
             <div className="text-center text-xs leading-3">
               {video.stats?.totalAmountOfCollects || 'Collect'}
             </div>
           </div>
-        )}
-        <div>
+        )} */}
+        <div className='flex justify-center'>
           <button
             type="button"
             onClick={() => setShowShare(true)}
           >
-            <div className=' rounded-full  bg-gray-200 dark:bg-gray-600 p-2'>
-              <RiShareForwardLine className="h-6 w-6" />
+            <div className=' rounded-full bg-gray-200 dark:bg-gray-600 p-2'>
+              <RiShareForwardLine className="h-5 w-5" />
             </div>
           </button>
         </div>

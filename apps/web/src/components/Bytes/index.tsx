@@ -112,6 +112,7 @@ const Bytes = () => {
 
 
   const openDetail = (id: string) => {
+    console.log("id", id)
     setCurrentViewingId(id)
     setShow(!show)
   }

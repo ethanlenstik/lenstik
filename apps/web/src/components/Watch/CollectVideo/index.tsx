@@ -166,7 +166,7 @@ const CollectVideo: FC<Props> = ({ video, variant }) => {
   )
 
   return (
-    <div>
+    <div className=''>
       {showCollectModal && collectModule && (
         <CollectModal
           video={video}
@@ -190,7 +190,7 @@ const CollectVideo: FC<Props> = ({ video, variant }) => {
       >
         <div>
           <button
-            className={clsx('p-2.5', variant === 'hover' && 'btn-hover')}
+            className={clsx( variant === 'hover' && 'btn-hover')}
             disabled={loading || alreadyCollected}
             onClick={() => onClickCollect()}
           >
