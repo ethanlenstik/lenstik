@@ -38,11 +38,8 @@ const FullScreen: FC<Props> = ({ videos,
     index = 0
 
 }) => {
-    console.log(currentViewingId)
-    const video:Publication | undefined = videos.find(item => item.id === currentViewingId)
-    if(video == null) {
-        return <></>
-    }
+    const video:any = videos.find(item => item.id === currentViewingId)
+
     const videoRef = useRef<HTMLMediaElement>()
     const intersectionRef = useRef<HTMLDivElement>(null)
     const [playing, setPlaying] = useState(false)

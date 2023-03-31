@@ -84,7 +84,7 @@ const GlobalSearchBar: FC<Props> = ({ onSearchResults }) => {
   }
 
   return (
-    <div className="md:w-[360px]" data-testid="global-search">
+    <div className="md:w-[415px] md:ml-4" data-testid="global-search">
       <div ref={resultsRef}>
         <div className="relative">
           <div className="relative w-full cursor-default overflow-hidden rounded-full border border-gray-200 dark:border-gray-700 sm:text-sm">

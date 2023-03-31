@@ -132,3 +132,7 @@ export type QueuedCommentType = {
   txnId?: string
   txnHash?: string
 }
+export enum CustomCommentsFilterEnum {
+  RELEVANT_COMMENTS = 'RelevantComments',
+  NEWEST_COMMENTS = 'NewestComments'
+}

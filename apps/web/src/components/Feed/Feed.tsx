@@ -95,7 +95,7 @@ const HomeFeed = () => {
   return (
     <div className='mt-12'>
       {currentVideo ? <FullScreen
-        video={currentVideo}
+        videos={bytes}
         currentViewingId={currentViewingId}
         intersectionCallback={currentViewCb}
         close={closeDialog}
