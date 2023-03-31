@@ -5,23 +5,24 @@ import { FC, useState } from 'react'
 import React from 'react'
 import { GiPauseButton, GiPlayButton } from 'react-icons/gi'
 import { MdVolumeOff, MdVolumeUp } from 'react-icons/md'
+import useAppStore from '@lib/store'
 
 type Props = {
   onClickVideo: (event: any) => void
   onPlay?: ()=> void
   isPlaying?: boolean
-  onClickVolume?: () => void
-  mute?: boolean
   full?: boolean
 }
 
-const TopOverlay: FC<Props> = ({ onClickVideo, onPlay, isPlaying, onClickVolume, mute, full }) => {
+const TopOverlay: FC<Props> = ({ onClickVideo, onPlay, isPlaying, full }) => {
 
   const [ mouseEnter, setMouseEnter] = useState(false)
+  const setMute = useAppStore((state)=> state.setMute)
+  const mute = useAppStore((state) => state.isMute)
 
   const handleClickMute = (e: any) => {
     e.stopPropagation();
-    onClickVolume && onClickVolume();
+    setMute && setMute(!mute);
   }
   const handleClickPlay = (e: any) => {
     e.stopPropagation();

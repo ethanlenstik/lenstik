@@ -52,11 +52,11 @@ const UserMenu = () => {
     (state) => state.setSelectedChannelId
   )
 
-  const { data: statusData } = useSWR(
-    IS_MAINNET ? `${LENSTUBE_API_URL}/api/health` : null,
-    (url: string) => fetch(url).then((res) => res.json()),
-    { revalidateOnFocus: true }
-  )
+  // const { data: statusData } = useSWR(
+  //   IS_MAINNET ? `${LENSTUBE_API_URL}/api/health` : null,
+  //   (url: string) => fetch(url).then((res) => res.json()),
+  //   { revalidateOnFocus: true }
+  // )
 
   const [getChannels] = useAllProfilesLazyQuery()
   const { address } = useAccount()

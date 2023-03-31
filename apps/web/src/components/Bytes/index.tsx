@@ -170,7 +170,7 @@ const Bytes = () => {
       </Head>
       <MetaTags title="Bytes" />
       {currentVideo ? <FullScreen
-        video={currentVideo}
+        videos={bytes}
         currentViewingId={currentViewingId}
         intersectionCallback={currentViewCb}
         close={closeDialog}

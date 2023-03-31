@@ -37,8 +37,6 @@ const ByteVideo: FC<Props> = ({
   const videoRef = useRef<HTMLMediaElement>()
   const intersectionRef = useRef<HTMLDivElement>(null)
   const [playing, setPlaying] = useState(false)
-  const mute = useAppStore((state) => state.isMute)
-  const setMute = useAppStore((state)=> state.setMute)
   const thumbnailUrl = imageCdn(
     sanitizeIpfsUrl(getThumbnailUrl(video)),
     'thumbnail_v'
@@ -138,7 +136,6 @@ const ByteVideo: FC<Props> = ({
                   showControls={false}
                   options={{
                     autoPlay: false,
-                    muted: mute,
                     loop: true,
                     loadingSpinner: true
                   }}
@@ -152,7 +149,7 @@ const ByteVideo: FC<Props> = ({
                 />
               )}
             </div>
-            <TopOverlay onClickVideo={onClickVideo} onClickVolume={()=> setMute(!mute)} isPlaying={playing} onPlay={()=> playing? pauseVideo(): playVideo()} mute={mute} />
+            <TopOverlay onClickVideo={onClickVideo} isPlaying={playing} onPlay={()=> playing? pauseVideo(): playVideo()}  />
             <div className="absolute right-2 bottom-[15%] z-[1] md:hidden">
               <ByteActions video={video} showDetail={()=> onDetail(video.id)} />
               {/* {video?.collectModule?.__typename !==

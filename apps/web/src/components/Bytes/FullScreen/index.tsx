@@ -21,7 +21,7 @@ import TopOverlay from '../TopOverlay'
 import Comments from './Comments'
 
 type Props = {
-    video: Publication
+    videos: Publication []
     currentViewingId: string
     intersectionCallback: (id: string) => void
     close: () => void
@@ -29,7 +29,7 @@ type Props = {
     nextVideo: (val: 1 | -1) => void
     index?: number
 }
-const FullScreen: FC<Props> = ({ video,
+const FullScreen: FC<Props> = ({ videos,
     currentViewingId,
     intersectionCallback,
     close,
@@ -38,6 +38,11 @@ const FullScreen: FC<Props> = ({ video,
     index = 0
 
 }) => {
+    console.log(currentViewingId)
+    const video:Publication | undefined = videos.find(item => item.id === currentViewingId)
+    if(video == null) {
+        return <></>
+    }
     const videoRef = useRef<HTMLMediaElement>()
     const intersectionRef = useRef<HTMLDivElement>(null)
     const [playing, setPlaying] = useState(false)
