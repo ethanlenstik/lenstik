@@ -144,6 +144,9 @@ export const DATADOG_API_KEY = process.env.NEXT_PUBLIC_DATADOG_API_KEY
 export const BETTER_UPTIME_KEY = process.env.BETTER_UPTIME_KEY
 
 // vercel
+
+export const IS_DEVELOPMENT = process.env.NODE_ENV === 'development'
+export const IS_PRODUCTION = !IS_DEVELOPMENT
 export const GIT_DEPLOYED_COMMIT_SHA =
   process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_SHA
 export const GIT_DEPLOYED_BRANCH = process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_REF

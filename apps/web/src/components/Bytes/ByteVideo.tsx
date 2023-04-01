@@ -1,7 +1,7 @@
 import CollectVideo from '@components/Watch/CollectVideo'
 import Link from 'next/link'
 import type { Publication } from 'lens'
-import type { FC } from 'react'
+import { FC, useCallback } from 'react'
 import React, { useEffect, useRef, useState } from 'react'
 import getProfilePicture from 'utils/functions/getProfilePicture'
 import { getPublicationMediaUrl } from 'utils/functions/getPublicationMediaUrl'
@@ -127,7 +127,6 @@ const ByteVideo: FC<Props> = ({
               />
               {currentViewingId === video.id ? (
                 <VideoPlayer
-                  borderRadd={10}
                   refCallback={refCallback}
                   permanentUrl={getPublicationMediaUrl(video)}
                   posterUrl={thumbnailUrl}
@@ -137,7 +136,7 @@ const ByteVideo: FC<Props> = ({
                   options={{
                     autoPlay: false,
                     loop: true,
-                    loadingSpinner: true
+                    loadingSpinner: true,
                   }}
                 />
               ) : (

@@ -6,7 +6,7 @@ import fileReaderStream from 'filereader-stream'
 import React, { useEffect } from 'react'
 import toast from 'react-hot-toast'
 import { MdCloudUpload } from 'react-icons/md'
-import { ALLOWED_VIDEO_TYPES, Analytics, TRACK } from 'utils'
+import { ALLOWED_VIDEO_TYPES, Analytics, IPFS_FREE_UPLOAD_LIMIT, TRACK } from 'utils'
 import useDragAndDrop from 'utils/hooks/useDragAndDrop'
 import logger from 'utils/logger'
 
@@ -100,6 +100,8 @@ const DropZone = () => {
                 />
               </label>
             </div>
+            
+        <span className="text-red-500 text-xs">Note: you will be free to upload to IPFS if the file size is less than {IPFS_FREE_UPLOAD_LIMIT}MB otherwise you have to pay to upload to Arware</span>
             {fileDropError && (
               <div className="font-medium text-red-500">{fileDropError}</div>
             )}
