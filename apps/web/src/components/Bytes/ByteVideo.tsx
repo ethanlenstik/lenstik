@@ -116,7 +116,7 @@ const ByteVideo: FC<Props> = ({
         >
           <div className="relative bottom-0">
             <div
-              className={clsx("ultrawide:w-[407px] flex h-screen w-screen min-w-[260px] max-w-[336px] items-center overflow-hidden bg-black md:w-[22vw] md:rounded-xl", isShow ? "md:h-[95vh]" : "md:h-[65vh] max-h-[600px] min-h-[500px]")}
+              className={clsx("ultrawide:w-[407px] flex h-screen w-screen min-w-[260px] max-w-[336px] items-center overflow-hidden bg-black md:w-[22vw] md:rounded-xl", isShow ? "md:h-[95vh]" : "md:h-[65vh] md:max-xl:h-[30vh] max-h-[600px] min-h-[500px]")}
               style={{
                 backgroundColor: 'transparent'
               }}
@@ -150,9 +150,9 @@ const ByteVideo: FC<Props> = ({
                 />
               )}
             </div>
-            <TopOverlay onClickVideo={onClickVideo} isPlaying={playing} onPlay={()=> playing? pauseVideo(): playVideo()}  />
+            <TopOverlay onClickVideo={onClickVideo} isPlaying={playing} onPlay={() => playing ? pauseVideo() : playVideo()} />
             <div className="absolute right-2 bottom-[15%] z-[1] md:hidden">
-              <ByteActions video={video} showDetail={()=> onDetail(video.id)} />
+              <ByteActions video={video} showDetail={() => onDetail(video.id)} />
               {/* {video?.collectModule?.__typename !==
                 'RevertCollectModuleSettings' && (
                   <div className="text-center text-white md:text-gray-500">
@@ -165,7 +165,7 @@ const ByteVideo: FC<Props> = ({
             </div>
           </div>
           <div className="hidden md:flex">
-            <ByteActions video={video} showDetail={()=> onDetail(video.id)} />
+            <ByteActions video={video} showDetail={() => onDetail(video.id)} />
           </div>
         </div>
       </div>

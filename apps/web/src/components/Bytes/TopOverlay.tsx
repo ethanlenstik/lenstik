@@ -34,7 +34,7 @@ const TopOverlay: FC<Props> = ({ onClickVideo, onPlay, isPlaying, full }) => {
     <div
       role="button"
       onClick={onClickVideo}
-      className="absolute top-0 bottom-[50px] md:max-xl:bottom-[100px] left-0 right-0 z-[1] w-full cursor-default outline-none"
+      className="absolute top-0 bottom-[40px] md:max-xl:bottom-[80px] left-0 right-0 z-[1] w-full cursor-default outline-none"
       onMouseEnter={()=> setMouseEnter(true)}
       onMouseLeave={()=> setMouseEnter(false)}
     >
