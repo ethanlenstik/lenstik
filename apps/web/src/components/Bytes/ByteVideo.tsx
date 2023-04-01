@@ -1,7 +1,7 @@
 import CollectVideo from '@components/Watch/CollectVideo'
 import Link from 'next/link'
 import type { Publication } from 'lens'
-import { FC, useCallback } from 'react'
+import type { FC } from 'react'
 import React, { useEffect, useRef, useState } from 'react'
 import getProfilePicture from 'utils/functions/getProfilePicture'
 import { getPublicationMediaUrl } from 'utils/functions/getPublicationMediaUrl'
@@ -37,6 +37,7 @@ const ByteVideo: FC<Props> = ({
   const videoRef = useRef<HTMLMediaElement>()
   const intersectionRef = useRef<HTMLDivElement>(null)
   const [playing, setPlaying] = useState(false)
+  const mute = useAppStore((state) => state.isMute)
   const thumbnailUrl = imageCdn(
     sanitizeIpfsUrl(getThumbnailUrl(video)),
     'thumbnail_v'
@@ -137,6 +138,7 @@ const ByteVideo: FC<Props> = ({
                     autoPlay: false,
                     loop: true,
                     loadingSpinner: true,
+                    muted: mute
                   }}
                 />
               ) : (

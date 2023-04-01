@@ -1,4 +1,3 @@
-import useAppStore from '@lib/store'
 import type { AspectRatio } from '@livepeer/react'
 import { Player } from '@livepeer/react'
 import type { FC } from 'react'
@@ -27,8 +26,6 @@ const PlayerInstance: FC<PlayerProps> = ({
   options,
   showControls
 }) => {
-  
-  const mute = useAppStore((state) => state.isMute)
   return (
     <Player
       src={permanentUrl}
@@ -40,7 +37,7 @@ const PlayerInstance: FC<PlayerProps> = ({
       mediaElementRef={playerRef}
       loop={options?.loop ?? true}
       showUploadingIndicator={false}
-      muted={mute ?? false}
+      muted={options?.muted ?? false}
       controls={{ defaultVolume: 1 }}
       autoPlay={options?.autoPlay ?? false}
       showLoadingSpinner={options?.loadingSpinner}
