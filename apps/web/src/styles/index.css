@@ -1,11 +1,11 @@
-@import url('https://static.lenstik.xyz/fonts/font.css');
+@import url('https://fonts.googleapis.com/css?family=Roboto');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 body {
-  font-family: 'Matter', sans-serif;
+  font-family: 'sofia-pro', sans-serif;
   @apply antialiased dark:text-white bg-white bg-fixed dark:bg-neutral-900 text-black min-h-screen;
 }
 
@@ -110,4 +110,7 @@ input[type='number'] {
 .no-scrollbar {
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
+}
+#currentVideo .c-hmIsCl{
+  visibility: hidden;
 }

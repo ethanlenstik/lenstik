@@ -39,7 +39,7 @@ const Bytes = () => {
   const request =
   {
     sortCriteria: PublicationSortCriteria.CuratedProfiles,
-    limit: 20,
+    limit: 30,
     noRandomize: false,
     sources: [LENSTUBE_BYTES_APP_ID],
     publicationTypes: [PublicationTypes.Post],
@@ -68,6 +68,7 @@ const Bytes = () => {
         channelId: selectedChannel?.id ?? null
       },
       onCompleted: ({ explorePublications }) => {
+        // console.log("result", explorePublications)
         const items = explorePublications?.items as Publication[]
         const publicationId = router.query.id
         // if (!publicationId) {
@@ -81,15 +82,7 @@ const Bytes = () => {
   const bytes = data?.explorePublications?.items as Publication[]
   const pageInfo = data?.explorePublications?.pageInfo
   const singleBytePublication = singleByte?.publication as Publication
-  const currentVideo = useMemo(() => {
-    const video = bytes?.find(video => video.id === currentViewingId)
-    if (video == null && bytes?.length > 0) {
-      setCurrentViewingId(bytes[0].id)
-      return bytes[0]
-    }
-    return video
-  }, [currentViewingId, activeTagFilter])
-
+ 
   const fetchSingleByte = async () => {
     const publicationId = router.query.id
     if (!publicationId) {
@@ -107,12 +100,10 @@ const Bytes = () => {
     })
   }
 
-  const currentViewCb = useCallback((id: string) => setCurrentViewingId(id)
-    , [bytes])
+  const currentViewCb = useCallback((id: string) => setCurrentViewingId(id), [bytes])
 
 
   const openDetail = (id: string) => {
-    console.log("id", id)
     setCurrentViewingId(id)
     setShow(!show)
   }
@@ -169,7 +160,7 @@ const Bytes = () => {
         <meta name="theme-color" content="#000000" />
       </Head>
       <MetaTags title="Bytes" />
-      {currentVideo ? <FullScreen
+      {currentViewingId ? <FullScreen
         videos={bytes}
         currentViewingId={currentViewingId}
         intersectionCallback={currentViewCb}

@@ -20,6 +20,7 @@ interface Props extends PlayerProps {
   currentTime?: number
   publicationId?: string
   isSensitiveContent?: boolean
+  isFull?:boolean
 }
 
 const VideoPlayer: FC<Props> = ({
@@ -31,7 +32,8 @@ const VideoPlayer: FC<Props> = ({
   refCallback,
   publicationId,
   options,
-  showControls = true
+  showControls = true,
+  isFull=false
 }) => {
   const router = useRouter()
   const playerRef = useRef<HTMLMediaElement>()
@@ -50,8 +52,8 @@ const VideoPlayer: FC<Props> = ({
         video_stream_type: VIDEO_TYPE,
         player_init_time: initTime,
         video_title: IS_BYTE
-          ? `${LENSTUBE_WEBSITE_URL}/bytes/${publicationId ?? router.query?.id}`
-          : `${LENSTUBE_WEBSITE_URL}/watch/${
+          ? `${LENSTUBE_WEBSITE_URL}/${publicationId ?? router.query?.id}`
+          : `${LENSTUBE_WEBSITE_URL}/${
               publicationId ?? router.query?.id
             }`,
         page_type: IS_BYTE ? 'bytespage' : 'watchpage',
@@ -82,7 +84,7 @@ const VideoPlayer: FC<Props> = ({
   }
 
   return (
-    <div className="w-full">
+    <div className="w-full rounded-md">
       {sensitiveWarning ? (
         <SensitiveWarning acceptWarning={() => setSensitiveWarning(false)} />
       ) : (
@@ -94,6 +96,7 @@ const VideoPlayer: FC<Props> = ({
             playerRef={mediaElementRef}
             options={options}
             showControls={showControls}
+            isFull={isFull}
           />
         </div>
       )}

@@ -1,10 +1,10 @@
-@import url('https://static.lenstik.xyz/fonts/font.css');
+@import url('https://fonts.googleapis.com/css?family=Roboto');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 body {
-  font-family: 'Matter', sans-serif;
+  font-family: 'sofia-pro', sans-serif;
   @apply min-h-screen bg-white antialiased;
 }

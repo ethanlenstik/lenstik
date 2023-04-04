@@ -10,6 +10,7 @@ export interface PlayerProps {
   posterUrl?: string
   ratio?: AspectRatio
   showControls?: boolean
+  isFull?: boolean
   options?: {
     autoPlay?: boolean
     muted?: boolean
@@ -24,8 +25,10 @@ const PlayerInstance: FC<PlayerProps> = ({
   posterUrl,
   playerRef,
   options,
-  showControls
+  showControls,
+  isFull
 }) => {
+
   return (
     <Player
       src={permanentUrl}
@@ -38,9 +41,12 @@ const PlayerInstance: FC<PlayerProps> = ({
       loop={options?.loop ?? true}
       showUploadingIndicator={false}
       muted={options?.muted ?? false}
-      controls={{ defaultVolume: 1 }}
+      controls={{ defaultVolume: 0.6, autohide: 0 }}
       autoPlay={options?.autoPlay ?? false}
       showLoadingSpinner={options?.loadingSpinner}
+      theme={{
+        radii: { containerBorderRadius: isFull ? '0px' : '10px' },
+      }}
       autoUrlUpload={
         IS_PRODUCTION && {
           fallback: true,

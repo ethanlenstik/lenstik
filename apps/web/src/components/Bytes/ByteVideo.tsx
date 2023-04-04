@@ -37,7 +37,6 @@ const ByteVideo: FC<Props> = ({
   const videoRef = useRef<HTMLMediaElement>()
   const intersectionRef = useRef<HTMLDivElement>(null)
   const [playing, setPlaying] = useState(false)
-  const mute = useAppStore((state) => state.isMute)
   const thumbnailUrl = imageCdn(
     sanitizeIpfsUrl(getThumbnailUrl(video)),
     'thumbnail_v'
@@ -53,6 +52,12 @@ const ByteVideo: FC<Props> = ({
     videoRef.current?.play().catch(() => { })
     setPlaying(true)
   }
+
+  useEffect(() => {
+    if(currentViewingId == video.id){
+      isShow? pauseVideo(): playVideo()
+    }
+  }, [isShow])
 
   const observer = new IntersectionObserver((data) => {
     if (data[0].target.id && data[0].isIntersecting) {
@@ -83,7 +88,6 @@ const ByteVideo: FC<Props> = ({
   const onClickVideo = (event: any) => {
     event.preventDefault();
     onDetail(video.id)
-    pauseVideo()
   }
 
   const refCallback = (ref: HTMLMediaElement) => {
@@ -116,7 +120,8 @@ const ByteVideo: FC<Props> = ({
         >
           <div className="relative bottom-0">
             <div
-              className={clsx("ultrawide:w-[407px] flex h-screen w-screen min-w-[260px] max-w-[336px] items-center overflow-hidden bg-black md:w-[22vw] md:rounded-xl", isShow ? "md:h-[95vh]" : "md:h-[65vh] md:max-xl:h-[30vh] max-h-[600px] min-h-[500px]")}
+              className={clsx("ultrawide:w-[407px] flex h-screen w-screen min-w-[260px] max-w-[336px] items-center overflow-hidden bg-black md:w-[19.5vw] md:rounded-xl", isShow ? "md:h-[95vh]" : "md:h-[65vh] md:max-xl:h-[30vh] max-h-[600px] min-h-[500px]")}
+              id={currentViewingId === video.id ? "currentVideo" : video.id + "1"}
               style={{
                 backgroundColor: 'transparent'
               }}
@@ -133,12 +138,12 @@ const ByteVideo: FC<Props> = ({
                   posterUrl={thumbnailUrl}
                   ratio="9to16"
                   publicationId={video.id}
-                  showControls={false}
+                  showControls={true}
+                  isFull={isShow}
                   options={{
                     autoPlay: false,
                     loop: true,
                     loadingSpinner: true,
-                    muted: mute
                   }}
                 />
               ) : (
@@ -150,7 +155,7 @@ const ByteVideo: FC<Props> = ({
                 />
               )}
             </div>
-            <TopOverlay onClickVideo={onClickVideo} isPlaying={playing} onPlay={() => playing ? pauseVideo() : playVideo()} />
+            <TopOverlay onClickVideo={onClickVideo} currentId={currentViewingId} onPlay={() => playing ? pauseVideo() : playVideo()} />
             <div className="absolute right-2 bottom-[15%] z-[1] md:hidden">
               <ByteActions video={video} showDetail={() => onDetail(video.id)} />
               {/* {video?.collectModule?.__typename !==

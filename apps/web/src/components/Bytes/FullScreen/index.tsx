@@ -2,6 +2,7 @@ import ChevronDownOutline from '@components/Common/Icons/ChevronDownOutline'
 import ChevronUpOutline from '@components/Common/Icons/ChevronUpOutline'
 import FlagOutline from '@components/Common/Icons/FlagOutline'
 import FullScreenModal from '@components/UIElements/FullScreenModal'
+import useAppStore from '@lib/store'
 import usePersistStore from '@lib/store/persist'
 import clsx from 'clsx'
 import type { Publication } from 'lens'
@@ -39,7 +40,7 @@ const FullScreen: FC<Props> = ({ videos,
 
 }) => {
     const video:any = videos.find(item => item.id === currentViewingId)
-
+    console.log(currentViewingId, video.id)
     const videoRef = useRef<HTMLMediaElement>()
     const intersectionRef = useRef<HTMLDivElement>(null)
     const [playing, setPlaying] = useState(false)
@@ -121,7 +122,6 @@ const FullScreen: FC<Props> = ({ videos,
         showControls={true}
         options={{
             autoPlay: false,
-            muted: false,
             loop: true,
             loadingSpinner: true
         }}
@@ -173,7 +173,7 @@ const FullScreen: FC<Props> = ({ videos,
                                     />
                                 )}
                             </div>
-                            <TopOverlay onClickVideo={onClickVideo} isPlaying={playing} full={true} />
+                            <TopOverlay onClickVideo={onClickVideo} full={true} />
 
                         </div>
                         <div className="relative">
