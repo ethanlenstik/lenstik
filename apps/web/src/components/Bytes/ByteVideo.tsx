@@ -53,12 +53,6 @@ const ByteVideo: FC<Props> = ({
     setPlaying(true)
   }
 
-  useEffect(() => {
-    if(currentViewingId == video.id){
-      isShow? pauseVideo(): playVideo()
-    }
-  }, [isShow])
-
   const observer = new IntersectionObserver((data) => {
     if (data[0].target.id && data[0].isIntersecting) {
       intersectionCallback(data[0].target.id)
@@ -97,6 +91,14 @@ const ByteVideo: FC<Props> = ({
     videoRef.current = ref
     playVideo()
   }
+
+
+  useEffect(() => {
+    if(currentViewingId == video.id){
+     isShow? pauseVideo(): playVideo()
+    }
+  }, [isShow])
+
 
   const channel = video.profile
   return (
