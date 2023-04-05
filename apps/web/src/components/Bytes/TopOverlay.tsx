@@ -23,9 +23,14 @@ const TopOverlay: FC<Props> = ({ onClickVideo, onPlay, full, currentId }) => {
 
   const vidEl = document.querySelector(`#currentVideo`)
 
-  useEffect(()=>{
-   
-  }, [mute])
+  const el = vidEl && vidEl.querySelectorAll<HTMLButtonElement>(`.c-iIOWzi .c-louZZk`)[0]
+  const vol = el && el.getAttribute('title')
+  const isMuted = vol ? vol?.includes('Mute') : true;
+  if(mute){
+    isMuted&& el&& el.click()
+  } else{
+    !isMuted&& el&& el.click()
+  }
 
   const handleClickMute = (e: any) => {
     e.stopPropagation();

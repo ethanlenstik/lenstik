@@ -40,7 +40,6 @@ const FullScreen: FC<Props> = ({ videos,
 
 }) => {
     const video:any = videos.find(item => item.id === currentViewingId)
-    console.log(currentViewingId, video.id)
     const videoRef = useRef<HTMLMediaElement>()
     const intersectionRef = useRef<HTMLDivElement>(null)
     const [playing, setPlaying] = useState(false)
@@ -112,8 +111,9 @@ const FullScreen: FC<Props> = ({ videos,
             return toast.error(SIGN_IN_REQUIRED_MESSAGE)
         }
     }
+    const mute = useAppStore((state) => state.isMute)
 
-    const player = useMemo(() => (<VideoPlayer
+    const player = <VideoPlayer
         refCallback={refCallback}
         permanentUrl={getPublicationMediaUrl(video)}
         posterUrl={thumbnailUrl}
@@ -123,9 +123,10 @@ const FullScreen: FC<Props> = ({ videos,
         options={{
             autoPlay: false,
             loop: true,
-            loadingSpinner: true
+            loadingSpinner: true,
+            muted: mute
         }}
-    />), [video])
+    />
 
     return (<>
 

@@ -146,6 +146,7 @@ const ByteVideo: FC<Props> = ({
                     autoPlay: false,
                     loop: true,
                     loadingSpinner: true,
+                    muted: true
                   }}
                 />
               ) : (
