@@ -39,7 +39,7 @@ const FullScreen: FC<Props> = ({ videos,
 
     const setCurrentViewingId = useAppStore((state) => state.setCurrentviewingId)
     const currentViewingId = useAppStore((state) => state.currentviewingId)
-    const video: any = videos.find(item => item.id === currentViewingId)
+    const video: any = videos?.find(item => item.id === currentViewingId)
     const videoRef = useRef<HTMLMediaElement>()
     const intersectionRef = useRef<HTMLDivElement>(null)
     const [playing, setPlaying] = useState(false)

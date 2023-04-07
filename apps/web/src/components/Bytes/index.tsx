@@ -157,12 +157,12 @@ const Bytes = () => {
         <meta name="theme-color" content="#000000" />
       </Head>
       <MetaTags title="Videos" />
-      {currentViewingId ? <FullScreen
+      {currentViewingId && bytes ? <FullScreen
         videos={bytes}
         close={closeDialog}
         isShow={show}
         nextVideo={detailNext}
-        index={bytes.findIndex((video) => video.id === currentViewingId)}
+        index={bytes?.findIndex((video) => video.id === currentViewingId)}
       /> : null}
       <div
         ref={bytesContainer}

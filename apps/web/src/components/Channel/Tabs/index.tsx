@@ -112,7 +112,7 @@ const Tabs: FC<Props> = ({ channel }) => {
           <MirrorOutline className="h-4 w-4" />
           <span>Mirrored</span>
         </Tab>
-        <Tab
+        {/* <Tab
           onClick={() => {
             handleTabChange('nfts')
             Analytics.track(TRACK.CHANNEL.CLICK_CHANNEL_NFTS)
@@ -128,7 +128,7 @@ const Tabs: FC<Props> = ({ channel }) => {
         >
           <CollectOutline className="h-4 w-4" />
           <span>NFTs</span>
-        </Tab>
+        </Tab> */}
         <Tab
           onClick={() => {
             handleTabChange('stats')
@@ -174,9 +174,9 @@ const Tabs: FC<Props> = ({ channel }) => {
         <Tab.Panel className="focus:outline-none">
           <MirroredVideos channel={channel} />
         </Tab.Panel>
-        <Tab.Panel className="focus:outline-none">
+        {/* <Tab.Panel className="focus:outline-none">
           <CollectedNFTs channel={channel} />
-        </Tab.Panel>
+        </Tab.Panel> */}
         <Tab.Panel className="focus:outline-none">
           <OtherChannels channel={channel} />
         </Tab.Panel>
