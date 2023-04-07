@@ -30,10 +30,11 @@ import FullScreen from './FullScreen'
 
 const Bytes = () => {
   const router = useRouter()
-  const { detail } = router.query
   const bytesContainer = useRef<HTMLDivElement>(null)
   const selectedChannel = useAppStore((state) => state.selectedChannel)
-  const [currentViewingId, setCurrentViewingId] = useState('')
+  const setCurrentViewingId = useAppStore((state) => state.setCurrentviewingId)
+  const currentViewingId = useAppStore((state) => state.currentviewingId)
+
 
   const activeTagFilter = useAppStore((state) => state.activeTagFilter)
   const request =
@@ -100,11 +101,7 @@ const Bytes = () => {
     })
   }
 
-  const currentViewCb = useCallback((id: string) => setCurrentViewingId(id), [bytes])
-
-
-  const openDetail = (id: string) => {
-    setCurrentViewingId(id)
+  const openDetail = () => {
     setShow(!show)
   }
 
@@ -159,11 +156,9 @@ const Bytes = () => {
       <Head>
         <meta name="theme-color" content="#000000" />
       </Head>
-      <MetaTags title="Bytes" />
+      <MetaTags title="Videos" />
       {currentViewingId ? <FullScreen
         videos={bytes}
-        currentViewingId={currentViewingId}
-        intersectionCallback={currentViewCb}
         close={closeDialog}
         isShow={show}
         nextVideo={detailNext}
@@ -186,8 +181,6 @@ const Bytes = () => {
         {bytes?.map((video: Publication, index) => (
           <ByteVideo
             video={video}
-            currentViewingId={currentViewingId}
-            intersectionCallback={currentViewCb}
             key={`${video?.id}_${video.createdAt}1`}
             onDetail={openDetail}
             isShow={show}

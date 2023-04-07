@@ -1,4 +1,3 @@
-import CommentOutline from '@components/Common/Icons/CommentOutline'
 import FireOutline from '@components/Common/Icons/FireOutline'
 import MirrorOutline from '@components/Common/Icons/MirrorOutline'
 import Timeline from '@components/Home/Timeline'
@@ -17,6 +16,7 @@ import {
 } from 'lens'
 import React, { useState } from 'react'
 import { useInView } from 'react-cool-inview'
+import { FaRegCommentAlt } from 'react-icons/fa'
 import {
   Analytics,
   LENS_CUSTOM_FILTERS,
@@ -132,7 +132,7 @@ const ExploreFeed = () => {
             )
           }
         >
-          <CommentOutline className="h-3.5 w-3.5" />
+          <FaRegCommentAlt className="h-3.5 w-3.5" />
           <span>Popular</span>
         </Tab>
         <Tab

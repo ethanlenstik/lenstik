@@ -1,5 +1,4 @@
 import Alert from '@components/Common/Alert'
-import CommentOutline from '@components/Common/Icons/CommentOutline'
 import CopyOutline from '@components/Common/Icons/CopyOutline'
 import MirrorOutline from '@components/Common/Icons/MirrorOutline'
 import MirrorVideo from '@components/Common/MirrorVideo'

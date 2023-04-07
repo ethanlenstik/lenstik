@@ -1,6 +1,3 @@
-import { div } from '@tensorflow/tfjs'
-import clsx from 'clsx'
-import Link from 'next/link'
 import type { FC } from 'react'
 import React, { useState, useEffect } from 'react'
 import { GiPauseButton, GiPlayButton } from 'react-icons/gi'
@@ -9,38 +6,72 @@ import useAppStore from '@lib/store'
 
 type Props = {
   onClickVideo: (event: any) => void
-  currentId?: string
-  onPlay?: () => void
+  id: string
   full?: boolean
 }
 
-const TopOverlay: FC<Props> = ({ onClickVideo, onPlay, full, currentId }) => {
+const TopOverlay: FC<Props> = ({ onClickVideo, full, id }) => {
 
+  const [width, setWidth] = useState<number>(window.innerWidth);
+  const currentViewingId = useAppStore((state) => state.currentviewingId)
   const [mouseEnter, setMouseEnter] = useState(false)
   const setMute = useAppStore((state) => state.setMute)
   const [isPlaying, setPlay] = useState(true)
   const mute = useAppStore((state) => state.isMute)
 
+  const handleWindowSizeChange = () => {
+    setWidth(window.innerWidth);
+  }
+  
+  useEffect(() => {
+    window.addEventListener('resize', handleWindowSizeChange);
+    return () => {
+      window.removeEventListener('resize', handleWindowSizeChange);
+    }
+  }, []);
+
+  const isMobile = width <= 768;
+
   const vidEl = document.querySelector(`#currentVideo`)
 
-  const el = vidEl && vidEl.querySelectorAll<HTMLButtonElement>(`.c-iIOWzi .c-louZZk`)[0]
-  const vol = el && el.getAttribute('title')
-  const isMuted = vol ? vol?.includes('Mute') : true;
-  if(mute){
-    isMuted&& el&& el.click()
-  } else{
-    !isMuted&& el&& el.click()
+  if (currentViewingId === id) {
+    const elVol = vidEl && vidEl.querySelectorAll<HTMLButtonElement>(`button[volume]`)[0]
+    if (elVol) {
+      const vol = elVol.getAttribute('title')
+      const isMuted = vol ? vol?.includes('Mute') : false;
+      if (mute) {
+        isMuted && elVol.click()
+      } else {
+        !isMuted && elVol.click()
+      }
+    }
+
   }
 
+
+  // const vol = el && el.getAttribute('title')
+  // const isMuted = vol ? vol?.includes('Mute') : false;
+  // if(mute){
+  //   isMuted&& el&& el.click()
+  // } else{
+  //   !isMuted&& el&& el.click()
+  // }
+
   const handleClickMute = (e: any) => {
+
     e.stopPropagation();
-    const el = vidEl && vidEl.querySelectorAll<HTMLButtonElement>(`.c-iIOWzi .c-louZZk`)[0]
-    const vol = el && el.getAttribute('title')
-    const isMuted = vol ? vol?.includes('Mute') : true
-    setMute(vol ? vol?.includes('Mute') : true)
-    el && el.click()
-     setMute && setMute(isMuted);
-    // setMute && setMute(!mute);
+    const elVol = vidEl && vidEl.querySelectorAll<HTMLButtonElement>(`button[volume]`)[0]
+    if (!elVol) {
+      return
+    }
+    const vol = elVol.getAttribute('title')
+    const isMuted = vol ? vol?.includes('Mute') : false;
+    if (mute) {
+      isMuted && elVol.click()
+    } else {
+      !isMuted && elVol.click()
+    }
+    setMute && setMute(isMuted);
   }
   const handleClickPlay = (e: any) => {
 
@@ -65,7 +96,7 @@ const TopOverlay: FC<Props> = ({ onClickVideo, onPlay, full, currentId }) => {
           <GiPlayButton className="text-2xl text-white" />
         </div>}
         {!full && <div className='absolute bottom-0 z-[2] flex justify-between w-full'>
-          {mouseEnter ? <button className='ml-5' onClick={handleClickPlay}>
+          {(mouseEnter || isMobile )? <button className='ml-5' onClick={handleClickPlay}>
             {isPlaying ? <GiPauseButton className='w-6 h-6' fill='white' />
               : <GiPlayButton className='w-6 h-6' fill='white' />}
           </button> : <div></div>}

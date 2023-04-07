@@ -69,11 +69,13 @@ interface AppState {
   uploadedVideo: UploadedVideo
   setUploadedVideo: (video: { [k: string]: any }) => void
   selectedChannel: Profile | null
+  currentviewingId: string | null
   videoWatchTime: number
   activeTagFilter: string
   isMute: boolean
   setMute: (isOn: boolean) => void
   setActiveTagFilter: (activeTagFilter: string) => void
+  setCurrentviewingId: (id: string) => void
   setVideoWatchTime: (videoWatchTime: number) => void
   setSelectedChannel: (channel: Profile | null) => void
   setUserSigNonce: (userSigNonce: number) => void
@@ -98,10 +100,12 @@ export const useAppStore = create<AppState>((set) => ({
   activeTagFilter: 'all',
   uploadedVideo: UPLOADED_VIDEO_FORM_DEFAULTS,
   isMute: true,
+  currentviewingId: null,
   setMute: (isMute: boolean) => set({ isMute }),
   setActiveTagFilter: (activeTagFilter) => set({ activeTagFilter }),
   setVideoWatchTime: (videoWatchTime) => set({ videoWatchTime }),
   setSelectedChannel: (channel) => set({ selectedChannel: channel }),
+  setCurrentviewingId: (id)=> set({ currentviewingId: id }),
   setBundlrData: (bundlrData) =>
     set((state) => ({ bundlrData: { ...state.bundlrData, ...bundlrData } })),
   setUserSigNonce: (userSigNonce) => set({ userSigNonce }),

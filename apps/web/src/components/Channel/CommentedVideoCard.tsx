@@ -1,4 +1,3 @@
-import CommentOutline from '@components/Common/Icons/CommentOutline'
 import IsVerified from '@components/Common/IsVerified'
 import Tooltip from '@components/UIElements/Tooltip'
 import clsx from 'clsx'
@@ -6,6 +5,7 @@ import type { Attribute, Comment, Publication } from 'lens'
 import Link from 'next/link'
 import type { FC } from 'react'
 import React from 'react'
+import { FaRegCommentAlt } from 'react-icons/fa'
 import { Analytics, LENSTUBE_BYTES_APP_ID, STATIC_ASSETS, TRACK } from 'utils'
 import { getRelativeTime, getTimeFromSeconds } from 'utils/functions/formatTime'
 import { getValueFromTraitType } from 'utils/functions/getFromAttributes'
@@ -112,7 +112,7 @@ const CommentedVideoCard: FC<Props> = ({ video }) => {
           </div>
           <Tooltip content="Commented">
             <span className="absolute bottom-1 m-2 opacity-70">
-              <CommentOutline className="h-3.5 w-3.5" />
+              <FaRegCommentAlt className="h-3.5 w-3.5" />
             </span>
           </Tooltip>
           <div className="pl-8">

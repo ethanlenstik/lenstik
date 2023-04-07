@@ -42,7 +42,7 @@ const FullScreenModal: FC<Props> = ({
             >
               <Dialog.Panel
                 className={clsx(
-                  'bg-secondary w-full transform rounded-2xl text-left align-middle shadow-xl transition-all h-full',
+                  'bg-secondary w-full transform text-left align-middle shadow-xl transition-all h-full',
                   panelClassName
                 )}
               >

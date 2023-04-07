@@ -1,7 +1,6 @@
 import BytesOutline from '@components/Common/Icons/BytesOutline'
 import ChannelOutline from '@components/Common/Icons/ChannelOutline'
 import CollectOutline from '@components/Common/Icons/CollectOutline'
-import CommentOutline from '@components/Common/Icons/CommentOutline'
 import GraphOutline from '@components/Common/Icons/GraphOutline'
 import InfoOutline from '@components/Common/Icons/InfoOutline'
 import MirrorOutline from '@components/Common/Icons/MirrorOutline'
@@ -21,6 +20,7 @@ import CollectedNFTs from './CollectedNFTs'
 import CommentedVideos from './CommentedVideos'
 import MirroredVideos from './MirroredVideos'
 import OtherChannels from './OtherChannels'
+import { FaRegCommentAlt } from 'react-icons/fa'
 
 type Props = {
   channel: Profile
@@ -92,7 +92,7 @@ const Tabs: FC<Props> = ({ channel }) => {
             )
           }
         >
-          <CommentOutline className="h-4 w-4" />
+          <FaRegCommentAlt className="h-4 w-4" />
           <span>Commented</span>
         </Tab>
         <Tab

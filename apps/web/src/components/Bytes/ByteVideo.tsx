@@ -19,17 +19,13 @@ import useAppStore from '@lib/store'
 
 type Props = {
   video: Publication
-  currentViewingId: string
-  intersectionCallback: (id: string) => void
-  onDetail: (videoId: string) => void
+  onDetail: () => void
   isShow: boolean
   index?: number
 }
 
 const ByteVideo: FC<Props> = ({
   video,
-  currentViewingId,
-  intersectionCallback,
   onDetail,
   isShow,
   index
@@ -42,6 +38,9 @@ const ByteVideo: FC<Props> = ({
     'thumbnail_v'
   )
 
+  const setCurrentViewingId = useAppStore((state) => state.setCurrentviewingId)
+  const currentViewingId = useAppStore((state) => state.currentviewingId)
+
   const playVideo = () => {
     if (!videoRef.current || isShow) {
       return
@@ -53,15 +52,15 @@ const ByteVideo: FC<Props> = ({
     setPlaying(true)
   }
 
-  const observer = new IntersectionObserver((data) => {
+  const observer = new IntersectionObserver((data, observer) => {
     if (data[0].target.id && data[0].isIntersecting) {
-      intersectionCallback(data[0].target.id)
+      setCurrentViewingId(data[0].target.id)
       // if (isShow) {
       //   const nextUrl = `${location.origin}/${video?.id}`
       //   history.replaceState({ path: nextUrl }, '', nextUrl)
       // }
     }
-  })
+  }, {rootMargin: "0px 0px -50% 0px"})
 
   useEffect(() => {
     if (intersectionRef.current) {
@@ -81,7 +80,8 @@ const ByteVideo: FC<Props> = ({
 
   const onClickVideo = (event: any) => {
     event.preventDefault();
-    onDetail(video.id)
+    setCurrentViewingId(video.id)
+    onDetail()
   }
 
   const refCallback = (ref: HTMLMediaElement) => {
@@ -122,7 +122,7 @@ const ByteVideo: FC<Props> = ({
         >
           <div className="relative bottom-0">
             <div
-              className={clsx("ultrawide:w-[407px] flex h-screen w-screen min-w-[260px] max-w-[336px] items-center overflow-hidden bg-black md:w-[19.5vw] md:rounded-xl", isShow ? "md:h-[95vh]" : "md:h-[65vh] md:max-xl:h-[30vh] max-h-[600px] min-h-[500px]")}
+              className={clsx("ultrawide:w-[407px] flex h-screen w-screen min-w-[260px] max-w-[336px] items-center overflow-hidden bg-black md:w-[19.5vw] md:rounded-xl","md:h-[65vh] md:max-xl:h-[30vh] max-h-[600px] min-h-[500px]")}
               id={currentViewingId === video.id ? "currentVideo" : video.id + "1"}
               style={{
                 backgroundColor: 'transparent'
@@ -141,7 +141,7 @@ const ByteVideo: FC<Props> = ({
                   ratio="9to16"
                   publicationId={video.id}
                   showControls={true}
-                  isFull={isShow}
+                  isFull={false}
                   options={{
                     autoPlay: false,
                     loop: true,
@@ -158,9 +158,9 @@ const ByteVideo: FC<Props> = ({
                 />
               )}
             </div>
-            <TopOverlay onClickVideo={onClickVideo} currentId={currentViewingId} onPlay={() => playing ? pauseVideo() : playVideo()} />
+            <TopOverlay onClickVideo={onClickVideo} id={video.id} />
             <div className="absolute right-2 bottom-[15%] z-[1] md:hidden">
-              <ByteActions video={video} showDetail={() => onDetail(video.id)} />
+              <ByteActions video={video} showDetail={() => onDetail()} />
               {/* {video?.collectModule?.__typename !==
                 'RevertCollectModuleSettings' && (
                   <div className="text-center text-white md:text-gray-500">
@@ -173,7 +173,7 @@ const ByteVideo: FC<Props> = ({
             </div>
           </div>
           <div className="hidden md:flex">
-            <ByteActions video={video} showDetail={() => onDetail(video.id)} />
+            <ByteActions video={video} showDetail={() => onDetail()} />
           </div>
         </div>
       </div>

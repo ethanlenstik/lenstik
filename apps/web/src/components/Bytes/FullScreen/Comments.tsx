@@ -1,4 +1,3 @@
-import CommentOutline from '@components/Common/Icons/CommentOutline'
 import Modal from '@components/UIElements/Modal'
 import VideoComments from '@components/Watch/VideoComments'
 import { Link } from 'interweave-autolink'

@@ -5,6 +5,6 @@
 @tailwind utilities;
 
 body {
-  font-family: 'sofia-pro', sans-serif;
+  font-family: 'roboto', sans-serif;
   @apply min-h-screen bg-white antialiased;
 }

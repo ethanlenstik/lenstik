@@ -96,7 +96,7 @@ const Sidebar = () => {
             </Link>
             <Link
               href="/live"
-              className={clsx('flex items-center pt-1 focus:outline-none my-2 p-2 dark:hover:bg-gray-600  hover:bg-gray-200', isActivePath('/live')&& 'text-red-500')}
+              className={clsx('hidden flex items-center pt-1 focus:outline-none my-2 p-2 dark:hover:bg-gray-600  hover:bg-gray-200', isActivePath('/live')&& 'text-red-500')}
             >
               <RiLiveLine className='text-2xl' />
               <span className='text-lg font-bold ml-3' >Live</span>

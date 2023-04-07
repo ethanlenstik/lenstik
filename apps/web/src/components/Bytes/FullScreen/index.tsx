@@ -20,26 +20,26 @@ import useAverageColor from 'utils/hooks/useAverageColor'
 import VideoPlayer from 'web-ui/VideoPlayer'
 import TopOverlay from '../TopOverlay'
 import Comments from './Comments'
+import ByteActions from '../ByteActions'
 
 type Props = {
-    videos: Publication []
-    currentViewingId: string
-    intersectionCallback: (id: string) => void
+    videos: Publication[]
     close: () => void
     isShow: boolean
     nextVideo: (val: 1 | -1) => void
     index?: number
 }
 const FullScreen: FC<Props> = ({ videos,
-    currentViewingId,
-    intersectionCallback,
     close,
     isShow,
     nextVideo,
     index = 0
 
 }) => {
-    const video:any = videos.find(item => item.id === currentViewingId)
+
+    const setCurrentViewingId = useAppStore((state) => state.setCurrentviewingId)
+    const currentViewingId = useAppStore((state) => state.currentviewingId)
+    const video: any = videos.find(item => item.id === currentViewingId)
     const videoRef = useRef<HTMLMediaElement>()
     const intersectionRef = useRef<HTMLDivElement>(null)
     const [playing, setPlaying] = useState(false)
@@ -63,7 +63,7 @@ const FullScreen: FC<Props> = ({ videos,
 
     const observer = new IntersectionObserver((data) => {
         if (data[0].target.id && data[0].isIntersecting) {
-            intersectionCallback(data[0].target.id)
+            setCurrentViewingId(data[0].target.id)
             const nextUrl = `${location.origin}/${video?.id}`
             history.replaceState({ path: nextUrl }, '', nextUrl)
             playVideo()
@@ -120,6 +120,7 @@ const FullScreen: FC<Props> = ({ videos,
         ratio="9to16"
         publicationId={video.id}
         showControls={true}
+        isFull={true}
         options={{
             autoPlay: false,
             loop: true,
@@ -127,6 +128,12 @@ const FullScreen: FC<Props> = ({ videos,
             muted: mute
         }}
     />
+
+    const displayControl = (isDisplay: boolean) =>{
+        
+  const vidEl = document.querySelector(`#videoFull`)
+  const elVol = vidEl && vidEl.querySelectorAll<HTMLButtonElement>(`button[volume]`)[0]
+    }
 
     return (<>
 
@@ -140,11 +147,12 @@ const FullScreen: FC<Props> = ({ videos,
             <div
                 className="flex snap-center justify-between"
                 data-testid="byte-video"
+                id="videoFull"
             >
                 <div className='grow relative'>
                     <div className='absolute z-0 bottom-0 left-0 top-0 right-0 bg-cover bg-center' style={{ backgroundImage: `url(${thumbnailUrl})` }}></div>
                     <div className='flex backdrop-blur-md backdrop-brightness-[0.2]' >
-                        <div className='max-md:hidden z-10 '>
+                        <div className='z-10 max-md:absolute'>
                             <button
                                 type="button"
                                 className="p-2 focus:outline-none m-5 rounded-full  bg-slate-600"
@@ -159,6 +167,8 @@ const FullScreen: FC<Props> = ({ videos,
                                 style={{
                                     backgroundColor: backgroundColor ? backgroundColor : undefined
                                 }}
+                                onMouseEnter={()=>displayControl(true)}
+                                onMouseLeave={()=>displayControl(false)}
                             >
                                 <div
                                     className="absolute"
@@ -174,10 +184,14 @@ const FullScreen: FC<Props> = ({ videos,
                                     />
                                 )}
                             </div>
-                            <TopOverlay onClickVideo={onClickVideo} full={true} />
+                            <div className="absolute z-10 right-0 bottom-10">
+                                <ByteActions video={video} inDetail={true} />
+                            </div>
+
+                            <TopOverlay onClickVideo={onClickVideo} full={true} id={video.id} />
 
                         </div>
-                        <div className="relative">
+                        <div className="relative max-md:hidden">
                             <button
                                 type="button"
                                 onClick={() => onClickReport()}
@@ -210,7 +224,6 @@ const FullScreen: FC<Props> = ({ videos,
                     </div>
                 </div>
                 <div className='flex w-[30vw] max-md:hidden max-w-[544px]'>
-
                     <Comments video={video} />
                 </div>
             </div>

@@ -1,6 +1,5 @@
 import BellOutline from '@components/Common/Icons/BellOutline'
 import CollectOutline from '@components/Common/Icons/CollectOutline'
-import CommentOutline from '@components/Common/Icons/CommentOutline'
 import LikeOutline from '@components/Common/Icons/LikeOutline'
 import MentionOutline from '@components/Common/Icons/MentionOutline'
 import SubscribeOutline from '@components/Common/Icons/SubscribeOutline'
@@ -30,6 +29,7 @@ import MentionedNotification from './Mentioned'
 import MirroredNotification from './Mirrored'
 import ReactedNotification from './Reacted'
 import SubscribedNotification from './Subscribed'
+import { FaRegCommentAlt } from 'react-icons/fa'
 
 const initialFilters = {
   all: false,
@@ -182,7 +182,7 @@ const Notifications = () => {
                 )
               }
             >
-              <CommentOutline className="h-3.5 w-3.5" />
+              <FaRegCommentAlt className="h-3.5 w-3.5" />
               <span>Comments</span>
             </Tab>
             <Tab

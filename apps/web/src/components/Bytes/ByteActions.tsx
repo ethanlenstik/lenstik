@@ -1,4 +1,3 @@
-import CommentOutline from '@components/Common/Icons/CommentOutline'
 import MirrorOutline from '@components/Common/Icons/MirrorOutline'
 import MirrorVideo from '@components/Common/MirrorVideo'
 import ReportModal from '@components/Common/VideoCard/ReportModal'
@@ -11,13 +10,16 @@ import type { Publication } from 'lens'
 import type { FC } from 'react'
 import React, { useState } from 'react'
 import { RiShareForwardLine } from 'react-icons/ri'
+import CommentModal from './CommentModal'
+import { FaRegCommentAlt } from 'react-icons/fa'
 
 type Props = {
   video: Publication
-  showDetail: () => void
+  showDetail?: () => void
+  inDetail?: boolean
 }
 
-const ByteActions: FC<Props> = ({ video, showDetail }) => {
+const ByteActions: FC<Props> = ({ video, showDetail, inDetail }) => {
   const [showShare, setShowShare] = useState(false)
   const [showReport, setShowReport] = useState(false)
 
@@ -42,11 +44,17 @@ const ByteActions: FC<Props> = ({ video, showDetail }) => {
           />
         </div>
         <div className="w-full text-center text-white md:text-inherit">
-          <button type='button' onClick={showDetail}>
-          <div className=' rounded-full  bg-gray-200 dark:bg-gray-600 p-2'>
-            <CommentOutline className="h-5 w-5" />
-          </div>
-          </button>
+          {
+            !inDetail ? <button type='button' onClick={showDetail} className='md-max:hidden'>
+              <div className=' rounded-full  bg-gray-200 dark:bg-gray-600 p-2'>
+                <FaRegCommentAlt className="h-5 w-5" />
+              </div>
+            </button> : <CommentModal video={video} trigger={
+              <div className=' rounded-full  bg-gray-200 dark:bg-gray-600 p-2'>
+                <FaRegCommentAlt className="h-5 w-5" />
+              </div>} />
+          }
+
         </div>
         <div className="w-full text-center text-white md:text-inherit">
           <MirrorVideo video={video}>

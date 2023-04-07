@@ -1,9 +1,11 @@
-import CommentOutline from '@components/Common/Icons/CommentOutline'
+import FullScreenModal from '@components/UIElements/FullScreenModal'
 import Modal from '@components/UIElements/Modal'
 import VideoComments from '@components/Watch/VideoComments'
 import type { Publication } from 'lens'
 import type { FC } from 'react'
 import React, { useState } from 'react'
+import { FaRegCommentAlt } from 'react-icons/fa'
+import { MdOutlineClose } from 'react-icons/md'
 
 type Props = {
   trigger: React.ReactNode
@@ -22,22 +24,24 @@ const CommentModal: FC<Props> = ({ trigger, video }) => {
       >
         {trigger}
       </button>
-      <Modal
-        title={
-          <span className="flex items-center space-x-2 text-lg">
-            <CommentOutline className="h-4 w-4" />
-            <span className="font-semibold">Comments</span>
-          </span>
-        }
+      <FullScreenModal
         panelClassName="max-w-lg lg:ml-9"
         show={show}
         autoClose
-        onClose={() => setShow(false)}
       >
+        <div className='z-10 max-md:absolute'>
+          <button
+            type="button"
+            className="p-1 focus:outline-none m-4 rounded-full  bg-slate-600"
+            onClick={() =>  setShow(false)}
+          >
+            <MdOutlineClose className='text-white w-4 h-4' />
+          </button>
+        </div>
         <div className="no-scrollbar max-h-[40vh] overflow-y-auto pt-3">
           <VideoComments video={video} hideTitle />
         </div>
-      </Modal>
+      </FullScreenModal>
     </>
   )
 }
