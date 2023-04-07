@@ -129,10 +129,14 @@ const FullScreen: FC<Props> = ({ videos,
         }}
     />
 
-    const displayControl = (isDisplay: boolean) =>{
-        
-  const vidEl = document.querySelector(`#videoFull`)
-  const elVol = vidEl && vidEl.querySelectorAll<HTMLButtonElement>(`button[volume]`)[0]
+    const displayControl = (videoFull: boolean) =>{
+        const vidEl = document.querySelector(`#videoFull`)
+        const elVol = vidEl && vidEl.querySelectorAll<HTMLButtonElement>(`#videoFull .c-hmIsCl`)[0]
+        console.log("xxxx", elVol)
+       if (!elVol){
+        return
+    }
+        elVol.style.visibility = videoFull?"visible":"hidden"
     }
 
     return (<>
@@ -161,14 +165,14 @@ const FullScreen: FC<Props> = ({ videos,
                                 <MdOutlineClose className='text-white w-6 h-6' />
                             </button>
                         </div>
-                        <div className={clsx("relative max-md:w-full grow flex mr-5")} >
+                        <div className={clsx("relative max-md:w-full grow flex mr-5")} 
+                                onMouseEnter={()=>displayControl(true)}
+                                onMouseLeave={()=>displayControl(false)}>
                             <div
                                 className="flex h-screen  items-center bg-black md:h-[calc(100vh)] md:w-[56.3vh] md:rounded-sm m-auto"
                                 style={{
                                     backgroundColor: backgroundColor ? backgroundColor : undefined
                                 }}
-                                onMouseEnter={()=>displayControl(true)}
-                                onMouseLeave={()=>displayControl(false)}
                             >
                                 <div
                                     className="absolute"
@@ -184,7 +188,7 @@ const FullScreen: FC<Props> = ({ videos,
                                     />
                                 )}
                             </div>
-                            <div className="absolute z-10 right-0 bottom-10">
+                            <div className="absolute z-10 right-0 bottom-10 md:hidden">
                                 <ByteActions video={video} inDetail={true} />
                             </div>
 

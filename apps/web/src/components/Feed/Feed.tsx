@@ -96,8 +96,6 @@ const HomeFeed = () => {
     <div className='mt-12'>
       {currentVideo ? <FullScreen
         videos={bytes}
-        currentViewingId={currentViewingId}
-        intersectionCallback={currentViewCb}
         close={closeDialog}
         isShow={show}
         nextVideo={detailNext}
@@ -111,8 +109,6 @@ const HomeFeed = () => {
             {bytes?.map((video: Publication, index) => (
               <ByteVideo
                 video={video}
-                currentViewingId={currentViewingId}
-                intersectionCallback={currentViewCb}
                 key={`${video?.id}_${video.createdAt}1`}
                 onDetail={openDetail}
                 isShow={show}
