@@ -10,7 +10,7 @@ import getProfilePicture from 'utils/functions/getProfilePicture'
 
 type Props = {
   video: Publication
-  btnSize?: "sm" |"md" | "lg" | "xl" 
+  btnSize?: "sm" | "md" | "lg" | "xl"
 }
 
 const BottomOverlay: FC<Props> = ({ video, btnSize }) => {
@@ -20,11 +20,15 @@ const BottomOverlay: FC<Props> = ({ video, btnSize }) => {
     <div className="z-[1] pt-5 pb-3 md:rounded-b-xl mr-1">
       <div className="flex justify-between">
         <div>
-          <a href={`/channel/${channel?.handle}`}><span className="font-bold text-base">{video.profile.name}</span> <span className='text-sm font-thin inline-flex'>@{video.profile.handle} &nbsp; <Tooltip content="Verified" placement="right">
-                                <span>
-                                    <IsVerified id={channel?.id} size="md" />
-                                </span>
-                            </Tooltip></span></a>
+          <a href={`/channel/${channel?.handle}`}>
+            <span className="font-bold text-base">{video.profile.name}</span>
+            <span className='text-sm font-thin inline-flex'>@{video.profile.handle} &nbsp; <Tooltip content="Verified" placement="right">
+              <span>
+                <IsVerified id={channel?.id} size="md" />
+              </span>
+            </Tooltip>
+            </span>
+          </a>
           <h1 className="line-clamp-2 text-base">{video.metadata.name} <span>
             {
               video.metadata.tags?.map(tag => <span key={tag} className='font-bold'>#{tag}</span>)

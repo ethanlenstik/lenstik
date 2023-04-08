@@ -26,6 +26,9 @@ import { Link } from 'interweave-autolink'
 import getProfilePicture from 'utils/functions/getProfilePicture'
 import useCopyToClipboard from 'utils/hooks/useCopyToClipboard'
 import toast from 'react-hot-toast'
+import IsVerified from '@components/Common/IsVerified'
+import SubscribeActions from '@components/Common/SubscribeActions'
+import Tooltip from '@components/UIElements/Tooltip'
 
 const Comment = dynamic(() => import('./Comment'))
 
@@ -101,24 +104,49 @@ const VideoComments: FC<Props> = ({ video, hideTitle = false }) => {
     toast.success('Link copied to clipboard')
     // Analytics.track(TRACK.COPY.VIDEO_URL)
   }
+
+  const subscribeType = video.profile?.followModule?.__typename
   return (
     <>
       <div className='mx-7 h-[290px] relative'>
         <div className='flex justify-between'>
-          <div className='flex items-center m-2'>
-            <Link
-              href={`/channel/${channel?.handle}`}
-            >
-              <img
-                src={getProfilePicture(channel, 'avatar')}
-                className="h-10 w-10 rounded-full"
-                draggable={false}
-                alt={channel?.handle}
-              />
-            </Link>
-          </div>
-          <div className='grow'>
-            <BottomOverlay video={video} btnSize="md" />
+          <div className="z-[1] pt-5 pb-3 md:rounded-b-xl mr-1">
+            <div className="flex justify-between">
+              <div>
+                <div className='flex mb-5 justify-between flex-wrap'>
+                  <a className='flex gap-4' href={`/channel/${channel?.handle}`}>
+                    <img
+                      src={getProfilePicture(channel, 'avatar')}
+                      className="h-10 w-10 rounded-full mt-1"
+                      draggable={false}
+                      alt={channel?.handle}
+                    />
+                    <div>
+                      <span className="font-bold text-base">{video.profile.name}</span> <br />
+                      <span className='text-sm font-thin inline-flex'>@{video.profile.handle} &nbsp; <Tooltip content="Verified" placement="right">
+                        <span>
+                          <IsVerified id={channel?.id} size="md" />
+                        </span>
+                      </Tooltip>
+                      </span>
+                    </div>
+                  </a>
+                  <div className="mt-1 mb-auto">
+                    <SubscribeActions
+                      channel={video.profile}
+                      subscribeType={subscribeType}
+                      size={'md'}
+                    />
+                  </div>
+                </div>
+                <h1 className="line-clamp-2 text-base">{video.metadata.name} <span>
+                  {
+                    video.metadata.tags?.map(tag => <span key={tag} className='font-bold'>#{tag}</span>)
+                  }
+                </span></h1>
+              </div>
+
+            </div>
           </div>
         </div>
         <div className='absolute bottom-0 w-full ml-1'>
