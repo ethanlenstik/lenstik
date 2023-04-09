@@ -76,7 +76,7 @@ const Tabs: FC<Props> = ({ channel }) => {
           }
         >
           <BytesOutline className="h-4 w-4" />
-          <span>Bytes</span>
+          <span>Videos</span>
         </Tab>
         <Tab
           onClick={() => {

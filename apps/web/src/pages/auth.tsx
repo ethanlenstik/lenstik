@@ -24,7 +24,6 @@ const AuthRequiredPage = () => {
           alt={LENSTUBE_APP_NAME}
           draggable={false}
           height={50}
-          width={50}
         />
         <div className="flex flex-col items-center justify-center py-10">
           <h1 className="mb-4 text-3xl font-bold">Sign In Required</h1>

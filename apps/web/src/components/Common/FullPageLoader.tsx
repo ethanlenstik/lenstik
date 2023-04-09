@@ -12,7 +12,7 @@ const FullPageLoader = () => {
         <img
           src={`/images/logo.png`}
           draggable={false}
-          className="h-12 w-12"
+          className="h-12"
           alt="lenstik"
         />
       </div>

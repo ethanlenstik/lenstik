@@ -1,6 +1,6 @@
 import { CustomFiltersTypes } from 'lens'
 
-export const LENSTUBE_APP_NAME = 'Lenstube'
+export const LENSTUBE_APP_NAME = 'Lenstik'
 export const LENSTUBE_APP_DESCRIPTION =
   'Lenstube is a decentralized video-sharing social media platform built with Lens protocol.'
 

@@ -132,7 +132,7 @@ const Notifications = () => {
               }
             >
               <BellOutline className="h-3.5 w-3.5" />
-              <span className="whitespace-nowrap">All Notifications</span>
+              <span className="whitespace-nowrap text-base font-normal">All Notifications</span>
             </Tab>
             <Tab
               onClick={() => {
@@ -149,7 +149,7 @@ const Notifications = () => {
               }
             >
               <SubscribeOutline className="h-3.5 w-3.5" />
-              <span>Subscriptions</span>
+              <span className='text-base font-normal'>Subscriptions</span>
             </Tab>
             <Tab
               onClick={() => {
@@ -166,7 +166,7 @@ const Notifications = () => {
               }
             >
               <LikeOutline className="h-3.5 w-3.5" />
-              <span>Likes</span>
+              <span className='text-base font-normal'>Likes</span>
             </Tab>
             <Tab
               onClick={() => {
@@ -183,7 +183,7 @@ const Notifications = () => {
               }
             >
               <FaRegCommentAlt className="h-3.5 w-3.5" />
-              <span>Comments</span>
+              <span className='text-base font-normal'>Comments</span>
             </Tab>
             <Tab
               onClick={() => {
@@ -200,7 +200,7 @@ const Notifications = () => {
               }
             >
               <MentionOutline className="h-3.5 w-3.5" />
-              <span>Mentions</span>
+              <span className='text-base font-normal'>Mentions</span>
             </Tab>
             <Tab
               onClick={() => {
@@ -217,7 +217,7 @@ const Notifications = () => {
               }
             >
               <CollectOutline className="h-3.5 w-3.5" />
-              <span>Collected</span>
+              <span className='text-base font-normal'>Collected</span>
             </Tab>
           </Tab.List>
         </div>

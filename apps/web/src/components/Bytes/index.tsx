@@ -156,7 +156,7 @@ const Bytes = () => {
       <Head>
         <meta name="theme-color" content="#000000" />
       </Head>
-      <MetaTags title="Videos" />
+      <MetaTags title="Lens Tik" />
       {currentViewingId && bytes ? <FullScreen
         videos={bytes}
         close={closeDialog}

@@ -37,13 +37,13 @@ const AccountItem: FC<Props> = ({ channel, isSuggested }) => {
                         alt={channel?.handle}
                     />
                     <div>
-                        {(
+                        { (
                             <h1 className="flex items-center text-md font-bold lowercase">
                                 {channel?.handle}
                             </h1>
                         )}
                         <h2
-                            className="flex items-center text-md font-bold lowercase text-gray-400 text-xs"
+                            className="flex items-center font-bold lowercase text-gray-400 text-xs"
                             data-testid="channel-name"
                         >
                             <span>{channel.name}</span>

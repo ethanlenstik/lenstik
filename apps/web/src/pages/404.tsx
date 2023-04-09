@@ -16,7 +16,6 @@ export default function Custom404() {
           alt={LENSTUBE_APP_NAME}
           draggable={false}
           height={50}
-          width={50}
         />
         <div className="py-10 text-center">
           <h1 className="mb-4 text-3xl font-bold">404</h1>
