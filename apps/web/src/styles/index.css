@@ -1,11 +1,11 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto');
+@import url('https://fonts.googleapis.com/css?family=Inter:600,700,500,300,400,800');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 body {
-  font-family: 'roboto', sans-serif;
+  font-family: 'Inter', ui-sans-serif;
   @apply antialiased dark:text-white bg-white bg-fixed dark:bg-neutral-900 text-black min-h-screen;
 }
 

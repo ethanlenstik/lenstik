@@ -38,7 +38,7 @@ const AccountItem: FC<Props> = ({ channel, isSuggested }) => {
                     />
                     <div>
                         {channel.name && (
-                            <h1 className="flex items-center space-x-1.5 font-bold md:text-sm">
+                            <h1 className="flex items-center text-md font-bold">
                                 {channel.name}
                             </h1>
                         )}
