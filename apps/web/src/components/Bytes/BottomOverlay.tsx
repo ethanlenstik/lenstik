@@ -29,7 +29,7 @@ const BottomOverlay: FC<Props> = ({ video, btnSize }) => {
             </Tooltip>
             </span>
           </a>
-          <h1 className="line-clamp-2 text-base">{video.metadata.name} <span>
+          <h1 className="line-clamp-2 text-sm mt-2 font-normal">{video.metadata.name} <span>
             {
               video.metadata.tags?.map(tag => <span key={tag} className='font-bold'>#{tag}</span>)
             }
