@@ -58,32 +58,20 @@ const CategoryFilters = () => {
       className="ultrawide:max-w-[110rem] mx-1 pt-4"
       data-testid="category-filters"
     >
-      <h3 className='mb-2 text-gray-500 font-bold text-sm'>Discover</h3>
+      <h3 className='mb-2 text-gray-500 font-bold text-md'>Discover</h3>
       <div
         className=" items-center"
       >
-        <button
-          type="button"
-          onClick={() => onFilter('all')}
-          className={clsx(
-            'rounded-full border border-gray-200 px-3 py-1 my-1 text-xs capitalize dark:border-gray-700 mr-2',
-            activeTagFilter === 'all'
-              ? 'bg-black text-white'
-              : 'bg-gray-100 dark:bg-gray-800'
-          )}
-        >
-          All
-        </button>
         {CREATOR_VIDEO_CATEGORIES.map((category) => (
           <button
             type="button"
             onClick={() => onFilter(category.tag)}
             key={category.tag}
             className={clsx(
-              'whitespace-nowrap rounded-full border border-gray-200 px-2 py-1 text-xs capitalize dark:border-gray-700 my-1 mr-2 inline-flex',
+              'whitespace-nowrap rounded-lg border border-gray-200 px-2 py-1 text-md font capitalize dark:border-gray-700 my-1 mr-2 inline-flex',
               activeTagFilter === category.tag
                 ? 'bg-black text-white'
-                : 'bg-gray-100 dark:bg-gray-800'
+                : 'bg-gray-50 dark:bg-gray-800'
             )}
           >
             <span className='m-auto'>{category.icon}</span>

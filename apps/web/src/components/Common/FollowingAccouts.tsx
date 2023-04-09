@@ -20,10 +20,10 @@ const FollowingAccounts: FC<PropsAccs> = ({profile}) => {
     const displayProFiles = isAllSuggest?  followers?.followers.items: followers?.followers.items.slice(0,4)
 
     return <div className="border-b dark:border-b-slate-800 border-b-slate-100">
-        <h3 className='text-gray-500 font-semibold text-sm ml-1 mt-4'>Following Accounts</h3>
+        <h3 className='text-gray-500 font-bold text-md mb-3 ml-1'>Following Accounts</h3>
         <div className="py-[10px]">
             {
-                displayProFiles?displayProFiles?.map(channel => <AccountItem key={channel.wallet.address} channel={channel.wallet.defaultProfile}/>): <span className="text-sm text-gray-500">Log in to follow creators, like videos, and view comments.</span>
+                displayProFiles?displayProFiles?.map(channel => <AccountItem key={channel.wallet.address} channel={channel.wallet.defaultProfile}/>): <p className="text-sm text-gray-500 pl-1">Log in to follow creators, like videos, and view comments.</p>
             }
         </div>
         <div className='ml-1 mb-3'>

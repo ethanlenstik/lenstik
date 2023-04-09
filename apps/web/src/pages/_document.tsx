@@ -34,25 +34,25 @@ class LenstubeDocument extends Document {
           <meta name="msapplication-TileColor" content="#da532c" />
           <meta name="theme-color" content="#000000" />
 
-          {IS_MAINNET && (
-            <Script
-              strategy="lazyOnload"
-              id="tinybird"
-              defer
-              src="https://unpkg.com/@tinybirdco/flock.js"
-              data-host="https://api.tinybird.co"
-              data-token="p.eyJ1IjogImI1YzEwMWY0LTY0MmMtNDJhNy1hZmMxLWIwMjNkZjU2ZWY5YiIsICJpZCI6ICIzY2RmMjVmNi1lMmQ4LTQ3MGItYmFlMy02MDBlMDU4MDQyN2EifQ.67XL26aJbQyvWHEFpyzg38DA3OHRpdIVsQ4FdyD2G5A"
-            />
-          )}
-        </Head>
-        {/* className="bg-[url('/compare.png')] bg-cover bg-center" */}
-        <body >
-          <Main />
-          <NextScript />
-        </body>
-      </Html>
-    )
+              {IS_MAINNET && (
+                <Script
+                  strategy="lazyOnload"
+                  id="tinybird"
+                  defer
+                  src="https://unpkg.com/@tinybirdco/flock.js"
+                  data-host="https://api.tinybird.co"
+                  data-token="p.eyJ1IjogImI1YzEwMWY0LTY0MmMtNDJhNy1hZmMxLWIwMjNkZjU2ZWY5YiIsICJpZCI6ICIzY2RmMjVmNi1lMmQ4LTQ3MGItYmFlMy02MDBlMDU4MDQyN2EifQ.67XL26aJbQyvWHEFpyzg38DA3OHRpdIVsQ4FdyD2G5A"
+                />
+              )}
+            </Head>
+            {/* className="bg-[url('/compare.png')] bg-cover bg-center" */}
+            <body >
+              <Main />
+              <NextScript />
+            </body>
+          </Html>
+          )
   }
 }
 
-export default LenstubeDocument
+          export default LenstubeDocument

@@ -113,7 +113,7 @@ const Header: FC<Props> = ({ className }) => {
                     </Button>
                   </Link>
                 </a>
-                <a>
+                {/* <a>
                   <Link
 
                     href="/message"
@@ -126,7 +126,7 @@ const Header: FC<Props> = ({ className }) => {
                       )}
                     </button>
                   </Link>
-                </a>
+                </a> */}
                 <a>
                   <Link
 

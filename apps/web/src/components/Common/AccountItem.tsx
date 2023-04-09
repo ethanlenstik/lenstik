@@ -37,16 +37,16 @@ const AccountItem: FC<Props> = ({ channel, isSuggested }) => {
                         alt={channel?.handle}
                     />
                     <div>
-                        {channel.name && (
-                            <h1 className="flex items-center text-md font-bold">
-                                {channel.name}
+                        {(
+                            <h1 className="flex items-center text-md font-bold lowercase">
+                                {channel?.handle}
                             </h1>
                         )}
                         <h2
-                            className="flex items-center space-x-1.5 md:text-xs"
+                            className="flex items-center text-md font-bold lowercase text-gray-400 text-xs"
                             data-testid="channel-name"
                         >
-                            <span>@{channel?.handle}</span>
+                            <span>{channel.name}</span>
                             <Tooltip content="Verified" placement="right">
                                 <span>
                                     <IsVerified id={channel?.id} size="md" />

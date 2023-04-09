@@ -1,16 +1,16 @@
-@import url('https://fonts.googleapis.com/css?family=Inter:600,700,500,300,400,800');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;700&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 body {
-  font-family: 'Inter', ui-sans-serif;
+  font-family: 'Inter var', ui-sans-serif;
   @apply antialiased dark:text-white bg-white bg-fixed dark:bg-neutral-900 text-black min-h-screen;
 }
 
 .btn-primary {
-  @apply disabled:opacity-50 focus:outline-none font-bold border border-gray-700;
+  @apply disabled:opacity-50 focus:outline-none rounded-lg  font-bold border border-gray-700;
 }
 
 .btn-danger {
@@ -22,7 +22,7 @@ body {
 }
 
 .btn-secondary {
-  @apply disabled:opacity-50 rounded border border-pink-500 focus:outline-none dark:hover:bg-pink-100 hover:bg-pink-100 hover:text-pink-500  text-pink-600;
+  @apply disabled:opacity-50 rounded-lg border border-pink-500 focus:outline-none dark:hover:bg-pink-100 hover:bg-pink-100 hover:text-pink-500  text-pink-600;
 }
 
 .text-secondary {

@@ -42,7 +42,7 @@ export const Button = forwardRef<HTMLButtonElement, Props>(function Button(
           'btn-secondary': variant === 'secondary'
         },
         {
-          'px-6 py-1.5 text-xs': size === 'sm',
+          'px-6 py-1 text-md text-bold': size === 'sm',
           'px-7 py-1.5 text-sm': size === 'md',
           'px-8 py-3 text-base': size === 'lg',
           'px-9 py-4 text-lg': size === 'xl'
