@@ -14,7 +14,7 @@ type Props = {
   viewingChannelId: string
 }
 
-const FETCH_COUNT = 4
+const FETCH_COUNT = 3
 
 const MutualSubscribers: FC<Props> = ({ viewingChannelId }) => {
   const selectedChannel = useAppStore((state) => state.selectedChannel)

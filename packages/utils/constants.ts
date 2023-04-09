@@ -9,7 +9,7 @@ export const IS_MAINNET = LENS_ENV === 'mainnet'
 
 export const STATIC_ASSETS = 'https://static.lenstube.xyz'
 export const LENSTUBE_WEBSITE_URL = IS_MAINNET
-  ? 'https://lenstube.xyz'
+  ? 'https://lenstik.xyz'
   : 'https://testnet.lenstube.xyz'
 export const FALLBACK_COVER_URL = `${STATIC_ASSETS}/images/fallbackThumbnail.png`
 export const OG_IMAGE = `${STATIC_ASSETS}/images/seo/og.png`

@@ -12,7 +12,7 @@ import {
 import type { FC } from 'react'
 import React, { useState } from 'react'
 import toast from 'react-hot-toast'
-import { AiOutlineHeart } from 'react-icons/ai'
+import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai'
 import { Analytics, SIGN_IN_REQUIRED_MESSAGE, TRACK } from 'utils'
 import { formatNumber } from 'utils/functions/formatNumber'
 
@@ -140,6 +140,13 @@ const PublicationReaction: FC<Props> = ({
         >
 
           <div className=' rounded-full  bg-gray-200 dark:bg-gray-600 p-2'>
+          {reaction.isLiked? <AiFillHeart
+              className={clsx({
+                'h-3.5 w-3.5': iconSize === 'sm',
+                'h-6 w-6': iconSize === 'lg',
+                'h-4 w-4': iconSize === 'base',
+              },)}
+            />:
             <AiOutlineHeart
               className={clsx({
                 'h-3.5 w-3.5': iconSize === 'sm',
@@ -147,7 +154,7 @@ const PublicationReaction: FC<Props> = ({
                 'h-4 w-4': iconSize === 'base',
                 'text-green-500': reaction.isLiked
               },)}
-            />
+            />}
           </div>
           {showLabel && (
             <span

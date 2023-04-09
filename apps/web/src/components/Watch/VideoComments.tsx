@@ -108,7 +108,7 @@ const VideoComments: FC<Props> = ({ video, hideTitle = false }) => {
   const subscribeType = video.profile?.followModule?.__typename
   return (
     <>
-      <div className='mx-7 h-[290px] relative'>
+      <div className='mx-7 h-auto relative'>
         <div className='flex justify-between'>
           <div className="z-[1] pt-5 pb-3 md:rounded-b-xl mr-1">
             <div className="flex justify-between">
@@ -149,12 +149,13 @@ const VideoComments: FC<Props> = ({ video, hideTitle = false }) => {
             </div>
           </div>
         </div>
-        <div className='absolute bottom-0 w-full ml-1'>
+        <div className='mt-4 w-full ml-1'>
           <div className="flex items-center justify-between">
             <div className="text-white md:text-inherit flex gap-6">
               <PublicationReaction
                 publication={video}
                 iconSize="base"
+                textSize='sm'
                 isVertical={false}
                 showLabel
               />
@@ -163,7 +164,7 @@ const VideoComments: FC<Props> = ({ video, hideTitle = false }) => {
                   <div className='rounded-full bg-gray-200 dark:bg-gray-600 p-2'>
                     <MirrorOutline className="h-4 w-4 " />
                   </div>
-                  <div className="pt-1 text-xs">
+                  <div className="pt-1 text-sm">
                     {video.stats?.totalAmountOfMirrors || 'Mirror'}
                   </div>
                 </div>
@@ -205,54 +206,56 @@ const VideoComments: FC<Props> = ({ video, hideTitle = false }) => {
           </div>
         </div>
       </div>
-      {data?.publications?.items.length === 0 && (
-        <NoDataFound text="Be the first to comment." withImage isCenter />
-      )}
-      {!error && (queuedComments.length || comments.length) ? (
-        <>
-          <div className="border-t-[1px] dark:border-slate-600 space-y-4 pt-5  overflow-y-auto overflow-x-hidden top-[340px] bottom-[80px] absolute w-full ">
-            {queuedComments?.map(
-              (queuedComment) =>
-                queuedComment?.pubId === video?.id && (
-                  <QueuedComment
-                    key={queuedComment?.pubId}
-                    queuedComment={queuedComment}
-                  />
-                )
-            )}
-            {comments?.map((comment: Publication) => (
-              <Comment
-                key={`${comment?.id}_${comment.createdAt}`}
-                comment={comment}
-              />
-            ))}
-          </div>
-          {pageInfo?.next && (
-            <span ref={observe} className="flex justify-center p-10">
-              <Loader />
-            </span>
-          )}
-        </>
-      ) : null}
-
-      <div className='absolute bottom-5 w-[100%]'>
-
-        {!selectedChannelId && (
-          <span className="text-xs">(Sign in required to comment)</span>
+      <div>
+        {data?.publications?.items.length === 0 && (
+          <NoDataFound text="Be the first to comment." withImage isCenter />
         )}
-        {video?.canComment.result ? (
-          <NewComment video={video} />
-        ) : selectedChannelId ? (
-          <div className='mx-10'>
-            <Alert variant="warning">
-              <span className="text-sm">
-                {isFollowerOnlyReferenceModule
-                  ? 'Only subscribers can comment on this publication'
-                  : `Only subscribers within ${video.profile.handle}'s preferred network can comment`}
+        {!error && (queuedComments.length || comments.length) ? (
+          <div className='flex flex-col h-full'>
+            <div className="border-t-[1px] dark:border-slate-600 space-y-4 bottom-[80px] w-full">
+              {queuedComments?.map(
+                (queuedComment) =>
+                  queuedComment?.pubId === video?.id && (
+                    <QueuedComment
+                      key={queuedComment?.pubId}
+                      queuedComment={queuedComment}
+                    />
+                  )
+              )}
+              {comments?.map((comment: Publication) => (
+                <Comment
+                  key={`${comment?.id}_${comment.createdAt}`}
+                  comment={comment}
+                />
+              ))}
+            </div>
+            {pageInfo?.next && (
+              <span ref={observe} className="flex justify-center p-10">
+                <Loader />
               </span>
-            </Alert>
+            )}
           </div>
         ) : null}
+
+        <div className='absolute bottom-5 w-[100%]'>
+
+          {!selectedChannelId && (
+            <span className="text-xs">(Sign in required to comment)</span>
+          )}
+          {video?.canComment.result ? (
+            <NewComment video={video} />
+          ) : selectedChannelId ? (
+            <div className='mx-10'>
+              <Alert variant="warning">
+                <span className="text-sm">
+                  {isFollowerOnlyReferenceModule
+                    ? 'Only subscribers can comment on this publication'
+                    : `Only subscribers within ${video.profile.handle}'s preferred network can comment`}
+                </span>
+              </Alert>
+            </div>
+          ) : null}
+        </div>
       </div>
     </>
   )

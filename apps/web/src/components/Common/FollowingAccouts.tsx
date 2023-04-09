@@ -21,7 +21,7 @@ const FollowingAccounts: FC<PropsAccs> = ({profile}) => {
 
     return <div className="border-b dark:border-b-slate-800 border-b-slate-100">
         <h3 className='text-gray-500 font-bold text-md mb-3 ml-1 mt-2'>Following Accounts</h3>
-        <div className="py-[10px]">
+        <div >
             {
                 displayProFiles?displayProFiles?.map(channel => <AccountItem key={channel.wallet.address} channel={channel.wallet.defaultProfile}/>): <p className="text-sm text-gray-500 pl-1">Log in to follow creators, like videos, and view comments.</p>
             }

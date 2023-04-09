@@ -36,13 +36,13 @@ export const CREATOR_VIDEO_CATEGORIES = [
     icon: <GiHealthNormal />
   },
   {
+    name: 'Web3',
+    tag: 'web3',
+    icon: <MdCardTravel />
+  },
+  {
     name: 'Technology',
     tag: 'technology',
     icon: <GiMaterialsScience />
-  },
-  {
-    name: 'Travel',
-    tag: 'travel',
-    icon: <MdCardTravel />
   },
 ]
