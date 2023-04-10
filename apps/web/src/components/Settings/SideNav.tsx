@@ -27,16 +27,16 @@ const SideNav: FC<Props> = ({ channel }) => {
   const isActivePath = (path: string) => router.pathname === path
 
   return (
-    <div className="dark:bg-theme rounded-sm bg-white pt-2">
+    <div className="rounded-lg pt-2">
       <div className="flex flex-col items-center space-y-2 py-4">
         <ChannelPicture channel={channel} />
       </div>
-      <div className="py-1  border-b dark:border-b-slate-800 mb-3">
+      <div className="py-1 ml-[-4px]  border-b dark:border-b-slate-800 mb-3 text-sm">
         <Link
           href={SETTINGS}
           className={clsx(
-            'flex items-center py-2 focus:outline-none my-2 dark:hover:bg-gray-600 hover:bg-gray-200 hover:rounded-lg',
-            { 'bg-gray-100 dark:bg-gray-800 rounded-lg': isActivePath(SETTINGS) }
+            'flex items-center py-2 px-1 focus:outline-none my-2 dark:hover:bg-gray-800 hover:bg-gray-100 hover:rounded-lg',
+            { 'dark:hover:bg-gray-800 hover:bg-gray-100 rounded-lg': isActivePath(SETTINGS) }
           )}
         >
           <UserOutline className="h-4 w-4 mr-4" /> <span>Basic Info</span>
@@ -44,9 +44,9 @@ const SideNav: FC<Props> = ({ channel }) => {
         <Link
           href={SETTINGS_MEMBERSHIP}
           className={clsx(
-            'flex items-center py-2 focus:outline-none my-2 dark:hover:bg-gray-600 hover:bg-gray-200 hover:rounded-lg',
+            'flex items-center py-2 px-1 focus:outline-none my-2 dark:hover:bg-gray-800 hover:bg-gray-100 hover:rounded-lg',
             {
-              'bg-gray-100 dark:bg-gray-800': isActivePath(SETTINGS_MEMBERSHIP)
+              'dark:hover:bg-gray-800 hover:bg-gray-100 rounded-lg': isActivePath(SETTINGS_MEMBERSHIP)
             }
           )}
         >
@@ -55,9 +55,9 @@ const SideNav: FC<Props> = ({ channel }) => {
         <Link
           href={SETTINGS_PERMISSIONS}
           className={clsx(
-            'flex items-center py-2 focus:outline-none my-2 dark:hover:bg-gray-600 hover:bg-gray-200 hover:rounded-lg',
+            'flex items-center py-2 px-1  focus:outline-none my-2 dark:hover:bg-gray-800 hover:bg-gray-100 hover:rounded-lg',
             {
-              'bg-gray-100 dark:bg-gray-800': isActivePath(SETTINGS_PERMISSIONS)
+              'dark:hover:bg-gray-800 hover:bg-gray-100 rounded-lg': isActivePath(SETTINGS_PERMISSIONS)
             }
           )}
         >
@@ -66,9 +66,9 @@ const SideNav: FC<Props> = ({ channel }) => {
         <Link
           href={SETTINGS_INTERESTS}
           className={clsx(
-            'flex items-center py-2 focus:outline-none my-2 dark:hover:bg-gray-600 hover:bg-gray-200 hover:rounded-lg',
+            'flex items-center py-2 px-1  focus:outline-none my-2 dark:hover:bg-gray-800 hover:bg-gray-100 hover:rounded-lg',
             {
-              'bg-gray-100 dark:bg-gray-800': isActivePath(SETTINGS_INTERESTS)
+              'dark:hover:bg-gray-800 hover:bg-gray-100 rounded-lg': isActivePath(SETTINGS_INTERESTS)
             }
           )}
         >
@@ -77,9 +77,9 @@ const SideNav: FC<Props> = ({ channel }) => {
         <Link
           href={SETTINGS_DANGER_ZONE}
           className={clsx(
-            'flex items-center py-2 focus:outline-none my-2 dark:hover:bg-gray-600 hover:bg-gray-200 hover:rounded-lg',
+            'flex items-center py-2 px-1  focus:outline-none my-2 dark:hover:bg-gray-800 hover:bg-gray-100 hover:rounded-lg',
             {
-              'bg-red-100 dark:bg-red-900/60':
+              'bg-red-100 dark:bg-red-900/60 rounded-lg':
                 isActivePath(SETTINGS_DANGER_ZONE)
             }
           )}

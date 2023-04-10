@@ -143,7 +143,7 @@ const Header: FC<Props> = ({ className }) => {
                 </a>
               </>
             ) : null}
-            <Login />
+            <Login more={true} />
           </div>
         </div>
 

@@ -185,7 +185,7 @@ const Membership = ({ channel }: Props) => {
   }
 
   return (
-    <div className="dark:bg-theme rounded-sm bg-white p-4">
+    <div className="rounded-sm p-4">
       <div className="mb-5">
         <h1 className="mb-1 text-xl font-semibold">Grow with Lens</h1>
         <p className="text opacity-80">

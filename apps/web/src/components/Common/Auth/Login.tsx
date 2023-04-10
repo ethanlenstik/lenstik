@@ -7,6 +7,7 @@ import {
   useChallengeLazyQuery
 } from 'lens'
 import { useRouter } from 'next/router'
+import type { FC } from 'react'
 import React, { useCallback, useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
 import type { CustomErrorWithData } from 'utils'
@@ -16,7 +17,11 @@ import { useAccount, useDisconnect, useNetwork, useSignMessage } from 'wagmi'
 
 import ConnectWalletButton from './ConnectWalletButton'
 
-const Login = () => {
+type Props = {
+  more?: boolean
+}
+
+const Login: FC<Props> = ({ more }) => {
   const router = useRouter()
 
   const { chain } = useNetwork()
@@ -67,9 +72,9 @@ const Login = () => {
     ) {
       toast.error(
         errorAuthenticate?.message ??
-          errorChallenge?.message ??
-          errorProfiles?.message ??
-          ERROR_MESSAGE
+        errorChallenge?.message ??
+        errorProfiles?.message ??
+        ERROR_MESSAGE
       )
     }
   }, [errorAuthenticate, errorChallenge, errorProfiles])
@@ -164,7 +169,7 @@ const Login = () => {
   }, [isConnected])
 
   return (
-    <ConnectWalletButton handleSign={() => handleSign()} signing={loading} />
+    <ConnectWalletButton handleSign={() => handleSign()} signing={loading} showMore={more} />
   )
 }
 

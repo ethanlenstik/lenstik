@@ -422,7 +422,7 @@ const UploadSteps = () => {
   }
 
   return (
-    <div className="mx-auto my-10 max-w-5xl gap-5 m-10 px-10">
+    <div className="mx-auto my-10 max-w-6xl gap-5">
       <MetaTags title="Video Details" />
       <div className="mt-10">
         <span className='text-2xl font-bold'>Upload video</span> <br />

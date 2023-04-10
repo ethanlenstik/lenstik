@@ -5,7 +5,7 @@
 @tailwind utilities;
 
 body {
-  font-family: 'Inter', 'Segoe UI', ui-sans-serif;
+  font-family: 'Inter var', 'Segoe UI', ui-sans-serif;
   @apply antialiased dark:text-white bg-white bg-fixed dark:bg-neutral-900 text-black min-h-screen;
 }
 
@@ -79,11 +79,11 @@ input[type='number'] {
 }
 .input-mentions-textarea textarea,
 .input-mentions-single textarea {
-  @apply bg-white text-sm resize-y px-2.5 py-2 rounded-sm focus:ring-1 focus:ring-green-500 dark:bg-gray-900 border border-gray-300 dark:border-gray-700 outline-none disabled:opacity-60 disabled:bg-gray-500 disabled:bg-opacity-20 w-full;
+  @apply bg-white text-sm resize-y px-2.5 py-2 rounded-lg focus:ring-1 focus:ring-green-500 dark:bg-gray-900 border border-gray-300 dark:border-gray-700 outline-none disabled:opacity-60 disabled:bg-gray-500 disabled:bg-opacity-20 w-full;
 }
 .input-mentions-textarea__suggestions,
 .input-mentions-single__suggestions {
-  @apply !bg-white dark:!bg-gray-800 p-1 !mt-8 !border dark:border-gray-700 rounded-sm w-56;
+  @apply !bg-white dark:!bg-gray-800 p-1 !mt-8 !border dark:border-gray-700 w-56 rounded-lg;
 }
 
 .pb-safe {

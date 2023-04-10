@@ -11,15 +11,25 @@ import { Analytics, POLYGON_CHAIN_ID, TRACK } from 'utils'
 import { useAccount, useDisconnect, useNetwork, useSwitchNetwork } from 'wagmi'
 
 import UserMenu from '../UserMenu'
+import { BsThreeDotsVertical } from 'react-icons/bs'
+import DropMenu from '@components/UIElements/DropMenu'
+import MoonOutline from '../Icons/MoonOutline'
+import SunOutline from '../Icons/SunOutline'
+import { useTheme } from 'next-themes'
+import { FiHelpCircle } from 'react-icons/fi'
+import { VscFeedback } from 'react-icons/vsc'
 
 type Props = {
   handleSign: () => void
   signing?: boolean
+  showMore?: boolean
 }
 
-const ConnectWalletButton = ({ handleSign, signing }: Props) => {
+const ConnectWalletButton = ({ handleSign, signing, showMore = false }: Props) => {
   const selectedChannelId = usePersistStore((state) => state.selectedChannelId)
   const selectedChannel = useAppStore((state) => state.selectedChannel)
+
+  const { theme, setTheme } = useTheme()
 
   const { connector, isConnected } = useAccount()
   const { switchNetwork } = useSwitchNetwork({
@@ -69,15 +79,66 @@ const ConnectWalletButton = ({ handleSign, signing }: Props) => {
       </Button>
     )
   ) : (
-    <Button
-      onClick={() => {
-        openConnectModal?.()
-        Analytics.track(TRACK.AUTH.CLICK_CONNECT_WALLET)
-      }}
-    >
-      Connect
-      <span className="ml-1 hidden md:inline-block">Wallet</span>
-    </Button>
+    <div className='flex items-center gap-5'>
+      <Button
+        className='w-full'
+        onClick={() => {
+          openConnectModal?.()
+          Analytics.track(TRACK.AUTH.CLICK_CONNECT_WALLET)
+        }}
+      >
+        Connect
+        <span className="ml-1 hidden md:inline-block">Wallet</span>
+      </Button>
+      {
+        showMore && <DropMenu trigger={
+          <button>
+            <BsThreeDotsVertical />
+          </button>
+        }>
+          <div className="mt-2 w-56 overflow-hidden rounded-sm  border bg-gray-100 shadow dark:border-gray-800 dark:bg-black">
+            <div className=" m-1.5 overflow-hidden rounded-sm ">
+              <div className="text-sm">
+                <button type="button"
+                  className="flex w-full items-center space-x-2 px-3 py-2 hover:bg-gray-100 dark:hover:bg-gray-800"
+                  onClick={() => {
+
+                  }}>
+                    <VscFeedback />
+                  <span className="truncate whitespace-nowrap">Feedback</span>
+                </button>
+                <button type="button"
+                  className="flex w-full items-center space-x-2 px-3 py-2 hover:bg-gray-100 dark:hover:bg-gray-800"
+                  onClick={() => {
+
+                  }}>
+                  <FiHelpCircle />
+                  <span className="truncate whitespace-nowrap">Help</span>
+                </button>
+                <button
+                  type="button"
+                  className="flex w-full items-center space-x-2 px-3 py-2 hover:bg-gray-100 dark:hover:bg-gray-800"
+                  onClick={() => {
+                    setTheme(theme === 'dark' ? 'light' : 'dark')
+                  }}
+                >
+                  {theme === 'dark' ? (
+                    <SunOutline className="h-4 w-4" />
+                  ) : (
+                    <MoonOutline className="h-4 w-4" />
+                  )}
+                  <span className="truncate whitespace-nowrap">
+                    {theme === 'light' ? 'Switch to Dark' : 'Switch to Light'}
+                  </span>
+                </button>
+
+              </div>
+            </div>
+          </div>
+        </DropMenu>
+      }
+
+    </div>
   )
 }
 

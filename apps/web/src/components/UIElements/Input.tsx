@@ -34,7 +34,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
       )}
       <div className="flex">
         {prefix && (
-          <span className="inline-flex items-center rounded-l-xl border border-r-0 border-gray-300 bg-gray-100 px-4 text-sm opacity-80 dark:border-gray-700 dark:bg-gray-900">
+          <span className="inline-flex items-center rounded-l-lg border border-r-0 border-gray-300 bg-gray-100 px-4 text-sm opacity-80 dark:border-gray-700 dark:bg-gray-900">
             {prefix}
           </span>
         )}
@@ -44,9 +44,9 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
             {
               'focus:ring-1 focus:ring-green-500': !validationError?.length,
               '!border-red-500': validationError?.length,
-              'rounded-r-xl': prefix,
-              'rounded-sm': !prefix && !suffix,
-              'rounded-l-xl': suffix
+              'rounded-r-lg': prefix,
+              'rounded-lg': !prefix && !suffix,
+              'rounded-l-lg': suffix
             },
             'w-full border border-gray-300 bg-white px-2.5 py-2 text-sm outline-none disabled:bg-gray-500 disabled:bg-opacity-20 disabled:opacity-60 dark:border-gray-700 dark:bg-gray-900',
             className
@@ -56,7 +56,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(function Input(
           {...props}
         />
         {suffix && (
-          <span className="inline-flex items-center whitespace-nowrap rounded-r-xl border border-l-0 border-gray-300 bg-gray-100 px-4 text-sm opacity-80 dark:border-gray-700 dark:bg-gray-900">
+          <span className="inline-flex items-center whitespace-nowrap rounded-r-lg border border-l-0 border-gray-300 bg-gray-100 px-4 text-sm opacity-80 dark:border-gray-700 dark:bg-gray-900">
             {suffix}
           </span>
         )}

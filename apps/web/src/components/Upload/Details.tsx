@@ -82,7 +82,7 @@ const Details: FC<Props> = ({ onUpload, onCancel }) => {
   return (
     <div className='flex gap-10 pb-20 mt-20 max-md:flex-wrap'>
       <div className={clsx(
-        'grid place-items-center rounded-md border border-dashed border-gray-500 p-2 text-center focus:outline-none m-auto', "md:w-[40vw]"
+        'grid place-items-center rounded-md border border-dashed border-gray-500 p-2 text-center focus:outline-none mb-auto mt-1', "md:w-[40vw]"
       )}>
         {uploadedVideo.file ? <PreviewVideo /> : <DropZone />}
       </div>
@@ -100,7 +100,7 @@ const Details: FC<Props> = ({ onUpload, onCancel }) => {
                     setValue('title', value)
                     clearErrors('title')
                   }}
-                  mentionsSelector="input-mentions-single"
+                  mentionsSelector="input-mentions-single rounded-lg"
                 />
                 <div className="absolute top-0 right-1 mt-1 flex items-center justify-end">
                   <span

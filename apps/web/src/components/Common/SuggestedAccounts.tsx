@@ -18,7 +18,7 @@ const SuggestedAccount: FC<PropsAccs> = ({channels}) => {
                 displayProFiles?.map((channel) => <AccountItem key={channel.id} channel={channel} isSuggested={true} />)
             }
         </div>
-        <div className='ml-1 mb-4'>
+        <div className='ml-1 mb-3'>
             {isAllSuggest?<button onClick={()=> setAllSuggest(false)} className="text-pink-600 text-sm">See Less</button>: <button className="text-pink-600 text-sm" onClick={()=> setAllSuggest(true)}>See All</button>}
         </div>
     </div>

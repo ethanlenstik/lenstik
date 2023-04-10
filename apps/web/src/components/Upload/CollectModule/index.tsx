@@ -58,7 +58,7 @@ const CollectModule = () => {
       <button
         type="button"
         onClick={() => setShowModal(true)}
-        className="flex w-full items-center justify-between rounded-sm border border-gray-300 px-4 py-2.5 text-left text-sm focus:outline-none dark:border-gray-700"
+        className="flex w-full items-center justify-between rounded-lg border border-gray-300 px-4 py-2.5 text-left text-sm focus:outline-none dark:border-gray-700"
       >
         <span>{getSelectedCollectType()}</span>
         <CheckOutline className="h-3 w-3" />

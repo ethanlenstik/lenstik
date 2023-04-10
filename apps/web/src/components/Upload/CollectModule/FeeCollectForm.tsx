@@ -116,7 +116,7 @@ const FeeCollectForm: FC<Props> = ({
         </div>
         <select
           autoComplete="off"
-          className="w-full rounded-sm border border-gray-200 bg-white p-2.5 text-sm outline-none disabled:bg-gray-500 disabled:bg-opacity-20 disabled:opacity-60 dark:border-gray-800 dark:bg-gray-900"
+          className="w-full rounded-lg border border-gray-200 bg-white p-2.5 text-sm outline-none disabled:bg-gray-500 disabled:bg-opacity-20 disabled:opacity-60 dark:border-gray-800 dark:bg-gray-900"
           {...register('currency')}
           value={uploadedVideo.collectModule.amount?.currency}
           onChange={(e) => {

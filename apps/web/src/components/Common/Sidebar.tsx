@@ -76,27 +76,27 @@ const Sidebar = () => {
           )}
           style={{ scrollbarWidth: 'thin' }}
           data-testid="sidebar-items"
-          onMouseEnter={()=> setShowScrollbar(true)}
-          onMouseLeave={()=> setShowScrollbar(false)}
+          onMouseEnter={() => setShowScrollbar(true)}
+          onMouseLeave={() => setShowScrollbar(false)}
         >
-          <div className={clsx('py-1  border-b dark:border-b-slate-800 mb-3 p-1')}>
+          <div className={clsx('py-1  border-b dark:border-b-slate-800 mb-3')}>
             <Link
               href="/"
-              className={clsx("flex items-center py-1 focus:outline-none my-1 dark:hover:bg-gray-600 hover:bg-gray-200 hover:rounded-lg", isActivePath('/')&& 'text-red-500')}
+              className={clsx("flex items-center p-1 focus:outline-none my-1 dark:hover:bg-gray-800 hover:bg-gray-100 hover:rounded-lg", isActivePath('/') && 'text-red-500')}
             >
               <SlHome className='text-xl' />
               <span className='text-lg font-bold ml-4'>For You</span>
             </Link>
             <Link
               href="/feed"
-              className={clsx('flex items-center py-1 focus:outline-none my-1 dark:hover:bg-gray-600  hover:bg-gray-200 hover:rounded-lg', isActivePath('/feed')&& 'text-red-500')}
+              className={clsx('flex items-center p-1 focus:outline-none my-1 dark:hover:bg-gray-800 hover:bg-gray-100 hover:rounded-lg', isActivePath('/feed') && 'text-red-500')}
             >
               <FaUserFriends className='text-2xl' />
               <span className='text-lg font-bold ml-3' >Following</span>
             </Link>
             <Link
               href="/live"
-              className={clsx('hidden flex items-center py-1 focus:outline-none my-1 dark:hover:bg-gray-600  hover:bg-gray-200', isActivePath('/live')&& 'text-red-500')}
+              className={clsx('hidden flex items-center py-1 focus:outline-none my-1 dark:hover:bg-gray-800 hover:bg-gray-100', isActivePath('/live') && 'text-red-500')}
             >
               <RiLiveLine className='text-2xl' />
               <span className='text-lg font-bold ml-4' >Live</span>
@@ -136,7 +136,7 @@ const Sidebar = () => {
                 </Tooltip>
               )}
             <SuggestedAccount channels={profiles} />
-            { isConnected && <FollowingAccounts profile={data} />}
+            {isConnected && <FollowingAccounts profile={data} />}
             <CategoryFilters />
             <Footer />
           </div>
