@@ -47,7 +47,7 @@ const DropMenu: FC<Props> = ({
         positionClassName
       )}
     >
-      <Menu.Items static>{children}</Menu.Items>
+      <Menu.Items className='focus:outline-none' >{children}</Menu.Items>
     </Transition>
   </Menu>
 )

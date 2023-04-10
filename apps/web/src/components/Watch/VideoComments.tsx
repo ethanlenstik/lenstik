@@ -212,7 +212,7 @@ const VideoComments: FC<Props> = ({ video, hideTitle = false }) => {
         )}
         {!error && (queuedComments.length || comments.length) ? (
           <div className='flex flex-col h-full'>
-            <div className="border-t-[1px] dark:border-slate-600 space-y-4 bottom-[80px] w-full">
+            <div className="border-t-[1px] dark:border-slate-600 space-y-4 bottom-[80px] w-full pt-6">
               {queuedComments?.map(
                 (queuedComment) =>
                   queuedComment?.pubId === video?.id && (

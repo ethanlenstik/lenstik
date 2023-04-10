@@ -82,21 +82,21 @@ const Sidebar = () => {
           <div className={clsx('py-1  border-b dark:border-b-slate-800 mb-3 p-1')}>
             <Link
               href="/"
-              className={clsx("flex items-center pt-2 focus:outline-none my-2 dark:hover:bg-gray-600 hover:bg-gray-200", isActivePath('/')&& 'text-red-500')}
+              className={clsx("flex items-center py-1 focus:outline-none my-1 dark:hover:bg-gray-600 hover:bg-gray-200 hover:rounded-lg", isActivePath('/')&& 'text-red-500')}
             >
               <SlHome className='text-xl' />
               <span className='text-lg font-bold ml-4'>For You</span>
             </Link>
             <Link
               href="/feed"
-              className={clsx('flex items-center pt-1 focus:outline-none my-2 dark:hover:bg-gray-600  hover:bg-gray-200', isActivePath('/feed')&& 'text-red-500')}
+              className={clsx('flex items-center py-1 focus:outline-none my-1 dark:hover:bg-gray-600  hover:bg-gray-200 hover:rounded-lg', isActivePath('/feed')&& 'text-red-500')}
             >
               <FaUserFriends className='text-2xl' />
-              <span className='text-lg font-bold ml-4' >Following</span>
+              <span className='text-lg font-bold ml-3' >Following</span>
             </Link>
             <Link
               href="/live"
-              className={clsx('hidden flex items-center pt-1 focus:outline-none my-2 dark:hover:bg-gray-600  hover:bg-gray-200', isActivePath('/live')&& 'text-red-500')}
+              className={clsx('hidden flex items-center py-1 focus:outline-none my-1 dark:hover:bg-gray-600  hover:bg-gray-200', isActivePath('/live')&& 'text-red-500')}
             >
               <RiLiveLine className='text-2xl' />
               <span className='text-lg font-bold ml-4' >Live</span>
@@ -106,7 +106,7 @@ const Sidebar = () => {
 
             {!isConnected &&
               <div className='border-b dark:border-b-slate-800 pb-6 mb-3 grid ml-1'>
-                <p className='mb-2 text-gray-500'>Log in to follow creators, like videos, and comments.</p>
+                <p className='mb-3 text-gray-500'>Log in to follow creators, like videos, and comments.</p>
                 <Login />
               </div>}
             {getIsFeatureEnabled(

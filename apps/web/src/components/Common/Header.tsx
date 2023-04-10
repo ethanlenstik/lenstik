@@ -83,7 +83,7 @@ const Header: FC<Props> = ({ className }) => {
               <img
                 src={`/images/logo.png`}
                 draggable={false}
-                className="h-10"
+                className="h-7"
                 alt="lenstik"
               />
             </Link>

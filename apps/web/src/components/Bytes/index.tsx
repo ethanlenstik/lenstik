@@ -14,7 +14,7 @@ import {
 } from 'lens'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useInView } from 'react-cool-inview'
 import {
   Analytics,
@@ -83,7 +83,7 @@ const Bytes = () => {
   const bytes = data?.explorePublications?.items as Publication[]
   const pageInfo = data?.explorePublications?.pageInfo
   const singleBytePublication = singleByte?.publication as Publication
- 
+
   const fetchSingleByte = async () => {
     const publicationId = router.query.id
     if (!publicationId) {
@@ -156,7 +156,7 @@ const Bytes = () => {
       <Head>
         <meta name="theme-color" content="#000000" />
       </Head>
-      <MetaTags title="Lens Tik" />
+      <MetaTags title="Lenstik" />
       {currentViewingId && bytes ? <FullScreen
         videos={bytes}
         close={closeDialog}

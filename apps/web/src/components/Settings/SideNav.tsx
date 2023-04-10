@@ -27,64 +27,64 @@ const SideNav: FC<Props> = ({ channel }) => {
   const isActivePath = (path: string) => router.pathname === path
 
   return (
-    <div className="dark:bg-theme rounded-sm bg-white p-2">
+    <div className="dark:bg-theme rounded-sm bg-white pt-2">
       <div className="flex flex-col items-center space-y-2 py-4">
         <ChannelPicture channel={channel} />
       </div>
-      <div className="m-1 flex flex-col space-y-1 text-sm">
+      <div className="py-1  border-b dark:border-b-slate-800 mb-3">
         <Link
           href={SETTINGS}
           className={clsx(
-            'flex items-center space-x-2 rounded-sm p-3 hover:bg-gray-100 hover:dark:bg-gray-800',
-            { 'bg-gray-100 dark:bg-gray-800': isActivePath(SETTINGS) }
+            'flex items-center py-2 focus:outline-none my-2 dark:hover:bg-gray-600 hover:bg-gray-200 hover:rounded-lg',
+            { 'bg-gray-100 dark:bg-gray-800 rounded-lg': isActivePath(SETTINGS) }
           )}
         >
-          <UserOutline className="h-4 w-4" /> <span>Basic Info</span>
+          <UserOutline className="h-4 w-4 mr-4" /> <span>Basic Info</span>
         </Link>
         <Link
           href={SETTINGS_MEMBERSHIP}
           className={clsx(
-            'flex items-center space-x-2 rounded-sm p-3 hover:bg-gray-100 hover:dark:bg-gray-800',
+            'flex items-center py-2 focus:outline-none my-2 dark:hover:bg-gray-600 hover:bg-gray-200 hover:rounded-lg',
             {
               'bg-gray-100 dark:bg-gray-800': isActivePath(SETTINGS_MEMBERSHIP)
             }
           )}
         >
-          <SubscribeOutline className="h-4 w-4" /> <span>Membership</span>
+          <SubscribeOutline className="h-4 w-4 mr-4" /> <span>Membership</span>
         </Link>
         <Link
           href={SETTINGS_PERMISSIONS}
           className={clsx(
-            'flex items-center space-x-2 rounded-sm p-3 hover:bg-gray-100 hover:dark:bg-gray-800',
+            'flex items-center py-2 focus:outline-none my-2 dark:hover:bg-gray-600 hover:bg-gray-200 hover:rounded-lg',
             {
               'bg-gray-100 dark:bg-gray-800': isActivePath(SETTINGS_PERMISSIONS)
             }
           )}
         >
-          <KeyOutline className="h-4 w-4" /> <span>Permissions</span>
+          <KeyOutline className="h-4 w-4 mr-4" /> <span>Permissions</span>
         </Link>
         <Link
           href={SETTINGS_INTERESTS}
           className={clsx(
-            'flex items-center space-x-2 rounded-sm p-3 hover:bg-gray-100 hover:dark:bg-gray-800',
+            'flex items-center py-2 focus:outline-none my-2 dark:hover:bg-gray-600 hover:bg-gray-200 hover:rounded-lg',
             {
               'bg-gray-100 dark:bg-gray-800': isActivePath(SETTINGS_INTERESTS)
             }
           )}
         >
-          <InterestsOutline className="h-4 w-4" /> <span>Interests</span>
+          <InterestsOutline className="h-4 w-4 mr-4" /> <span>Interests</span>
         </Link>
         <Link
           href={SETTINGS_DANGER_ZONE}
           className={clsx(
-            'flex items-center space-x-2 rounded-sm p-3 text-red-500 hover:bg-red-100 hover:dark:bg-red-900/60',
+            'flex items-center py-2 focus:outline-none my-2 dark:hover:bg-gray-600 hover:bg-gray-200 hover:rounded-lg',
             {
               'bg-red-100 dark:bg-red-900/60':
                 isActivePath(SETTINGS_DANGER_ZONE)
             }
           )}
         >
-          <WarningOutline className="h-4 w-4" /> <span>Danger Zone</span>
+          <WarningOutline className="h-4 w-4 mr-4" /> <span>Danger Zone</span>
         </Link>
       </div>
     </div>
