@@ -37,7 +37,7 @@ const Footer = () => {
       <a className="text-gray-400 text-sm mt-5" href="https://lens-do-it.vercel.app/" target="_blank" rel="noreferrer">Click here for a testnet Lens handle</a>
 
       <div className='mt-1'>
-        {listLink.map(link => <a className='mr-5 text-gray-400 text-sm' href={link.url}>{link.label}</a>)}
+        {listLink.map(link => <a key={link.label} className='mr-5 text-gray-400 text-sm' href={link.url}>{link.label}</a>)}
       </div>
       <p className="text-gray-400 text-sm mt-1">© 2023 Lenstik</p>
     </div>
