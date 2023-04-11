@@ -41,8 +41,6 @@ const Sidebar = () => {
   const sidebarCollapsed = usePersistStore((state) => state.sidebarCollapsed)
   const selectedChannel = useAppStore((state) => state.selectedChannel)
   const [showScrollbar, setShowScrollbar] = useState(false)
-  const ref = useRef<HTMLDivElement>(null)
-  const [sideWidth, setSideWidth] = useState(350);
   const { connector, isConnected } = useAccount()
   const setSidebarCollapsed = usePersistStore(
     (state) => state.setSidebarCollapsed
@@ -62,27 +60,24 @@ const Sidebar = () => {
 
   const isActivePath = (path: string) => router.pathname === path
 
-  useEffect(() => {
-    setSideWidth(ref.current? ref.current.offsetWidth : 350)
-  }, [ref.current]
-  )
 
   return (
     <>
       {!getShowFullScreen(router.pathname) && <MobileBottomNav />}
       <CreateChannel />
-      <div ref={ref}
+      <div
         className={clsx(
-          'transition-width hidden items-start justify-between md:flex md:flex-col w-[30vw]',
+          'transition-width hidden items-start justify-between md:flex md:flex-col pr-5 pt-[20px] mt-[50px] w-[40vh]',
         )}
       >
         <div
           className={clsx(
-            'flex flex-col overflow-y-auto overflow-x-hidden fixed top-[50px] bottom-0 py-[20px]',
+            'flex flex-col overflow-y-auto overflow-x-hidden h-[88vh]',
             'self-center', !showScrollbar && 'no-scrollbar',
-           
+            "max-w-[350px]"
+
           )}
-          style={{ scrollbarWidth: 'thin', width: `${sideWidth}px` }}
+          style={{ scrollbarWidth: 'thin' }}
           data-testid="sidebar-items"
           onMouseEnter={() => setShowScrollbar(true)}
           onMouseLeave={() => setShowScrollbar(false)}
