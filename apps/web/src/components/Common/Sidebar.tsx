@@ -6,7 +6,7 @@ import clsx from 'clsx'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { STATIC_ASSETS } from 'utils'
 import { FEATURE_FLAGS } from 'utils/data/feature-flags'
 import getIsFeatureEnabled from 'utils/functions/getIsFeatureEnabled'
@@ -32,6 +32,7 @@ import { request } from '@playwright/test';
 import { channel } from 'diagnostics_channel';
 import { FaUserFriends } from 'react-icons/fa';
 import { RiLiveLine } from 'react-icons/ri';
+import { styling } from '@livepeer/react';
 
 const CreateChannel = dynamic(() => import('./CreateChannel'))
 
@@ -40,6 +41,8 @@ const Sidebar = () => {
   const sidebarCollapsed = usePersistStore((state) => state.sidebarCollapsed)
   const selectedChannel = useAppStore((state) => state.selectedChannel)
   const [showScrollbar, setShowScrollbar] = useState(false)
+  const ref = useRef<HTMLDivElement>(null)
+  const [sideWidth, setSideWidth] = useState(350);
   const { connector, isConnected } = useAccount()
   const setSidebarCollapsed = usePersistStore(
     (state) => state.setSidebarCollapsed
@@ -59,22 +62,27 @@ const Sidebar = () => {
 
   const isActivePath = (path: string) => router.pathname === path
 
+  useEffect(() => {
+    setSideWidth(ref.current? ref.current.offsetWidth : 350)
+  }, [ref.current]
+  )
 
   return (
     <>
       {!getShowFullScreen(router.pathname) && <MobileBottomNav />}
       <CreateChannel />
-      <div
+      <div ref={ref}
         className={clsx(
           'transition-width hidden items-start justify-between md:flex md:flex-col w-[30vw]',
         )}
       >
         <div
           className={clsx(
-            'flex flex-col overflow-y-auto overflow-x-hidden fixed top-[50px] bottom-0 pl-[20px] py-[20px] max-w-[350px]',
-            'self-center', !showScrollbar && 'no-scrollbar'
+            'flex flex-col overflow-y-auto overflow-x-hidden fixed top-[50px] bottom-0 py-[20px]',
+            'self-center', !showScrollbar && 'no-scrollbar',
+           
           )}
-          style={{ scrollbarWidth: 'thin' }}
+          style={{ scrollbarWidth: 'thin', width: `${sideWidth}px` }}
           data-testid="sidebar-items"
           onMouseEnter={() => setShowScrollbar(true)}
           onMouseLeave={() => setShowScrollbar(false)}

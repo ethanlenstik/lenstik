@@ -99,8 +99,8 @@ const UserMenu = () => {
         />
       }
     >
-      <div className="mt-2 w-56 overflow-hidden rounded-sm  border bg-gray-100 shadow dark:border-gray-800 dark:bg-black">
-        <div className=" m-1.5 overflow-hidden rounded-sm ">
+      <div className="mt-2 w-56 overflow-hidden rounded-lg  border bg-gray-100 shadow dark:border-gray-800 dark:bg-black">
+        <div className=" m-1.5 overflow-hidden rounded-lg ">
           {showAccountSwitcher ? (
             <>
               <button

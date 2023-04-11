@@ -96,15 +96,15 @@ const ConnectWalletButton = ({ handleSign, signing, showMore = false }: Props) =
             <BsThreeDotsVertical />
           </button>
         }>
-          <div className="mt-2 w-56 overflow-hidden rounded-sm  border bg-gray-100 shadow dark:border-gray-800 dark:bg-black">
-            <div className=" m-1.5 overflow-hidden rounded-sm ">
+          <div className="mt-2 w-56 overflow-hidden rounded-lg  border bg-gray-100 shadow dark:border-gray-800 dark:bg-black">
+            <div className=" m-1.5 overflow-hidden rounded-gl ">
               <div className="text-sm">
                 <button type="button"
                   className="flex w-full items-center space-x-2 px-3 py-2 hover:bg-gray-100 dark:hover:bg-gray-800"
                   onClick={() => {
 
                   }}>
-                    <VscFeedback />
+                  <VscFeedback />
                   <span className="truncate whitespace-nowrap">Feedback</span>
                 </button>
                 <button type="button"
