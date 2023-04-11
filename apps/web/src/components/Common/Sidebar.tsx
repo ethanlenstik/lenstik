@@ -67,7 +67,7 @@ const Sidebar = () => {
       <CreateChannel />
       <div
         className={clsx(
-          'transition-width hidden items-start justify-between md:flex md:flex-col pr-5 pt-[20px] mt-[50px] w-[40vh]',
+          'transition-width hidden items-start justify-between md:flex md:flex-col pr-5 pt-[20px] mt-[50px] w-[25vw]',
         )}
       >
         <div
