@@ -67,12 +67,12 @@ const Sidebar = () => {
       <CreateChannel />
       <div
         className={clsx(
-          'transition-width hidden items-start justify-between md:flex md:flex-col pr-5 pt-[20px] mt-[50px] w-[25vw]',
+          'transition-width hidden items-start justify-between md:flex md:flex-col pt-[20px] mt-[50px] w-[40vw] xl:w-[22vw]',
         )}
       >
         <div
           className={clsx(
-            'flex flex-col overflow-y-auto overflow-x-hidden h-[88vh]',
+            'flex flex-col overflow-y-auto overflow-x-hidden h-[88vh] pr-5',
             'self-center', !showScrollbar && 'no-scrollbar',
             "max-w-[350px]"
 

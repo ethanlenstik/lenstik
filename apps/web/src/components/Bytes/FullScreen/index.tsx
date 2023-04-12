@@ -129,14 +129,14 @@ const FullScreen: FC<Props> = ({ videos,
         }}
     />
 
-    const displayControl = (videoFull: boolean) =>{
+    const displayControl = (videoFull: boolean) => {
         const vidEl = document.querySelector(`#videoFull`)
         const elVol = vidEl && vidEl.querySelectorAll<HTMLButtonElement>(`#videoFull .c-hmIsCl`)[0]
         console.log("xxxx", elVol)
-       if (!elVol){
-        return
-    }
-        elVol.style.visibility = videoFull?"visible":"hidden"
+        if (!elVol) {
+            return
+        }
+        elVol.style.visibility = videoFull ? "visible" : "hidden"
     }
 
     return (<>
@@ -165,9 +165,9 @@ const FullScreen: FC<Props> = ({ videos,
                                 <MdOutlineClose className='text-white w-6 h-6' />
                             </button>
                         </div>
-                        <div className={clsx("relative max-md:w-full grow flex mr-5")} 
-                                onMouseEnter={()=>displayControl(true)}
-                                onMouseLeave={()=>displayControl(false)}>
+                        <div className={clsx("relative max-md:w-full grow flex mr-5")}
+                            onMouseEnter={() => displayControl(true)}
+                            onMouseLeave={() => displayControl(false)}>
                             <div
                                 className="flex h-screen  items-center bg-black md:h-[calc(100vh)] md:w-[56.3vh] md:rounded-sm m-auto"
                                 style={{
@@ -227,7 +227,7 @@ const FullScreen: FC<Props> = ({ videos,
                         </div>
                     </div>
                 </div>
-                <div className='flex w-[30vw] max-md:hidden max-w-[544px]'>
+                <div className='flex flex-col w-[30vw] max-md:hidden max-w-[544px] p-5'>
                     <Comments video={video} />
                 </div>
             </div>
