@@ -132,7 +132,6 @@ const FullScreen: FC<Props> = ({ videos,
     const displayControl = (videoFull: boolean) => {
         const vidEl = document.querySelector(`#videoFull`)
         const elVol = vidEl && vidEl.querySelectorAll<HTMLButtonElement>(`#videoFull .c-hmIsCl`)[0]
-        console.log("xxxx", elVol)
         if (!elVol) {
             return
         }
@@ -154,9 +153,8 @@ const FullScreen: FC<Props> = ({ videos,
                 id="videoFull"
             >
                 <div className='grow relative'>
-                    <div className='absolute z-0 bottom-0 left-0 top-0 right-0 bg-cover bg-center' style={{ backgroundImage: `url(${thumbnailUrl})` }}></div>
-                    <div className='flex backdrop-blur-md backdrop-brightness-[0.2]' >
-                        <div className='z-10 max-md:absolute'>
+                    <div className='relative w-full h-full bg-cover bg-center flex' style={{ backgroundImage: `url(${thumbnailUrl})` }} >
+                        <div className='z-10 absolute'>
                             <button
                                 type="button"
                                 className="p-2 focus:outline-none m-5 rounded-full  bg-slate-600"
@@ -165,11 +163,11 @@ const FullScreen: FC<Props> = ({ videos,
                                 <MdOutlineClose className='text-white w-6 h-6' />
                             </button>
                         </div>
-                        <div className={clsx("relative max-md:w-full grow flex mr-5")}
+                        <div className={clsx("relative max-md:w-full grow flex  backdrop-blur-md backdrop-brightness-[0.2] ")}
                             onMouseEnter={() => displayControl(true)}
                             onMouseLeave={() => displayControl(false)}>
                             <div
-                                className="flex h-screen  items-center bg-black md:h-[calc(100vh)] md:w-[56.3vh] md:rounded-sm m-auto"
+                                className="flex  items-center bg-black min-w-[56.25vh] md:rounded-sm m-auto"
                                 style={{
                                     backgroundColor: backgroundColor ? backgroundColor : undefined
                                 }}
@@ -195,35 +193,33 @@ const FullScreen: FC<Props> = ({ videos,
                             <TopOverlay onClickVideo={onClickVideo} full={true} id={video.id} />
 
                         </div>
-                        <div className="relative max-md:hidden">
-                            <button
-                                type="button"
-                                onClick={() => onClickReport()}
-                                className=" inline-flex  bg-gray-300/2 items-center space-x-2 rounded-full px-2 py-1.5 dark:bg-gray-700  hover:bg-gray-800 dark:hover:bg-gray-800 absolute right-5 top-6"
-                            >
-                                <BsFlag className="h-3.5 w-3.5" fill='white' />
-                                <span className="whitespace-nowrap text-white">Report</span>
-                            </button>
-                            <div className='flex flex-col gap-2 justify-center h-full mr-4 pb-10'>
+                        <button
+                            type="button"
+                            onClick={() => onClickReport()}
+                            className=" max-md:hidden inline-flex  bg-gray-300/2 items-center space-x-2 rounded-full px-2 py-1.5 dark:bg-gray-700  hover:bg-gray-800 dark:hover:bg-gray-800 absolute right-5 top-6"
+                        >
+                            <BsFlag className="h-3.5 w-3.5" fill='white' />
+                            <span className="whitespace-nowrap text-white">Report</span>
+                        </button>
+                        <div className='flex flex-col gap-2 justify-center absolute right-0 top-[calc(50vh-5rem)] z-10 mr-5'>
 
-                                <div className="h-[44px]" >
-                                    {index > 0 && (<button
-                                        className="rounded-full bg-gray-300/20 p-3 focus:outline-none dark:bg-gray-700  hover:bg-gray-800 dark:hover:bg-gray-800"
-                                        onClick={() => nextVideo(-1)}
-                                    >
-                                        <ChevronUpOutline className="h-5 w-5" />
-                                    </button>)}
-                                </div>
-                                <div className="h-25 w-25" >
-                                    <button
-                                        className="rounded-full bg-gray-300/20 p-3 focus:outline-none dark:bg-gray-700 hover:bg-gray-800 dark:hover:bg-gray-800"
-                                        onClick={() => nextVideo(1)}
-                                    >
-                                        <ChevronDownOutline className="h-5 w-5" />
-                                    </button>
-                                </div>
-
+                            <div className="h-[44px]" >
+                                {index > 0 && (<button
+                                    className="rounded-full bg-gray-300/20 p-3 focus:outline-none dark:bg-gray-700  hover:bg-gray-800 dark:hover:bg-gray-800"
+                                    onClick={() => nextVideo(-1)}
+                                >
+                                    <ChevronUpOutline className="h-5 w-5" />
+                                </button>)}
                             </div>
+                            <div className="h-25 w-25" >
+                                <button
+                                    className="rounded-full bg-gray-300/20 p-3 focus:outline-none dark:bg-gray-700 hover:bg-gray-800 dark:hover:bg-gray-800"
+                                    onClick={() => nextVideo(1)}
+                                >
+                                    <ChevronDownOutline className="h-5 w-5" />
+                                </button>
+                            </div>
+
                         </div>
                     </div>
                 </div>

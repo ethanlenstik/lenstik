@@ -123,8 +123,8 @@ const ChooseThumbnail: FC<Props> = ({ label, afterUpload, file }) => {
           </div>
         </div>
       )}
-      <div className="flex place-items-start py-0.5 w-full ">
-        {!thumbnails.length && uploadedVideo.file?.size && (
+      <div className="flex place-items-start py-0.5 w-full gap-1 ">
+        {!thumbnails.length && (
           <ThumbnailsShimmer />
         )}
         {thumbnails.map((thumbnail, idx) => {
@@ -137,7 +137,7 @@ const ChooseThumbnail: FC<Props> = ({ label, afterUpload, file }) => {
                 selectedThumbnailIndex === idx
               }
               onClick={() => onSelectThumbnail(idx)}
-              className={clsx(
+              className={clsx("h-32 w-[100px]",
                 {
                   'ring ring-green-500': selectedThumbnailIndex === idx,
                   'ring !ring-red-500': thumbnail.isNSFWThumbnail
@@ -145,7 +145,7 @@ const ChooseThumbnail: FC<Props> = ({ label, afterUpload, file }) => {
               )}
             >
               <img
-                className={clsx("object-cover h-32 w-18", selectedThumbnailIndex != idx && "opacity-50" )}
+                className={clsx("object-cover w-[100px] h-32", selectedThumbnailIndex != idx && "opacity-50")}
                 src={sanitizeIpfsUrl(thumbnail.url)}
                 alt="thumbnail"
                 draggable={false}

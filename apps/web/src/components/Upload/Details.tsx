@@ -80,13 +80,13 @@ const Details: FC<Props> = ({ onUpload, onCancel }) => {
   }
 
   return (
-    <div className='flex gap-10 pb-20 mt-20 max-md:flex-wrap'>
+    <div className='flex gap-10 pb-20 mt-20 max-md:flex-wrap '>
       <div className={clsx(
-        'grid place-items-center rounded-md border border-dashed border-gray-500 p-2 text-center focus:outline-none mb-auto mt-1', "md:w-[40vw]"
+        'grid place-items-center rounded-md border border-dashed border-gray-500 p-2 text-center focus:outline-none m-0 flex-1'
       )}>
         {uploadedVideo.file ? <PreviewVideo /> : <DropZone />}
       </div>
-      <form onSubmit={handleSubmit(onSubmitForm)} className="grow">
+      <form onSubmit={handleSubmit(onSubmitForm)} className="flex-1">
         <div className="mb-10 gap-5 md:grid-cols-2">
           <div className="flex flex-col justify-between">
             <div>

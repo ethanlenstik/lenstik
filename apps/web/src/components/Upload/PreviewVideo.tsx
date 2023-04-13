@@ -22,7 +22,7 @@ const PreviewVideo = () => {
     return <div className="w-full">
         <video
             ref={videoRef}
-            className="aspect-[9/16] object-contain border w-full"
+            className="aspect-[9/16] object-contain border h-full"
             disablePictureInPicture
             disableRemotePlayback
             controlsList="nodownload noplaybackrate"
