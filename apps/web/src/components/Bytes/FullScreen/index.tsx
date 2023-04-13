@@ -227,7 +227,7 @@ const FullScreen: FC<Props> = ({ videos,
                         </div>
                     </div>
                 </div>
-                <div className='flex flex-col w-[30vw] max-md:hidden max-w-[544px] p-5'>
+                <div className='flex flex-col w-[30vw] max-md:hidden max-w-[544px] p-5 flex-shrink-0 h-screen items-stretch'>
                     <Comments video={video} />
                 </div>
             </div>

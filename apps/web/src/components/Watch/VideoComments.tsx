@@ -108,78 +108,75 @@ const VideoComments: FC<Props> = ({ video, hideTitle = false }) => {
   const subscribeType = video.profile?.followModule?.__typename
   return (
     <>
-      <div className='flex justify-between'>
+      <div className="flex-shrink-0 border-b-[1px] dark:border-slate-600 ">
         <div className="z-[1] pt-5 pb-3 md:rounded-b-xl mr-1">
-          <div className="flex justify-between">
-            <div>
-              <div className='flex mb-5 justify-between flex-wrap'>
-                <a className='flex gap-4' href={`/channel/${channel?.handle}`}>
-                  <img
-                    src={getProfilePicture(channel, 'avatar')}
-                    className="h-10 w-10 rounded-full mt-1"
-                    draggable={false}
-                    alt={channel?.handle}
-                  />
-                  <div>
-                    <span className="font-bold text-base">{video.profile.name}</span> <br />
-                    <span className='text-sm font-thin inline-flex'>@{video.profile.handle} &nbsp; <Tooltip content="Verified" placement="right">
-                      <span>
-                        <IsVerified id={channel?.id} size="md" />
-                      </span>
-                    </Tooltip>
+          <div >
+            <div className='flex mb-5 justify-between flex-wrap'>
+              <a className='flex gap-4' href={`/channel/${channel?.handle}`}>
+                <img
+                  src={getProfilePicture(channel, 'avatar')}
+                  className="h-10 w-10 rounded-full mt-1"
+                  draggable={false}
+                  alt={channel?.handle}
+                />
+                <div>
+                  <span className="font-bold text-base">{video.profile.name}</span> <br />
+                  <span className='text-sm font-thin inline-flex'>@{video.profile.handle} &nbsp; <Tooltip content="Verified" placement="right">
+                    <span>
+                      <IsVerified id={channel?.id} size="md" />
                     </span>
-                  </div>
-                </a>
-                <div className="mt-1 mb-auto">
-                  <SubscribeActions
-                    channel={video.profile}
-                    subscribeType={subscribeType}
-                    size={'md'}
-                  />
+                  </Tooltip>
+                  </span>
                 </div>
+              </a>
+              <div className="mt-1 mb-auto">
+                <SubscribeActions
+                  channel={video.profile}
+                  subscribeType={subscribeType}
+                  size={'md'}
+                />
               </div>
-              <h1 className="line-clamp-2 text-base">{video.metadata.name} <span>
-                {
-                  video.metadata.tags?.map(tag => <span key={tag} className='font-bold'>#{tag}</span>)
-                }
-              </span></h1>
+            </div>
+            <h1 className="line-clamp-2 text-base">{video.metadata.name} <span>
+              {
+                video.metadata.tags?.map(tag => <span key={tag} className='font-bold'>#{tag}</span>)
+              }
+            </span></h1>
+          </div>
+
+        </div>
+        <div className='mt-4 w-full'>
+          <div className="flex items-center justify-between">
+            <div className="text-white md:text-inherit flex gap-6">
+              <PublicationReaction
+                publication={video}
+                iconSize="base"
+                textSize='sm'
+                isVertical={false}
+                showLabel
+              />
+              <MirrorVideo video={video} >
+                <div className="flex items-center justify-center gap-1 ">
+                  <div className='rounded-full bg-gray-200 dark:bg-gray-600 p-2'>
+                    <MirrorOutline className="h-4 w-4 " />
+                  </div>
+                  <div className="pt-1 text-sm">
+                    {video.stats?.totalAmountOfMirrors || 'Mirror'}
+                  </div>
+                </div>
+              </MirrorVideo>
             </div>
 
-          </div>
-        </div>
-      </div>
-      <div className='mt-4 w-full ml-1'>
-        <div className="flex items-center justify-between">
-          <div className="text-white md:text-inherit flex gap-6">
-            <PublicationReaction
-              publication={video}
-              iconSize="base"
-              textSize='sm'
-              isVertical={false}
-              showLabel
-            />
-            <MirrorVideo video={video} >
-              <div className="flex items-center justify-center gap-1 ">
-                <div className='rounded-full bg-gray-200 dark:bg-gray-600 p-2'>
-                  <MirrorOutline className="h-4 w-4 " />
+            <div className='flex gap-4'>
+              <button
+                type="button"
+                onClick={() => setShowShare(true)}
+              >
+                <div className=' rounded-full  bg-gray-200 dark:bg-gray-600 p-1'>
+                  <RiShareForwardLine className="h-6 w-6" />
                 </div>
-                <div className="pt-1 text-sm">
-                  {video.stats?.totalAmountOfMirrors || 'Mirror'}
-                </div>
-              </div>
-            </MirrorVideo>
-          </div>
-
-          <div className='flex gap-4'>
-            <button
-              type="button"
-              onClick={() => setShowShare(true)}
-            >
-              <div className=' rounded-full  bg-gray-200 dark:bg-gray-600 p-1'>
-                <RiShareForwardLine className="h-6 w-6" />
-              </div>
-            </button>
-            {/* {video?.collectModule?.__typename !== 'RevertCollectModuleSettings' && (
+              </button>
+              {/* {video?.collectModule?.__typename !== 'RevertCollectModuleSettings' && (
               <div className="text-center flex center">
                 <CollectVideo video={video} />
                 <div className="text-center text-xs leading-3">
@@ -187,31 +184,30 @@ const VideoComments: FC<Props> = ({ video, hideTitle = false }) => {
                 </div>
               </div>
             )} */}
+            </div>
           </div>
-
-        </div>
-        <ShareModal video={video} show={showShare} setShowShare={setShowShare} />
-        <div className="flex items-center justify-between rounded-lg border border-gray-200 p-2 dark:border-gray-800 my-3 w-full">
-          <div className="select-all truncate text-sm">
-            {document.URL}
+          <ShareModal video={video} show={showShare} setShowShare={setShowShare} />
+          <div className="flex items-center justify-between rounded-lg border border-gray-200 p-2 dark:border-gray-800 my-3 w-full">
+            <div className="select-all truncate text-sm">
+              {document.URL}
+            </div>
+            <button
+              className="ml-2 hover:opacity-60 focus:outline-none"
+              onClick={() => onCopyVideoUrl()}
+              type="button"
+            >
+              <CopyOutline className="h-4 w-4" />
+            </button>
           </div>
-          <button
-            className="ml-2 hover:opacity-60 focus:outline-none"
-            onClick={() => onCopyVideoUrl()}
-            type="button"
-          >
-            <CopyOutline className="h-4 w-4" />
-          </button>
         </div>
       </div>
-
-      <div>
+      <div className='grow overflow-y-auto relative mb-2'>
         {data?.publications?.items.length === 0 && (
           <NoDataFound text="Be the first to comment." withImage isCenter />
         )}
         {!error && (queuedComments.length || comments.length) ? (
           <div className='flex flex-col h-full'>
-            <div className="border-t-[1px] dark:border-slate-600 space-y-4 bottom-[80px] w-full pt-6">
+            <div className="space-y-4 bottom-[80px] w-full pt-6">
               {queuedComments?.map(
                 (queuedComment) =>
                   queuedComment?.pubId === video?.id && (
@@ -236,26 +232,27 @@ const VideoComments: FC<Props> = ({ video, hideTitle = false }) => {
           </div>
         ) : null}
 
-        <div className='absolute bottom-5 w-[100%]'>
-
-          {!selectedChannelId && (
-            <span className="text-xs">(Sign in required to comment)</span>
-          )}
-          {video?.canComment.result ? (
-            <NewComment video={video} />
-          ) : selectedChannelId ? (
-            <div className='mx-10'>
-              <Alert variant="warning">
-                <span className="text-sm">
-                  {isFollowerOnlyReferenceModule
-                    ? 'Only subscribers can comment on this publication'
-                    : `Only subscribers within ${video.profile.handle}'s preferred network can comment`}
-                </span>
-              </Alert>
-            </div>
-          ) : null}
-        </div>
       </div>
+      <div className='bottom-5 w-[100%]'>
+
+        {!selectedChannelId && (
+          <span className="text-xs">(Sign in required to comment)</span>
+        )}
+        {video?.canComment.result ? (
+          <NewComment video={video} />
+        ) : selectedChannelId ? (
+          <div className='mx-10'>
+            <Alert variant="warning">
+              <span className="text-sm">
+                {isFollowerOnlyReferenceModule
+                  ? 'Only subscribers can comment on this publication'
+                  : `Only subscribers within ${video.profile.handle}'s preferred network can comment`}
+              </span>
+            </Alert>
+          </div>
+        ) : null}
+      </div>
+
     </>
   )
 }

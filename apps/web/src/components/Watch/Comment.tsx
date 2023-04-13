@@ -60,7 +60,7 @@ const Comment: FC<Props> = ({ comment }) => {
   }
 
   return (
-    <div className="flex items-start justify-between mx-8 mb-5" onMouseEnter={() => setShowOptions(true)} onMouseLeave={() => setShowOptions(false)}>
+    <div className="flex items-start justify-between mb-5" onMouseEnter={() => setShowOptions(true)} onMouseLeave={() => setShowOptions(false)}>
       <div className="flex items-start justify-between">
         <Link
           href={`/channel/${comment.profile?.handle}`}
@@ -101,7 +101,7 @@ const Comment: FC<Props> = ({ comment }) => {
                   </span>
                 </Tooltip>
               )}
-       
+
           </span>
           <div
             className={clsx(
@@ -138,9 +138,9 @@ const Comment: FC<Props> = ({ comment }) => {
               </button>
             </div>
           )}
-               <span className="text-xs opacity-50">
-              {getRelativeTime(comment.createdAt)}
-            </span>
+          <span className="text-xs opacity-50">
+            {getRelativeTime(comment.createdAt)}
+          </span>
         </div>
       </div>
       <div>
