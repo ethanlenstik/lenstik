@@ -139,22 +139,22 @@ const PublicationReaction: FC<Props> = ({
           )}
         >
 
-          <div className=' rounded-full  bg-gray-200 dark:bg-gray-600 p-2'>
-          {reaction.isLiked? <AiFillHeart
+          <div className=' rounded-full  md:bg-gray-200 bg-gray-600/90 dark:bg-gray-600 p-2'>
+            {reaction.isLiked ? <AiFillHeart
               className={clsx({
                 'h-3.5 w-3.5': iconSize === 'sm',
                 'h-6 w-6': iconSize === 'lg',
                 'h-4 w-4': iconSize === 'base',
               },)}
-            />:
-            <AiOutlineHeart
-              className={clsx({
-                'h-3.5 w-3.5': iconSize === 'sm',
-                'h-6 w-6': iconSize === 'lg',
-                'h-4 w-4': iconSize === 'base',
-                'text-green-500': reaction.isLiked
-              },)}
-            />}
+            /> :
+              <AiOutlineHeart
+                className={clsx({
+                  'h-3.5 w-3.5': iconSize === 'sm',
+                  'h-6 w-6': iconSize === 'lg',
+                  'h-4 w-4': iconSize === 'base',
+                  'text-green-500': reaction.isLiked
+                },)}
+              />}
           </div>
           {showLabel && (
             <span

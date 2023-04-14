@@ -190,7 +190,7 @@ const FullScreen: FC<Props> = ({ videos,
                                 <ByteActions video={video} inDetail={true} />
                             </div>
 
-                            <TopOverlay onClickVideo={onClickVideo} full={true} id={video.id} />
+                            {/* <TopOverlay onClickVideo={onClickVideo} full={true} id={video.id} /> */}
 
                         </div>
                         <button

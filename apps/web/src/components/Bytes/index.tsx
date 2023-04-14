@@ -143,6 +143,7 @@ const Bytes = () => {
   }
 
   const detailNext = (val: 1 | -1) => {
+    console.log(val, bytes, currentViewingId)
     const index = bytes.findIndex(byte => byte.id === currentViewingId) + val
     index >= 0 && index < bytes.length ? setCurrentViewingId(bytes[index].id) : currentViewingId
   }

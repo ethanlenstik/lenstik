@@ -46,11 +46,11 @@ const ByteActions: FC<Props> = ({ video, showDetail, inDetail }) => {
         <div className="w-full text-center text-white md:text-inherit">
           {
             !inDetail ? <button type='button' onClick={showDetail} className='md-max:hidden'>
-              <div className=' rounded-full  bg-gray-200 dark:bg-gray-600 p-2'>
+              <div className=' rounded-full md:bg-gray-200 bg-gray-600/90 dark:bg-gray-600 p-2'>
                 <FaRegCommentAlt className="h-5 w-5" />
               </div>
             </button> : <CommentModal video={video} trigger={
-              <div className=' rounded-full  bg-gray-200 dark:bg-gray-600 p-2'>
+              <div className=' rounded-full  md:bg-gray-200 bg-gray-600/9o dark:bg-gray-600 p-2'>
                 <FaRegCommentAlt className="h-5 w-5" />
               </div>} />
           }
@@ -59,7 +59,7 @@ const ByteActions: FC<Props> = ({ video, showDetail, inDetail }) => {
         <div className="w-full text-center text-white md:text-inherit">
           <MirrorVideo video={video}>
             <div className="flex flex-col items-center pt-2">
-              <div className=' rounded-full  bg-gray-200 dark:bg-gray-600 p-2'>
+              <div className=' rounded-full  md:bg-gray-200 bg-gray-600/90 dark:bg-gray-600 p-2'>
                 <MirrorOutline className="h-5 w-5" />
               </div>
               <div className="pt-1 text-xs">
@@ -81,8 +81,8 @@ const ByteActions: FC<Props> = ({ video, showDetail, inDetail }) => {
             type="button"
             onClick={() => setShowShare(true)}
           >
-            <div className=' rounded-full bg-gray-200 dark:bg-gray-600 p-2'>
-              <RiShareForwardLine className="h-5 w-5" />
+            <div className=' rounded-full  md:bg-gray-200 bg-gray-600/90 dark:bg-gray-600 p-2'>
+              <RiShareForwardLine className="h-5 w-5 text-white md:text-black dark:text-white" />
             </div>
           </button>
         </div>
