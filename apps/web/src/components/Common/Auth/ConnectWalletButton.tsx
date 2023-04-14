@@ -18,6 +18,7 @@ import SunOutline from '../Icons/SunOutline'
 import { useTheme } from 'next-themes'
 import { FiHelpCircle } from 'react-icons/fi'
 import { VscFeedback } from 'react-icons/vsc'
+import ShowMore from './ShowMore'
 
 type Props = {
   handleSign: () => void
@@ -49,7 +50,10 @@ const ConnectWalletButton = ({ handleSign, signing, showMore = false }: Props) =
   return connector?.id && isConnected ? (
     chain?.id === POLYGON_CHAIN_ID ? (
       selectedChannelId && selectedChannel ? (
-        <UserMenu />
+        <>
+          <div className="md:block hidden"> <UserMenu /></div>
+          <div className="md:hidden"><ShowMore /></div>
+        </>
       ) : (
         <div className="flex items-center space-x-2">
           <Button
@@ -91,51 +95,7 @@ const ConnectWalletButton = ({ handleSign, signing, showMore = false }: Props) =
         <span className="ml-1 hidden md:inline-block">Wallet</span>
       </Button>
       {
-        showMore && <DropMenu trigger={
-          <button>
-            <BsThreeDotsVertical />
-          </button>
-        }>
-          <div className="mt-2 w-56 overflow-hidden rounded-lg  border bg-gray-100 shadow dark:border-gray-800 dark:bg-black">
-            <div className=" m-1.5 overflow-hidden rounded-gl ">
-              <div className="text-sm">
-                <button type="button"
-                  className="flex w-full items-center space-x-2 px-3 py-2 hover:bg-gray-100 dark:hover:bg-gray-800"
-                  onClick={() => {
-
-                  }}>
-                  <VscFeedback />
-                  <span className="truncate whitespace-nowrap">Feedback</span>
-                </button>
-                <button type="button"
-                  className="flex w-full items-center space-x-2 px-3 py-2 hover:bg-gray-100 dark:hover:bg-gray-800"
-                  onClick={() => {
-
-                  }}>
-                  <FiHelpCircle />
-                  <span className="truncate whitespace-nowrap">Help</span>
-                </button>
-                <button
-                  type="button"
-                  className="flex w-full items-center space-x-2 px-3 py-2 hover:bg-gray-100 dark:hover:bg-gray-800"
-                  onClick={() => {
-                    setTheme(theme === 'dark' ? 'light' : 'dark')
-                  }}
-                >
-                  {theme === 'dark' ? (
-                    <SunOutline className="h-4 w-4" />
-                  ) : (
-                    <MoonOutline className="h-4 w-4" />
-                  )}
-                  <span className="truncate whitespace-nowrap">
-                    {theme === 'light' ? 'Switch to Dark' : 'Switch to Light'}
-                  </span>
-                </button>
-
-              </div>
-            </div>
-          </div>
-        </DropMenu>
+        showMore && <ShowMore />
       }
 
     </div>

@@ -64,8 +64,8 @@ const FullScreen: FC<Props> = ({ videos,
     const observer = new IntersectionObserver((data) => {
         if (data[0].target.id && data[0].isIntersecting) {
             setCurrentViewingId(data[0].target.id)
-            const nextUrl = `${location.origin}/${video?.id}`
-            history.replaceState({ path: nextUrl }, '', nextUrl)
+            // const nextUrl = `${location.origin}/${video?.id}`
+            // history.replaceState({ path: nextUrl }, '', nextUrl)
             playVideo()
         }
     })

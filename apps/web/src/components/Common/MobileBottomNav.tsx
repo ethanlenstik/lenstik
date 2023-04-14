@@ -1,7 +1,14 @@
+import useAppStore from '@lib/store'
 import clsx from 'clsx'
+import { Profile } from 'lens'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React from 'react'
+import { AiFillSetting } from 'react-icons/ai'
+import { BsInbox } from 'react-icons/bs'
+import { CgProfile } from 'react-icons/cg'
+import { FaRegCompass } from 'react-icons/fa'
+import getProfilePicture from 'utils/functions/getProfilePicture'
 
 import BytesOutline from './Icons/BytesOutline'
 import ExploreOutline from './Icons/ExploreOutline'
@@ -11,6 +18,9 @@ import PlusOutline from './Icons/PlusOutline'
 
 const MobileBottomNav = () => {
   const router = useRouter()
+  const selectedChannel = useAppStore(
+    (state) => state.selectedChannel as Profile
+  )
 
   const isActivePath = (path: string) => router.pathname === path
 
@@ -29,15 +39,15 @@ const MobileBottomNav = () => {
           <span className="text-[9px]">Home</span>
         </Link>
         <Link
-          href="/bytes"
+          href="/notifications"
           className="flex w-full flex-col items-center justify-center rounded-lg bg-transparent pt-2 text-sm font-medium text-gray-700 dark:text-gray-100 dark:hover:text-gray-100 md:grid"
         >
-          <BytesOutline
+          <BsInbox
             className={clsx('h-4 w-4 opacity-80', {
-              'text-green-500 opacity-100': isActivePath('/bytes')
+              'text-green-500 opacity-100': isActivePath('/notifications')
             })}
           />
-          <span className="text-[9px]">Bytes</span>
+          <span className="text-[9px]">Notification</span>
         </Link>
         <Link
           href="/upload"
@@ -46,26 +56,34 @@ const MobileBottomNav = () => {
           <PlusOutline className="h-8 w-8 opacity-80" />
         </Link>
         <Link
-          href="/explore"
+          href="/settings"
           className="flex w-full flex-col items-center justify-center rounded-lg bg-transparent pt-2 text-sm font-medium text-gray-700 dark:text-gray-100 dark:hover:text-gray-100 md:grid"
         >
-          <ExploreOutline
+          <AiFillSetting
             className={clsx('h-4 w-4 opacity-80', {
-              'text-green-500 opacity-100': isActivePath('/explore')
+              'text-green-500 opacity-100': isActivePath('/settings')
             })}
           />
-          <span className="text-[9px]">Explore</span>
+          <span className="text-[9px]">Setting</span>
         </Link>
         <Link
-          href="/feed"
+          href={`/channel/${selectedChannel?.handle}`}
           className="flex w-full flex-col items-center justify-center rounded-lg bg-transparent pt-2 text-sm font-medium text-gray-700 dark:text-gray-100 dark:hover:text-gray-100 md:grid"
-        >
-          <FeedOutline
-            className={clsx('h-4 w-4 opacity-80', {
-              'text-green-500 opacity-100': isActivePath('/feed')
-            })}
-          />
-          <span className="text-[9px]">Feed</span>
+        > {
+            selectedChannel?.handle ? <img
+              className={clsx("dark:bg-theme h-6 w-6 rounded-full bg-white object-cover md:h-8 md:w-8 mr-2", { 'text-green-500 opacity-100': isActivePath('/feed') })}
+              src={getProfilePicture(selectedChannel)}
+              alt={selectedChannel.handle}
+              draggable={false}
+            /> : <CgProfile
+              className={clsx('h-4 w-4 opacity-80', {
+                'text-green-500 opacity-100': isActivePath('/feed')
+              })}
+            />
+
+          }
+
+          <span className="text-[9px]">Profile</span>
         </Link>
       </div>
     </div>

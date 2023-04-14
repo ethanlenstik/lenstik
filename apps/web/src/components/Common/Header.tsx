@@ -99,7 +99,7 @@ const Header: FC<Props> = ({ className }) => {
               <SearchOutline className="h-4 w-4" aria-hidden="true" />
             </button>
 
-            {(selectedChannelId && selectedChannel )? (
+            {(selectedChannelId && selectedChannel) ? (
               <>
                 <a>
                   <Link
@@ -127,7 +127,7 @@ const Header: FC<Props> = ({ className }) => {
                     </button>
                   </Link>
                 </a> */}
-                <a>
+                <a className='hidden md:block'>
                   <Link
 
                     href="/notifications"

@@ -1,7 +1,10 @@
+import React from 'react'
 import { FcMusic } from 'react-icons/fc'
-import { GiHealthNormal, GiMaterialsScience } from 'react-icons/gi'
+import { GiHealthNormal, GiMaterialsScience, GiTechnoHeart } from 'react-icons/gi'
 import { MdOutlineFastfood, MdSportsBasketball, MdCardTravel } from 'react-icons/md'
 import { BiHappyAlt, BiBitcoin, BiNews, BiPodcast } from 'react-icons/bi'
+import { SiWeb3Dotjs } from 'react-icons/si'
+import { FaRegSmileBeam, FaCode } from 'react-icons/fa'
 
 
 export const CREATOR_VIDEO_CATEGORIES = [
@@ -14,12 +17,12 @@ export const CREATOR_VIDEO_CATEGORIES = [
   {
     name: 'Coding',
     tag: 'coding',
-    icon: <BiBitcoin />
+    icon: <FaCode />
   }
   , {
     name: 'Meme',
     tag: 'meme',
-    icon: <BiPodcast />
+    icon: <FaRegSmileBeam />
   },
   {
     name: 'Music', tag: 'music',
@@ -33,12 +36,12 @@ export const CREATOR_VIDEO_CATEGORIES = [
   {
     name: 'NFT',
     tag: 'nft',
-    icon: <GiHealthNormal />
+    icon: <GiTechnoHeart />
   },
   {
     name: 'Web3',
     tag: 'web3',
-    icon: <MdCardTravel />
+    icon: <SiWeb3Dotjs />
   },
   {
     name: 'Technology',
