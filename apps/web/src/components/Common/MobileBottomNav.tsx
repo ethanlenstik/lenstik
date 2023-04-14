@@ -1,6 +1,6 @@
 import useAppStore from '@lib/store'
 import clsx from 'clsx'
-import { Profile } from 'lens'
+import type { Profile } from 'lens'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React from 'react'
