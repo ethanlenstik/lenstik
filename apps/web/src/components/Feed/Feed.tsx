@@ -18,6 +18,7 @@ const HomeFeed = () => {
   const [currentViewingId, setCurrentViewingId] = useState('')
   const [show, setShow] = useState(false)
   const bytesContainer = useRef<HTMLDivElement>(null)
+  const [byte, setByte] = useState<Publication>()
 
   const request = {
     limit: 20,
@@ -76,17 +77,24 @@ const HomeFeed = () => {
     )
   }
 
-  const openDetail = () => {
-    setShow(!show)
-  }
-
   if (!loading && error) {
     return <Custom500 />
   }
 
+  const openDetail = (byte: Publication) => {
+    const nextUrl = `/${byte.id}`
+    console.log(currentViewingId)
+    history.pushState({ path: nextUrl }, '', nextUrl)
+    setByte(byte)
+    setShow(!show)
+  }
+
   const closeDialog = () => {
+    const nextUrl = `/`
+    history.pushState({ path: nextUrl }, '', nextUrl)
     setShow(false)
   }
+
   const detailNext = (val: 1 | -1) => {
     const index = bytes.findIndex(byte => byte.id === currentViewingId) + val
     index >= 0 && index < bytes.length ? setCurrentViewingId(bytes[index].id) : currentViewingId
@@ -94,13 +102,13 @@ const HomeFeed = () => {
 
   return (
     <div className='mt-12'>
-      {currentVideo ? <FullScreen
-        videos={bytes}
-        close={closeDialog}
-        isShow={show}
-        nextVideo={detailNext}
-        index={bytes.findIndex((video) => video.id === currentViewingId)}
-      /> : null}
+      {currentVideo && byte ? <FullScreen
+          video={byte}
+          close={closeDialog}
+          isShow={show}
+          nextVideo={detailNext}
+          index={bytes?.findIndex((video) => video.id === currentViewingId)}
+        />  : null}
       {!error && !loading && (
         <>
           <div
