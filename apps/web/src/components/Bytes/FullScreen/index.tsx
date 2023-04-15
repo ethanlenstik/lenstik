@@ -21,15 +21,16 @@ import VideoPlayer from 'web-ui/VideoPlayer'
 import TopOverlay from '../TopOverlay'
 import Comments from './Comments'
 import ByteActions from '../ByteActions'
+import { useRouter } from 'next/router'
 
 type Props = {
-    videos: Publication[]
+    video: Publication
     close: () => void
     isShow: boolean
     nextVideo: (val: 1 | -1) => void
     index?: number
 }
-const FullScreen: FC<Props> = ({ videos,
+const FullScreen: FC<Props> = ({ video,
     close,
     isShow,
     nextVideo,
@@ -37,9 +38,9 @@ const FullScreen: FC<Props> = ({ videos,
 
 }) => {
 
+    const { pathname, replace, asPath } = useRouter()
     const setCurrentViewingId = useAppStore((state) => state.setCurrentviewingId)
     const currentViewingId = useAppStore((state) => state.currentviewingId)
-    const video: any = videos?.find(item => item.id === currentViewingId)
     const videoRef = useRef<HTMLMediaElement>()
     const intersectionRef = useRef<HTMLDivElement>(null)
     const [playing, setPlaying] = useState(false)
@@ -167,7 +168,7 @@ const FullScreen: FC<Props> = ({ videos,
                             onMouseEnter={() => displayControl(true)}
                             onMouseLeave={() => displayControl(false)}>
                             <div
-                                className="flex  items-center bg-black min-w-[56.25vh] md:rounded-sm m-auto"
+                                className="flex  items-center bg-black min-w-[56.25vh] max-w-[1px] md:rounded-sm m-auto"
                                 style={{
                                     backgroundColor: backgroundColor ? backgroundColor : undefined
                                 }}

@@ -14,7 +14,7 @@ import {
 } from 'lens'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { useInView } from 'react-cool-inview'
 import {
   Analytics,
@@ -34,6 +34,7 @@ const Bytes = () => {
   const selectedChannel = useAppStore((state) => state.selectedChannel)
   const setCurrentViewingId = useAppStore((state) => state.setCurrentviewingId)
   const currentViewingId = useAppStore((state) => state.currentviewingId)
+  const [byte, setByte] = useState<Publication>()
 
 
   const activeTagFilter = useAppStore((state) => state.activeTagFilter)
@@ -69,13 +70,6 @@ const Bytes = () => {
         channelId: selectedChannel?.id ?? null
       },
       onCompleted: ({ explorePublications }) => {
-        // console.log("result", explorePublications)
-        const items = explorePublications?.items as Publication[]
-        const publicationId = router.query.id
-        // if (!publicationId) {
-        //   const nextUrl = `${location.origin}/${items[0]?.id}`
-        //   history.pushState({ path: nextUrl }, '', nextUrl)
-        // }
       }
     })
 
@@ -101,9 +95,27 @@ const Bytes = () => {
     })
   }
 
-  const openDetail = () => {
+  const openDetail = (byte: Publication) => {
+    const nextUrl = `/${byte.id}`
+    console.log(currentViewingId)
+    history.pushState({ path: nextUrl }, '', nextUrl)
+    setByte(byte)
     setShow(!show)
   }
+
+  const closeDialog = () => {
+    const nextUrl = `/`
+    history.pushState({ path: nextUrl }, '', nextUrl)
+    setShow(false)
+  }
+
+
+  useEffect(() => {
+    if (router.query.id) {
+      openDetail(singleBytePublication)
+    }
+  }, [singleByte])
+
 
   useEffect(() => {
     if (router.isReady) {
@@ -148,37 +160,33 @@ const Bytes = () => {
     index >= 0 && index < bytes.length ? setCurrentViewingId(bytes[index].id) : currentViewingId
   }
 
-  const closeDialog = () => {
-    setShow(false)
-  }
-
   return (
     <div>
       <Head>
         <meta name="theme-color" content="#000000" />
       </Head>
       <MetaTags title="Lenstik" />
-      {currentViewingId && bytes ? <FullScreen
-        videos={bytes}
-        close={closeDialog}
-        isShow={show}
-        nextVideo={detailNext}
-        index={bytes?.findIndex((video) => video.id === currentViewingId)}
-      /> : null}
+      {currentViewingId && byte && router.pathname ?
+        <FullScreen
+          video={byte}
+          close={closeDialog}
+          isShow={show}
+          nextVideo={detailNext}
+          index={bytes?.findIndex((video) => video.id === currentViewingId)}
+        /> : null}
       <div
         ref={bytesContainer}
         className="h-screen md:h-[calc(100vh-70px)]"
       >
-        {/* {singleByte && (
+        {singleByte && (
           <ByteVideo
             video={singleBytePublication}
-            currentViewingId={currentViewingId}
-            intersectionCallback={currentViewCb}
+            key={`${singleBytePublication?.id}_${singleBytePublication.createdAt}0`}
             onDetail={openDetail}
             isShow={show}
             index={0}
           />
-        )} */}
+        )}
         {bytes?.map((video: Publication, index) => (
           <ByteVideo
             video={video}

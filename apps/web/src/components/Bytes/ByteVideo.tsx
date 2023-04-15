@@ -19,7 +19,7 @@ import useAppStore from '@lib/store'
 
 type Props = {
   video: Publication
-  onDetail: () => void
+  onDetail: (video: Publication) => void
   isShow: boolean
   index?: number
 }
@@ -81,7 +81,7 @@ const ByteVideo: FC<Props> = ({
   const onClickVideo = (event: any) => {
     event.preventDefault();
     setCurrentViewingId(video.id)
-    onDetail()
+    onDetail(video)
   }
 
   const refCallback = (ref: HTMLMediaElement) => {
@@ -160,7 +160,7 @@ const ByteVideo: FC<Props> = ({
             </div>
             <TopOverlay onClickVideo={onClickVideo} id={video.id} />
             <div className="absolute right-2 bottom-[15%] z-[1] md:hidden">
-              <ByteActions video={video} showDetail={() => onDetail()} />
+              <ByteActions video={video} showDetail={() => onDetail(video)} />
               {/* {video?.collectModule?.__typename !==
                 'RevertCollectModuleSettings' && (
                   <div className="text-center text-white md:text-gray-500">
@@ -173,7 +173,7 @@ const ByteVideo: FC<Props> = ({
             </div>
           </div>
           <div className="hidden md:flex">
-            <ByteActions video={video} showDetail={() => onDetail()} />
+            <ByteActions video={video} showDetail={() => onDetail(video)} />
           </div>
         </div>
       </div>
