@@ -103,12 +103,12 @@ const HomeFeed = () => {
   return (
     <div className='mt-12'>
       {currentVideo && byte ? <FullScreen
-          video={byte}
-          close={closeDialog}
-          isShow={show}
-          nextVideo={detailNext}
-          index={bytes?.findIndex((video) => video.id === currentViewingId)}
-        />  : null}
+        video={byte}
+        close={closeDialog}
+        isShow={show}
+        nextVideo={detailNext}
+        index={bytes?.findIndex((video) => video.id === currentViewingId)}
+      /> : null}
       {!error && !loading && (
         <>
           <div

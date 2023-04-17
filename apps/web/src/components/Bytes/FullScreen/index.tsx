@@ -24,16 +24,16 @@ import ByteActions from '../ByteActions'
 import { useRouter } from 'next/router'
 
 type Props = {
-    video: Publication
+    byte: Publication
+    bytes: Publication[]
     close: () => void
     isShow: boolean
-    nextVideo: (val: 1 | -1) => void
     index?: number
 }
-const FullScreen: FC<Props> = ({ video,
+const FullScreen: FC<Props> = ({ byte,
     close,
+    bytes,
     isShow,
-    nextVideo,
     index = 0
 
 }) => {
@@ -44,6 +44,7 @@ const FullScreen: FC<Props> = ({ video,
     const videoRef = useRef<HTMLMediaElement>()
     const intersectionRef = useRef<HTMLDivElement>(null)
     const [playing, setPlaying] = useState(false)
+    const [video, setVideo] = useState(byte)
 
     const thumbnailUrl = imageCdn(
         sanitizeIpfsUrl(getThumbnailUrl(video)),
@@ -61,23 +62,7 @@ const FullScreen: FC<Props> = ({ video,
         videoRef.current?.play().catch(() => { })
         setPlaying(true)
     }
-
-    const observer = new IntersectionObserver((data) => {
-        if (data[0].target.id && data[0].isIntersecting) {
-            setCurrentViewingId(data[0].target.id)
-            // const nextUrl = `${location.origin}/${video?.id}`
-            // history.replaceState({ path: nextUrl }, '', nextUrl)
-            playVideo()
-        }
-    })
-
-    useEffect(() => {
-        if (intersectionRef.current) {
-            observer.observe(intersectionRef.current)
-        }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
-
+    useEffect(() => playVideo(), [])
     const pauseVideo = () => {
         if (!videoRef.current) {
             return
@@ -138,6 +123,24 @@ const FullScreen: FC<Props> = ({ video,
         }
         elVol.style.visibility = videoFull ? "visible" : "hidden"
     }
+
+
+    const detailNext = (val: 1 | -1) => {
+        const index = bytes.findIndex(b => b.id === currentViewingId)
+        console.log(currentViewingId, index + val)
+        const byte = index >= 0 ? bytes[index + val] : bytes[0]
+        const id = byte.id
+        setCurrentViewingId(id)
+
+        const nextUrl = `/${id}`
+        history.pushState({ path: nextUrl }, '', nextUrl)
+        setVideo(byte)
+        console.log(currentViewingId, bytes, byte, index)
+        playVideo()
+    }
+
+    console.log("aaa", isShow)
+
 
     return (<>
 
@@ -207,7 +210,7 @@ const FullScreen: FC<Props> = ({ video,
                             <div className="h-[44px]" >
                                 {index > 0 && (<button
                                     className="rounded-full bg-gray-300/20 p-3 focus:outline-none dark:bg-gray-700  hover:bg-gray-800 dark:hover:bg-gray-800"
-                                    onClick={() => nextVideo(-1)}
+                                    onClick={() => detailNext(-1)}
                                 >
                                     <ChevronUpOutline className="h-5 w-5" />
                                 </button>)}
@@ -215,7 +218,7 @@ const FullScreen: FC<Props> = ({ video,
                             <div className="h-25 w-25" >
                                 <button
                                     className="rounded-full bg-gray-300/20 p-3 focus:outline-none dark:bg-gray-700 hover:bg-gray-800 dark:hover:bg-gray-800"
-                                    onClick={() => nextVideo(1)}
+                                    onClick={() => detailNext(1)}
                                 >
                                     <ChevronDownOutline className="h-5 w-5" />
                                 </button>

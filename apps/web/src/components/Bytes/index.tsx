@@ -14,7 +14,7 @@ import {
 } from 'lens'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import React, { useCallback, useEffect, useRef, useState } from 'react'
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { useInView } from 'react-cool-inview'
 import {
   Analytics,
@@ -32,7 +32,6 @@ const Bytes = () => {
   const router = useRouter()
   const bytesContainer = useRef<HTMLDivElement>(null)
   const selectedChannel = useAppStore((state) => state.selectedChannel)
-  const setCurrentViewingId = useAppStore((state) => state.setCurrentviewingId)
   const currentViewingId = useAppStore((state) => state.currentviewingId)
   const [byte, setByte] = useState<Publication>()
 
@@ -110,8 +109,18 @@ const Bytes = () => {
   }
 
 
+  const full = useCallback(() => currentViewingId && byte && router.pathname ?
+    <FullScreen
+      byte={byte}
+      close={closeDialog}
+      isShow={show}
+      bytes={bytes}
+      index={bytes?.findIndex((video) => video.id === currentViewingId)}
+    /> : null, [byte, show])
+
   useEffect(() => {
-    if (router.query.id) {
+    if (router.query.id && singleBytePublication) {
+      console.log(singleBytePublication)
       openDetail(singleBytePublication)
     }
   }, [singleByte])
@@ -154,26 +163,13 @@ const Bytes = () => {
     )
   }
 
-  const detailNext = (val: 1 | -1) => {
-    console.log(val, bytes, currentViewingId)
-    const index = bytes.findIndex(byte => byte.id === currentViewingId) + val
-    index >= 0 && index < bytes.length ? setCurrentViewingId(bytes[index].id) : currentViewingId
-  }
-
   return (
     <div>
       <Head>
         <meta name="theme-color" content="#000000" />
       </Head>
       <MetaTags title="Lenstik" />
-      {currentViewingId && byte && router.pathname ?
-        <FullScreen
-          video={byte}
-          close={closeDialog}
-          isShow={show}
-          nextVideo={detailNext}
-          index={bytes?.findIndex((video) => video.id === currentViewingId)}
-        /> : null}
+      {full()}
       <div
         ref={bytesContainer}
         className="h-screen md:h-[calc(100vh-70px)]"
