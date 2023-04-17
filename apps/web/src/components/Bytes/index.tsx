@@ -33,6 +33,7 @@ const Bytes = () => {
   const bytesContainer = useRef<HTMLDivElement>(null)
   const selectedChannel = useAppStore((state) => state.selectedChannel)
   const currentViewingId = useAppStore((state) => state.currentviewingId)
+  const setCurrentViewingId = useAppStore((state) => state.setCurrentviewingId)
   const [byte, setByte] = useState<Publication>()
 
 
@@ -96,9 +97,8 @@ const Bytes = () => {
 
   const openDetail = (byte: Publication) => {
     const nextUrl = `/${byte.id}`
-    console.log(currentViewingId)
-    history.pushState({ path: nextUrl }, '', nextUrl)
     setByte(byte)
+    history.pushState({ path: nextUrl }, '', nextUrl)
     setShow(!show)
   }
 
@@ -116,11 +116,10 @@ const Bytes = () => {
       isShow={show}
       bytes={bytes}
       index={bytes?.findIndex((video) => video.id === currentViewingId)}
-    /> : null, [byte, show])
+    /> : null, [byte, show, currentViewingId])
 
   useEffect(() => {
     if (router.query.id && singleBytePublication) {
-      console.log(singleBytePublication)
       openDetail(singleBytePublication)
     }
   }, [singleByte])
@@ -180,7 +179,7 @@ const Bytes = () => {
             key={`${singleBytePublication?.id}_${singleBytePublication.createdAt}0`}
             onDetail={openDetail}
             isShow={show}
-            index={0}
+            index={-1}
           />
         )}
         {bytes?.map((video: Publication, index) => (

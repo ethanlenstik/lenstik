@@ -6,7 +6,7 @@ import useAppStore from '@lib/store'
 import usePersistStore from '@lib/store/persist'
 import clsx from 'clsx'
 import type { Publication } from 'lens'
-import type { FC } from 'react'
+import { FC, useLayoutEffect } from 'react'
 import React, { useEffect, useMemo, useRef, useState } from 'react'
 import toast from 'react-hot-toast'
 import { BsFlag } from 'react-icons/bs'
@@ -37,7 +37,6 @@ const FullScreen: FC<Props> = ({ byte,
     index = 0
 
 }) => {
-
     const { pathname, replace, asPath } = useRouter()
     const setCurrentViewingId = useAppStore((state) => state.setCurrentviewingId)
     const currentViewingId = useAppStore((state) => state.currentviewingId)
@@ -63,6 +62,9 @@ const FullScreen: FC<Props> = ({ byte,
         setPlaying(true)
     }
     useEffect(() => playVideo(), [])
+
+    useLayoutEffect(() => setVideo(byte), [byte])
+
     const pauseVideo = () => {
         if (!videoRef.current) {
             return
@@ -74,7 +76,6 @@ const FullScreen: FC<Props> = ({ byte,
     }
 
     const onClickVideo = () => {
-        console.log("paused", videoRef.current)
         if (videoRef.current?.paused) {
             playVideo()
         } else {
@@ -127,7 +128,7 @@ const FullScreen: FC<Props> = ({ byte,
 
     const detailNext = (val: 1 | -1) => {
         const index = bytes.findIndex(b => b.id === currentViewingId)
-        console.log(currentViewingId, index + val)
+        // console.log(currentViewingId, index + val)
         const byte = index >= 0 ? bytes[index + val] : bytes[0]
         const id = byte.id
         setCurrentViewingId(id)
@@ -135,11 +136,9 @@ const FullScreen: FC<Props> = ({ byte,
         const nextUrl = `/${id}`
         history.pushState({ path: nextUrl }, '', nextUrl)
         setVideo(byte)
-        console.log(currentViewingId, bytes, byte, index)
+        // console.log(currentViewingId, bytes, byte, index)
         playVideo()
     }
-
-    console.log("aaa", isShow)
 
 
     return (<>

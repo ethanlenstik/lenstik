@@ -114,3 +114,8 @@ input[type='number'] {
 #currentVideo .c-hmIsCl{
   visibility: hidden;
 }
+
+#videoFull .c-cSwjHS.c-lbNOYO .c-iIOWzi{
+  position: absolute;
+  right: 0;
+}

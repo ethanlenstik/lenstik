@@ -54,13 +54,14 @@ const ByteVideo: FC<Props> = ({
 
   const observer = new IntersectionObserver((data, observer) => {
     if (data[0].target.id && data[0].isIntersecting) {
-      setCurrentViewingId(data[0].target.id)
+      const id = data[0].target.id
+      id != currentViewingId && setCurrentViewingId(id)
       // if (isShow) {
       //   const nextUrl = `${location.origin}/${video?.id}`
       //   history.replaceState({ path: nextUrl }, '', nextUrl)
       // }
     }
-  }, {rootMargin: "0px 0px -50% 0px"})
+  }, { rootMargin: "0px 0px -50% 0px" })
 
   useEffect(() => {
     if (intersectionRef.current) {
@@ -94,8 +95,8 @@ const ByteVideo: FC<Props> = ({
 
 
   useEffect(() => {
-    if(currentViewingId == video.id){
-     isShow? pauseVideo(): playVideo()
+    if (currentViewingId == video.id) {
+      isShow ? pauseVideo() : playVideo()
     }
   }, [isShow])
 
@@ -122,7 +123,7 @@ const ByteVideo: FC<Props> = ({
         >
           <div className="relative bottom-0">
             <div
-              className={clsx("ultrawide:w-[407px] flex h-screen w-screen min-w-[260px] max-w-[336px] items-center overflow-hidden bg-black md:w-[19.5vw] md:rounded-xl","md:h-[65vh] md:max-xl:h-[30vh] max-h-[600px] min-h-[500px]")}
+              className={clsx("ultrawide:w-[407px] flex h-screen w-screen min-w-[260px] max-w-[336px] items-center overflow-hidden bg-black md:w-[19.5vw] md:rounded-xl", "md:h-[65vh] md:max-xl:h-[30vh] max-h-[600px] min-h-[500px]")}
               id={currentViewingId === video.id ? "currentVideo" : video.id + "1"}
               style={{
                 backgroundColor: 'transparent'
