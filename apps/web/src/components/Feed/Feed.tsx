@@ -7,15 +7,17 @@ import { NoDataFound } from '@components/UIElements/NoDataFound'
 import useAppStore from '@lib/store'
 import type { FeedItem, Publication } from 'lens'
 import { FeedEventItemType, PublicationMainFocus, useFeedQuery } from 'lens'
+import { useRouter } from 'next/router'
 import React, { useCallback, useMemo, useRef, useState } from 'react'
 import { useInView } from 'react-cool-inview'
 import Custom500 from 'src/pages/500'
 import { SCROLL_ROOT_MARGIN } from 'utils'
 
 const HomeFeed = () => {
+  const router = useRouter()
   const selectedChannel = useAppStore((state) => state.selectedChannel)
   const activeTagFilter = useAppStore((state) => state.activeTagFilter)
-  const [currentViewingId, setCurrentViewingId] = useState('')
+  const currentViewingId = useAppStore((state) => state.currentviewingId)
   const [show, setShow] = useState(false)
   const bytesContainer = useRef<HTMLDivElement>(null)
   const [byte, setByte] = useState<Publication>()
@@ -55,17 +57,30 @@ const HomeFeed = () => {
     }
   })
 
-  const currentViewCb = useCallback((id: string) => setCurrentViewingId(id)
-    , [bytes])
+  const openDetail = (byte: Publication) => {
+    const nextUrl = `/${byte.id}`
+    history.pushState({ path: nextUrl }, '', nextUrl)
+    setByte(byte)
+    setShow(!show)
+  }
 
-  const currentVideo = useMemo(() => {
-    const video = bytes?.find(video => video.id === currentViewingId)
-    if (video == null && bytes?.length > 0) {
-      setCurrentViewingId(bytes[0].id)
-      return bytes[0]
-    }
-    return video
-  }, [currentViewingId, activeTagFilter])
+  const closeDialog = () => {
+    const nextUrl = `/`
+    history.pushState({ path: nextUrl }, '', nextUrl)
+    setShow(false)
+  }
+
+
+  const full = useCallback(() => currentViewingId && byte && router.pathname ?
+    <FullScreen
+      byte={byte}
+      close={closeDialog}
+      isShow={show}
+      bytes={bytes}
+      index={bytes?.findIndex((video) => video.id === currentViewingId)}
+    /> : null, [byte, show])
+
+
 
   if (bytes?.length === 0) {
     return (
@@ -80,35 +95,9 @@ const HomeFeed = () => {
   if (!loading && error) {
     return <Custom500 />
   }
-
-  const openDetail = (byte: Publication) => {
-    const nextUrl = `/${byte.id}`
-    console.log(currentViewingId)
-    history.pushState({ path: nextUrl }, '', nextUrl)
-    setByte(byte)
-    setShow(!show)
-  }
-
-  const closeDialog = () => {
-    const nextUrl = `/`
-    history.pushState({ path: nextUrl }, '', nextUrl)
-    setShow(false)
-  }
-
-  const detailNext = (val: 1 | -1) => {
-    const index = bytes.findIndex(byte => byte.id === currentViewingId) + val
-    index >= 0 && index < bytes.length ? setCurrentViewingId(bytes[index].id) : currentViewingId
-  }
-
   return (
     <div className='mt-12'>
-      {currentVideo && byte ? <FullScreen
-        video={byte}
-        close={closeDialog}
-        isShow={show}
-        nextVideo={detailNext}
-        index={bytes?.findIndex((video) => video.id === currentViewingId)}
-      /> : null}
+      {full()}
       {!error && !loading && (
         <>
           <div
