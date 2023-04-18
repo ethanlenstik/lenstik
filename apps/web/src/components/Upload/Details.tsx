@@ -86,7 +86,7 @@ const Details: FC<Props> = ({ onUpload, onCancel }) => {
       )}>
         {uploadedVideo.file ? <PreviewVideo /> : <DropZone />}
       </div>
-      <form onSubmit={handleSubmit(onSubmitForm)} className="flex-1">
+      <form onSubmit={handleSubmit(onSubmitForm)} className="flex-1 shrink-0">
         <div className="mb-10 gap-5 md:grid-cols-2">
           <div className="flex flex-col justify-between">
             <div>
