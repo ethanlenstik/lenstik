@@ -9,14 +9,20 @@ import imageCdn from "utils/functions/imageCdn"
 import sanitizeIpfsUrl from "utils/functions/sanitizeIpfsUrl"
 import useCopyToClipboard from "utils/hooks/useCopyToClipboard"
 import UploadMethod from "./UploadMethod"
+import ChooseThumbnail from "./ChooseThumbnail"
 
 const PreviewVideo = () => {
+    const setUploadedVideo = useAppStore((state) => state.setUploadedVideo)
     const uploadedVideo = useAppStore((state) => state.uploadedVideo)
     const videoRef = useRef<HTMLVideoElement>(null)
     const [copy] = useCopyToClipboard()
     const onCopyVideoSource = async (value: string) => {
         await copy(value)
         toast.success('Video source copied')
+    }
+
+    const onThumbnailUpload = (ipfsUrl: string, thumbnailType: string) => {
+        setUploadedVideo({ thumbnail: ipfsUrl, thumbnailType })
     }
 
     return <div className="w-full">
@@ -43,6 +49,17 @@ const PreviewVideo = () => {
                 {formatBytes(uploadedVideo.file?.size)}
             </span>
         )}
+        <ChooseThumbnail
+            label="Thumbnail"
+            file={uploadedVideo.file}
+            afterUpload={(ipfsUrl: string, thumbnailType: string) => {
+                if (!ipfsUrl?.length) {
+                    return toast.error('Failed to upload thumbnail')
+                }
+                onThumbnailUpload(ipfsUrl, thumbnailType)
+            }}
+        />
+
         {uploadedVideo.videoSource && (
             <Tooltip placement="left" content="Copy permanent video URL">
                 <button

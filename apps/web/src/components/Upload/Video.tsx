@@ -1,55 +1,32 @@
 import CopyOutline from '@components/Common/Icons/CopyOutline'
+import { Input } from '@components/UIElements/Input'
 import Tooltip from '@components/UIElements/Tooltip'
 import useAppStore from '@lib/store'
-import * as tf from '@tensorflow/tfjs'
+import useChannelStore from '@lib/store/channel'
 import clsx from 'clsx'
-import * as nsfwjs from 'nsfwjs'
 import React, { useEffect, useRef } from 'react'
 import toast from 'react-hot-toast'
-import { IS_MAINNET } from 'utils'
+import { FEATURE_FLAGS } from 'utils/data/feature-flags'
 import formatBytes from 'utils/functions/formatBytes'
-import { getIsNSFW } from 'utils/functions/getIsNSFW'
-import imageCdn from 'utils/functions/imageCdn'
-import sanitizeIpfsUrl from 'utils/functions/sanitizeIpfsUrl'
+import getIsFeatureEnabled from 'utils/functions/getIsFeatureEnabled'
+import sanitizeDStorageUrl from 'utils/functions/sanitizeDStorageUrl'
 import useCopyToClipboard from 'utils/hooks/useCopyToClipboard'
-import logger from 'utils/logger'
 
 import ChooseThumbnail from './ChooseThumbnail'
 import UploadMethod from './UploadMethod'
 
-if (IS_MAINNET) {
-  tf.enableProdMode()
-}
-
 const Video = () => {
+  const selectedChannel = useChannelStore((state) => state.selectedChannel)
   const uploadedVideo = useAppStore((state) => state.uploadedVideo)
   const setUploadedVideo = useAppStore((state) => state.setUploadedVideo)
   const [copy] = useCopyToClipboard()
   const videoRef = useRef<HTMLVideoElement>(null)
 
-  const analyseVideo = async (currentVideo: HTMLVideoElement) => {
-    if (currentVideo && !uploadedVideo.isNSFW) {
-      try {
-        const model = await nsfwjs.load()
-        const predictions = await model?.classify(currentVideo, 3)
-        setUploadedVideo({
-          isNSFW: getIsNSFW(predictions)
-        })
-      } catch (error) {
-        logger.error('[Error Analyse Video]', error)
-      }
-    }
-  }
-
-  const onDataLoaded = async (event: Event) => {
+  const onDataLoaded = async () => {
     if (videoRef.current?.duration && videoRef.current?.duration !== Infinity) {
       setUploadedVideo({
         durationInSeconds: videoRef.current.duration.toFixed(2)
       })
-    }
-    if (event.target) {
-      const currentVideo = document.getElementsByTagName('video')[0]
-      await analyseVideo(currentVideo)
     }
   }
 
@@ -65,18 +42,80 @@ const Video = () => {
     toast.success('Video source copied')
   }
 
-  const onThumbnailUpload = (ipfsUrl: string, thumbnailType: string) => {
-    setUploadedVideo({ thumbnail: ipfsUrl, thumbnailType })
-  }
-
   return (
     <div className="flex w-full flex-col">
-  
-  
+      <div className="relative w-full overflow-hidden rounded-xl rounded-b-none">
+        <video
+          ref={videoRef}
+          className="aspect-[16/9] w-full"
+          disablePictureInPicture
+          disableRemotePlayback
+          controlsList="nodownload noplaybackrate"
+          poster={sanitizeDStorageUrl(uploadedVideo.thumbnail)}
+          controls
+          src={uploadedVideo.preview}
+        >
+          <source
+            src={uploadedVideo.preview}
+            type={uploadedVideo.videoType || 'video/mp4'}
+          />
+        </video>
+        <div className="absolute left-2 top-2 rounded-full bg-orange-200 px-2 py-0.5 text-xs uppercase text-black">
+          {uploadedVideo.file?.size && (
+            <span className="whitespace-nowrap font-semibold">
+              {formatBytes(uploadedVideo.file?.size)}
+            </span>
+          )}
+        </div>
+        {uploadedVideo.videoSource && (
+          <Tooltip placement="left" content="Copy permanent video URL">
+            <button
+              type="button"
+              onClick={() => onCopyVideoSource(uploadedVideo.videoSource)}
+              className="absolute right-2 top-2 rounded-lg bg-orange-200 p-1 px-1.5 text-xs text-black outline-none"
+            >
+              <CopyOutline className="h-3.5 w-3.5" />
+            </button>
+          </Tooltip>
+        )}
+      </div>
+      <Tooltip content={`Uploaded (${uploadedVideo.percent}%)`}>
+        <div className="w-full overflow-hidden rounded-b-full bg-gray-200">
+          <div
+            className={clsx(
+              'h-[6px]',
+              uploadedVideo.percent !== 0
+                ? 'bg-indigo-500'
+                : 'bg-gray-300 dark:bg-gray-800'
+            )}
+            style={{
+              width: `${uploadedVideo.percent}%`
+            }}
+          />
+        </div>
+      </Tooltip>
+      {getIsFeatureEnabled(
+        FEATURE_FLAGS.POST_WITH_SOURCE_URL,
+        selectedChannel?.id
+      ) && (
+          <div className="mt-4">
+            <Input
+              placeholder="ar:// or ipfs://"
+              label="Upload from Source Url"
+              value={uploadedVideo.videoSource}
+              onChange={(e) =>
+                setUploadedVideo({
+                  videoSource: e.target.value
+                })
+              }
+            />
+          </div>
+        )}
       <div className="mt-4">
-       
+        <ChooseThumbnail label="Thumbnail" file={uploadedVideo.file} />
       </div>
       <ul className="mt-4 list-inside list-disc text-xs">
+        <li>Don't switch network or wallet accounts.</li>
         <li>
           Stay active in current tab while uploading for faster experience.
         </li>

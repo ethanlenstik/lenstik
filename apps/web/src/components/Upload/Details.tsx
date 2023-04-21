@@ -54,7 +54,6 @@ type Props = {
 
 const Details: FC<Props> = ({ onUpload, onCancel }) => {
   const uploadedVideo = useAppStore((state) => state.uploadedVideo)
-  const setUploadedVideo = useAppStore((state) => state.setUploadedVideo)
 
   const {
     handleSubmit,
@@ -75,17 +74,10 @@ const Details: FC<Props> = ({ onUpload, onCancel }) => {
   const onSubmitForm = (data: VideoFormData) => {
     onUpload(data)
   }
-  const onThumbnailUpload = (ipfsUrl: string, thumbnailType: string) => {
-    setUploadedVideo({ thumbnail: ipfsUrl, thumbnailType })
-  }
+
 
   return (
     <div className='flex gap-10 pb-20 mt-20 max-md:flex-wrap '>
-      <div className={clsx(
-        'grid place-items-center rounded-md border border-dashed border-gray-500 p-2 text-center focus:outline-none m-0 flex-1'
-      )}>
-        {uploadedVideo.file ? <PreviewVideo /> : <DropZone />}
-      </div>
       <form onSubmit={handleSubmit(onSubmitForm)} className="flex-1 shrink-0">
         <div className="mb-10 gap-5 md:grid-cols-2">
           <div className="flex flex-col justify-between">
@@ -112,17 +104,6 @@ const Details: FC<Props> = ({ onUpload, onCancel }) => {
                   </span>
                 </div>
               </div>
-              <ChooseThumbnail
-                label="Thumbnail"
-                file={uploadedVideo.file}
-                afterUpload={(ipfsUrl: string, thumbnailType: string) => {
-                  if (!ipfsUrl?.length) {
-                    return toast.error('Failed to upload thumbnail')
-                  }
-                  onThumbnailUpload(ipfsUrl, thumbnailType)
-                }}
-              />
-
               <div className="mt-4">
                 <CollectModule />
               </div>
@@ -186,6 +167,11 @@ const Details: FC<Props> = ({ onUpload, onCancel }) => {
           </div>
         )}
       </form>
+      <div className={clsx(
+        'grid place-items-center rounded-md border border-dashed border-gray-500 p-2 text-center focus:outline-none m-0 flex-1'
+      )}>
+        {uploadedVideo.file ? <Video /> : <DropZone />}
+      </div>
     </div>
 
   )
