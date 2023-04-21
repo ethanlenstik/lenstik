@@ -3,7 +3,7 @@ import Link from 'next/link'
 import type { FC } from 'react'
 import React from 'react'
 import { BiUser } from 'react-icons/bi'
-import { formatNumber } from 'utils/functions/formatNumber'
+import formatNumber from 'utils/functions/formatNumber'
 import getProfilePicture from 'utils/functions/getProfilePicture'
 
 import IsVerified from '../IsVerified'

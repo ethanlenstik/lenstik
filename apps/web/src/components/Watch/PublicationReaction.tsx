@@ -14,7 +14,7 @@ import React, { useState } from 'react'
 import toast from 'react-hot-toast'
 import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai'
 import { Analytics, SIGN_IN_REQUIRED_MESSAGE, TRACK } from 'utils'
-import { formatNumber } from 'utils/functions/formatNumber'
+import formatNumber from 'utils/functions/formatNumber'
 
 type Props = {
   publication: Publication
@@ -139,7 +139,7 @@ const PublicationReaction: FC<Props> = ({
           )}
         >
 
-          <div className=' rounded-full  md:bg-gray-200 bg-gray-600/90 dark:bg-gray-600 p-2'>
+          <div className=' rounded-full  md:bg-gray-200 bg-gray-600/50 dark:bg-gray-600/50 p-2'>
             {reaction.isLiked ? <AiFillHeart
               className={clsx({
                 'h-3.5 w-3.5': iconSize === 'sm',

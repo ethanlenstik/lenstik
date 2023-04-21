@@ -52,12 +52,6 @@ const PreviewVideo = () => {
         <ChooseThumbnail
             label="Thumbnail"
             file={uploadedVideo.file}
-            afterUpload={(ipfsUrl: string, thumbnailType: string) => {
-                if (!ipfsUrl?.length) {
-                    return toast.error('Failed to upload thumbnail')
-                }
-                onThumbnailUpload(ipfsUrl, thumbnailType)
-            }}
         />
 
         {uploadedVideo.videoSource && (

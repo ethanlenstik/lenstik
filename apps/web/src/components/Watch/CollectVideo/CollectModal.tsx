@@ -15,7 +15,7 @@ import type { Dispatch, FC } from 'react'
 import React, { useEffect, useState } from 'react'
 import type { LenstubeCollectModule } from 'utils'
 import { Analytics, TRACK } from 'utils'
-import { formatNumber } from 'utils/functions/formatNumber'
+import formatNumber from 'utils/functions/formatNumber'
 import { shortenAddress } from 'utils/functions/shortenAddress'
 import { useBalance } from 'wagmi'
 
@@ -96,7 +96,7 @@ const CollectModal: FC<Props> = ({
       balanceData &&
       collectModule?.amount &&
       parseFloat(balanceData?.formatted) <
-        parseFloat(collectModule?.amount?.value)
+      parseFloat(collectModule?.amount?.value)
     ) {
       setHaveEnoughBalance(false)
     } else {

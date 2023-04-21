@@ -10,7 +10,7 @@ import Wrapper from './Wrapper'
 const Echos = () => {
   const selectedChannel = useAppStore((state) => state.selectedChannel)
 
-  if (!getIsFeatureEnabled(FEATURE_FLAGS.LENSTUBE_ECHOS, selectedChannel?.id)) {
+  if (!getIsFeatureEnabled(FEATURE_FLAGS.POST_WITH_SOURCE_URL, selectedChannel?.id)) {
     return <Custom404 />
   }
 

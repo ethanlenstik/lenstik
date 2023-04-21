@@ -142,7 +142,7 @@ const Layout: FC<Props> = ({ children }) => {
       {!NO_HEADER_PATHS.includes(pathname) && (
         <Header className={clsx(showFullScreen && 'hidden md:flex')} />
       )}
-      <div className={clsx('flex gap-6 w-full justify-center md:pb-0 max-w-6xl m-auto px-4', showFullScreen && '!pb-0')} >
+      <div className={clsx('flex gap-6 w-full justify-center md:pb-0 max-w-6xl m-auto md:px-4', showFullScreen && '!pb-0')} >
         {!NO_SIBAR_PATHS.includes(pathname) && (<Sidebar />)}
         <div
           className={clsx(

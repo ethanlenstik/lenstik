@@ -16,6 +16,7 @@ import ByteActions from './ByteActions'
 import TopOverlay from './TopOverlay'
 import clsx from 'clsx'
 import useAppStore from '@lib/store'
+import MobileBottomOverlay from './MobileBottomOverlay'
 
 type Props = {
   video: Publication
@@ -31,12 +32,23 @@ const ByteVideo: FC<Props> = ({
   index
 }) => {
   const videoRef = useRef<HTMLMediaElement>()
+  const [width, setWidth] = useState<number>(window.innerWidth);
   const intersectionRef = useRef<HTMLDivElement>(null)
   const [playing, setPlaying] = useState(false)
   const thumbnailUrl = imageCdn(
     sanitizeIpfsUrl(getThumbnailUrl(video)),
     'thumbnail_v'
   )
+  const handleWindowSizeChange = () => {
+    setWidth(window.innerWidth);
+  }
+  useEffect(() => {
+    window.addEventListener('resize', handleWindowSizeChange);
+    return () => {
+      window.removeEventListener('resize', handleWindowSizeChange);
+    }
+  }, []);
+  const isMobile = width <= 768;
 
   const setCurrentViewingId = useAppStore((state) => state.setCurrentviewingId)
   const currentViewingId = useAppStore((state) => state.currentviewingId)
@@ -103,27 +115,27 @@ const ByteVideo: FC<Props> = ({
 
   const channel = video.profile
   return (
-    <div className={clsx(index != 0 && ' border-t dark:border-slate-600 ', 'flex mt-8 ml-2')}>
+    <div className={clsx(index != 0 && ' border-t dark:border-slate-600 ', !isMobile && 'flex mt-8 md:ml-2')}>
       <Link
         href={`/channel/${channel?.handle}`}
         className="flex flex-none cursor-pointer items-top space-x-2 mt-4  max-md:hidden"
       >
         <img
           src={getProfilePicture(channel, 'avatar')}
-          className="h-14 w-14 rounded-full mr-3"
+          className="h-14 w-14 md:rounded-full md:mr-3"
           draggable={false}
           alt={channel?.handle}
         />
       </Link>
       <div className='h-full w-full relative'>
-        <BottomOverlay video={video} />
+        {!isMobile && <BottomOverlay video={video} />}
         <div
           className="flex snap-center"
           data-testid="byte-video"
         >
           <div className="relative bottom-0">
             <div
-              className={clsx("ultrawide:w-[407px] flex h-screen w-screen min-w-[260px] max-w-[336px] items-center overflow-hidden bg-black md:w-[19.5vw] md:rounded-xl", "md:h-[65vh] md:max-xl:h-[30vh] max-h-[600px] min-h-[500px]")}
+              className={clsx(!isMobile ? "ultrawide:w-[407px] flex h-screen w-screen min-w-[260px] max-w-[336px] items-center overflow-hidden bg-black md:w-[19.5vw] md:rounded-xl md:h-[65vh] md:max-xl:h-[30vh] max-h-[600px] min-h-[500px]" : "flex h-screen w-screen")}
               id={currentViewingId === video.id ? "currentVideo" : video.id + "1"}
               style={{
                 backgroundColor: 'transparent'
@@ -159,7 +171,8 @@ const ByteVideo: FC<Props> = ({
                 />
               )}
             </div>
-            <TopOverlay onClickVideo={onClickVideo} id={video.id} />
+            {!isMobile && <TopOverlay onClickVideo={onClickVideo} id={video.id} />}
+            {isMobile && <MobileBottomOverlay video={video} />}
             <div className="absolute right-2 bottom-[15%] z-[1] md:hidden">
               <ByteActions video={video} showDetail={() => onDetail(video)} />
               {/* {video?.collectModule?.__typename !==
@@ -176,6 +189,7 @@ const ByteVideo: FC<Props> = ({
           <div className="hidden md:flex">
             <ByteActions video={video} showDetail={() => onDetail(video)} />
           </div>
+
         </div>
       </div>
     </div>

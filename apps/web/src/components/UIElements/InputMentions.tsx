@@ -7,7 +7,7 @@ import React, { useId } from 'react'
 import type { SuggestionDataItem } from 'react-mentions'
 import { Mention, MentionsInput } from 'react-mentions'
 import { LENS_CUSTOM_FILTERS } from 'utils'
-import { formatNumber } from 'utils/functions/formatNumber'
+import formatNumber from 'utils/functions/formatNumber'
 import getProfilePicture from 'utils/functions/getProfilePicture'
 
 interface Props extends ComponentProps<'textarea'> {

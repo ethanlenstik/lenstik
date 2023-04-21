@@ -113,7 +113,7 @@ const Sidebar = () => {
                 <Login />
               </div>}
             {getIsFeatureEnabled(
-              FEATURE_FLAGS.LENSTUBE_ECHOS,
+              FEATURE_FLAGS.POST_WITH_SOURCE_URL,
               selectedChannel?.id
             ) && (
                 <Tooltip
