@@ -1,18 +1,27 @@
-export const getFileFromDataURL = (dataUrl: string, fileName: string) => {
-  // convert base64 to raw binary data held in a string
-  const byteString = atob(dataUrl.split(',')[1])
-  // separate out the mime component
-  const mimeString = dataUrl.split(',')[0].split(':')[1].split(';')[0]
-  // write the bytes of the string to an ArrayBuffer
-  const ab = new ArrayBuffer(byteString.length)
-  // create a view into the buffer
-  const ia = new Uint8Array(ab)
-  // set the bytes of the buffer to the correct values
-  for (let i = 0; i < byteString.length; i++) {
-    ia[i] = byteString.charCodeAt(i)
+export const getFileFromDataURL = (
+  dataUrl: string,
+  fileName: string,
+  callback: (file: File | null) => void
+) => {
+  const img = new Image()
+  img.crossOrigin = 'Anonymous'
+  img.src = dataUrl
+
+  img.onload = () => {
+    const canvas = document.createElement('canvas')
+    const ctx = canvas.getContext('2d')
+    canvas.width = img.width
+    canvas.height = img.height
+    ctx?.drawImage(img, 0, 0, img.width, img.height)
+
+    canvas.toBlob((blob) => {
+      if (blob) {
+        const file = new File([blob], fileName, { type: blob.type })
+        callback(file)
+      }
+    })
   }
-  // write the ArrayBuffer to a blob, and you're done
-  const blob = new Blob([ab], { type: mimeString })
-  const file = new File([blob], fileName)
-  return file
+  img.onerror = () => {
+    callback(null)
+  }
 }

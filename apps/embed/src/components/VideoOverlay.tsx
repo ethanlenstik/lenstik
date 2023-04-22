@@ -65,7 +65,7 @@ const VideoOverlay: FC<Props> = ({ video, clicked }) => {
               onClick={() =>
                 Analytics.track(TRACK.EMBED_VIDEO.WATCH_ON_LENSTUBE)
               }
-              title="Watch on LensTube"
+              title="Watch on Lenstik"
               href={`${LENSTUBE_WEBSITE_URL}/${video?.id}`}
               target="_blank"
             >

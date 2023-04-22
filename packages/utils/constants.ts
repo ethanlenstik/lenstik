@@ -2,7 +2,7 @@ import { CustomFiltersTypes } from 'lens'
 
 export const LENSTUBE_APP_NAME = 'Lenstik'
 export const LENSTUBE_APP_DESCRIPTION =
-  'Lenstube is a decentralized video-sharing social media platform built with Lens protocol.'
+  'Lenstok is a decentralized shot videos built with Lens protocol.'
 
 export const LENS_ENV = process.env.NEXT_PUBLIC_ENVIRONMENT ?? 'mainnet'
 export const IS_MAINNET = LENS_ENV === 'mainnet'

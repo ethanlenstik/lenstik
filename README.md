@@ -1,6 +1,6 @@
 <div align="center">
     <img src="https://static.lenstik.xyz/images/brand/banner.png" alt="banner">
-    <h1>Lenstube</h1>
+    <h1>Lenstik</h1>
     <p>Decentralized video-sharing social media platform.</p>
     <a href="https://lenstik.xyz">lenstik.xyz</a>
 </div>

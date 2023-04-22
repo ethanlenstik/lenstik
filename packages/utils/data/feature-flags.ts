@@ -1,7 +1,7 @@
 import { IS_MAINNET } from 'utils'
 
 export enum FEATURE_FLAGS {
-  POST_WITH_SOURCE_URL = 'PostWithSource'
+  POST_WITH_SOURCE_URL = 'PostWithSource',
 }
 
 type FeatureFlag = {

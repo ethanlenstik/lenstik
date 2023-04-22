@@ -45,7 +45,6 @@ const PlayerInstance: FC<PlayerProps> = ({
       autoPlay={options?.autoPlay ?? false}
       showLoadingSpinner={options?.loadingSpinner}
       theme={{
-        radii: { containerBorderRadius: isFull ? '0px' : '10px' },
       }}
       autoUrlUpload={
         IS_PRODUCTION && {

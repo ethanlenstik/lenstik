@@ -13,7 +13,7 @@ export default function Custom500() {
       <div className="mt-10 flex h-full flex-col items-center justify-start md:mt-20">
         <img
           src={`/images/logo.png`}
-          alt="LensTube"
+          alt="Lenstik"
           draggable={false}
           height={50}
         />

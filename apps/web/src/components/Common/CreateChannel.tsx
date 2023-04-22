@@ -130,7 +130,7 @@ const CreateChannel = () => {
         <ClaimHandle />
       ) : (
         <form onSubmit={handleSubmit(onCreate)} className="space-y-4">
-          <h6 className="text-sm opacity-70">Your new Lenstube channel</h6>
+          <h6 className="text-sm opacity-70">Your new Lenstik channel</h6>
           <div className="mt-2">
             <Input
               {...register('channelName')}

@@ -43,7 +43,7 @@ const MetaTags: FC<Props> = (props) => {
         content={`https://lenstik.xyz${router.asPath}`}
       />
       <meta property="og:type" content={meta.type} />
-      <meta property="og:site_name" content="Lenstube" />
+      <meta property="og:site_name" content="Lenstik" />
       <meta property="og:description" content={meta.description} />
       <meta property="og:title" content={meta.title} />
       <meta property="og:image" content={meta.image} />
@@ -52,7 +52,7 @@ const MetaTags: FC<Props> = (props) => {
       <meta name="twitter:card" content="summary" />
       <meta property="twitter:image:width" content="400" />
       <meta property="twitter:image:height" content="400" />
-      <meta name="twitter:site" content="Lenstube" />
+      <meta name="twitter:site" content="Lenstik" />
       <meta name="twitter:title" content={meta.title} />
       <meta name="twitter:description" content={meta.description} />
       <meta property="twitter:image:src" content={meta.image} />

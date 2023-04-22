@@ -35,7 +35,7 @@ const getProfileMeta = async (res: NextApiResponse, handle: string) => {
   } catch {
     return res.setHeader('Content-Type', 'text/html').send(
       getMetaTags({
-        title: 'Lenstube',
+        title: 'Lenstik',
         description: LENSTUBE_APP_DESCRIPTION,
         image: OG_IMAGE
       })

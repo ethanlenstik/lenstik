@@ -34,7 +34,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
     return res.setHeader('Content-Type', 'text/html').send(
       getMetaTags({
-        title: 'Lenstube',
+        title: 'Lenstik',
         description: LENSTUBE_APP_DESCRIPTION,
         image: OG_IMAGE
       })
@@ -42,7 +42,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   } catch (error) {
     return res.setHeader('Content-Type', 'text/html').send(
       getMetaTags({
-        title: 'Lenstube',
+        title: 'Lenstik',
         description: LENSTUBE_APP_DESCRIPTION,
         image: OG_IMAGE
       })

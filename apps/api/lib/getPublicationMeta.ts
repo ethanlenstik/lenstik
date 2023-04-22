@@ -46,7 +46,7 @@ const getPublicationMeta = async (
   } catch {
     return res.setHeader('Content-Type', 'text/html').send(
       getMetaTags({
-        title: 'Lenstube',
+        title: 'Lenstik',
         description: LENSTUBE_APP_DESCRIPTION,
         image: `${STATIC_ASSETS}/images/seo/og.png`
       })
