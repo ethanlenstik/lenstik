@@ -125,7 +125,7 @@ const Details: FC<Props> = ({ onUpload, onCancel }) => {
                   onChange={(checked) => {
                     setValue('isSensitiveContent', checked)
                   }}
-                  querounded-b-nonestion={
+                  question={
                     <span>
                       Does this video contain sensitive information that targets
                       an adult audience?
