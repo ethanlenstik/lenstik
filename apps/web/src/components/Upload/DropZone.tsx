@@ -60,7 +60,7 @@ const DropZone = () => {
   }
 
   return (
-    <div>
+    <div className=' rounded-md border border-dashed border-gray-500 grid place-items-center text-center focus:outline-none m-0 mt-20 p-16'>
       <div className="relative flex flex-1 flex-col items-center justify-center">
         <label
           htmlFor="dropVideo"
@@ -100,8 +100,8 @@ const DropZone = () => {
                 />
               </label>
             </div>
-            
-        <span className="text-red-500 text-xs">Note: you will be free to upload to IPFS if the file size is less than {IPFS_FREE_UPLOAD_LIMIT}MB otherwise you have to pay to upload to Arware</span>
+
+            <span className="text-red-500 text-xs">Note: you will be free to upload to IPFS if the file size is less than {IPFS_FREE_UPLOAD_LIMIT}MB otherwise you have to pay to upload to Arware</span>
             {fileDropError && (
               <div className="font-medium text-red-500">{fileDropError}</div>
             )}

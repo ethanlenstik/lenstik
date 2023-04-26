@@ -53,6 +53,7 @@ import {
 
 import type { VideoFormData } from './Details'
 import Details from './Details'
+import DropZone from './DropZone'
 
 const UploadSteps = () => {
   const getBundlrInstance = useAppStore((state) => state.getBundlrInstance)
@@ -422,13 +423,13 @@ const UploadSteps = () => {
   }
 
   return (
-    <div className="mx-auto my-10 max-w-6xl gap-5">
+    <div className="mx-auto my-10 max-w-6xl gap-5 px-5">
       <MetaTags title="Video Details" />
       <div className="mt-10">
         <span className='text-2xl font-bold'>Upload video</span> <br />
         <span className='text-gray-400'>
           Post a video to your account</span>
-        <Details onCancel={resetToDefaults} onUpload={onUpload} />
+        {uploadedVideo.file ? <Details onCancel={resetToDefaults} onUpload={onUpload} /> : <DropZone />}
       </div>
     </div>
   )

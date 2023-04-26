@@ -159,7 +159,7 @@ const ChooseThumbnail: FC<Props> = ({ label, file }) => {
           <AiOutlineFileAdd className="mb-1 h-4 w-4 flex-none" />
           <span className="text-xs">Upload</span>
         </label>
-        {!thumbnails.length && uploadedVideo.file?.size && (
+        {!thumbnails.length && (
           <ThumbnailsShimmer />
         )}
         {thumbnails.map((thumbnail, idx) => {

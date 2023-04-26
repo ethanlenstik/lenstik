@@ -78,7 +78,13 @@ const Details: FC<Props> = ({ onUpload, onCancel }) => {
 
   return (
     <div className='flex gap-10 pb-20 mt-20 max-md:flex-wrap '>
-      <form onSubmit={handleSubmit(onSubmitForm)} className="flex-1 shrink-0">
+      <div className={clsx(
+        'grid  text-center focus:outline-none m-0 flex-1'
+      )}>
+        <Video />
+      </div>
+
+      <form onSubmit={handleSubmit(onSubmitForm)} className="flex-1 shrink-0 flex justify-between flex-col">
         <div className="mb-10 gap-5 md:grid-cols-2">
           <div className="flex flex-col justify-between">
             <div>
@@ -104,22 +110,22 @@ const Details: FC<Props> = ({ onUpload, onCancel }) => {
                   </span>
                 </div>
               </div>
-              <div className="mt-4">
+              <div className="mt-5">
                 <CollectModule />
               </div>
-              <div className="mt-4">
+              <div className="mt-5">
                 <Category />
               </div>
-              <div className="mt-4">
+              <div className="mt-5">
                 <ReferenceModule />
               </div>
-              <div className="mt-4">
+              <div className="mt-5">
                 <RadioInput
                   checked={watch('isSensitiveContent')}
                   onChange={(checked) => {
                     setValue('isSensitiveContent', checked)
                   }}
-                  question={
+                  querounded-b-nonestion={
                     <span>
                       Does this video contain sensitive information that targets
                       an adult audience?
@@ -167,11 +173,6 @@ const Details: FC<Props> = ({ onUpload, onCancel }) => {
           </div>
         )}
       </form>
-      <div className={clsx(
-        'grid place-items-center rounded-md border border-dashed border-gray-500 p-2 text-center focus:outline-none m-0 flex-1'
-      )}>
-        {uploadedVideo.file ? <Video /> : <DropZone />}
-      </div>
     </div>
 
   )
