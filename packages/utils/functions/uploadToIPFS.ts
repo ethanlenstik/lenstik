@@ -21,11 +21,11 @@ export const everland = async (
         secretAccessKey: token.data?.secretAccessKey,
         sessionToken: token.data?.sessionToken
       },
-      maxAttempts: 3
+      maxAttempts: 10
     })
     const fileKey = uuidv4()
     const params = {
-      Bucket: 'lenstik',
+      Bucket: 'lenstube',
       Key: fileKey,
       Body: file,
       ContentType: file.type

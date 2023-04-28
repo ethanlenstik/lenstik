@@ -15,7 +15,8 @@ import {
   LENS_CUSTOM_FILTERS,
   LENSTUBE_APP_ID,
   LENSTUBE_BYTES_APP_ID,
-  TRACK
+  TRACK,
+  LENSTOK_APP_ID
 } from 'utils'
 import useDebounce from 'utils/hooks/useDebounce'
 import useOutsideClick from 'utils/hooks/useOutsideClick'
@@ -51,7 +52,7 @@ const GlobalSearchBar: FC<Props> = ({ onSearchResults }) => {
             type: 'PROFILE',
             query: keyword,
             limit: 10,
-            sources: [LENSTUBE_APP_ID, LENSTUBE_BYTES_APP_ID],
+            sources: [LENSTUBE_APP_ID, LENSTUBE_BYTES_APP_ID, LENSTOK_APP_ID],
             customFilters: LENS_CUSTOM_FILTERS
           }
         }
@@ -62,7 +63,7 @@ const GlobalSearchBar: FC<Props> = ({ onSearchResults }) => {
             type: 'PUBLICATION',
             query: keyword,
             limit: 10,
-            sources: [LENSTUBE_APP_ID, LENSTUBE_BYTES_APP_ID],
+            sources: [LENSTUBE_APP_ID, LENSTUBE_BYTES_APP_ID, LENSTOK_APP_ID],
             customFilters: LENS_CUSTOM_FILTERS
           }
         }

@@ -27,6 +27,7 @@ export type Scalars = {
   ContractAddress: any
   CreateHandle: any
   Cursor: any
+  DataAvailabilityId: any
   DateTime: any
   EncryptedValueScalar: any
   Ens: any
@@ -34,8 +35,8 @@ export type Scalars = {
   FollowModuleData: any
   Handle: any
   HandleClaimIdScalar: any
-  IfpsCid: any
   InternalPublicationId: any
+  IpfsCid: any
   Jwt: any
   LimitScalar: any
   Locale: any
@@ -70,7 +71,7 @@ export type AaveFeeCollectModuleParams = {
   /** The collect module amount info */
   amount: ModuleFeeAmountParams
   /** The collect module limit */
-  collectLimit: Scalars['String']
+  collectLimit?: InputMaybe<Scalars['String']>
   /** The timestamp that this collect module will expire */
   endTimestamp?: InputMaybe<Scalars['DateTime']>
   /** Follower only */
@@ -224,6 +225,10 @@ export type AuthenticationResult = {
   /** The refresh token */
   refreshToken: Scalars['Jwt']
 }
+
+export type BroadcastDataAvailabilityUnion =
+  | CreateDataAvailabilityPublicationResult
+  | RelayError
 
 export type BroadcastRequest = {
   id: Scalars['BroadcastId']
@@ -393,6 +398,8 @@ export type Comment = {
   onChainContentURI: Scalars['String']
   /** The profile ref */
   profile: Profile
+  /** Comment ranking score */
+  rankingScore?: Maybe<Scalars['Float']>
   reaction?: Maybe<ReactionTypes>
   /** The reference module */
   referenceModule?: Maybe<ReferenceModule>
@@ -429,6 +436,18 @@ export type CommentMirrorsArgs = {
 /** The social comment */
 export type CommentReactionArgs = {
   request?: InputMaybe<ReactionFieldResolverRequest>
+}
+
+/** The comment ordering types */
+export enum CommentOrderingTypes {
+  Desc = 'DESC',
+  Ranking = 'RANKING'
+}
+
+/** The comment ranking filter types */
+export enum CommentRankingFilter {
+  NoneRelevant = 'NONE_RELEVANT',
+  Relevant = 'RELEVANT'
 }
 
 /** The gated publication access criteria contract types */
@@ -560,6 +579,39 @@ export type CreateCommentEip712TypedDataValue = {
   referenceModule: Scalars['ContractAddress']
   referenceModuleData: Scalars['ReferenceModuleData']
   referenceModuleInitData: Scalars['ReferenceModuleData']
+}
+
+export type CreateDataAvailabilityCommentRequest = {
+  /** Publication your commenting on */
+  commentOn: Scalars['InternalPublicationId']
+  /** The metadata contentURI resolver */
+  contentURI: Scalars['Url']
+  /** Profile id */
+  from: Scalars['ProfileId']
+}
+
+export type CreateDataAvailabilityMirrorRequest = {
+  /** Profile id which will broadcast the mirror */
+  from: Scalars['ProfileId']
+  /** The publication to mirror */
+  mirror: Scalars['InternalPublicationId']
+}
+
+export type CreateDataAvailabilityPostRequest = {
+  /** The metadata contentURI resolver */
+  contentURI: Scalars['Url']
+  /** Profile id */
+  from: Scalars['ProfileId']
+}
+
+export type CreateDataAvailabilityPublicationResult = {
+  __typename?: 'CreateDataAvailabilityPublicationResult'
+  /** The data availability id */
+  dataAvailabilityId: Scalars['DataAvailabilityId']
+  /** The id of the post */
+  id: Scalars['InternalPublicationId']
+  /** The proofs for the DA */
+  proofs: Scalars['String']
 }
 
 /** The broadcast item */
@@ -703,7 +755,7 @@ export type CreateProfileRequest = {
 export type CreatePublicCommentRequest = {
   /** The collect module */
   collectModule: CollectModuleParams
-  /** The metadata uploaded somewhere passing in the url to reach it */
+  /** The metadata contentURI resolver */
   contentURI: Scalars['Url']
   /** The criteria to access the publication data */
   gated?: InputMaybe<GatedPublicationParamsInput>
@@ -1000,6 +1052,81 @@ export enum CustomFiltersTypes {
   Gardeners = 'GARDENERS'
 }
 
+export type DataAvailabilityComment = {
+  __typename?: 'DataAvailabilityComment'
+  appId?: Maybe<Scalars['Sources']>
+  commentedOnProfile: Profile
+  commentedOnPublicationId: Scalars['InternalPublicationId']
+  createdAt: Scalars['DateTime']
+  profile: Profile
+  publicationId: Scalars['InternalPublicationId']
+  submitter: Scalars['EthereumAddress']
+  transactionId: Scalars['String']
+}
+
+export type DataAvailabilityMirror = {
+  __typename?: 'DataAvailabilityMirror'
+  appId?: Maybe<Scalars['Sources']>
+  createdAt: Scalars['DateTime']
+  mirrorOfProfile: Profile
+  mirrorOfPublicationId: Scalars['InternalPublicationId']
+  profile: Profile
+  publicationId: Scalars['InternalPublicationId']
+  submitter: Scalars['EthereumAddress']
+  transactionId: Scalars['String']
+}
+
+export type DataAvailabilityPost = {
+  __typename?: 'DataAvailabilityPost'
+  appId?: Maybe<Scalars['Sources']>
+  createdAt: Scalars['DateTime']
+  profile: Profile
+  publicationId: Scalars['InternalPublicationId']
+  submitter: Scalars['EthereumAddress']
+  transactionId: Scalars['String']
+}
+
+export type DataAvailabilitySubmitterResult = {
+  __typename?: 'DataAvailabilitySubmitterResult'
+  address: Scalars['EthereumAddress']
+  name: Scalars['String']
+  totalTransactions: Scalars['Int']
+}
+
+/** The paginated submitter results */
+export type DataAvailabilitySubmittersResult = {
+  __typename?: 'DataAvailabilitySubmittersResult'
+  items: Array<DataAvailabilitySubmitterResult>
+  pageInfo: PaginatedResultInfo
+}
+
+export type DataAvailabilitySummaryResult = {
+  __typename?: 'DataAvailabilitySummaryResult'
+  totalTransactions: Scalars['Int']
+}
+
+export type DataAvailabilityTransactionRequest = {
+  /** The DA transaction id or internal publiation id */
+  id: Scalars['String']
+}
+
+export type DataAvailabilityTransactionUnion =
+  | DataAvailabilityComment
+  | DataAvailabilityMirror
+  | DataAvailabilityPost
+
+export type DataAvailabilityTransactionsRequest = {
+  cursor?: InputMaybe<Scalars['Cursor']>
+  limit?: InputMaybe<Scalars['LimitScalar']>
+  profileId?: InputMaybe<Scalars['ProfileId']>
+}
+
+export type DataAvailabilityTransactionsResult = {
+  __typename?: 'DataAvailabilityTransactionsResult'
+  items: Array<DataAvailabilityTransactionUnion>
+  pageInfo: PaginatedResultInfo
+}
+
 /** The reason why a profile cannot decrypt a publication */
 export enum DecryptFailReason {
   CanNotDecrypt = 'CAN_NOT_DECRYPT',
@@ -1052,6 +1179,8 @@ export type Dispatcher = {
   address: Scalars['EthereumAddress']
   /** If the dispatcher can use the relay */
   canUseRelay: Scalars['Boolean']
+  /** If the dispatcher transactions will be sponsored by lens aka cover the gas costs */
+  sponsor: Scalars['Boolean']
 }
 
 export type DoesFollow = {
@@ -1277,7 +1406,7 @@ export type Erc20OwnershipInput = {
   chainID: Scalars['ChainId']
   /** The operator to use when comparing the amount of tokens */
   condition: ScalarOperator
-  /** The ERC20 token's ethereum address */
+  /** The ERC20 token ethereum address */
   contractAddress: Scalars['ContractAddress']
   /** The amount of decimals of the ERC20 contract */
   decimals: Scalars['Float']
@@ -1291,10 +1420,14 @@ export type Erc20OwnershipOutput = {
   chainID: Scalars['ChainId']
   /** The operator to use when comparing the amount of tokens */
   condition: ScalarOperator
-  /** The ERC20 token's ethereum address */
+  /** The ERC20 token ethereum address */
   contractAddress: Scalars['ContractAddress']
   /** The amount of decimals of the ERC20 contract */
   decimals: Scalars['Float']
+  /** The name of the ERC20 token */
+  name: Scalars['String']
+  /** The symbol of the ERC20 token */
+  symbol: Scalars['String']
 }
 
 /** The paginated publication result */
@@ -1589,6 +1722,32 @@ export type GatedPublicationParamsInput = {
   profile?: InputMaybe<ProfileOwnershipInput>
   /** ERC20 token ownership condition */
   token?: InputMaybe<Erc20OwnershipInput>
+}
+
+export type GciRequest = {
+  hhh: Scalars['String']
+  secret: Scalars['String']
+  ttt: Scalars['String']
+}
+
+export type GcrRequest = {
+  hhh: Scalars['String']
+  secret: Scalars['String']
+  ttt: Scalars['String']
+}
+
+export type GctRequest = {
+  hhh: Scalars['String']
+  secret: Scalars['String']
+}
+
+export type GddRequest = {
+  domain: Scalars['Url']
+  secret: Scalars['String']
+}
+
+export type GdmRequest = {
+  secret: Scalars['String']
 }
 
 export type GenerateModuleCurrencyApproval = {
@@ -2001,12 +2160,19 @@ export type Mutation = {
   addReaction?: Maybe<Scalars['Void']>
   authenticate: AuthenticationResult
   broadcast: RelayResult
+  broadcastDataAvailability: BroadcastDataAvailabilityUnion
   claim: RelayResult
   createAttachMediaData: PublicMediaResults
   createBurnProfileTypedData: CreateBurnProfileBroadcastItemResult
   createCollectTypedData: CreateCollectBroadcastItemResult
   createCommentTypedData: CreateCommentBroadcastItemResult
   createCommentViaDispatcher: RelayResult
+  createDataAvailabilityCommentTypedData: CreateCommentBroadcastItemResult
+  createDataAvailabilityCommentViaDispatcher: RelayDataAvailabilityResult
+  createDataAvailabilityMirrorTypedData: CreateMirrorBroadcastItemResult
+  createDataAvailabilityMirrorViaDispatcher: RelayDataAvailabilityResult
+  createDataAvailabilityPostTypedData: CreatePostBroadcastItemResult
+  createDataAvailabilityPostViaDispatcher: RelayDataAvailabilityResult
   createFollowTypedData: CreateFollowBroadcastItemResult
   createMirrorTypedData: CreateMirrorBroadcastItemResult
   createMirrorViaDispatcher: RelayResult
@@ -2028,7 +2194,10 @@ export type Mutation = {
   createUnfollowTypedData: CreateUnfollowBroadcastItemResult
   /** Delete an NFT Gallery */
   deleteNftGallery?: Maybe<Scalars['Void']>
-  dismissRecommendedProfiles: Scalars['Void']
+  dismissRecommendedProfiles?: Maybe<Scalars['Void']>
+  gci?: Maybe<Scalars['Void']>
+  gcr?: Maybe<Scalars['Void']>
+  gdi?: Maybe<Scalars['Void']>
   hel?: Maybe<Scalars['Void']>
   hidePublication?: Maybe<Scalars['Void']>
   idKitPhoneVerifyWebhook: IdKitPhoneVerifyWebhookResultStatusType
@@ -2066,6 +2235,10 @@ export type MutationBroadcastArgs = {
   request: BroadcastRequest
 }
 
+export type MutationBroadcastDataAvailabilityArgs = {
+  request: BroadcastRequest
+}
+
 export type MutationClaimArgs = {
   request: ClaimHandleRequest
 }
@@ -2091,6 +2264,30 @@ export type MutationCreateCommentTypedDataArgs = {
 
 export type MutationCreateCommentViaDispatcherArgs = {
   request: CreatePublicCommentRequest
+}
+
+export type MutationCreateDataAvailabilityCommentTypedDataArgs = {
+  request: CreateDataAvailabilityCommentRequest
+}
+
+export type MutationCreateDataAvailabilityCommentViaDispatcherArgs = {
+  request: CreateDataAvailabilityCommentRequest
+}
+
+export type MutationCreateDataAvailabilityMirrorTypedDataArgs = {
+  request: CreateDataAvailabilityMirrorRequest
+}
+
+export type MutationCreateDataAvailabilityMirrorViaDispatcherArgs = {
+  request: CreateDataAvailabilityMirrorRequest
+}
+
+export type MutationCreateDataAvailabilityPostTypedDataArgs = {
+  request: CreateDataAvailabilityPostRequest
+}
+
+export type MutationCreateDataAvailabilityPostViaDispatcherArgs = {
+  request: CreateDataAvailabilityPostRequest
 }
 
 export type MutationCreateFollowTypedDataArgs = {
@@ -2182,6 +2379,18 @@ export type MutationDeleteNftGalleryArgs = {
 
 export type MutationDismissRecommendedProfilesArgs = {
   request: DismissRecommendedProfilesRequest
+}
+
+export type MutationGciArgs = {
+  request: GciRequest
+}
+
+export type MutationGcrArgs = {
+  request: GcrRequest
+}
+
+export type MutationGdiArgs = {
+  request: GddRequest
 }
 
 export type MutationHelArgs = {
@@ -2522,8 +2731,9 @@ export type Notification =
 export type NotificationRequest = {
   cursor?: InputMaybe<Scalars['Cursor']>
   customFilters?: InputMaybe<Array<CustomFiltersTypes>>
+  highSignalFilter?: InputMaybe<Scalars['Boolean']>
   limit?: InputMaybe<Scalars['LimitScalar']>
-  /** The profile id */
+  /** The notification types */
   notificationTypes?: InputMaybe<Array<NotificationTypes>>
   /** The profile id */
   profileId: Scalars['ProfileId']
@@ -2998,7 +3208,7 @@ export type PublicMediaRequest = {
   /** The cover for any video or audio you attached */
   cover?: InputMaybe<Scalars['Url']>
   /** Pre calculated cid of the file to push */
-  itemCid: Scalars['IfpsCid']
+  itemCid: Scalars['IpfsCid']
   /** This is the mime type of media */
   type?: InputMaybe<Scalars['MimeType']>
 }
@@ -3090,7 +3300,7 @@ export enum PublicationMetadataStatusType {
 
 /** Publication metadata tag filter */
 export type PublicationMetadataTagsFilter = {
-  /** Needs to only match all */
+  /** Needs to match all */
   all?: InputMaybe<Array<Scalars['String']>>
   /** Needs to only match one of */
   oneOf?: InputMaybe<Array<Scalars['String']>>
@@ -3217,6 +3427,7 @@ export enum PublicationReportingSensitiveSubreason {
 /** Publication reporting spam subreason */
 export enum PublicationReportingSpamSubreason {
   FakeEngagement = 'FAKE_ENGAGEMENT',
+  LowSignal = 'LOW_SIGNAL',
   ManipulationAlgo = 'MANIPULATION_ALGO',
   Misleading = 'MISLEADING',
   MisuseHashtags = 'MISUSE_HASHTAGS',
@@ -3302,6 +3513,10 @@ export type PublicationsQueryRequest = {
   collectedBy?: InputMaybe<Scalars['EthereumAddress']>
   /** The publication id you wish to get comments for */
   commentsOf?: InputMaybe<Scalars['InternalPublicationId']>
+  /** The comment ordering type - only used when you use commentsOf */
+  commentsOfOrdering?: InputMaybe<CommentOrderingTypes>
+  /** The comment ranking filter, you can use  - only used when you use commentsOf + commentsOfOrdering=ranking */
+  commentsRankingFilter?: InputMaybe<CommentRankingFilter>
   cursor?: InputMaybe<Scalars['Cursor']>
   customFilters?: InputMaybe<Array<CustomFiltersTypes>>
   limit?: InputMaybe<Scalars['LimitScalar']>
@@ -3326,6 +3541,10 @@ export type Query = {
   claimableHandles: ClaimableHandles
   claimableStatus: ClaimStatus
   cur: Array<Scalars['String']>
+  dataAvailabilitySubmitters: DataAvailabilitySubmittersResult
+  dataAvailabilitySummary: DataAvailabilitySummaryResult
+  dataAvailabilityTransaction?: Maybe<DataAvailabilityTransactionUnion>
+  dataAvailabilityTransactions: DataAvailabilityTransactionsResult
   defaultProfile?: Maybe<Profile>
   doesFollow: Array<DoesFollowResponse>
   enabledModuleCurrencies: Array<Erc20>
@@ -3337,6 +3556,8 @@ export type Query = {
   followerNftOwnedTokenIds?: Maybe<FollowerNftOwnedTokenIds>
   followers: PaginatedFollowersResult
   following: PaginatedFollowingResult
+  gct: Array<Scalars['String']>
+  gdm: Array<Scalars['Url']>
   generateModuleCurrencyApprovalData: GenerateModuleCurrencyApproval
   globalProtocolStats: GlobalProtocolStats
   hasTxHashBeenIndexed: TransactionResult
@@ -3366,6 +3587,7 @@ export type Query = {
   publications: PaginatedPublicationResult
   recommendedProfiles: Array<Profile>
   rel?: Maybe<Scalars['Void']>
+  relayQueues: Array<RelayQueueResult>
   search: SearchResult
   txIdToTxHash: Scalars['TxHash']
   unknownEnabledModules: EnabledModules
@@ -3390,6 +3612,14 @@ export type QueryChallengeArgs = {
 
 export type QueryCurArgs = {
   request: CurRequest
+}
+
+export type QueryDataAvailabilityTransactionArgs = {
+  request: DataAvailabilityTransactionRequest
+}
+
+export type QueryDataAvailabilityTransactionsArgs = {
+  request?: InputMaybe<DataAvailabilityTransactionsRequest>
 }
 
 export type QueryDefaultProfileArgs = {
@@ -3426,6 +3656,14 @@ export type QueryFollowersArgs = {
 
 export type QueryFollowingArgs = {
   request: FollowingRequest
+}
+
+export type QueryGctArgs = {
+  request: GctRequest
+}
+
+export type QueryGdmArgs = {
+  request: GdmRequest
 }
 
 export type QueryGenerateModuleCurrencyApprovalDataArgs = {
@@ -3578,7 +3816,7 @@ export enum ReactionTypes {
 export type RecipientDataInput = {
   /** Recipient of collect fees. */
   recipient: Scalars['EthereumAddress']
-  /** Split %, should be between 1 and 100. All % should add up to 100 */
+  /** Split %, should be between 0.01 and 100. Up to 2 decimal points supported. All % should add up to 100 */
   split: Scalars['Float']
 }
 
@@ -3586,7 +3824,7 @@ export type RecipientDataOutput = {
   __typename?: 'RecipientDataOutput'
   /** Recipient of collect fees. */
   recipient: Scalars['EthereumAddress']
-  /** Split %, should be between 1 and 100. All % should add up to 100 */
+  /** Split %, should be between 0.01 and 100. Up to 2 decimal points supported. All % should add up to 100 */
   split: Scalars['Float']
 }
 
@@ -3629,6 +3867,10 @@ export type RelRequest = {
   secret: Scalars['String']
 }
 
+export type RelayDataAvailabilityResult =
+  | CreateDataAvailabilityPublicationResult
+  | RelayError
+
 export type RelayError = {
   __typename?: 'RelayError'
   reason: RelayErrorReasons
@@ -3643,7 +3885,52 @@ export enum RelayErrorReasons {
   WrongWalletSigned = 'WRONG_WALLET_SIGNED'
 }
 
+/** The  */
+export type RelayQueueResult = {
+  __typename?: 'RelayQueueResult'
+  /** The address of the relay */
+  address: Scalars['EthereumAddress']
+  /** The queue on the relay */
+  queue: Scalars['Float']
+  /** The relayer name */
+  relayer: RelayRoleKey
+}
+
 export type RelayResult = RelayError | RelayerResult
+
+/** The relay role key */
+export enum RelayRoleKey {
+  CreateProfile = 'CREATE_PROFILE',
+  Dispatcher_1 = 'DISPATCHER_1',
+  Dispatcher_2 = 'DISPATCHER_2',
+  Dispatcher_3 = 'DISPATCHER_3',
+  Dispatcher_4 = 'DISPATCHER_4',
+  Dispatcher_5 = 'DISPATCHER_5',
+  Dispatcher_6 = 'DISPATCHER_6',
+  Dispatcher_7 = 'DISPATCHER_7',
+  Dispatcher_8 = 'DISPATCHER_8',
+  Dispatcher_9 = 'DISPATCHER_9',
+  Dispatcher_10 = 'DISPATCHER_10',
+  ProxyActionCollect_1 = 'PROXY_ACTION_COLLECT_1',
+  ProxyActionCollect_2 = 'PROXY_ACTION_COLLECT_2',
+  ProxyActionCollect_3 = 'PROXY_ACTION_COLLECT_3',
+  ProxyActionCollect_4 = 'PROXY_ACTION_COLLECT_4',
+  ProxyActionCollect_5 = 'PROXY_ACTION_COLLECT_5',
+  ProxyActionCollect_6 = 'PROXY_ACTION_COLLECT_6',
+  ProxyActionFollow_1 = 'PROXY_ACTION_FOLLOW_1',
+  ProxyActionFollow_2 = 'PROXY_ACTION_FOLLOW_2',
+  ProxyActionFollow_3 = 'PROXY_ACTION_FOLLOW_3',
+  ProxyActionFollow_4 = 'PROXY_ACTION_FOLLOW_4',
+  ProxyActionFollow_5 = 'PROXY_ACTION_FOLLOW_5',
+  ProxyActionFollow_6 = 'PROXY_ACTION_FOLLOW_6',
+  ProxyActionFollow_7 = 'PROXY_ACTION_FOLLOW_7',
+  ProxyActionFollow_8 = 'PROXY_ACTION_FOLLOW_8',
+  ProxyActionFollow_9 = 'PROXY_ACTION_FOLLOW_9',
+  ProxyActionFollow_10 = 'PROXY_ACTION_FOLLOW_10',
+  WithSig_1 = 'WITH_SIG_1',
+  WithSig_2 = 'WITH_SIG_2',
+  WithSig_3 = 'WITH_SIG_3'
+}
 
 /** The relayer result */
 export type RelayerResult = {
@@ -3800,6 +4087,11 @@ export type SingleProfileQueryRequest = {
 export type SpamReasonInputParams = {
   reason: PublicationReportingReason
   subreason: PublicationReportingSpamSubreason
+}
+
+export type Subscription = {
+  __typename?: 'Subscription'
+  newDataAvailabilityTransaction: DataAvailabilityTransactionUnion
 }
 
 export type SybilDotOrgIdentity = {
@@ -4408,6 +4700,14 @@ export type CommentFieldsFragment = {
         }
       }
     | null
+}
+
+export type Erc20FieldsFragment = {
+  __typename?: 'Erc20'
+  name: string
+  symbol: string
+  decimals: number
+  address: any
 }
 
 export type MetadataFieldsFragment = {
@@ -5976,6 +6276,281 @@ export type CollectorsQuery = {
           | null
       } | null
     }>
+    pageInfo: { __typename?: 'PaginatedResultInfo'; next?: any | null }
+  }
+}
+
+export type CommentsQueryVariables = Exact<{
+  request: PublicationsQueryRequest
+  reactionRequest?: InputMaybe<ReactionFieldResolverRequest>
+  channelId?: InputMaybe<Scalars['ProfileId']>
+}>
+
+export type CommentsQuery = {
+  __typename?: 'Query'
+  publications: {
+    __typename?: 'PaginatedPublicationResult'
+    items: Array<
+      | {
+          __typename?: 'Comment'
+          id: any
+          reaction?: ReactionTypes | null
+          collectNftAddress?: any | null
+          onChainContentURI: string
+          hidden: boolean
+          hasCollectedByMe: boolean
+          createdAt: any
+          appId?: any | null
+          profile: {
+            __typename?: 'Profile'
+            id: any
+            name?: string | null
+            handle: any
+            bio?: string | null
+            ownedBy: any
+            isDefault: boolean
+            interests?: Array<any> | null
+            isFollowedByMe: boolean
+            dispatcher?: {
+              __typename?: 'Dispatcher'
+              canUseRelay: boolean
+            } | null
+            attributes?: Array<{
+              __typename?: 'Attribute'
+              key: string
+              value: string
+            }> | null
+            stats: {
+              __typename?: 'ProfileStats'
+              totalFollowers: number
+              totalPosts: number
+            }
+            coverPicture?:
+              | {
+                  __typename?: 'MediaSet'
+                  original: { __typename?: 'Media'; url: any }
+                }
+              | { __typename?: 'NftImage' }
+              | null
+            picture?:
+              | {
+                  __typename?: 'MediaSet'
+                  original: { __typename?: 'Media'; url: any }
+                }
+              | { __typename?: 'NftImage'; uri: any }
+              | null
+            followModule?:
+              | { __typename: 'FeeFollowModuleSettings' }
+              | { __typename: 'ProfileFollowModuleSettings' }
+              | { __typename: 'RevertFollowModuleSettings' }
+              | { __typename: 'UnknownFollowModuleSettings' }
+              | null
+          }
+          collectedBy?: {
+            __typename?: 'Wallet'
+            address: any
+            defaultProfile?: { __typename?: 'Profile'; handle: any } | null
+          } | null
+          collectModule:
+            | { __typename?: 'AaveFeeCollectModuleSettings' }
+            | { __typename?: 'ERC4626FeeCollectModuleSettings' }
+            | {
+                __typename?: 'FeeCollectModuleSettings'
+                type: CollectModules
+                recipient: any
+                referralFee: number
+                contractAddress: any
+                followerOnly: boolean
+                amount: {
+                  __typename?: 'ModuleFeeAmount'
+                  value: string
+                  asset: {
+                    __typename?: 'Erc20'
+                    symbol: string
+                    decimals: number
+                    address: any
+                  }
+                }
+              }
+            | {
+                __typename?: 'FreeCollectModuleSettings'
+                type: CollectModules
+                contractAddress: any
+                followerOnly: boolean
+              }
+            | {
+                __typename?: 'LimitedFeeCollectModuleSettings'
+                type: CollectModules
+                collectLimit: string
+                recipient: any
+                referralFee: number
+                contractAddress: any
+                followerOnly: boolean
+                amount: {
+                  __typename?: 'ModuleFeeAmount'
+                  value: string
+                  asset: {
+                    __typename?: 'Erc20'
+                    symbol: string
+                    decimals: number
+                    address: any
+                  }
+                }
+              }
+            | {
+                __typename?: 'LimitedTimedFeeCollectModuleSettings'
+                type: CollectModules
+                collectLimit: string
+                recipient: any
+                endTimestamp: any
+                referralFee: number
+                contractAddress: any
+                followerOnly: boolean
+                amount: {
+                  __typename?: 'ModuleFeeAmount'
+                  value: string
+                  asset: {
+                    __typename?: 'Erc20'
+                    symbol: string
+                    decimals: number
+                    address: any
+                  }
+                }
+              }
+            | { __typename?: 'MultirecipientFeeCollectModuleSettings' }
+            | { __typename?: 'RevertCollectModuleSettings' }
+            | {
+                __typename?: 'TimedFeeCollectModuleSettings'
+                type: CollectModules
+                recipient: any
+                endTimestamp: any
+                referralFee: number
+                contractAddress: any
+                followerOnly: boolean
+                amount: {
+                  __typename?: 'ModuleFeeAmount'
+                  value: string
+                  asset: {
+                    __typename?: 'Erc20'
+                    symbol: string
+                    decimals: number
+                    address: any
+                  }
+                }
+              }
+            | { __typename?: 'UnknownCollectModuleSettings' }
+          referenceModule?:
+            | { __typename: 'DegreesOfSeparationReferenceModuleSettings' }
+            | { __typename: 'FollowOnlyReferenceModuleSettings' }
+            | { __typename: 'UnknownReferenceModuleSettings' }
+            | null
+          canComment: { __typename?: 'CanCommentResponse'; result: boolean }
+          canMirror: { __typename?: 'CanMirrorResponse'; result: boolean }
+          stats: {
+            __typename?: 'PublicationStats'
+            totalAmountOfComments: number
+            totalAmountOfCollects: number
+            totalAmountOfMirrors: number
+            totalUpvotes: number
+          }
+          metadata: {
+            __typename?: 'MetadataOutput'
+            name?: string | null
+            description?: any | null
+            content?: any | null
+            contentWarning?: PublicationContentWarning | null
+            mainContentFocus: PublicationMainFocus
+            tags: Array<string>
+            media: Array<{
+              __typename?: 'MediaSet'
+              original: {
+                __typename?: 'Media'
+                url: any
+                mimeType?: any | null
+              }
+            }>
+            cover?: {
+              __typename?: 'MediaSet'
+              original: { __typename?: 'Media'; url: any }
+            } | null
+            attributes: Array<{
+              __typename?: 'MetadataAttributeOutput'
+              value?: string | null
+              traitType?: string | null
+            }>
+          }
+          commentOn?:
+            | { __typename?: 'Comment' }
+            | { __typename?: 'Mirror' }
+            | {
+                __typename?: 'Post'
+                id: any
+                createdAt: any
+                appId?: any | null
+                profile: {
+                  __typename?: 'Profile'
+                  id: any
+                  name?: string | null
+                  handle: any
+                  bio?: string | null
+                  ownedBy: any
+                  isDefault: boolean
+                  interests?: Array<any> | null
+                  isFollowedByMe: boolean
+                  dispatcher?: {
+                    __typename?: 'Dispatcher'
+                    canUseRelay: boolean
+                  } | null
+                  attributes?: Array<{
+                    __typename?: 'Attribute'
+                    key: string
+                    value: string
+                  }> | null
+                  stats: {
+                    __typename?: 'ProfileStats'
+                    totalFollowers: number
+                    totalPosts: number
+                  }
+                  coverPicture?:
+                    | {
+                        __typename?: 'MediaSet'
+                        original: { __typename?: 'Media'; url: any }
+                      }
+                    | { __typename?: 'NftImage' }
+                    | null
+                  picture?:
+                    | {
+                        __typename?: 'MediaSet'
+                        original: { __typename?: 'Media'; url: any }
+                      }
+                    | { __typename?: 'NftImage'; uri: any }
+                    | null
+                  followModule?:
+                    | { __typename: 'FeeFollowModuleSettings' }
+                    | { __typename: 'ProfileFollowModuleSettings' }
+                    | { __typename: 'RevertFollowModuleSettings' }
+                    | { __typename: 'UnknownFollowModuleSettings' }
+                    | null
+                }
+                metadata: {
+                  __typename?: 'MetadataOutput'
+                  name?: string | null
+                  cover?: {
+                    __typename?: 'MediaSet'
+                    original: { __typename?: 'Media'; url: any }
+                  } | null
+                  attributes: Array<{
+                    __typename?: 'MetadataAttributeOutput'
+                    value?: string | null
+                    traitType?: string | null
+                  }>
+                }
+              }
+            | null
+        }
+      | { __typename?: 'Mirror' }
+      | { __typename?: 'Post' }
+    >
     pageInfo: { __typename?: 'PaginatedResultInfo'; next?: any | null }
   }
 }
@@ -10103,6 +10678,15 @@ export type RecommendedProfilesQuery = {
   }>
 }
 
+export type ResolveProfileAddressQueryVariables = Exact<{
+  request: SingleProfileQueryRequest
+}>
+
+export type ResolveProfileAddressQuery = {
+  __typename?: 'Query'
+  profile?: { __typename?: 'Profile'; ownedBy: any } | null
+}
+
 export type SearchProfilesQueryVariables = Exact<{
   request: SearchQueryRequest
 }>
@@ -10756,6 +11340,10 @@ export interface PossibleTypesResultData {
 }
 const result: PossibleTypesResultData = {
   possibleTypes: {
+    BroadcastDataAvailabilityUnion: [
+      'CreateDataAvailabilityPublicationResult',
+      'RelayError'
+    ],
     CollectModule: [
       'AaveFeeCollectModuleSettings',
       'ERC4626FeeCollectModuleSettings',
@@ -10767,6 +11355,11 @@ const result: PossibleTypesResultData = {
       'RevertCollectModuleSettings',
       'TimedFeeCollectModuleSettings',
       'UnknownCollectModuleSettings'
+    ],
+    DataAvailabilityTransactionUnion: [
+      'DataAvailabilityComment',
+      'DataAvailabilityMirror',
+      'DataAvailabilityPost'
     ],
     FeedItemRoot: ['Comment', 'Post'],
     FollowModule: [
@@ -10800,6 +11393,10 @@ const result: PossibleTypesResultData = {
       'FollowOnlyReferenceModuleSettings',
       'UnknownReferenceModuleSettings'
     ],
+    RelayDataAvailabilityResult: [
+      'CreateDataAvailabilityPublicationResult',
+      'RelayError'
+    ],
     RelayResult: ['RelayError', 'RelayerResult'],
     SearchResult: ['ProfileSearchResult', 'PublicationSearchResult'],
     TransactionResult: ['TransactionError', 'TransactionIndexedResult']
@@ -10807,6 +11404,14 @@ const result: PossibleTypesResultData = {
 }
 export default result
 
+export const Erc20FieldsFragmentDoc = gql`
+  fragment Erc20Fields on Erc20 {
+    name
+    symbol
+    decimals
+    address
+  }
+`
 export const ProfileFieldsFragmentDoc = gql`
   fragment ProfileFields on Profile {
     id
@@ -12910,6 +13515,73 @@ export type CollectorsQueryResult = Apollo.QueryResult<
   CollectorsQuery,
   CollectorsQueryVariables
 >
+export const CommentsDocument = gql`
+  query Comments(
+    $request: PublicationsQueryRequest!
+    $reactionRequest: ReactionFieldResolverRequest
+    $channelId: ProfileId
+  ) {
+    publications(request: $request) {
+      items {
+        ... on Comment {
+          ...CommentFields
+        }
+      }
+      pageInfo {
+        next
+      }
+    }
+  }
+  ${CommentFieldsFragmentDoc}
+`
+
+/**
+ * __useCommentsQuery__
+ *
+ * To run a query within a React component, call `useCommentsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useCommentsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useCommentsQuery({
+ *   variables: {
+ *      request: // value for 'request'
+ *      reactionRequest: // value for 'reactionRequest'
+ *      channelId: // value for 'channelId'
+ *   },
+ * });
+ */
+export function useCommentsQuery(
+  baseOptions: Apollo.QueryHookOptions<CommentsQuery, CommentsQueryVariables>
+) {
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useQuery<CommentsQuery, CommentsQueryVariables>(
+    CommentsDocument,
+    options
+  )
+}
+export function useCommentsLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    CommentsQuery,
+    CommentsQueryVariables
+  >
+) {
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useLazyQuery<CommentsQuery, CommentsQueryVariables>(
+    CommentsDocument,
+    options
+  )
+}
+export type CommentsQueryHookResult = ReturnType<typeof useCommentsQuery>
+export type CommentsLazyQueryHookResult = ReturnType<
+  typeof useCommentsLazyQuery
+>
+export type CommentsQueryResult = Apollo.QueryResult<
+  CommentsQuery,
+  CommentsQueryVariables
+>
 export const CreateUnfollowTypedDataDocument = gql`
   mutation CreateUnfollowTypedData($request: UnfollowRequest!) {
     createUnfollowTypedData(request: $request) {
@@ -14672,6 +15344,64 @@ export type RecommendedProfilesLazyQueryHookResult = ReturnType<
 export type RecommendedProfilesQueryResult = Apollo.QueryResult<
   RecommendedProfilesQuery,
   RecommendedProfilesQueryVariables
+>
+export const ResolveProfileAddressDocument = gql`
+  query ResolveProfileAddress($request: SingleProfileQueryRequest!) {
+    profile(request: $request) {
+      ownedBy
+    }
+  }
+`
+
+/**
+ * __useResolveProfileAddressQuery__
+ *
+ * To run a query within a React component, call `useResolveProfileAddressQuery` and pass it any options that fit your needs.
+ * When your component renders, `useResolveProfileAddressQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useResolveProfileAddressQuery({
+ *   variables: {
+ *      request: // value for 'request'
+ *   },
+ * });
+ */
+export function useResolveProfileAddressQuery(
+  baseOptions: Apollo.QueryHookOptions<
+    ResolveProfileAddressQuery,
+    ResolveProfileAddressQueryVariables
+  >
+) {
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useQuery<
+    ResolveProfileAddressQuery,
+    ResolveProfileAddressQueryVariables
+  >(ResolveProfileAddressDocument, options)
+}
+export function useResolveProfileAddressLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    ResolveProfileAddressQuery,
+    ResolveProfileAddressQueryVariables
+  >
+) {
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useLazyQuery<
+    ResolveProfileAddressQuery,
+    ResolveProfileAddressQueryVariables
+  >(ResolveProfileAddressDocument, options)
+}
+export type ResolveProfileAddressQueryHookResult = ReturnType<
+  typeof useResolveProfileAddressQuery
+>
+export type ResolveProfileAddressLazyQueryHookResult = ReturnType<
+  typeof useResolveProfileAddressLazyQuery
+>
+export type ResolveProfileAddressQueryResult = Apollo.QueryResult<
+  ResolveProfileAddressQuery,
+  ResolveProfileAddressQueryVariables
 >
 export const SearchProfilesDocument = gql`
   query SearchProfiles($request: SearchQueryRequest!) {

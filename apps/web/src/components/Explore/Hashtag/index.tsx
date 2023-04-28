@@ -13,7 +13,8 @@ import {
   LENS_CUSTOM_FILTERS,
   LENSTUBE_APP_ID,
   LENSTUBE_BYTES_APP_ID,
-  SCROLL_ROOT_MARGIN
+  SCROLL_ROOT_MARGIN,
+  LENSTOK_APP_ID
 } from 'utils'
 
 const ExploreHashtag = () => {
@@ -23,7 +24,7 @@ const ExploreHashtag = () => {
   const request = {
     type: SearchRequestTypes.Publication,
     limit: 32,
-    sources: [LENSTUBE_APP_ID, LENSTUBE_BYTES_APP_ID],
+    sources: [LENSTUBE_APP_ID, LENSTUBE_BYTES_APP_ID, LENSTOK_APP_ID],
     customFilters: LENS_CUSTOM_FILTERS,
     query: hashtag
   }

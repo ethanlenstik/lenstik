@@ -4,7 +4,7 @@ import { usePublicationDetailsQuery } from 'lens'
 import Link from 'next/link'
 import type { FC } from 'react'
 import React from 'react'
-import { LENSTUBE_BYTES_APP_ID } from 'utils'
+import { LENSTOK_APP_ID, LENSTUBE_BYTES_APP_ID } from 'utils'
 import { getRelativeTime } from 'utils/functions/formatTime'
 import { getIsSensitiveContent } from 'utils/functions/getIsSensitiveContent'
 import { getPublicationMediaUrl } from 'utils/functions/getPublicationMediaUrl'
@@ -30,7 +30,7 @@ const PinnedVideo: FC<Props> = ({ id }) => {
   const pinnedPublication =
     publication?.__typename === 'Mirror' ? publication.mirrorOf : publication
 
-  const isBytesVideo = pinnedPublication?.appId === LENSTUBE_BYTES_APP_ID
+  const isBytesVideo = pinnedPublication?.appId === LENSTUBE_BYTES_APP_ID || pinnedPublication?.appId === LENSTOK_APP_ID
   const isSensitiveContent = getIsSensitiveContent(
     pinnedPublication?.metadata,
     pinnedPublication?.id

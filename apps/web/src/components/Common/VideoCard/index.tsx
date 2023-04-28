@@ -3,7 +3,7 @@ import type { Publication } from 'lens'
 import Link from 'next/link'
 import type { FC } from 'react'
 import React, { useState } from 'react'
-import { Analytics, LENSTUBE_BYTES_APP_ID, STATIC_ASSETS, TRACK } from 'utils'
+import { Analytics, LENSTOK_APP_ID, LENSTUBE_BYTES_APP_ID, STATIC_ASSETS, TRACK } from 'utils'
 import { getRelativeTime } from 'utils/functions/formatTime'
 import { getIsSensitiveContent } from 'utils/functions/getIsSensitiveContent'
 import getLensHandle from 'utils/functions/getLensHandle'
@@ -27,7 +27,7 @@ const VideoCard: FC<Props> = ({ video }) => {
   const [showReport, setShowReport] = useState(false)
 
   const isSensitiveContent = getIsSensitiveContent(video.metadata, video.id)
-  const isBytesVideo = video.appId === LENSTUBE_BYTES_APP_ID
+  const isBytesVideo = video.appId === LENSTUBE_BYTES_APP_ID || video.appId === LENSTOK_APP_ID
 
   const thumbnailUrl = imageCdn(
     isSensitiveContent

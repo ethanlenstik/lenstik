@@ -17,7 +17,8 @@ import {
   LENSTUBE_BYTES_APP_ID,
   LENSTUBE_ROADMAP_URL,
   STATIC_ASSETS,
-  TRACK
+  TRACK,
+  LENSTOK_APP_ID
 } from 'utils'
 
 import Login from './Auth/Login'
@@ -53,7 +54,7 @@ const Header: FC<Props> = ({ className }) => {
     variables: {
       request: {
         profileId: selectedChannel?.id,
-        sources: [LENSTUBE_APP_ID, LENSTUBE_BYTES_APP_ID],
+        sources: [LENSTUBE_APP_ID, LENSTUBE_BYTES_APP_ID, LENSTOK_APP_ID],
         customFilters: LENS_CUSTOM_FILTERS,
         limit: 1
       }

@@ -56,7 +56,7 @@ export const UPLOADED_VIDEO_FORM_DEFAULTS = {
   },
   isNSFW: false,
   isNSFWThumbnail: false,
-  isByteVideo: false
+  isByteVideo: true
 }
 
 interface AppState {

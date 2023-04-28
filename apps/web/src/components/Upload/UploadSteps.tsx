@@ -32,7 +32,8 @@ import {
   LENSTUBE_APP_NAME,
   LENSTUBE_BYTES_APP_ID,
   LENSTUBE_WEBSITE_URL,
-  TRACK
+  TRACK,
+  LENSTOK_APP_ID
 } from 'utils'
 import canUploadedToIpfs from 'utils/functions/canUploadedToIpfs'
 import { checkIsBytesVideo } from 'utils/functions/checkIsBytesVideo'
@@ -238,7 +239,7 @@ const UploadSteps = () => {
         {
           displayType: PublicationMetadataDisplayTypes.String,
           traitType: 'app',
-          value: LENSTUBE_APP_ID
+          value: LENSTOK_APP_ID
         }
       ]
       if (uploadedVideo.durationInSeconds) {
@@ -248,7 +249,7 @@ const UploadSteps = () => {
           value: uploadedVideo.durationInSeconds.toString()
         })
       }
-      const isByteVideo = checkIsBytesVideo(uploadedVideo.description)
+      const isByteVideo = true
       const metadata: PublicationMetadataV2Input = {
         version: '2.0.0',
         metadata_id: uuidv4(),
@@ -266,7 +267,7 @@ const UploadSteps = () => {
         name: trimify(uploadedVideo.title),
         attributes,
         media,
-        appId: LENSTUBE_BYTES_APP_ID // isByteVideo ? LENSTUBE_BYTES_APP_ID : LENSTUBE_APP_ID
+        appId: LENSTOK_APP_ID//isByteVideo ? LENSTUBE_BYTES_APP_ID : LENSTUBE_APP_ID
       }
       if (uploadedVideo.isSensitiveContent) {
         metadata.contentWarning = PublicationContentWarning.Sensitive
@@ -333,9 +334,6 @@ const UploadSteps = () => {
     setUploadedVideo({
       percent: 100,
       videoSource: result.url
-    })
-    Analytics.track(TRACK.UPLOADED_TO_IPFS, {
-      format: uploadedVideo.videoType
     })
     return await createPublication({
       videoSource: result.url

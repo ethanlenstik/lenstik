@@ -5,7 +5,7 @@ import type { Publication } from 'lens'
 import dynamic from 'next/dynamic'
 import type { FC } from 'react'
 import React from 'react'
-import { LENSTUBE_BYTES_APP_ID } from 'utils'
+import { LENSTOK_APP_ID, LENSTUBE_BYTES_APP_ID } from 'utils'
 import { getIsSensitiveContent } from 'utils/functions/getIsSensitiveContent'
 import { getPublicationMediaUrl } from 'utils/functions/getPublicationMediaUrl'
 import getThumbnailUrl from 'utils/functions/getThumbnailUrl'
@@ -27,7 +27,7 @@ type Props = {
 const Video: FC<Props> = ({ video }) => {
   const isSensitiveContent = getIsSensitiveContent(video.metadata, video.id)
   const videoWatchTime = useAppStore((state) => state.videoWatchTime)
-  const isBytesVideo = video.appId === LENSTUBE_BYTES_APP_ID
+  const isBytesVideo = video.appId === LENSTUBE_BYTES_APP_ID || video.appId === LENSTOK_APP_ID
 
   return (
     <div className="overflow-hidden">

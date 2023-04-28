@@ -83,7 +83,7 @@ const DropZone = () => {
               <span className='text-2xl font-semibold md:text-4xl'>
                 Select video to upload
               </span> <br />
-              <span>or drag and drop a file</span>
+              <span className='text-base'>or drag and drop a file</span>
             </div>
             <div className='h-20'>
               <label
@@ -101,7 +101,7 @@ const DropZone = () => {
               </label>
             </div>
 
-            <span className="text-red-500 text-xs">Note: you will be free to upload to IPFS if the file size is less than {IPFS_FREE_UPLOAD_LIMIT}MB otherwise you have to pay to upload to Arware</span>
+            <span className="text-red-500 text-base">Note: you will be free to upload to IPFS if the file size is less than {IPFS_FREE_UPLOAD_LIMIT}MB otherwise you have to pay to upload to Arware</span>
             {fileDropError && (
               <div className="font-medium text-red-500">{fileDropError}</div>
             )}

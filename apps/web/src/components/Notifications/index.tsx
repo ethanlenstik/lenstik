@@ -20,7 +20,8 @@ import {
   LENSTUBE_APP_ID,
   LENSTUBE_BYTES_APP_ID,
   SCROLL_ROOT_MARGIN,
-  TRACK
+  TRACK,
+  LENSTOK_APP_ID
 } from 'utils'
 
 import CollectedNotification from './Collected'
@@ -81,7 +82,7 @@ const Notifications = () => {
     limit: 30,
     sources: activeFilter.subscriptions
       ? undefined
-      : [LENSTUBE_APP_ID, LENSTUBE_BYTES_APP_ID],
+      : [LENSTUBE_APP_ID, LENSTUBE_BYTES_APP_ID, LENSTOK_APP_ID],
     customFilters: LENS_CUSTOM_FILTERS,
     profileId: selectedChannel?.id,
     notificationTypes: getNotificationFilters()

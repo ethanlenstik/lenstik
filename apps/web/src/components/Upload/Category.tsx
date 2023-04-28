@@ -11,7 +11,7 @@ const Category = () => {
   return (
     <>
       <div className="mb-1 flex items-center space-x-1.5">
-        <div className="text-[11px] font-semibold uppercase opacity-70">
+        <div className="text-[13px] font-semibold uppercase opacity-70">
           Category
         </div>
       </div>

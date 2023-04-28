@@ -21,7 +21,8 @@ import {
   LENS_CUSTOM_FILTERS,
   LENSTUBE_BYTES_APP_ID,
   SCROLL_ROOT_MARGIN,
-  TRACK
+  TRACK,
+  LENSTOK_APP_ID
 } from 'utils'
 
 import ByteVideo from './ByteVideo'
@@ -43,7 +44,7 @@ const Bytes = () => {
     sortCriteria: PublicationSortCriteria.CuratedProfiles,
     limit: 30,
     noRandomize: false,
-    sources: [LENSTUBE_BYTES_APP_ID],
+    sources: [ LENSTOK_APP_ID],
     publicationTypes: [PublicationTypes.Post],
     customFilters: LENS_CUSTOM_FILTERS,
     metadata: {
@@ -72,7 +73,7 @@ const Bytes = () => {
       onCompleted: ({ explorePublications }) => {
       }
     })
-
+console.log(data)
 
   const bytes = data?.explorePublications?.items as Publication[]
   const pageInfo = data?.explorePublications?.pageInfo

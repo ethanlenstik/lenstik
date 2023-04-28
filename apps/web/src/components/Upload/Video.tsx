@@ -44,7 +44,7 @@ const Video = () => {
 
   return (
     <div className="flex w-full flex-col justify-between">
-      <div className="relative w-full overflow-hidden rounded-xl rounded-b-none">
+      <div className="relative w-full overflow-hidden">
         <video
           ref={videoRef}
           className="aspect-[16/9] w-full"
