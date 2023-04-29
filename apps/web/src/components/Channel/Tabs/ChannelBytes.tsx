@@ -22,7 +22,7 @@ const ChannelBytes: FC<Props> = ({ channel }) => {
   const request = {
     publicationTypes: [PublicationTypes.Post],
     limit: 32,
-    sources: [LENSTOK_APP_ID],
+    sources: [LENSTOK_APP_ID, LENSTUBE_BYTES_APP_ID],
     customFilters: LENS_CUSTOM_FILTERS,
     profileId: channel?.id
   }
