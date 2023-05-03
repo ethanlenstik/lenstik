@@ -49,10 +49,6 @@ const PreviewVideo = () => {
                 {formatBytes(uploadedVideo.file?.size)}
             </span>
         )}
-        <ChooseThumbnail
-            label="Thumbnail"
-            file={uploadedVideo.file}
-        />
 
         {uploadedVideo.videoSource && (
             <Tooltip placement="left" content="Copy permanent video URL">

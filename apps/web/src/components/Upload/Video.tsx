@@ -43,11 +43,11 @@ const Video = () => {
   }
 
   return (
-    <div className="flex w-full flex-col justify-between">
-      <div className="relative w-full overflow-hidden">
+    <div className="flex w-[360px] flex-col justify-between">
+      <div className="relative w-full overflow-hidden border">
         <video
           ref={videoRef}
-          className="aspect-[16/9] w-full"
+          className="aspect-[9/16] w-full"
           disablePictureInPicture
           disableRemotePlayback
           controlsList="nodownload noplaybackrate"
@@ -111,16 +111,13 @@ const Video = () => {
             />
           </div>
         )}
-      <div className="mt-4">
-        <ChooseThumbnail label="Thumbnail" file={uploadedVideo.file} />
-      </div>
-      <ul className="mt-4 list-inside list-disc text-xs">
+      {/* <ul className="mt-4 list-inside list-disc text-xs">
         <li>Don't switch network or wallet accounts.</li>
         <li>
           Stay active in current tab while uploading for faster experience.
         </li>
         <li>Video will be stored permanently on-chain and can't be updated.</li>
-      </ul>
+      </ul> */}
       <div className="rounded-lg">
         <UploadMethod />
       </div>

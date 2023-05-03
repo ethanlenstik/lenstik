@@ -77,14 +77,14 @@ const Details: FC<Props> = ({ onUpload, onCancel }) => {
 
 
   return (
-    <div className='flex gap-10 pb-20 mt-20 max-md:flex-wrap '>
+    <div className='flex gap-10 pb-20 mt-20 max-md:flex-wrap justify-center'>
       <div className={clsx(
-        'grid  text-center focus:outline-none m-0 flex-1'
+        'grid  text-center focus:outline-none m-0 flex-0 center'
       )}>
         <Video />
       </div>
 
-      <form onSubmit={handleSubmit(onSubmitForm)} className="flex-1 shrink-0 flex justify-between flex-col">
+      <form onSubmit={handleSubmit(onSubmitForm)} className="flex-1 shrink-1 flex justify-between flex-col">
         <div className="mb-10 gap-5 md:grid-cols-2">
           <div className="flex flex-col justify-between">
             <div>
@@ -109,6 +109,10 @@ const Details: FC<Props> = ({ onUpload, onCancel }) => {
                     {watch('title')?.length}/100
                   </span>
                 </div>
+              </div>
+
+              <div className="mt-5">
+                <ChooseThumbnail label="Thumbnail" file={uploadedVideo.file} />
               </div>
               <div className="mt-5">
                 <CollectModule />

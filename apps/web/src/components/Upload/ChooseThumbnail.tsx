@@ -20,7 +20,7 @@ interface Props {
 }
 
 const DEFAULT_THUMBNAIL_INDEX = 0
-export const THUMBNAIL_GENERATE_COUNT = 7
+export const THUMBNAIL_GENERATE_COUNT = 8
 
 type Thumbnail = {
   blobUrl: string
@@ -138,27 +138,13 @@ const ChooseThumbnail: FC<Props> = ({ label, file }) => {
   return (
     <div className="w-full">
       {label && (
-        <div className="mb-1 flex items-center space-x-1.5">
-          <div className="text-[11px] font-semibold uppercase opacity-70">
+        <div className="my-5 flex items-center space-x-1.5">
+          <div className="text-[11px] font-semibold uppercase">
             {label}
           </div>
         </div>
       )}
-      <div className="grid grid-cols-2 place-items-start gap-3 py-0.5 md:grid-cols-3 lg:grid-cols-4">
-        <label
-          htmlFor="chooseThumbnail"
-          className="max-w-32 flex h-16 w-full flex-none cursor-pointer flex-col items-center justify-center rounded-xl border border-gray-300 opacity-80 focus:outline-none dark:border-gray-700"
-        >
-          <input
-            id="chooseThumbnail"
-            type="file"
-            accept=".png, .jpg, .jpeg"
-            className="hidden w-full"
-            onChange={handleUpload}
-          />
-          <AiOutlineFileAdd className="mb-1 h-4 w-4 flex-none" />
-          <span className="text-xs">Upload</span>
-        </label>
+      <div className="flex p-0.5 gap-1 justify-between border rounded-lg">
         {!thumbnails.length && (
           <ThumbnailsShimmer />
         )}
@@ -167,22 +153,19 @@ const ChooseThumbnail: FC<Props> = ({ label, file }) => {
             <button
               key={idx}
               type="button"
-              disabled={uploadedVideo.uploadingThumbnail}
+              disabled={
+                uploadedVideo.uploadingThumbnail &&
+                selectedThumbnailIndex === idx
+              }
               onClick={() => onSelectThumbnail(idx)}
-              className={clsx(
-                'relative w-full flex-none overflow-hidden rounded-lg ring-1 ring-white focus:outline-none dark:ring-black',
-                {
-                  '!ring !ring-[#30BFA8]':
-                    thumbnail.ipfsUrl &&
-                    selectedThumbnailIndex === idx &&
-                    thumbnail.ipfsUrl === uploadedVideo.thumbnail
-                }
+              className={clsx("h-32 max-w-[5rem]",
+                selectedThumbnailIndex === idx ? 'rounded-lg  brightness-100': 'brightness-50'
+                
               )}
             >
               <img
                 className={clsx(
-                  'h-16 w-full rounded-lg md:w-32',
-                  uploadedVideo.isByteVideo ? 'object-contain' : 'object-cover'
+                  'h-32 w-18 object-cover rounded-lg', selectedThumbnailIndex === idx && 'min-w-[4rem] scale-105 !ring !ring-[#30BFA8] ',
                 )}
                 src={sanitizeDStorageUrl(thumbnail.blobUrl)}
                 alt="thumbnail"
@@ -190,8 +173,10 @@ const ChooseThumbnail: FC<Props> = ({ label, file }) => {
               />
               {uploadedVideo.uploadingThumbnail &&
                 selectedThumbnailIndex === idx && (
-                  <div className="absolute inset-0 grid place-items-center bg-gray-100 bg-opacity-10 backdrop-blur-md">
-                    <Loader size="sm" />
+                  <div className="absolute top-1 right-1">
+                    <span>
+                      <Loader size="sm" className="!text-white" />
+                    </span>
                   </div>
                 )}
             </button>
