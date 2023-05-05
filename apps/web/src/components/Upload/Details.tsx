@@ -114,6 +114,19 @@ const Details: FC<Props> = ({ onUpload, onCancel }) => {
               <div className="mt-5">
                 <ChooseThumbnail label="Thumbnail" file={uploadedVideo.file} />
               </div>
+              <InputMentions
+                label="Description"
+                placeholder="Describe more about your video"
+                autoComplete="off"
+                validationError={errors.description?.message}
+                value={watch('description')}
+                onContentChange={(value) => {
+                  setValue('description', value)
+                  clearErrors('description')
+                }}
+                rows={3}
+                mentionsSelector="input-mentions-textarea"
+              />
               <div className="mt-5">
                 <CollectModule />
               </div>

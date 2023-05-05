@@ -44,10 +44,10 @@ const Video = () => {
 
   return (
     <div className="flex w-[360px] flex-col justify-between">
-      <div className="relative w-full overflow-hidden border">
+      <div className="relative w-full overflow-hidden border rounded-lg">
         <video
           ref={videoRef}
-          className="aspect-[9/16] w-full"
+          className="aspect-[9/16] w-full rounded-lg"
           disablePictureInPicture
           disableRemotePlayback
           controlsList="nodownload noplaybackrate"
@@ -80,7 +80,7 @@ const Video = () => {
         )}
       </div>
       <Tooltip content={`Uploaded (${uploadedVideo.percent}%)`}>
-        <div className="w-full overflow-hidden rounded-b-full bg-gray-200">
+        <div className="w-full overflow-hidden rounded-full bg-gray-200">
           <div
             className={clsx(
               'h-[6px]',
@@ -111,16 +111,14 @@ const Video = () => {
             />
           </div>
         )}
-      {/* <ul className="mt-4 list-inside list-disc text-xs">
-        <li>Don't switch network or wallet accounts.</li>
+      <ul className="mt-4 list-inside list-disc text-xs text-start">
+        {/* <li>Don't switch network or wallet accounts.</li> */}
         <li>
           Stay active in current tab while uploading for faster experience.
         </li>
         <li>Video will be stored permanently on-chain and can't be updated.</li>
-      </ul> */}
-      <div className="rounded-lg">
-        <UploadMethod />
-      </div>
+      </ul>
+      <UploadMethod />
     </div>
   )
 }
