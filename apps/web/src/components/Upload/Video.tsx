@@ -79,7 +79,7 @@ const Video = () => {
           </Tooltip>
         )}
       </div>
-      <Tooltip content={`Uploaded (${uploadedVideo.percent}%)`}>
+      {uploadedVideo.percent < 100 && uploadedVideo.percent != 0 && <Tooltip content={`Uploaded (${uploadedVideo.percent}%)`}>
         <div className="w-full overflow-hidden rounded-full bg-gray-200">
           <div
             className={clsx(
@@ -93,7 +93,7 @@ const Video = () => {
             }}
           />
         </div>
-      </Tooltip>
+      </Tooltip>}
       {getIsFeatureEnabled(
         FEATURE_FLAGS.POST_WITH_SOURCE_URL,
         selectedChannel?.id

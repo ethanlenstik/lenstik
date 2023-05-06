@@ -139,7 +139,7 @@ const ChooseThumbnail: FC<Props> = ({ label, file }) => {
     <div className="w-full">
       {label && (
         <div className="my-5 flex items-center space-x-1.5">
-          <div className="text-[11px] font-semibold uppercase">
+          <div className="text-[13px] font-semibold uppercase opacity-70">
             {label}
           </div>
         </div>
@@ -159,8 +159,8 @@ const ChooseThumbnail: FC<Props> = ({ label, file }) => {
               }
               onClick={() => onSelectThumbnail(idx)}
               className={clsx("h-32 max-w-[5rem]",
-                selectedThumbnailIndex === idx ? 'rounded-lg  brightness-100': 'brightness-50'
-                
+                selectedThumbnailIndex === idx ? 'rounded-lg  brightness-100' : 'brightness-50'
+
               )}
             >
               <img
