@@ -75,7 +75,7 @@ input[type='number'] {
   @apply w-full min-h-[2.4rem] text-sm;
 }
 .input-mentions-textarea {
-  @apply min-h-[7rem] w-full text-sm;
+  @apply min-h-[100px] w-full text-sm;
 }
 .input-mentions-textarea textarea,
 .input-mentions-single textarea {

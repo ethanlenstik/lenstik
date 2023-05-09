@@ -85,7 +85,7 @@ const Details: FC<Props> = ({ onUpload, onCancel }) => {
       </div>
 
       <form onSubmit={handleSubmit(onSubmitForm)} className="flex-1 shrink-1 flex justify-between flex-col">
-        <div className="mb-10 gap-5 md:grid-cols-2">
+        <div className="gap-5 md:grid-cols-2">
           <div className="flex flex-col justify-between">
             <div>
               <div className="relative">
@@ -138,23 +138,24 @@ const Details: FC<Props> = ({ onUpload, onCancel }) => {
               <div className="mt-5">
                 <ReferenceModule />
               </div>
-              <div className="mt-5">
-                <RadioInput
-                  checked={watch('isSensitiveContent')}
-                  onChange={(checked) => {
-                    setValue('isSensitiveContent', checked)
-                  }}
-                  question={
-                    <span>
-                      Does this video contain sensitive information that targets
-                      an adult audience?
-                    </span>
-                  }
-                />
-              </div>
             </div>
           </div>
         </div>
+        <div className="">
+          <RadioInput
+            checked={watch('isSensitiveContent')}
+            onChange={(checked) => {
+              setValue('isSensitiveContent', checked)
+            }}
+            question={
+              <span>
+                Does this video contain sensitive information that targets
+                an adult audience?
+              </span>
+            }
+          />
+        </div>
+
 
         {uploadedVideo.isNSFWThumbnail ? (
           <ContentAlert

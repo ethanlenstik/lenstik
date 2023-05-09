@@ -43,7 +43,7 @@ const Video = () => {
   }
 
   return (
-    <div className="flex w-[360px] flex-col justify-between">
+    <div className="flex w-[370px] flex-col justify-between">
       <div className="relative w-full overflow-hidden border rounded-lg">
         <video
           ref={videoRef}
@@ -111,12 +111,12 @@ const Video = () => {
             />
           </div>
         )}
-      <ul className="mt-4 list-inside list-disc text-xs text-start">
+      <ul className="mt-3 text-sm list-inside text-start">
         {/* <li>Don't switch network or wallet accounts.</li> */}
         <li>
-          Stay active in current tab while uploading for faster experience.
-        </li>
-        <li>Video will be stored permanently on-chain and can't be updated.</li>
+          <span>Stay active in current tab while uploading for faster experience.
+          </span>       </li>
+        {/* <li>Video will be stored permanently on-chain and can't be updated.</li> */}
       </ul>
       <UploadMethod />
     </div>
