@@ -24,7 +24,7 @@ const MetaTags: FC<Props> = (props) => {
   const meta = {
     title: title ?? LENSTUBE_APP_NAME,
     description: description ?? LENSTUBE_APP_DESCRIPTION,
-    image: image ?? `${STATIC_ASSETS}/images/seo/og.png`,
+    image: image ?? `/images/logo.png`,
     type: 'website'
   }
 
