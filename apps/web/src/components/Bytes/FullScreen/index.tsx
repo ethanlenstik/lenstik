@@ -53,6 +53,7 @@ const FullScreen: FC<Props> = ({ byte,
 
     const playVideo = () => {
         if (!videoRef.current) {
+            console.log("return xxx")
             return
         }
         videoRef.current.currentTime = 0
@@ -73,14 +74,6 @@ const FullScreen: FC<Props> = ({ byte,
         videoRef.current?.pause()
         videoRef.current.autoplay = false
         setPlaying(false)
-    }
-
-    const onClickVideo = () => {
-        if (videoRef.current?.paused) {
-            playVideo()
-        } else {
-            pauseVideo()
-        }
     }
 
     const refCallback = (ref: HTMLMediaElement) => {
@@ -128,8 +121,11 @@ const FullScreen: FC<Props> = ({ byte,
 
     const detailNext = (val: 1 | -1) => {
         const index = bytes.findIndex(b => b.id === currentViewingId)
-        // console.log(currentViewingId, index + val)
+        console.log(currentViewingId, index,val)
         const byte = index >= 0 ? bytes[index + val] : bytes[0]
+        if (!byte) {
+            return
+        }
         const id = byte.id
         setCurrentViewingId(id)
 

@@ -40,6 +40,7 @@ const VideoPlayer: FC<Props> = ({
   const [sensitiveWarning, setSensitiveWarning] = useState(isSensitiveContent)
 
   const analyseVideo = (ref: HTMLMediaElement) => {
+    console.log("aaa", publicationId)
     const initTime = mux.utils.now()
     const VIDEO_TYPE = 'on-demand'
     const IS_BYTE = ratio === '9to16'
@@ -82,6 +83,7 @@ const VideoPlayer: FC<Props> = ({
     event.preventDefault()
   }
 
+  console.log("permanentUrl", permanentUrl)
   return (
     <div className="w-full md:rounded-md">
       {sensitiveWarning ? (
