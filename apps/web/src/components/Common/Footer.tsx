@@ -19,22 +19,22 @@ const Footer = () => {
   const listLink = [
 
     {
-      label: "About",
-      url: ""
+      label: "Twitter",
+      url: "https://twitter.com/lenstik_xyz"
     },
     {
-      label: "Docs",
-      url: ""
+      label: "Discord",
+      url: "https://discord.gg/4XQjtJekJx"
     },
     {
-      label: "Contact",
-      url: ""
+      label: "Document",
+      url: "https://lenstik.gitbook.io/lenstik/"
     },
   ]
 
   return (
     <div className="text-sm pt-12">
-      <a className="text-gray-400 text-sm mt-5" href="https://lens-do-it.vercel.app/" target="_blank" rel="noreferrer">Click here for a testnet Lens handle</a>
+      <a className="text-gray-400 text-sm mt-5" href="https://lens-do-it.vercel.app/" target="_blank" rel="noreferrer">Join Our community</a>
 
       <div className='mt-1'>
         {listLink.map(link => <a key={link.label} className='mr-5 text-gray-400 text-sm' href={link.url}>{link.label}</a>)}

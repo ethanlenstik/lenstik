@@ -106,7 +106,7 @@ export const LENSTUBE_BYTES_APP_ID = 'lenstube-bytes'
 export const LENSTOK_APP_ID = 'lenstok'
 
 // official
-export const LENSTUBE_TWITTER_HANDLE = 'lenstubexyz'
+export const LENSTUBE_TWITTER_HANDLE = 'lenstik_xyz'
 export const LENSTUBE_GITHUB_HANDLE = 'lenstube-xyz'
 export const LENSTUBE_STATUS_PAGE = 'https://status.lenstube.xyz'
 export const TALLY_VERIFICATION_FORM_URL = 'https://tally.so/r/mY5e80'
