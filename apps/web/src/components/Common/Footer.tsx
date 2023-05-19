@@ -34,7 +34,7 @@ const Footer = () => {
 
   return (
     <div className="text-sm pt-12">
-      <a className="text-gray-400 text-sm mt-5" href="https://lens-do-it.vercel.app/" target="_blank" rel="noreferrer">Join Our community</a>
+      <p className="text-gray-400 text-sm mt-5">Join Our community</p>
 
       <div className='mt-1'>
         {listLink.map(link => <a key={link.label} className='mr-5 text-gray-400 text-sm' href={link.url}>{link.label}</a>)}
