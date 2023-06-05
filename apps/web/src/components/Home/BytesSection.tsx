@@ -17,7 +17,7 @@ import {
   LENS_CUSTOM_FILTERS,
   LENSTUBE_BYTES_APP_ID,
   TRACK,
-  LENSTOK_APP_ID
+  LENSTIK_APP_ID
 } from 'utils'
 import getLensHandle from 'utils/functions/getLensHandle'
 import getProfilePicture from 'utils/functions/getProfilePicture'
@@ -36,7 +36,7 @@ const BytesSection = () => {
     sortCriteria: PublicationSortCriteria.CuratedProfiles,
     limit: 30,
     noRandomize: false,
-    sources: [LENSTUBE_BYTES_APP_ID, LENSTOK_APP_ID],
+    sources: [LENSTUBE_BYTES_APP_ID, LENSTIK_APP_ID],
     publicationTypes: [PublicationTypes.Post],
     customFilters: LENS_CUSTOM_FILTERS,
     metadata: {

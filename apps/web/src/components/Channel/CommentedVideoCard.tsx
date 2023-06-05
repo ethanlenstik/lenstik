@@ -6,7 +6,7 @@ import Link from 'next/link'
 import type { FC } from 'react'
 import React from 'react'
 import { FaRegCommentAlt } from 'react-icons/fa'
-import { Analytics, LENSTOK_APP_ID, LENSTUBE_BYTES_APP_ID, STATIC_ASSETS, TRACK } from 'utils'
+import { Analytics, LENSTIK_APP_ID, LENSTUBE_BYTES_APP_ID, STATIC_ASSETS, TRACK } from 'utils'
 import { getRelativeTime, getTimeFromSeconds } from 'utils/functions/formatTime'
 import { getValueFromTraitType } from 'utils/functions/getFromAttributes'
 import { getIsSensitiveContent } from 'utils/functions/getIsSensitiveContent'
@@ -30,7 +30,7 @@ const CommentedVideoCard: FC<Props> = ({ video }) => {
     commentedOn?.metadata?.attributes as Attribute[],
     'durationInSeconds'
   )
-  const isBytesVideo = commentedOn.appId === LENSTUBE_BYTES_APP_ID || commentedOn.appId === LENSTOK_APP_ID
+  const isBytesVideo = commentedOn.appId === LENSTUBE_BYTES_APP_ID || commentedOn.appId === LENSTIK_APP_ID
   const thumbnailUrl = imageCdn(
     isSensitiveContent
       ? `${STATIC_ASSETS}/images/sensor-blur.png`

@@ -6,11 +6,11 @@ import { NoDataFound } from '@components/UIElements/NoDataFound'
 import useAppStore from '@lib/store'
 import type { Publication } from 'lens'
 import {
+  PublicationMainFocus,
   PublicationSortCriteria,
   PublicationTypes,
   useExploreLazyQuery,
-  usePublicationDetailsLazyQuery,
-  PublicationMainFocus
+  usePublicationDetailsLazyQuery
 } from 'lens'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
@@ -19,10 +19,10 @@ import { useInView } from 'react-cool-inview'
 import {
   Analytics,
   LENS_CUSTOM_FILTERS,
+  LENSTIK_APP_ID,
   LENSTUBE_BYTES_APP_ID,
   SCROLL_ROOT_MARGIN,
-  TRACK,
-  LENSTOK_APP_ID
+  TRACK
 } from 'utils'
 
 import ByteVideo from './ByteVideo'
@@ -44,7 +44,7 @@ const Bytes = () => {
     sortCriteria: PublicationSortCriteria.CuratedProfiles,
     limit: 30,
     noRandomize: false,
-    sources: [ LENSTOK_APP_ID, LENSTUBE_BYTES_APP_ID],
+    sources: [LENSTIK_APP_ID, LENSTUBE_BYTES_APP_ID],
     publicationTypes: [PublicationTypes.Post],
     customFilters: LENS_CUSTOM_FILTERS,
     metadata: {
@@ -73,7 +73,7 @@ const Bytes = () => {
       onCompleted: ({ explorePublications }) => {
       }
     })
-console.log(data)
+  console.log(data)
 
   const bytes = data?.explorePublications?.items as Publication[]
   const pageInfo = data?.explorePublications?.pageInfo

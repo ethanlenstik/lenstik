@@ -33,7 +33,7 @@ import {
   LENSTUBE_BYTES_APP_ID,
   LENSTUBE_WEBSITE_URL,
   TRACK,
-  LENSTOK_APP_ID
+  LENSTIK_APP_ID
 } from 'utils'
 import canUploadedToIpfs from 'utils/functions/canUploadedToIpfs'
 import { checkIsBytesVideo } from 'utils/functions/checkIsBytesVideo'
@@ -239,7 +239,7 @@ const UploadSteps = () => {
         {
           displayType: PublicationMetadataDisplayTypes.String,
           traitType: 'app',
-          value: LENSTOK_APP_ID
+          value: LENSTIK_APP_ID
         }
       ]
       if (uploadedVideo.durationInSeconds) {
@@ -267,7 +267,7 @@ const UploadSteps = () => {
         name: trimify(uploadedVideo.title),
         attributes,
         media,
-        appId: LENSTOK_APP_ID//isByteVideo ? LENSTUBE_BYTES_APP_ID : LENSTUBE_APP_ID
+        appId: LENSTIK_APP_ID//isByteVideo ? LENSTUBE_BYTES_APP_ID : LENSTUBE_APP_ID
       }
       if (uploadedVideo.isSensitiveContent) {
         metadata.contentWarning = PublicationContentWarning.Sensitive

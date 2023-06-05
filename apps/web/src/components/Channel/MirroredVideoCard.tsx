@@ -5,7 +5,7 @@ import type { Attribute, Mirror, Publication } from 'lens'
 import Link from 'next/link'
 import type { FC } from 'react'
 import React from 'react'
-import { Analytics, LENSTOK_APP_ID, LENSTUBE_BYTES_APP_ID, STATIC_ASSETS, TRACK } from 'utils'
+import { Analytics, LENSTIK_APP_ID, LENSTUBE_BYTES_APP_ID, STATIC_ASSETS, TRACK } from 'utils'
 import { getRelativeTime, getTimeFromSeconds } from 'utils/functions/formatTime'
 import { getValueFromTraitType } from 'utils/functions/getFromAttributes'
 import { getIsSensitiveContent } from 'utils/functions/getIsSensitiveContent'
@@ -27,7 +27,7 @@ const MirroredVideoCard: FC<Props> = ({ video }) => {
     'durationInSeconds'
   )
 
-  const isBytesVideo = video.appId === LENSTUBE_BYTES_APP_ID || video.appId === LENSTOK_APP_ID
+  const isBytesVideo = video.appId === LENSTUBE_BYTES_APP_ID || video.appId === LENSTIK_APP_ID
 
   const thumbnailUrl = imageCdn(
     isSensitiveContent

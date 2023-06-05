@@ -12,7 +12,7 @@ import {
   LENSTUBE_APP_ID,
   LENSTUBE_BYTES_APP_ID,
   SCROLL_ROOT_MARGIN,
-  LENSTOK_APP_ID
+  LENSTIK_APP_ID
 } from 'utils'
 
 type Props = {
@@ -23,7 +23,7 @@ const CommentedVideos: FC<Props> = ({ channel }) => {
   const request = {
     publicationTypes: [PublicationTypes.Comment],
     limit: 32,
-    sources: [LENSTUBE_APP_ID, LENSTUBE_BYTES_APP_ID, LENSTOK_APP_ID],
+    sources: [LENSTUBE_APP_ID, LENSTUBE_BYTES_APP_ID, LENSTIK_APP_ID],
     customFilters: LENS_CUSTOM_FILTERS,
     profileId: channel?.id
   }

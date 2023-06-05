@@ -9,9 +9,9 @@ import React from 'react'
 import { useInView } from 'react-cool-inview'
 import {
   LENS_CUSTOM_FILTERS,
+  LENSTIK_APP_ID,
   LENSTUBE_BYTES_APP_ID,
-  SCROLL_ROOT_MARGIN,
-  LENSTOK_APP_ID
+  SCROLL_ROOT_MARGIN
 } from 'utils'
 
 type Props = {
@@ -22,7 +22,7 @@ const ChannelBytes: FC<Props> = ({ channel }) => {
   const request = {
     publicationTypes: [PublicationTypes.Post],
     limit: 32,
-    sources: [LENSTOK_APP_ID, LENSTUBE_BYTES_APP_ID],
+    sources: [LENSTIK_APP_ID, LENSTUBE_BYTES_APP_ID],
     customFilters: LENS_CUSTOM_FILTERS,
     profileId: channel?.id
   }
@@ -31,7 +31,7 @@ const ChannelBytes: FC<Props> = ({ channel }) => {
     variables: { request },
     skip: !channel?.id
   })
-console.log(data)
+  console.log(data)
   const bytes = data?.publications?.items as Publication[]
   const pageInfo = data?.publications?.pageInfo
 

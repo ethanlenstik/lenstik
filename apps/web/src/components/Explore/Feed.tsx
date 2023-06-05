@@ -25,7 +25,7 @@ import {
   MOD_IDS,
   SCROLL_ROOT_MARGIN,
   TRACK,
-  LENSTOK_APP_ID
+  LENSTIK_APP_ID
 } from 'utils'
 
 const initialCriteria = {
@@ -62,7 +62,7 @@ const ExploreFeed = () => {
     sortCriteria: getCriteria(),
     limit: 32,
     noRandomize: true,
-    sources: [LENSTUBE_APP_ID, LENSTUBE_BYTES_APP_ID, LENSTOK_APP_ID],
+    sources: [LENSTUBE_APP_ID, LENSTUBE_BYTES_APP_ID, LENSTIK_APP_ID],
     publicationTypes: [PublicationTypes.Post],
     customFilters: LENS_CUSTOM_FILTERS,
     metadata: {

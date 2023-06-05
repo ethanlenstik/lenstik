@@ -15,7 +15,7 @@ import {
   LENSTUBE_APP_ID,
   LENSTUBE_BYTES_APP_ID,
   SCROLL_ROOT_MARGIN,
-  LENSTOK_APP_ID
+  LENSTIK_APP_ID
 } from 'utils'
 
 import SuggestedVideoCard from './SuggestedVideoCard'
@@ -23,7 +23,7 @@ import SuggestedVideoCard from './SuggestedVideoCard'
 const request = {
   sortCriteria: PublicationSortCriteria.CuratedProfiles,
   limit: 30,
-  sources: [LENSTUBE_APP_ID, LENSTUBE_BYTES_APP_ID, LENSTOK_APP_ID],
+  sources: [LENSTUBE_APP_ID, LENSTUBE_BYTES_APP_ID, LENSTIK_APP_ID],
   publicationTypes: [PublicationTypes.Post],
   noRandomize: false,
   customFilters: LENS_CUSTOM_FILTERS
